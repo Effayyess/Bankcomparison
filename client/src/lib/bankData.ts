@@ -14,6 +14,11 @@ export interface BankPlan {
   highlight?: string;
 }
 
+export interface ReviewSection {
+  heading: string;
+  body: string;
+}
+
 export interface BankAccount {
   id: string;
   name: string;
@@ -44,6 +49,7 @@ export interface BankAccount {
   pros: string[];
   cons: string[];
   summary: string;
+  reviewContent?: ReviewSection[];
   plans: BankPlan[];
   affiliateUrl?: string;
   trustpilot?: number;
@@ -103,6 +109,15 @@ export const banks: BankAccount[] = [
       'Credit check required for overdraft applications',
     ],
     summary: "HSBC's Small Business Banking Account is a compelling choice for businesses that want the security and breadth of a major high street bank without paying a monthly fee. The free digital banking covers day-to-day transfers via the app and online portal, while the £100 Amazon Gift Card welcome offer adds immediate value.",
+    reviewContent: [
+      { heading: 'Overview', body: 'HSBC\'s Small Business Banking Account is one of the most well-rounded offerings from a major UK high street bank. With no monthly account maintenance fee and free day-to-day digital banking, it removes two of the biggest pain points for small businesses. HSBC is one of the UK\'s largest banks, with a network of over 500 branches and a strong online and mobile banking platform, making it a compelling choice for businesses that want the reassurance of a traditional bank without the typical monthly charges.' },
+      { heading: 'Fees and Charges', body: 'The headline feature is the absence of a monthly account fee for the Small Business Banking Account. Day-to-day digital transactions — including payments made via the app or online banking — are free. However, businesses should be aware of additional charges: ATM cash withdrawals incur a 25p fee plus 0.60% of the amount withdrawn, and there is a 2.75% non-sterling transaction fee for international spending. CHAPS payments and international transfers carry additional charges, which are detailed in HSBC\'s business banking tariff guide. For businesses that primarily operate digitally and do not frequently use ATMs or make international payments, the overall cost of banking with HSBC is very competitive.' },
+      { heading: 'Features and Banking Tools', body: 'HSBC\'s business banking platform includes a comprehensive mobile app and online banking portal, both of which allow businesses to manage day-to-day finances, make payments, and view statements. The account integrates with leading accounting software including Xero, QuickBooks, and Sage, enabling automatic transaction feeds and reconciliation. HSBC also offers an Open Banking dashboard within its online banking platform, giving businesses a consolidated view of their finances across multiple accounts. Business overdrafts are available subject to status and credit assessment, and HSBC offers a range of business lending products for growing businesses.' },
+      { heading: 'Welcome Offer', body: 'New HSBC Small Business Banking Account customers can claim a £100 Amazon.co.uk Gift Card. To qualify, customers must be accepted for the account and meet the specific terms and conditions of the offer. The offer is time-limited — it ends on 3 April 2026 — so businesses considering switching or opening a new account should act promptly. This welcome offer adds immediate tangible value and is one of the more generous incentives currently available from a high street bank.' },
+      { heading: 'Customer Service and Support', body: 'HSBC provides business customers with access to a UK-based telephone support team, as well as in-branch support at over 500 UK branches. The HSBC Business Banking app has an app store rating of 4.7, reflecting a generally positive user experience. However, HSBC\'s Trustpilot score of 1.6 reflects broader customer service concerns that are common among large high street banks. Businesses that require dedicated relationship management may find HSBC\'s Business Banking Account (from £8/month) more appropriate, as it includes a dedicated relationship manager.' },
+      { heading: 'Who Is It Best For?', body: 'The HSBC Small Business Banking Account is best suited to sole traders, limited companies, partnerships, and LLPs that want the security and breadth of a major high street bank without paying a monthly fee. It is particularly well-suited to businesses that primarily bank digitally but occasionally need branch access or cash deposit facilities. Established businesses with more complex needs — such as dedicated relationship management, trade finance, or international services — may benefit from upgrading to HSBC\'s Business Banking Account.' },
+      { heading: 'FSCS Protection', body: 'HSBC is authorised by the Prudential Regulation Authority (PRA) and regulated by the Financial Conduct Authority (FCA) and PRA. Eligible deposits held with HSBC are protected by the Financial Services Compensation Scheme (FSCS) up to £85,000 per person per authorised institution. This provides businesses with a significant safety net and is an important consideration when choosing a business bank account.' },
+    ],
     plans: [
       {
         name: 'Small Business Banking Account',
@@ -137,9 +152,10 @@ export const banks: BankAccount[] = [
     trustpilot: 1.6,
     appRating: 4.7,
     openingFee: 'Free',
+    affiliateUrl: 'https://www.business.hsbc.uk/en-gb/products/small-business-bank-account',
     creditCheck: true,
+    hasAccounting: true,
     suitableFor: ['sole-trader', 'limited-company', 'small-business', 'startup', 'established-business', 'partnership'],
-    slug: 'lloyds-business',
     hasBranchAccess: true,
     hasCashDeposits: true,
     hasFastOpening: false,
@@ -187,6 +203,14 @@ export const banks: BankAccount[] = [
       'No overdraft',
     ],
     summary: 'WorldFirst is particularly popular with e-commerce sellers on platforms like Amazon, eBay, and Etsy. The ability to receive payments in local currencies and convert at competitive rates makes it a cost-effective solution for businesses with international sales.',
+    reviewContent: [
+      { heading: 'Overview', body: 'WorldFirst is a specialist international payments and business banking platform, now part of the Ant Group. Its World Account is designed specifically for businesses that trade internationally, offering local currency accounts in over 10 countries, competitive FX rates, and free international transfers. While it lacks some of the features of a traditional UK business bank account — such as FSCS protection, overdrafts, or branch access — it is an outstanding choice for e-commerce businesses, importers, exporters, and any business with significant international payment needs.' },
+      { heading: 'Fees and Charges', body: 'The WorldFirst World Account is free to open and has no monthly fee. International transfers are free, which is a significant advantage over traditional banks that typically charge £15–£40 per international payment. Currency conversion is charged at competitive FX rates, which are typically far better than those offered by high street banks. There are no charges for holding multiple currency accounts, and businesses can hold and convert between over 40 currencies. The overall cost structure makes WorldFirst highly cost-effective for businesses with regular international payment requirements.' },
+      { heading: 'Multi-Currency Accounts', body: 'WorldFirst\'s standout feature is its multi-currency account capability. Businesses can open local currency accounts in the UK (GBP), US (USD), Europe (EUR), China (CNY), Japan (JPY), Australia (AUD), Canada (CAD), Singapore (SGD), Hong Kong (HKD), and more. Each account comes with local bank details, enabling businesses to receive payments from international customers and marketplaces as if they had a local bank account in that country. This is particularly valuable for Amazon, eBay, Shopify, and other e-commerce sellers who receive payments in multiple currencies.' },
+      { heading: 'E-commerce Marketplace Integrations', body: 'WorldFirst has deep integrations with major e-commerce platforms and marketplaces, including Amazon, eBay, Shopify, Etsy, and others. Sellers can connect their marketplace accounts directly to WorldFirst and receive payouts in local currencies, avoiding the currency conversion fees charged by marketplaces. WorldFirst also integrates with accounting software including Xero and QuickBooks, enabling automatic reconciliation of international transactions.' },
+      { heading: 'Who Is It Best For?', body: 'WorldFirst is best suited to e-commerce businesses, importers, exporters, and any business that regularly sends or receives international payments. It is not designed to replace a primary UK business bank account — it does not offer FSCS protection, overdrafts, or branch access — but it is an excellent complementary account for businesses that want to reduce their international payment costs. Businesses that primarily operate domestically in the UK are unlikely to benefit significantly from WorldFirst\'s features.' },
+      { heading: 'FSCS Protection', body: 'WorldFirst is not a bank and does not offer FSCS protection. However, customer funds are safeguarded in accordance with the FCA\'s client money rules, which require WorldFirst to hold customer funds in segregated accounts with authorised credit institutions. This provides a degree of protection, but it is not equivalent to FSCS protection. Businesses should be aware of this distinction when deciding how much money to hold in their WorldFirst account.' },
+    ],
     plans: [
       {
         name: 'Global Business Account',
@@ -200,6 +224,7 @@ export const banks: BankAccount[] = [
     trustpilot: 4.7,
     appRating: 4.3,
     openingFee: 'Free',
+    affiliateUrl: 'https://www.worldfirst.com/uk/',
     creditCheck: false,
     suitableFor: ['limited-company', 'international', 'ecommerce'],
     hasAccounting: false,
@@ -250,6 +275,13 @@ export const banks: BankAccount[] = [
       'Less feature-rich than competitors',
     ],
     summary: 'Zempler Bank (formerly Cashplus) is one of the few UK business banks that will consider applications from businesses with poor credit history. With FSCS protection and an overdraft facility, it provides a genuine banking solution for businesses that have been declined elsewhere.',
+    reviewContent: [
+      { heading: 'Overview', body: 'Zempler Bank (formerly Cashplus Bank) is a UK-licensed bank that offers business current accounts specifically designed for micro-businesses, sole traders, and limited companies. It is one of the few digital banks to offer accounts to businesses with poor credit histories or those that have been declined by traditional banks, making it a valuable option for businesses that struggle to access mainstream banking. Zempler is authorised by the PRA and regulated by the FCA and PRA, and eligible deposits are FSCS protected.' },
+      { heading: 'Fees and Charges', body: 'Zempler Bank offers a free Business Go account with no monthly fee, as well as paid plans starting from £9/month for businesses that need additional features. The free account includes unlimited UK transfers, a Mastercard business debit card, and access to the Zempler app and online banking. There are charges for certain transactions, including cash withdrawals and international payments. The paid plans offer additional benefits such as higher transaction limits, cashback on spending, and access to a business credit card.' },
+      { heading: 'Bad Credit and Declined Applications', body: 'One of Zempler Bank\'s most distinctive features is its willingness to accept business applications from sole traders and limited companies that have been declined by traditional banks due to poor credit history. Zempler does not require a credit check for its basic business account, making it accessible to a wider range of businesses. This is particularly valuable for new businesses, businesses recovering from financial difficulties, or businesses whose directors have personal credit issues.' },
+      { heading: 'Features and Banking Tools', body: 'Zempler Bank\'s business accounts include a Mastercard debit card, UK bank account with sort code and account number, access to the Zempler app and online banking, and integration with accounting software. The app allows businesses to manage their account, make payments, and view transactions in real time. Zempler also offers a business credit card for eligible customers, which can help businesses manage cash flow and build their credit history.' },
+      { heading: 'Who Is It Best For?', body: 'Zempler Bank is best suited to micro-businesses, sole traders, and limited companies that have been declined by traditional banks or that have poor credit histories. It is also a good option for new businesses that want a straightforward, low-cost business account with no monthly fee. Businesses that need more advanced features — such as international payments, multi-currency accounts, or dedicated relationship management — may find other providers more suitable.' },
+    ],
     plans: [
       {
         name: 'Go',
@@ -282,6 +314,7 @@ export const banks: BankAccount[] = [
     trustpilot: 4.0,
     appRating: 3.9,
     openingFee: 'Free',
+    affiliateUrl: 'https://www.zemplerbank.com/business/current-account/',
     creditCheck: false,
     suitableFor: ['sole-trader', 'limited-company', 'bad-credit', 'startup'],
     hasAccounting: false,
@@ -332,6 +365,13 @@ export const banks: BankAccount[] = [
       'Monthly plans can be expensive',
     ],
     summary: 'ANNA Money stands out for its built-in business admin tools, including invoicing, tax reminders, and an AI assistant that can help with routine tasks. The free PAYG plan makes it accessible for businesses with low transaction volumes, while the paid plans suit more active businesses.',
+    reviewContent: [
+      { heading: 'Overview', body: 'ANNA Money is a UK business account and tax assistant designed for sole traders, freelancers, and small limited companies. The name stands for \'Absolutely No Nonsense Admin\', reflecting its focus on automating the administrative burden of running a small business. ANNA combines a business current account with built-in invoicing, expense tracking, and tax calculation tools, making it a compelling all-in-one solution for self-employed individuals and small business owners.' },
+      { heading: 'Fees and Charges', body: 'ANNA Money offers a free plan with no monthly fee, which includes a business account with a Mastercard debit card, basic invoicing, and expense tracking. Paid plans start from £14.90/month and include additional features such as unlimited invoices, automatic tax calculations, VAT returns, and priority support. The free plan is suitable for businesses with low transaction volumes, while the paid plans offer better value for growing businesses with more complex financial management needs.' },
+      { heading: 'Tax and Accounting Features', body: 'ANNA Money\'s standout feature is its built-in tax assistant, which automatically calculates income tax, National Insurance, VAT, and corporation tax based on the business\'s transactions. The platform can file VAT returns directly with HMRC, and it provides self-assessment support for sole traders. This significantly reduces the administrative burden of tax compliance and can save businesses the cost of an accountant for basic tax filings. ANNA also integrates with Xero and other accounting software for businesses that prefer to use dedicated accounting tools.' },
+      { heading: 'Invoicing and Payments', body: 'ANNA Money includes a comprehensive invoicing tool that allows businesses to create and send professional invoices, track payment status, and send automatic payment reminders. The platform supports online payment links, enabling customers to pay invoices directly by card or bank transfer. This is particularly valuable for freelancers and service businesses that invoice clients regularly. ANNA also offers a virtual assistant feature that can handle routine tasks such as chasing overdue invoices.' },
+      { heading: 'Who Is It Best For?', body: 'ANNA Money is best suited to sole traders, freelancers, and small limited companies that want to combine their business banking with invoicing and tax management in a single platform. It is particularly well-suited to self-employed individuals who want to simplify their tax compliance without engaging an accountant. Larger businesses with more complex financial management needs may find dedicated accounting software and a separate business bank account more appropriate.' },
+    ],
     plans: [
       {
         name: 'Pay As You Go',
@@ -377,6 +417,7 @@ export const banks: BankAccount[] = [
     trustpilot: 4.5,
     appRating: 4.6,
     openingFee: 'Free',
+    affiliateUrl: 'https://anna.money/business-account/',
     creditCheck: false,
     suitableFor: ['sole-trader', 'limited-company', 'freelancer', 'startup'],
     hasAccounting: true,
@@ -427,6 +468,12 @@ export const banks: BankAccount[] = [
       'No overdraft',
     ],
     summary: 'Wallester is a business expense management platform rather than a traditional bank account. It excels at helping businesses manage team spending through unlimited virtual cards and real-time expense tracking, making it a useful complement to a main business bank account.',
+    reviewContent: [
+      { heading: 'Overview', body: 'Wallester Business is a European fintech company that offers a free business expense account with unlimited virtual and physical Visa cards. It is designed for businesses that need to manage team spending, issue expense cards to employees, and control corporate expenditure. Wallester is regulated by the Estonian Financial Supervision Authority and operates across the EU and UK, offering IBAN accounts and Visa cards for businesses of all sizes.' },
+      { heading: 'Fees and Charges', body: 'Wallester Business offers a free plan with no monthly fee, which includes unlimited virtual Visa cards, a business IBAN account, and basic spend management tools. Paid plans are available for businesses that need additional features such as physical cards, higher transaction limits, and advanced reporting. The free plan is particularly generous compared to other expense management platforms, making Wallester an attractive option for businesses that want to manage team spending without incurring significant costs.' },
+      { heading: 'Expense Management Features', body: 'Wallester\'s core strength is its expense management capabilities. Businesses can issue unlimited virtual Visa cards to team members, set individual spending limits, and monitor transactions in real time. The platform includes receipt capture, expense categorisation, and reporting tools that simplify the expense management process. Wallester also integrates with accounting software, enabling automatic reconciliation of business expenses.' },
+      { heading: 'Who Is It Best For?', body: 'Wallester Business is best suited to businesses that need to manage team spending and issue expense cards to employees. It is particularly well-suited to businesses with remote teams, frequent business travellers, or high volumes of online purchases. It is not designed to replace a primary UK business bank account, as it does not offer FSCS protection, overdrafts, or branch access. However, it is an excellent complementary account for expense management.' },
+    ],
     plans: [
       {
         name: 'Business Account',
@@ -440,6 +487,7 @@ export const banks: BankAccount[] = [
     trustpilot: 4.4,
     appRating: 4.2,
     openingFee: 'Free',
+    affiliateUrl: 'https://wallester.com/business',
     creditCheck: false,
     suitableFor: ['limited-company', 'small-business'],
     hasAccounting: true,
@@ -490,6 +538,14 @@ export const banks: BankAccount[] = [
       'Credit check required',
     ],
     summary: 'Lloyds Business Account is a solid choice for new businesses wanting traditional high street banking. The 12-month free period and £200 cashback offer make it particularly attractive for startups, while the full branch network provides reassurance for businesses that prefer face-to-face banking.',
+    reviewContent: [
+      { heading: 'Overview', body: 'Lloyds Bank is one of the UK\'s largest and most established high street banks, with a history dating back to 1765. Its Business Account is designed for new and established businesses, offering a comprehensive range of banking services including free banking for the first 12 months, a £200 cashback welcome offer, and access to Lloyds\' extensive branch network. The account is FSCS protected and includes a range of digital banking tools, making it a strong choice for businesses that value the security and breadth of a major high street bank.' },
+      { heading: 'Fees and Charges', body: 'New Lloyds Business Account customers benefit from free banking for the first 12 months, after which a monthly fee of £8.50 applies. During the free banking period, day-to-day transactions including payments, transfers, and direct debits are free. After the free period, transaction charges apply according to Lloyds\' standard business banking tariff. The £200 cashback welcome offer provides immediate value and effectively offsets the monthly fee for the first year of paid banking.' },
+      { heading: 'Branch Network and Cash Handling', body: 'Lloyds Bank has one of the UK\'s most extensive branch networks, with over 1,000 branches across England and Wales. Business customers can deposit cash and cheques at Lloyds branches and at Post Office counters, making it a practical choice for businesses that handle significant volumes of cash. The branch network also provides access to in-person banking support, which is increasingly rare among digital-first banks.' },
+      { heading: 'Digital Banking and Integrations', body: 'Lloyds\' business banking app has an app store rating of 4.3, reflecting a generally positive user experience. The account integrates with leading accounting software including Xero, QuickBooks, Sage, and FreeAgent, enabling automatic transaction feeds and reconciliation. Lloyds also offers a range of digital tools for business customers, including invoice financing, business lending, and foreign exchange services.' },
+      { heading: 'Welcome Offer', body: 'New Lloyds Business Account customers can receive £200 cashback when they open an account and meet the qualifying criteria. This is one of the most generous welcome offers currently available from a UK high street bank and represents significant value for new business customers.' },
+      { heading: 'Who Is It Best For?', body: 'The Lloyds Business Account is best suited to new businesses, sole traders, limited companies, and partnerships that want the security and breadth of a major high street bank. It is particularly well-suited to businesses that need regular branch access, cash deposit facilities, or cheque processing. The 12-month free banking period and £200 cashback welcome offer make it an attractive option for new businesses that want to minimise their banking costs in the early stages of trading.' },
+    ],
     plans: [
       {
         name: 'Business Account',
@@ -525,6 +581,7 @@ export const banks: BankAccount[] = [
     trustpilot: 1.5,
     appRating: 4.3,
     openingFee: 'Free',
+    affiliateUrl: 'https://www.lloydsbank.com/business/business-accounts.html',
     creditCheck: true,
     suitableFor: ['sole-trader', 'limited-company', 'small-business', 'startup', 'established-business', 'partnership'],
     hasAccounting: true,
@@ -574,6 +631,13 @@ export const banks: BankAccount[] = [
       '2.75% foreign transaction fee',
     ],
     summary: 'The Co-operative Bank is the UK\'s leading ethical bank, making it particularly popular with charities, social enterprises, and businesses that prioritise ethical values. The free day-to-day banking and FSCS protection make it a solid choice for small businesses and organisations.',
+    reviewContent: [
+      { heading: 'Overview', body: 'The Co-operative Bank is a UK-licensed bank with a strong ethical banking ethos. Its Business Bank Account is designed for small businesses, sole traders, and charities, offering free day-to-day banking with no monthly fee. The Co-operative Bank is unique among UK high street banks in its commitment to ethical banking principles, which include refusing to lend to businesses involved in activities that conflict with its ethical policy.' },
+      { heading: 'Fees and Charges', body: 'The Co-operative Bank\'s Business Bank Account has no monthly fee, and day-to-day online transactions are free. This includes payments, transfers, and direct debits made via online banking. There are charges for certain transactions, including cash deposits at branches, international payments, and CHAPS transfers. Businesses that primarily bank online and do not frequently use branches or make international payments will find the Co-operative Bank\'s pricing very competitive.' },
+      { heading: 'Ethical Banking', body: 'The Co-operative Bank is the UK\'s only bank with a customer-led ethical policy, which was first established in 1992. The bank refuses to provide banking services to businesses involved in activities that conflict with its ethical policy, including fossil fuel extraction, animal testing for cosmetics, and the manufacture of weapons. This ethical stance is a significant differentiator and is particularly appealing to businesses, charities, and social enterprises that prioritise ethical considerations in their banking relationships.' },
+      { heading: 'Branch Network and Cash Handling', body: 'The Co-operative Bank has a network of branches across the UK, and business customers can deposit cash at branches and Post Office counters. The bank also offers telephone banking for customers who prefer to manage their account by phone. While the branch network is smaller than those of the major high street banks, it provides adequate coverage for most business customers.' },
+      { heading: 'Who Is It Best For?', body: 'The Co-operative Bank Business Bank Account is best suited to small businesses, sole traders, and charities that want free day-to-day banking with an ethical banking provider. It is particularly well-suited to social enterprises, charities, and businesses that prioritise ethical considerations in their banking relationships.' },
+    ],
     plans: [
       {
         name: 'Business Current Account',
@@ -587,6 +651,7 @@ export const banks: BankAccount[] = [
     trustpilot: 3.8,
     appRating: 3.9,
     openingFee: 'Free',
+    affiliateUrl: 'https://apply.business.co-operativebank.co.uk/sme/',
     creditCheck: true,
     suitableFor: ['sole-trader', 'limited-company', 'small-business', 'charity', 'partnership'],
     hasAccounting: true,
@@ -637,6 +702,14 @@ export const banks: BankAccount[] = [
       'No overdraft',
     ],
     summary: 'Airwallex is a powerful global business account designed for companies with significant international payment needs. With 60+ currency accounts and near-interbank FX rates, it\'s particularly well-suited to e-commerce businesses and companies with global supply chains.',
+    reviewContent: [
+      { heading: 'Overview', body: 'Airwallex is a global financial technology platform that offers multi-currency business accounts, international payments, and expense management tools. Founded in Melbourne in 2015, Airwallex has grown to serve over 100,000 businesses worldwide and is particularly well-regarded for its competitive foreign exchange rates and fast international payment capabilities. In the UK, Airwallex is regulated by the FCA as an electronic money institution.' },
+      { heading: 'Fees and Charges', body: 'Airwallex offers a free business account with no monthly fee. International transfers are charged at competitive FX rates with no additional transfer fees for many corridors. The platform charges a small fee for certain transaction types, including ATM withdrawals and some international payment corridors. Overall, Airwallex\'s pricing is highly competitive compared to traditional banks, particularly for businesses that make frequent international payments or hold multiple currencies.' },
+      { heading: 'Multi-Currency Accounts', body: 'Airwallex\'s multi-currency account allows businesses to hold, send, and receive money in over 40 currencies. Businesses can open local currency accounts in major markets including the US, UK, EU, Australia, Hong Kong, Singapore, and Canada, enabling them to receive payments from international customers as if they had a local bank account. This is particularly valuable for e-commerce businesses, import/export companies, and businesses with international clients or suppliers.' },
+      { heading: 'International Payments', body: 'Airwallex supports international payments to over 150 countries in over 60 currencies. Payments are typically processed within 1-3 business days, and Airwallex\'s FX rates are significantly better than those offered by traditional banks. The platform also supports batch payments, enabling businesses to process multiple international payments simultaneously.' },
+      { heading: 'Expense Management and Cards', body: 'Airwallex offers virtual and physical Visa debit cards for business spending, with real-time transaction notifications and spend controls. The platform includes expense management tools that allow businesses to track and categorise spending, capture receipts, and reconcile expenses with accounting software. Airwallex integrates with Xero, QuickBooks, and other accounting platforms.' },
+      { heading: 'Who Is It Best For?', body: 'Airwallex is best suited to businesses with significant international payment needs, including e-commerce businesses, importers, exporters, and businesses with international clients or suppliers. It is also a strong choice for businesses that want to manage team spending with virtual and physical expense cards.' },
+    ],
     plans: [
       {
         name: 'Explore',
@@ -682,6 +755,7 @@ export const banks: BankAccount[] = [
     trustpilot: 4.5,
     appRating: 4.5,
     openingFee: 'Free',
+    affiliateUrl: 'https://www.airwallex.com/uk/business-account/smash-barriers',
     creditCheck: false,
     suitableFor: ['limited-company', 'international', 'ecommerce', 'startup'],
     hasAccounting: true,
@@ -734,6 +808,14 @@ export const banks: BankAccount[] = [
       'Limited international payment options',
     ],
     summary: 'Tide is one of the UK\'s most popular digital business bank accounts, particularly for sole traders and small businesses. The fast account opening, built-in invoicing, and generous accounting integrations make it a strong choice for businesses that want to get started quickly.',
+    reviewContent: [
+      { heading: 'Overview', body: 'Tide is one of the UK\'s most popular digital business bank accounts, with over 600,000 business members. It is designed specifically for small businesses, sole traders, and freelancers, offering a fast account opening process, free day-to-day banking, and a comprehensive suite of business tools including invoicing, expense management, and accounting integrations. Tide is regulated by the FCA and offers FSCS protection through its banking partner ClearBank.' },
+      { heading: 'Fees and Charges', body: 'Tide offers a free account with no monthly fee, which includes a business current account, a Mastercard debit card, and access to the Tide app. Paid plans — Plus (£9.99/month), Pro (£18.99/month), and Cashback (£49.99/month) — offer additional features such as free transfers, expense cards for team members, and cashback on spending. The free plan is suitable for businesses with low transaction volumes, while the paid plans offer better value for growing businesses.' },
+      { heading: 'Account Opening', body: 'Tide is known for its fast and straightforward account opening process. Most businesses can open an account within minutes using the Tide app, without visiting a branch or submitting paper documents. The application process requires basic information about the business and its directors, and most applications are approved within 24 hours. This makes Tide an excellent choice for businesses that need a bank account quickly.' },
+      { heading: 'Business Tools and Integrations', body: 'Tide\'s app includes a comprehensive suite of business tools, including invoicing, expense tracking, and accounting integrations. The platform integrates with Xero, QuickBooks, FreeAgent, Sage, and other accounting software, enabling automatic transaction feeds and reconciliation. Tide also offers a business savings account, a business credit card, and access to business loans and invoice financing through its lending partners.' },
+      { heading: 'Welcome Offer', body: 'New Tide business account customers can receive £250 cashback when they open an account and meet the qualifying criteria. This is one of the most generous welcome offers currently available from a digital bank and represents significant value for new business customers.' },
+      { heading: 'Who Is It Best For?', body: 'Tide is best suited to sole traders, freelancers, and small limited companies that want a fast, straightforward, and feature-rich digital business bank account. It is particularly well-suited to businesses that want to manage their finances entirely through a mobile app, and to businesses that value a wide range of integrations with accounting and business management software.' },
+    ],
     plans: [
       {
         name: 'Free',
@@ -801,6 +883,7 @@ export const banks: BankAccount[] = [
     trustpilot: 4.1,
     appRating: 4.6,
     openingFee: 'Free',
+    affiliateUrl: 'https://www.tide.co/business-current-account/',
     creditCheck: false,
     suitableFor: ['sole-trader', 'limited-company', 'small-business', 'startup', 'freelancer', 'contractor', 'partnership'],
     hasAccounting: true,
@@ -852,6 +935,13 @@ export const banks: BankAccount[] = [
       'Limited to sole traders and small companies',
     ],
     summary: 'CountingUp is unique in combining a business current account with built-in accounting software, eliminating the need for a separate Xero or QuickBooks subscription. This makes it particularly cost-effective for sole traders and small businesses that want to manage their finances in one place.',
+    reviewContent: [
+      { heading: 'Overview', body: 'CountingUp is a unique business current account that combines banking with built-in accounting software, eliminating the need for a separate accounting subscription. It is designed for sole traders, freelancers, and small limited companies that want to manage their finances in one place. CountingUp is regulated by the FCA and offers FSCS protection, making it a secure and reliable choice for UK businesses.' },
+      { heading: 'Fees and Charges', body: 'CountingUp offers plans starting from £3/month for the Starter plan, which is suitable for businesses with low transaction volumes. The Standard plan (£9/month) includes additional features such as VAT returns, self-assessment support, and multiple team members. The built-in accounting software is included in all plans, which means businesses save the cost of a separate Xero or QuickBooks subscription (typically £12–£30/month).' },
+      { heading: 'Built-in Accounting Software', body: 'CountingUp\'s built-in accounting software automatically categorises transactions, calculates income tax and National Insurance, and generates financial reports. The platform supports VAT returns, which can be filed directly with HMRC through Making Tax Digital (MTD). Self-assessment support is available for sole traders, and the platform generates a tax summary that can be used to complete a self-assessment tax return.' },
+      { heading: 'Cash Deposits', body: 'CountingUp allows businesses to deposit cash at Post Office counters, which is a useful feature for businesses that handle cash. This is relatively rare among digital business bank accounts and makes CountingUp more versatile than many of its competitors for businesses that need to deposit cash regularly.' },
+      { heading: 'Who Is It Best For?', body: 'CountingUp is best suited to sole traders, freelancers, and small limited companies that want to combine their business banking with built-in accounting software. It is particularly well-suited to businesses that currently pay for a separate accounting subscription and want to reduce their costs.' },
+    ],
     plans: [
       {
         name: 'Starter',
@@ -873,9 +963,10 @@ export const banks: BankAccount[] = [
     trustpilot: 4.3,
     appRating: 4.4,
     openingFee: 'Free',
+    affiliateUrl: 'https://countingup.com/business-account/',
     creditCheck: false,
+    hasAccounting: true,
     suitableFor: ['sole-trader', 'limited-company', 'freelancer', 'startup', 'partnership'],
-    slug: 'monzo-business',
     hasBranchAccess: false,
     hasCashDeposits: true,
     hasFastOpening: true,
@@ -922,6 +1013,13 @@ export const banks: BankAccount[] = [
       'Credit check required',
     ],
     summary: 'Virgin Money\'s M Account for Business offers free day-to-day banking with the added benefit of branch access — a rare combination. The cashback perks on business spending add extra value, making it a strong choice for businesses that want free banking without sacrificing physical access.',
+    reviewContent: [
+      { heading: 'Overview', body: 'Virgin Money\'s M Account for Business is a free business bank account designed for small businesses and sole traders. It offers free day-to-day online banking, cashback on debit card spending, and access to Virgin Money\'s branch network. The account is FSCS protected and includes a range of digital banking tools. Virgin Money is part of Nationwide Building Society following its acquisition in 2023.' },
+      { heading: 'Fees and Charges', body: 'The M Account for Business has no monthly fee, and day-to-day online transactions are free. Cash deposits can be made at Virgin Money branches, and the account includes a Mastercard debit card for business spending. There are charges for certain transactions, including international payments and CHAPS transfers. The account also offers cashback on debit card spending, which can provide additional value for businesses that make regular purchases.' },
+      { heading: 'Cashback and Rewards', body: 'One of the M Account for Business\'s distinguishing features is its cashback programme, which offers cashback on debit card spending at selected retailers. The cashback rates and eligible retailers vary, and businesses should check the current terms and conditions for details. This feature adds value for businesses that make regular purchases and can partially offset the cost of business expenses.' },
+      { heading: 'Branch Access', body: 'Virgin Money has a network of branches across the UK, and business customers can access in-branch services including cash deposits and account management. The branch network is smaller than those of the major high street banks, but it provides adequate coverage for most business customers.' },
+      { heading: 'Who Is It Best For?', body: 'The Virgin Money M Account for Business is best suited to small businesses and sole traders that want free day-to-day banking with cashback rewards and branch access. It is particularly well-suited to businesses that make regular debit card purchases and want to earn cashback on their spending.' },
+    ],
     plans: [
       {
         name: 'M Account for Business',
@@ -955,6 +1053,7 @@ export const banks: BankAccount[] = [
     trustpilot: 1.8,
     appRating: 4.2,
     openingFee: 'Free',
+    affiliateUrl: 'https://uk.virginmoney.com/business/current-accounts/m-account-for-business/',
     creditCheck: true,
     suitableFor: ['sole-trader', 'limited-company', 'small-business', 'freelancer', 'partnership'],
     hasAccounting: false,
@@ -1005,6 +1104,14 @@ export const banks: BankAccount[] = [
       'No overdraft facility',
     ],
     summary: 'Revolut Business is the go-to choice for businesses with international operations. The multi-currency accounts, competitive FX rates, and powerful expense management tools make it particularly valuable for e-commerce businesses and companies with overseas suppliers or customers.',
+    reviewContent: [
+      { heading: 'Overview', body: 'Revolut Business is one of the UK\'s most feature-rich digital business bank accounts, offering multi-currency accounts, international payments, expense management, and a wide range of integrations. Founded in 2015, Revolut has grown to serve over 500,000 business customers worldwide. Revolut Business is regulated by the FCA and offers FSCS protection through its banking licence.' },
+      { heading: 'Fees and Charges', body: 'Revolut Business offers a free plan with limited features, and paid plans starting from £10/month (Grow), £25/month (Scale), and £100/month (Enterprise). The paid plans include additional features such as higher transaction limits, more team members, and advanced reporting. Revolut\'s FX rates are among the best available, making it particularly cost-effective for businesses that make frequent international payments.' },
+      { heading: 'Multi-Currency Accounts', body: 'Revolut Business allows businesses to hold, send, and receive money in over 25 currencies. Businesses can exchange currencies at interbank rates (during market hours), which are significantly better than those offered by traditional banks. The platform also supports international payments to over 150 countries, with payments typically processed within 1-3 business days.' },
+      { heading: 'Expense Management and Cards', body: 'Revolut Business offers virtual and physical Visa debit cards for business spending, with real-time transaction notifications and spend controls. The platform includes expense management tools that allow businesses to track and categorise spending, capture receipts, and reconcile expenses with accounting software. Revolut Business integrates with Xero, QuickBooks, Sage, and other accounting platforms.' },
+      { heading: 'Welcome Offer', body: 'New Revolut Business customers can receive a £200 welcome bonus when they open an account and meet the qualifying criteria. This welcome offer provides immediate value and makes Revolut Business an attractive option for businesses considering switching from a traditional bank or another digital bank.' },
+      { heading: 'Who Is It Best For?', body: 'Revolut Business is best suited to businesses with significant international payment needs, including e-commerce businesses, importers, exporters, and businesses with international clients or suppliers. The wide range of features and integrations makes it suitable for businesses of all sizes, from sole traders to large enterprises.' },
+    ],
     plans: [
       {
         name: 'Basic',
@@ -1070,6 +1177,7 @@ export const banks: BankAccount[] = [
     trustpilot: 4.3,
     appRating: 4.7,
     openingFee: 'Free',
+    affiliateUrl: 'https://business.revolut.com/signup',
     creditCheck: false,
     suitableFor: ['limited-company', 'international', 'ecommerce', 'startup', 'contractor'],
     hasAccounting: true,
@@ -1119,6 +1227,13 @@ export const banks: BankAccount[] = [
       'No branch access',
     ],
     summary: 'Tide\'s combined business bank account and savings account is ideal for businesses that want to earn interest on idle cash while keeping everything in one place. The 4.00% AER savings rate is competitive, and the no-credit-check policy makes it accessible to most businesses.',
+    reviewContent: [
+      { heading: 'Overview', body: 'The Tide Business Bank Account & Savings Account is a combined offering that allows businesses to earn interest on their savings while maintaining a full-featured business current account. It is designed for businesses that want to maximise the return on their cash reserves without the complexity of managing separate banking relationships. The savings account offers competitive interest rates, and the combined account is FSCS protected through Tide\'s banking partner ClearBank.' },
+      { heading: 'Savings Interest Rates', body: 'The Tide savings account offers interest rates of up to 4.00% AER, which is competitive compared to other business savings accounts currently available in the UK market. The interest rate may vary depending on the amount deposited and the terms of the savings account. Businesses should check the current rates and terms on Tide\'s website before opening an account, as rates are subject to change.' },
+      { heading: 'Combined Banking and Savings', body: 'The combined Tide Business Bank Account & Savings Account allows businesses to manage both their current account and savings account through a single app. This simplifies financial management and makes it easy to move money between the current account and savings account as needed. The current account includes all the features of the standard Tide Business Bank Account, including invoicing, expense management, and accounting integrations.' },
+      { heading: 'Welcome Offer', body: 'New customers opening the combined Tide Business Bank Account & Savings Account can receive £200 cashback and earn up to 4.00% AER on their savings. This welcome offer provides immediate value and makes the combined account an attractive option for businesses that want to earn a return on their cash reserves.' },
+      { heading: 'Who Is It Best For?', body: 'The Tide Business Bank Account & Savings Account is best suited to businesses that have significant cash reserves and want to earn interest on their savings while maintaining a full-featured business current account. It is particularly well-suited to businesses that want to simplify their financial management by combining their current account and savings account in a single platform.' },
+    ],
     plans: [
       {
         name: 'Free + Savings',
@@ -1132,6 +1247,7 @@ export const banks: BankAccount[] = [
     trustpilot: 4.1,
     appRating: 4.6,
     openingFee: 'Free',
+    affiliateUrl: 'https://www.tide.co/business-current-account/',
     creditCheck: false,
     suitableFor: ['sole-trader', 'limited-company', 'small-business', 'startup'],
     hasAccounting: true,
@@ -1183,6 +1299,14 @@ export const banks: BankAccount[] = [
       'Pro plan required for some features',
     ],
     summary: 'Monzo Business is popular with freelancers and sole traders who appreciate its smart features, particularly the tax pots that automatically set aside money for VAT and income tax. The free Lite plan makes it accessible, while the Pro plan at £5/month adds accounting integrations and additional features.',
+    reviewContent: [
+      { heading: 'Overview', body: 'Monzo Business is a digital business bank account from one of the UK\'s most popular challenger banks. With over 9 million personal account customers and a growing business banking offering, Monzo brings its signature user-friendly design and innovative features to business banking. The account is available in a free Lite plan and a paid Pro plan (£5/month), and it is FSCS protected.' },
+      { heading: 'Fees and Charges', body: 'Monzo Business offers a free Lite plan with no monthly fee, which includes a business current account, a Mastercard debit card, and access to the Monzo app. The Pro plan (£5/month) includes additional features such as multiple team members, accounting integrations, and tax pots. ATM withdrawals are free up to £250/month, after which a 3% fee applies. International spending is free up to fair use limits.' },
+      { heading: 'Tax Pots', body: 'One of Monzo Business\'s most popular features is its tax pots, which automatically set aside a percentage of each payment received for tax purposes. This helps businesses avoid the common problem of spending money that should be reserved for tax payments. The tax pot percentage can be customised to match the business\'s expected tax liability, and the money is held in a separate pot within the Monzo account.' },
+      { heading: 'Instant Notifications and Spending Insights', body: 'Monzo Business provides instant push notifications for every transaction, giving businesses real-time visibility of their spending. The app also includes spending insights that categorise transactions and provide a breakdown of spending by category. This makes it easy for businesses to track their expenses and identify areas where they can reduce costs.' },
+      { heading: 'Accounting Integrations', body: 'Monzo Business integrates with Xero, QuickBooks, and FreeAgent, enabling automatic transaction feeds and reconciliation. This makes it easy for businesses to keep their accounts up to date without manually entering transactions. The Pro plan includes additional accounting features, such as the ability to add notes and receipts to transactions.' },
+      { heading: 'Who Is It Best For?', body: 'Monzo Business is best suited to sole traders, freelancers, limited companies, and contractors that want a modern, user-friendly digital business bank account with innovative features such as tax pots and instant notifications. It is particularly well-suited to businesses that want to manage their finances entirely through a mobile app.' },
+    ],
     plans: [
       {
         name: 'Lite',
@@ -1230,6 +1354,7 @@ export const banks: BankAccount[] = [
     trustpilot: 4.4,
     appRating: 4.8,
     openingFee: 'Free',
+    affiliateUrl: 'https://monzo.com/business-banking/sign-up-for-business',
     creditCheck: false,
     suitableFor: ['sole-trader', 'limited-company', 'freelancer', 'startup', 'contractor'],
     hasAccounting: true,
@@ -1280,6 +1405,14 @@ export const banks: BankAccount[] = [
       'Trustpilot score is low',
     ],
     summary: 'Barclays Business Bank Account is a reliable choice for established businesses that value the security of a major high street bank. The 12-month free period for new businesses, combined with full branch access and FSCS protection, makes it a solid foundation for growing companies.',
+    reviewContent: [
+      { heading: 'Overview', body: 'Barclays is one of the UK\'s largest and most established banks, with a history dating back to 1690. Its Business Bank Account is designed for new and established businesses, offering 12 months of free banking for new businesses, a comprehensive range of digital banking tools, and access to Barclays\' extensive branch network. The account is FSCS protected and includes a range of business support services.' },
+      { heading: 'Fees and Charges', body: 'New Barclays Business Bank Account customers benefit from 12 months of free banking, after which a monthly fee of £8.50 applies. During the free banking period, day-to-day transactions including payments, transfers, and direct debits are free. After the free period, transaction charges apply according to Barclays\' standard business banking tariff.' },
+      { heading: 'Branch Network and Cash Handling', body: 'Barclays has one of the UK\'s most extensive branch networks, with over 1,000 branches across the UK. Business customers can deposit cash and cheques at Barclays branches and at Post Office counters, making it a practical choice for businesses that handle significant volumes of cash.' },
+      { heading: 'Digital Banking and Integrations', body: 'Barclays\' business banking app has an app store rating of 4.2, reflecting a generally positive user experience. The account integrates with leading accounting software including Xero, QuickBooks, and Sage, enabling automatic transaction feeds and reconciliation. Barclays also offers a range of digital tools for business customers, including invoice financing, business lending, and foreign exchange services.' },
+      { heading: 'Business Support Services', body: 'Barclays offers a range of business support services for its banking customers, including access to the Barclays Eagle Labs network of innovation hubs, mentoring and coaching programmes, and online business resources. These services can be particularly valuable for new businesses and startups that are looking for support beyond basic banking.' },
+      { heading: 'Who Is It Best For?', body: 'The Barclays Business Bank Account is best suited to new businesses, sole traders, limited companies, and partnerships that want the security and breadth of a major high street bank. It is particularly well-suited to businesses that need regular branch access, cash deposit facilities, or cheque processing.' },
+    ],
     plans: [
       {
         name: 'Start-up Business Bank Account',
@@ -1327,6 +1460,7 @@ export const banks: BankAccount[] = [
     trustpilot: 1.7,
     appRating: 4.5,
     openingFee: 'Free',
+    affiliateUrl: 'https://www.barclays.co.uk/business-banking/accounts/',
     creditCheck: true,
     suitableFor: ['limited-company', 'established-business', 'small-business', 'sole-trader', 'partnership'],
     hasAccounting: true,
@@ -1376,6 +1510,14 @@ export const banks: BankAccount[] = [
       'Credit check required',
     ],
     summary: 'NatWest\'s Start-Up Business Bank Account offers one of the longest free banking periods available — 24 months — making it an excellent choice for new businesses. Combined with full branch access and FSCS protection, it provides the security of traditional banking while giving new businesses time to establish themselves.',
+    reviewContent: [
+      { heading: 'Overview', body: 'NatWest is one of the UK\'s largest high street banks and a member of the NatWest Group. Its Start-Up Business Bank Account is designed specifically for new businesses, offering free banking for the first 24 months and a range of business support services. The account is FSCS protected and includes access to NatWest\'s extensive branch network.' },
+      { heading: 'Fees and Charges', body: 'The NatWest Start-Up Business Bank Account offers free banking for the first 24 months, which is one of the longest free banking periods available from a UK high street bank. After the free period, a monthly fee of £8.50 applies, along with transaction charges according to NatWest\'s standard business banking tariff.' },
+      { heading: 'Business Support Services', body: 'NatWest offers a comprehensive range of business support services for its banking customers, including access to the NatWest Accelerator programme for high-growth businesses, mentoring and coaching services, and online business resources. The bank also offers a dedicated business support team that can provide guidance on business banking, lending, and financial management.' },
+      { heading: 'Branch Network and Digital Banking', body: 'NatWest has an extensive branch network across the UK, and business customers can access in-branch services including cash deposits and account management. The NatWest business banking app has an app store rating of 4.4, reflecting a positive user experience. The account integrates with leading accounting software including Xero, QuickBooks, Sage, and FreeAgent.' },
+      { heading: 'FreeAgent Accounting Software', body: 'NatWest business banking customers receive free access to FreeAgent accounting software, which is a significant benefit. FreeAgent is a comprehensive cloud-based accounting platform that includes invoicing, expense tracking, tax calculations, and VAT returns. The free FreeAgent subscription is worth approximately £19/month, which effectively offsets the monthly banking fee for businesses that use it.' },
+      { heading: 'Who Is It Best For?', body: 'The NatWest Start-Up Business Bank Account is best suited to new businesses, sole traders, and limited companies that want the security and support of a major high street bank. It is particularly well-suited to businesses that are in the early stages of trading and want to benefit from the extended free banking period and the comprehensive range of business support services.' },
+    ],
     plans: [
       {
         name: 'Start-Up Account (0–24 months)',
@@ -1408,6 +1550,7 @@ export const banks: BankAccount[] = [
     trustpilot: 1.5,
     appRating: 4.4,
     openingFee: 'Free',
+    affiliateUrl: 'https://www.natwest.com/business/bank-accounts/startup-bank-account.html',
     creditCheck: true,
     suitableFor: ['limited-company', 'startup', 'small-business', 'sole-trader', 'partnership'],
     hasBranchAccess: true,
@@ -1457,6 +1600,13 @@ export const banks: BankAccount[] = [
       'Credit check required',
     ],
     summary: 'RBS offers the same generous 24-month free banking period as its sister bank NatWest, making it an excellent choice for new businesses in Scotland and the rest of the UK. The strong Scottish branch network is a particular advantage for businesses based in Scotland.',
+    reviewContent: [
+      { heading: 'Overview', body: 'The Royal Bank of Scotland (RBS) is a major UK bank and a member of the NatWest Group. Its Start-Up Business Bank Account is designed for new businesses in Scotland and Northern England, offering free banking for the first 24 months and a range of business support services. The account is FSCS protected and includes access to RBS\'s branch network.' },
+      { heading: 'Fees and Charges', body: 'The RBS Start-Up Business Bank Account offers free banking for the first 24 months, after which a monthly fee of £8.50 applies. This extended free banking period is one of the most generous available from a UK high street bank and makes RBS particularly attractive for new businesses in Scotland and Northern England.' },
+      { heading: 'Business Support Services', body: 'RBS offers a range of business support services for its banking customers, including access to the NatWest Group\'s business support programmes, mentoring and coaching services, and online business resources. The bank also offers a dedicated business support team that can provide guidance on business banking, lending, and financial management.' },
+      { heading: 'FreeAgent Accounting Software', body: 'RBS business banking customers receive free access to FreeAgent accounting software, which is a significant benefit. FreeAgent is a comprehensive cloud-based accounting platform that includes invoicing, expense tracking, tax calculations, and VAT returns. The free FreeAgent subscription is worth approximately £19/month, which effectively offsets the monthly banking fee for businesses that use it.' },
+      { heading: 'Who Is It Best For?', body: 'The RBS Start-Up Business Bank Account is best suited to new businesses, sole traders, and limited companies in Scotland and Northern England that want the security and support of a major bank. It is particularly well-suited to businesses that are in the early stages of trading and want to benefit from the extended free banking period and the comprehensive range of business support services.' },
+    ],
     plans: [
       {
         name: 'Start-Up Account',
@@ -1470,6 +1620,7 @@ export const banks: BankAccount[] = [
     trustpilot: 1.5,
     appRating: 4.2,
     openingFee: 'Free',
+    affiliateUrl: 'https://www.rbs.co.uk/business/bank-accounts/startup-bank-account.html',
     creditCheck: true,
     suitableFor: ['limited-company', 'startup', 'small-business', 'sole-trader', 'partnership'],
     hasBranchAccess: true,
@@ -1521,6 +1672,14 @@ export const banks: BankAccount[] = [
       'International transfers carry a fee',
     ],
     summary: 'Starling Bank Business Account is consistently rated as one of the best free business bank accounts in the UK. The combination of no monthly fee, no foreign transaction fees, an overdraft facility, and FSCS protection makes it hard to beat for most small businesses.',
+    reviewContent: [
+      { heading: 'Overview', body: 'Starling Bank is one of the UK\'s most highly rated digital banks, consistently winning awards for its business banking offering. Founded in 2014 by Anne Boden, Starling holds a full UK banking licence and offers FSCS protection. The Business Account has no monthly fee, free UK transfers, and a comprehensive suite of business tools, making it an outstanding choice for businesses of all sizes.' },
+      { heading: 'Fees and Charges', body: 'Starling Bank\'s Business Account has no monthly fee and free UK bank transfers, which is a significant advantage over many competitors. ATM withdrawals are free in the UK and abroad (up to fair use limits), and there are no charges for spending abroad in the local currency. International payments are charged at competitive rates, and Starling offers a multi-currency account add-on for businesses that need to hold and transact in multiple currencies.' },
+      { heading: 'Business Tools and Integrations', body: 'Starling Bank\'s business banking app includes a comprehensive suite of tools, including invoicing, expense tracking, and accounting integrations. The platform integrates with Xero, QuickBooks, FreeAgent, Sage, and other accounting software, enabling automatic transaction feeds and reconciliation. Starling also offers a marketplace of third-party integrations, including lending, insurance, and HR tools.' },
+      { heading: 'Multi-Currency Accounts', body: 'Starling Bank offers a multi-currency account add-on that allows businesses to hold, send, and receive money in multiple currencies. This is particularly valuable for businesses with international clients or suppliers. The multi-currency account is available as an add-on to the standard Business Account and is priced competitively.' },
+      { heading: 'Awards and Recognition', body: 'Starling Bank has won numerous awards for its business banking offering, including Best Business Current Account at the British Bank Awards for multiple consecutive years. The bank has a Trustpilot score of 4.3 and an app store rating of 4.9, reflecting consistently high levels of customer satisfaction.' },
+      { heading: 'Who Is It Best For?', body: 'Starling Bank\'s Business Account is best suited to businesses of all sizes that want a feature-rich, award-winning digital business bank account with no monthly fee. It is particularly well-suited to businesses that want to manage their finances entirely through a mobile app and that value a wide range of integrations with accounting and business management software.' },
+    ],
     plans: [
       {
         name: 'Business Account',
@@ -1534,6 +1693,7 @@ export const banks: BankAccount[] = [
     trustpilot: 4.3,
     appRating: 4.9,
     openingFee: 'Free',
+    affiliateUrl: 'https://www.starlingbank.com/business-account/',
     creditCheck: false,
     suitableFor: ['sole-trader', 'limited-company', 'startup', 'freelancer', 'contractor', 'partnership'],
     hasBranchAccess: false,
@@ -1584,6 +1744,14 @@ export const banks: BankAccount[] = [
       'No overdraft',
     ],
     summary: 'Wise Business Account is the gold standard for international payments, offering the real mid-market exchange rate with a small transparent fee. The 40+ currency accounts and no monthly fee (after the one-time £45 setup) make it excellent value for businesses with international payment needs.',
+    reviewContent: [
+      { heading: 'Overview', body: 'Wise (formerly TransferWise) is a global financial technology platform that offers multi-currency business accounts and international payment services. Founded in 2011, Wise has grown to serve over 16 million customers worldwide and is particularly well-regarded for its transparent pricing and competitive foreign exchange rates. The Wise Business account is designed for businesses with international payment needs.' },
+      { heading: 'Fees and Charges', body: 'The Wise Business account has a one-time account opening fee of £45, after which there is no monthly fee. International transfers are charged at Wise\'s mid-market exchange rate plus a small transparent fee, which is typically significantly lower than the fees charged by traditional banks. The account includes local currency accounts in GBP, USD, EUR, AUD, NZD, and other currencies.' },
+      { heading: 'Multi-Currency Accounts', body: 'Wise Business allows businesses to hold, send, and receive money in over 40 currencies. Businesses can open local currency accounts in major markets including the US, UK, EU, Australia, New Zealand, Singapore, and Canada, enabling them to receive payments from international customers as if they had a local bank account in that country.' },
+      { heading: 'Transparent Pricing', body: 'Wise is known for its transparent pricing, which clearly shows the exchange rate and fees before each transaction. Unlike traditional banks, which often hide their FX margins in the exchange rate, Wise charges a small transparent fee and uses the mid-market exchange rate. This makes it easy for businesses to understand exactly how much they are paying for international transfers.' },
+      { heading: 'Accounting Integrations', body: 'Wise Business integrates with Xero, QuickBooks, and other accounting software, enabling automatic transaction feeds and reconciliation. The platform also provides detailed transaction reports that can be exported in various formats for accounting purposes.' },
+      { heading: 'Who Is It Best For?', body: 'Wise Business is best suited to businesses with significant international payment needs, including e-commerce businesses, importers, exporters, and businesses with international clients or suppliers. It is not designed to replace a primary UK business bank account for businesses that primarily operate domestically, as it does not offer FSCS protection, overdrafts, or branch access.' },
+    ],
     plans: [
       {
         name: 'Business Account',
@@ -1597,6 +1765,7 @@ export const banks: BankAccount[] = [
     trustpilot: 4.3,
     appRating: 4.7,
     openingFee: '£45 (one-time)',
+    affiliateUrl: 'https://wise.com/register?profileType=BUSINESS',
     creditCheck: false,
     suitableFor: ['sole-trader', 'limited-company', 'freelancer', 'international', 'contractor'],
     hasAccounting: true,
@@ -1646,6 +1815,13 @@ export const banks: BankAccount[] = [
       'Less well-known brand',
     ],
     summary: 'Cynergy Bank offers a relationship banking approach that is increasingly rare in the UK market. With FSCS protection, competitive savings rates, and a dedicated relationship manager, it suits established businesses that value personal service over digital-first convenience.',
+    reviewContent: [
+      { heading: 'Overview', body: 'Cynergy Bank is a UK-licensed bank that offers business current accounts for small and medium-sized businesses. It is designed for businesses that want the security and reliability of a licensed bank with competitive interest rates on their current account balances. Cynergy Bank is authorised by the PRA and regulated by the FCA and PRA, and eligible deposits are FSCS protected up to £85,000.' },
+      { heading: 'Fees and Charges', body: 'Cynergy Bank\'s Business Current Account has no monthly fee for the first 12 months, after which a monthly fee applies. The account offers competitive interest rates on current account balances, which is a distinguishing feature compared to most other business bank accounts. There is a one-time account opening fee of £45.' },
+      { heading: 'Interest on Current Account Balances', body: 'One of Cynergy Bank\'s most distinctive features is its ability to pay interest on business current account balances. This is relatively rare among UK business bank accounts and can provide meaningful additional income for businesses that maintain significant cash balances. The interest rate is variable and subject to change.' },
+      { heading: 'Online Banking', body: 'Cynergy Bank offers a comprehensive online banking platform that allows businesses to manage their account, make payments, and view statements. The platform is accessible via web browser and mobile app, and it includes a range of tools for managing business finances. Cynergy Bank also offers telephone banking for customers who prefer to manage their account by phone.' },
+      { heading: 'Who Is It Best For?', body: 'Cynergy Bank\'s Business Current Account is best suited to small and medium-sized businesses that maintain significant cash balances and want to earn interest on their current account. It is particularly well-suited to businesses that value the security of a licensed bank with FSCS protection.' },
+    ],
     plans: [
       {
         name: 'Business Current Account',
@@ -1658,6 +1834,7 @@ export const banks: BankAccount[] = [
     trustpilot: 4.2,
     appRating: 3.8,
     openingFee: 'Free',
+    affiliateUrl: 'https://www.cynergybank.co.uk/business/business-current-account',
     creditCheck: true,
     suitableFor: ['sole-trader', 'limited-company', 'small-business', 'partnership'],
     hasBranchAccess: true,
@@ -1708,6 +1885,13 @@ export const banks: BankAccount[] = [
       'No overdraft',
     ],
     summary: 'Equals Money provides multi-currency business accounts with competitive FX rates, making it suitable for businesses with significant international payment needs. The dedicated account manager adds a personal touch that is increasingly rare in the digital banking space.',
+    reviewContent: [
+      { heading: 'Overview', body: 'Equals Money is a UK-based financial technology company that offers multi-currency business accounts and international payment services. It is designed for businesses with international payment needs, offering competitive foreign exchange rates, local currency accounts in multiple countries, and a range of expense management tools. Equals Money is regulated by the FCA as an electronic money institution.' },
+      { heading: 'Fees and Charges', body: 'Equals Money offers business accounts with competitive pricing for international payments and currency exchange. The account includes a multi-currency prepaid Mastercard, which can be used for business spending in multiple currencies. Businesses should check the current fee schedule on Equals Money\'s website for the most up-to-date information on account fees and transaction charges.' },
+      { heading: 'Multi-Currency Accounts', body: 'Equals Money allows businesses to hold, send, and receive money in multiple currencies. The platform supports international payments to over 145 countries and offers competitive FX rates. Businesses can open local currency accounts in major currencies including GBP, USD, EUR, and others.' },
+      { heading: 'Expense Management', body: 'Equals Money offers a range of expense management tools, including multi-currency prepaid Mastercards, spend controls, and reporting tools. The platform integrates with accounting software, enabling automatic reconciliation of business expenses. These features make Equals Money a useful tool for businesses that need to manage international expenses and team spending.' },
+      { heading: 'Who Is It Best For?', body: 'Equals Money is best suited to businesses with significant international payment needs, including businesses that travel internationally, import or export goods, or have international clients or suppliers. It is not designed to replace a primary UK business bank account, as it does not offer FSCS protection, overdrafts, or branch access.' },
+    ],
     plans: [
       {
         name: 'Business Account',
@@ -1720,6 +1904,7 @@ export const banks: BankAccount[] = [
     trustpilot: 4.3,
     appRating: 4.0,
     openingFee: 'Free',
+    affiliateUrl: 'https://equalsmoney.com/register-now',
     creditCheck: false,
     suitableFor: ['limited-company', 'international', 'ecommerce'],
     hasAccounting: false,
@@ -1770,6 +1955,14 @@ export const banks: BankAccount[] = [
       'Less well-known than parent brand',
     ],
     summary: 'Mettle is NatWest\'s digital-first business banking brand, offering a free account with the security of FSCS protection and the backing of one of the UK\'s largest banks. The built-in invoicing and no foreign transaction fees make it a strong choice for freelancers and small businesses.',
+    reviewContent: [
+      { heading: 'Overview', body: 'Mettle is a free digital business bank account from NatWest, designed specifically for sole traders and limited companies with up to two owners. It combines the backing of one of the UK\'s largest banks with the modern, app-based experience of a digital challenger bank. Mettle is FSCS protected through NatWest and includes a range of business tools, including invoicing, expense tracking, and free access to FreeAgent accounting software.' },
+      { heading: 'Fees and Charges', body: 'Mettle has no monthly fee and no transaction fees for standard UK payments. ATM withdrawals are free, and the account includes a Mastercard debit card for business spending. There are no charges for standard UK bank transfers, making Mettle one of the most cost-effective business bank accounts available.' },
+      { heading: 'FreeAgent Accounting Software', body: 'All Mettle account holders receive free access to FreeAgent accounting software, which is a significant benefit. FreeAgent is a comprehensive cloud-based accounting platform that includes invoicing, expense tracking, tax calculations, and VAT returns. The free FreeAgent subscription is worth approximately £19/month, making Mettle highly cost-effective for businesses that use accounting software.' },
+      { heading: 'NatWest Backing', body: 'As a NatWest product, Mettle benefits from the security and reliability of one of the UK\'s largest banks. Mettle accounts are FSCS protected up to £85,000, providing businesses with a significant safety net. NatWest\'s backing also means that Mettle is subject to the same regulatory standards as a traditional high street bank.' },
+      { heading: 'Account Opening', body: 'Mettle offers a fast and straightforward account opening process, with most businesses able to open an account within minutes using the Mettle app. The application process requires basic information about the business and its directors, and most applications are approved quickly.' },
+      { heading: 'Who Is It Best For?', body: 'Mettle is best suited to sole traders and limited companies with up to two owners that want a free, feature-rich digital business bank account with the backing of a major UK bank. It is particularly well-suited to businesses that want free access to FreeAgent accounting software and that value the security of FSCS protection.' },
+    ],
     plans: [
       {
         name: 'Business Account',
@@ -1783,6 +1976,7 @@ export const banks: BankAccount[] = [
     trustpilot: 4.4,
     appRating: 4.5,
     openingFee: 'Free',
+    affiliateUrl: 'https://www.mettle.co.uk/business-bank-account/',
     creditCheck: false,
     suitableFor: ['sole-trader', 'limited-company', 'freelancer', 'startup'],
     hasAccounting: true,

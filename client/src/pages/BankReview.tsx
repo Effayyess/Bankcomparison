@@ -124,8 +124,9 @@ export default function BankReview() {
                   <div className="text-xs text-gray-500">per month</div>
                 </div>
                 <a
-                  href="#"
-                  onClick={(e) => e.preventDefault()}
+                  href={bank.affiliateUrl || '#'}
+                  target={bank.affiliateUrl ? '_blank' : undefined}
+                  rel={bank.affiliateUrl ? 'noopener noreferrer sponsored' : undefined}
                   className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90 no-underline"
                   style={{ background: 'oklch(55% .12 210)' }}
                 >
@@ -285,6 +286,16 @@ export default function BankReview() {
                   )}
                 </div>
               )}
+
+              {/* Detailed review sections */}
+              {bank.reviewContent && bank.reviewContent.length > 0 && bank.reviewContent.map((section) => (
+                <div key={section.heading} className="bg-white rounded-2xl border border-gray-200 p-6">
+                  <h2 className="text-lg font-bold text-gray-900 mb-3" style={{ fontFamily: 'Sora, sans-serif' }}>
+                    {section.heading}
+                  </h2>
+                  <p className="text-gray-700 text-sm leading-relaxed">{section.body}</p>
+                </div>
+              ))}
             </div>
 
             {/* Sidebar */}
@@ -369,8 +380,9 @@ export default function BankReview() {
                   Click below to visit {bank.provider}'s website and start your application.
                 </p>
                 <a
-                  href="#"
-                  onClick={(e) => e.preventDefault()}
+                  href={bank.affiliateUrl || '#'}
+                  target={bank.affiliateUrl ? '_blank' : undefined}
+                  rel={bank.affiliateUrl ? 'noopener noreferrer sponsored' : undefined}
                   className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90 no-underline"
                   style={{ background: 'oklch(55% .12 210)', color: 'white' }}
                 >
