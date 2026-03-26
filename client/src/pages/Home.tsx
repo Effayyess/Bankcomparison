@@ -1,96 +1,130 @@
-// Design: Authoritative Broadsheet | Homepage
-// Hero with editorial image, filter bar, ranked comparison list, trust signals
-
-import { useState, useMemo } from 'react';
+// Home page — matches original buscompare design exactly
+// Hero image, trust bar, business type cards, bank list with show-more, account type grid, why us, guides, FAQ
+import { useState } from 'react';
 import { Link } from 'wouter';
-import { Search, SlidersHorizontal, ChevronRight, Shield, Star, Users, BookOpen } from 'lucide-react';
-import { banks, type Suitability } from '@/lib/bankData';
+import { Shield, Star, RefreshCw, ChevronDown, ChevronUp, ArrowRight, SlidersHorizontal, Info } from 'lucide-react';
+import { banks, accountTypeCategories, businessTypeCards, guides, getBanksByType, getBanksBySuitability } from '@/lib/bankData';
 import BankCard from '@/components/BankCard';
+import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
 
-const HERO_IMAGE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663463044688/ARsFo8cnc8CpnHoXXZH5qW/hero-banner-QH3zDDY8iZ35VEwqrBVBnA.webp';
+const HERO_IMAGE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663463037748/7vygQN9pPuSYrBkN3gux2K/hero-banner-E9TkW2zNtdmXVsQo7kyxDY.webp';
 
-const suitabilityFilters: { value: Suitability | 'all'; label: string }[] = [
-  { value: 'all', label: 'All Businesses' },
-  { value: 'sole-trader', label: 'Sole Trader' },
-  { value: 'limited-company', label: 'Limited Company' },
-  { value: 'contractor', label: 'Contractor' },
-  { value: 'startup', label: 'Startup' },
-  { value: 'freelancer', label: 'Freelancer' },
-  { value: 'international', label: 'International' },
+const INITIAL_BANK_COUNT = 5;
+
+const faqs = [
+  {
+    question: 'Do I legally need a business bank account?',
+    answer: 'Limited companies are legally required to have a separate business bank account, as they are distinct legal entities from their owners. Sole traders are not legally required to have one, but it is strongly recommended for tax purposes, professionalism, and to keep personal and business finances separate. Most accountants advise all self-employed people to use a dedicated business account.',
+  },
+  {
+    question: 'What information do I need to open a business bank account?',
+    answer: 'You will typically need: proof of identity (passport or driving licence), proof of address (utility bill or bank statement dated within 3 months), your Companies House registration number (if a limited company), details of your business activities and expected turnover, and information about all directors and significant shareholders (usually those holding 25% or more). Digital banks often require less documentation and can verify identity via a smartphone selfie.',
+  },
+  {
+    question: 'How long does it take to switch business bank accounts?',
+    answer: 'If you use the Current Account Switch Service (CASS), the switch is typically completed within 7 working days of your chosen switch date. The service will transfer your balance, standing orders, and Direct Debits, and incoming payments to your old account will be automatically redirected. Look for the CASS logo to find participating banks. Digital banks often offer faster switching processes.',
+  },
+  {
+    question: 'Can I have more than one business bank account?',
+    answer: 'Yes, there is no legal restriction on having multiple business bank accounts. Many businesses use more than one account — for example, a high street bank for cash deposits and a digital account for day-to-day transactions. Some businesses also use specialist accounts for international payments alongside their primary account.',
+  },
+  {
+    question: 'What is FSCS protection?',
+    answer: 'The Financial Services Compensation Scheme (FSCS) protects eligible deposits up to £85,000 per person per authorised firm (£170,000 for joint accounts). Some newer banks, like Tide (via ClearBank), offer protection up to £120,000. E-money institutions like Revolut and Wise are not FSCS protected but must safeguard your funds in a separate account. Always check the protection status before opening an account.',
+  },
+  {
+    question: 'What is the best free business bank account in the UK?',
+    answer: 'The best free business bank accounts in the UK include Starling Bank (unlimited free transfers, free ATM withdrawals, FSCS protected), Tide (free for the first year, excellent invoicing tools), Monzo Business Lite (brilliant app, fee-free abroad), and Virgin Money M Account (free banking with 0.25% cashback). The best choice depends on your specific needs — consider whether you need cash deposits, branch access, or accounting integrations.',
+  },
+  {
+    question: 'Which business bank account is best for a sole trader?',
+    answer: 'For sole traders, the best options are typically Starling Bank (free, FSCS protected, great app), Tide (free plan, invoicing built in), and Monzo Business Lite (free, excellent mobile app). If you need branch access, HSBC or Lloyds offer free accounts with a full branch network. The right choice depends on whether you need cash deposits, accounting integrations, or international payments.',
+  },
 ];
 
-const typeFilters: { value: string; label: string }[] = [
-  { value: 'all', label: 'All Types' },
-  { value: 'app-only', label: 'App-Only' },
-  { value: 'high-street', label: 'High Street' },
-  { value: 'challenger', label: 'Challenger' },
-];
-
-const feeFilters: { value: string; label: string }[] = [
-  { value: 'all', label: 'Any Fee' },
-  { value: 'free', label: 'Free' },
-  { value: 'paid', label: 'Paid' },
-];
+function FaqItem({ question, answer }: { question: string; answer: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="border border-gray-200 rounded-xl overflow-hidden bg-white">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between gap-3 px-5 py-4 text-left hover:bg-gray-50 transition-colors bg-transparent border-none"
+      >
+        <span className="font-semibold text-gray-900 text-sm leading-snug" style={{ fontFamily: 'Sora, sans-serif' }}>
+          {question}
+        </span>
+        {open ? (
+          <ChevronUp className="w-4 h-4 text-teal-600 flex-shrink-0" />
+        ) : (
+          <ChevronDown className="w-4 h-4 text-gray-400 flex-shrink-0" />
+        )}
+      </button>
+      {open && (
+        <div className="px-5 pb-4 bg-gray-50 border-t border-gray-100">
+          <p className="text-sm text-gray-700 leading-relaxed pt-3">{answer}</p>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function Home() {
-  const [suitability, setSuitability] = useState<Suitability | 'all'>('all');
-  const [bankType, setBankType] = useState('all');
-  const [feeType, setFeeType] = useState('all');
-  const [search, setSearch] = useState('');
-  const [showFilters, setShowFilters] = useState(false);
+  const [showAll, setShowAll] = useState(false);
 
-  const filtered = useMemo(() => {
-    return banks.filter((bank) => {
-      if (suitability !== 'all' && !bank.suitability.includes(suitability)) return false;
-      if (bankType !== 'all' && bank.type !== bankType) return false;
-      if (feeType === 'free' && bank.monthlyFee !== 0) return false;
-      if (feeType === 'paid' && bank.monthlyFee === 0) return false;
-      if (search && !bank.name.toLowerCase().includes(search.toLowerCase())) return false;
-      return true;
-    });
-  }, [suitability, bankType, feeType, search]);
+  const featuredBanks = banks.slice(0, INITIAL_BANK_COUNT);
+  const remainingBanks = banks.slice(INITIAL_BANK_COUNT);
+
+  const currentMonth = new Date().toLocaleString('en-GB', { month: 'long', year: 'numeric' });
 
   return (
-    <div className="min-h-screen" style={{ background: 'oklch(0.98 0.008 85)' }}>
+    <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Sora, sans-serif' }}>
+      <Navigation />
+
       {/* Hero */}
-      <section className="relative overflow-hidden" style={{ minHeight: '420px' }}>
+      <section className="relative overflow-hidden" style={{ minHeight: '420px', paddingTop: '88px' }}>
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${HERO_IMAGE})` }}
         />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg, oklch(0.15 0.07 155 / 0.92) 0%, oklch(0.15 0.07 155 / 0.75) 60%, oklch(0.15 0.07 155 / 0.4) 100%)' }} />
+        <div
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(135deg, rgba(10,30,60,0.92) 0%, rgba(10,30,60,0.75) 60%, rgba(10,30,60,0.45) 100%)' }}
+        />
         <div className="relative container py-16 md:py-20">
           <div className="max-w-2xl">
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full" style={{ background: 'oklch(0.72 0.12 82)', color: 'oklch(0.15 0.04 155)' }}>
-                Updated March 2025
+              <span
+                className="text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full"
+                style={{ background: 'oklch(55% .12 210)', color: 'white' }}
+              >
+                Updated {currentMonth}
               </span>
             </div>
             <h1
-              className="text-4xl md:text-5xl font-bold leading-tight mb-4"
-              style={{ fontFamily: 'Playfair Display, serif', color: 'oklch(0.98 0.01 85)' }}
+              className="text-4xl md:text-5xl font-bold leading-tight mb-4 text-white"
+              style={{ fontFamily: 'Sora, sans-serif' }}
             >
               Compare UK Business Bank Accounts
             </h1>
-            <p className="text-lg mb-8 leading-relaxed" style={{ color: 'oklch(0.85 0.02 85)' }}>
-              Independent reviews of 22 UK business bank accounts. Find the right account for your sole trader, limited company or startup — with no hidden agenda.
+            <p className="text-lg mb-8 leading-relaxed" style={{ color: 'rgba(255,255,255,0.85)' }}>
+              Independent reviews of {banks.length} UK business bank accounts. Find the right account for your sole trader, limited company or startup — with no hidden agenda.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link
                 href="/compare"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded font-semibold text-sm transition-all hover:opacity-90"
-                style={{ background: 'oklch(0.72 0.12 82)', color: 'oklch(0.15 0.04 155)' }}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all hover:opacity-90 no-underline text-white"
+                style={{ background: 'oklch(55% .12 210)' }}
               >
                 Compare All Accounts
-                <ChevronRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                href="/guides/how-to-open-a-business-bank-account"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded font-semibold text-sm border transition-all hover:bg-white/10"
-                style={{ borderColor: 'oklch(0.85 0.02 85)', color: 'oklch(0.98 0.01 85)' }}
+                href="/best-business-bank-account-sole-trader"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm border transition-all hover:bg-white/10 no-underline text-white"
+                style={{ borderColor: 'rgba(255,255,255,0.4)' }}
               >
-                <BookOpen className="w-4 h-4" />
-                Read Our Guide
+                Find My Account
               </Link>
             </div>
           </div>
@@ -98,307 +132,275 @@ export default function Home() {
       </section>
 
       {/* Trust bar */}
-      <div className="border-b border-gray-200" style={{ background: 'white' }}>
+      <div className="bg-white border-b border-gray-100">
         <div className="container py-4">
-          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 text-sm">
+          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-600">
             {[
-              { icon: <Shield className="w-4 h-4" />, text: '22 Banks Reviewed' },
-              { icon: <Star className="w-4 h-4" />, text: 'Independent & Unbiased' },
-              { icon: <Users className="w-4 h-4" />, text: 'Trusted by 50,000+ Business Owners' },
-              { icon: <BookOpen className="w-4 h-4" />, text: 'Updated Monthly' },
-            ].map((item) => (
-              <div key={item.text} className="flex items-center gap-2" style={{ color: 'oklch(0.45 0.01 65)' }}>
-                <span style={{ color: 'oklch(0.28 0.09 155)' }}>{item.icon}</span>
-                <span>{item.text}</span>
+              { icon: <Shield className="w-4 h-4 text-teal-500" />, text: 'FCA Regulated Providers Only' },
+              { icon: <Star className="w-4 h-4 text-amber-500" />, text: '100% Independent Reviews' },
+              { icon: <RefreshCw className="w-4 h-4 text-blue-500" />, text: 'Updated Monthly' },
+              { icon: <Info className="w-4 h-4 text-purple-500" />, text: 'Trusted by 50,000+ UK Businesses' },
+            ].map(({ icon, text }) => (
+              <div key={text} className="flex items-center gap-2">
+                {icon}
+                <span className="font-medium">{text}</span>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Main content */}
-      <div className="container py-10">
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Sidebar filters (desktop) */}
-          <aside className="hidden lg:block w-56 flex-shrink-0">
-            <div className="sticky top-24">
-              <div className="bank-card p-5">
-                <h3 className="font-bold text-sm mb-4 uppercase tracking-wider" style={{ fontFamily: 'DM Sans, sans-serif', color: 'oklch(0.28 0.09 155)' }}>
-                  Filter Accounts
-                </h3>
-
-                <div className="mb-5">
-                  <label className="text-xs font-semibold uppercase tracking-wide mb-2 block" style={{ color: 'oklch(0.55 0.01 65)' }}>
-                    Business Type
-                  </label>
-                  <div className="space-y-1">
-                    {suitabilityFilters.map((f) => (
-                      <button
-                        key={f.value}
-                        onClick={() => setSuitability(f.value)}
-                        className="w-full text-left px-3 py-1.5 rounded text-sm transition-all"
-                        style={{
-                          background: suitability === f.value ? 'oklch(0.28 0.09 155)' : 'transparent',
-                          color: suitability === f.value ? 'white' : 'oklch(0.35 0.02 65)',
-                          border: 'none',
-                        }}
-                      >
-                        {f.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mb-5">
-                  <label className="text-xs font-semibold uppercase tracking-wide mb-2 block" style={{ color: 'oklch(0.55 0.01 65)' }}>
-                    Account Type
-                  </label>
-                  <div className="space-y-1">
-                    {typeFilters.map((f) => (
-                      <button
-                        key={f.value}
-                        onClick={() => setBankType(f.value)}
-                        className="w-full text-left px-3 py-1.5 rounded text-sm transition-all"
-                        style={{
-                          background: bankType === f.value ? 'oklch(0.28 0.09 155)' : 'transparent',
-                          color: bankType === f.value ? 'white' : 'oklch(0.35 0.02 65)',
-                          border: 'none',
-                        }}
-                      >
-                        {f.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="text-xs font-semibold uppercase tracking-wide mb-2 block" style={{ color: 'oklch(0.55 0.01 65)' }}>
-                    Monthly Fee
-                  </label>
-                  <div className="space-y-1">
-                    {feeFilters.map((f) => (
-                      <button
-                        key={f.value}
-                        onClick={() => setFeeType(f.value)}
-                        className="w-full text-left px-3 py-1.5 rounded text-sm transition-all"
-                        style={{
-                          background: feeType === f.value ? 'oklch(0.28 0.09 155)' : 'transparent',
-                          color: feeType === f.value ? 'white' : 'oklch(0.35 0.02 65)',
-                          border: 'none',
-                        }}
-                      >
-                        {f.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Quick links */}
-              <div className="mt-4 bank-card p-4">
-                <h3 className="font-bold text-xs mb-3 uppercase tracking-wider" style={{ fontFamily: 'DM Sans, sans-serif', color: 'oklch(0.28 0.09 155)' }}>
-                  Popular Guides
-                </h3>
-                <ul className="space-y-2">
-                  {[
-                    { label: 'How to Open a Business Account', href: '/guides/how-to-open-a-business-bank-account' },
-                    { label: 'Best Free Accounts', href: '/guides/best-free-business-bank-accounts' },
-                    { label: 'Sole Trader Guide', href: '/guides/sole-trader-business-bank-account' },
-                    { label: 'Switching Banks', href: '/guides/switching-business-bank-account' },
-                  ].map((item) => (
-                    <li key={item.href}>
-                      <Link href={item.href} className="text-xs hover:underline flex items-center gap-1" style={{ color: 'oklch(0.28 0.09 155)' }}>
-                        <ChevronRight className="w-3 h-3" />
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </aside>
-
-          {/* Main list */}
-          <div className="flex-1 min-w-0">
-            {/* Search + mobile filter toggle */}
-            <div className="flex gap-3 mb-6">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: 'oklch(0.6 0.01 65)' }} />
-                <input
-                  type="text"
-                  placeholder="Search banks..."
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  className="w-full pl-9 pr-4 py-2.5 rounded-lg border text-sm focus:outline-none focus:ring-2"
-                  style={{ borderColor: 'oklch(0.88 0.01 85)', background: 'white', color: 'oklch(0.18 0.02 65)', '--tw-ring-color': 'oklch(0.28 0.09 155)' } as React.CSSProperties}
-                />
-              </div>
-              <button
-                className="lg:hidden flex items-center gap-2 px-4 py-2.5 rounded-lg border text-sm font-medium"
-                style={{ borderColor: 'oklch(0.88 0.01 85)', background: 'white', color: 'oklch(0.28 0.09 155)' }}
-                onClick={() => setShowFilters(!showFilters)}
-              >
-                <SlidersHorizontal className="w-4 h-4" />
-                Filters
-              </button>
-            </div>
-
-            {/* Mobile filters */}
-            {showFilters && (
-              <div className="lg:hidden bank-card p-4 mb-6">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-xs font-semibold uppercase tracking-wide mb-2 block" style={{ color: 'oklch(0.55 0.01 65)' }}>Business Type</label>
-                    <div className="flex flex-wrap gap-1">
-                      {suitabilityFilters.map((f) => (
-                        <button
-                          key={f.value}
-                          onClick={() => setSuitability(f.value)}
-                          className="px-2.5 py-1 rounded-full text-xs font-medium transition-all"
-                          style={{
-                            background: suitability === f.value ? 'oklch(0.28 0.09 155)' : 'oklch(0.94 0.005 85)',
-                            color: suitability === f.value ? 'white' : 'oklch(0.35 0.02 65)',
-                            border: 'none',
-                          }}
-                        >
-                          {f.label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <label className="text-xs font-semibold uppercase tracking-wide mb-2 block" style={{ color: 'oklch(0.55 0.01 65)' }}>Fee</label>
-                    <div className="flex flex-wrap gap-1">
-                      {feeFilters.map((f) => (
-                        <button
-                          key={f.value}
-                          onClick={() => setFeeType(f.value)}
-                          className="px-2.5 py-1 rounded-full text-xs font-medium transition-all"
-                          style={{
-                            background: feeType === f.value ? 'oklch(0.28 0.09 155)' : 'oklch(0.94 0.005 85)',
-                            color: feeType === f.value ? 'white' : 'oklch(0.35 0.02 65)',
-                            border: 'none',
-                          }}
-                        >
-                          {f.label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Results header */}
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <h2 className="text-xl font-bold" style={{ fontFamily: 'Playfair Display, serif', color: 'oklch(0.18 0.02 65)' }}>
-                  {suitability === 'all' ? 'All Business Bank Accounts' : `Best Accounts for ${suitabilityFilters.find(f => f.value === suitability)?.label}`}
-                </h2>
-                <p className="text-sm mt-0.5" style={{ color: 'oklch(0.55 0.01 65)' }}>
-                  Showing {filtered.length} of {banks.length} accounts
-                </p>
-              </div>
-            </div>
-
-            {/* Bank cards */}
-            {filtered.length === 0 ? (
-              <div className="bank-card p-12 text-center">
-                <p className="text-lg font-semibold mb-2" style={{ color: 'oklch(0.35 0.02 65)' }}>No accounts match your filters</p>
-                <p className="text-sm" style={{ color: 'oklch(0.55 0.01 65)' }}>Try adjusting your filters to see more results</p>
-                <button
-                  onClick={() => { setSuitability('all'); setBankType('all'); setFeeType('all'); setSearch(''); }}
-                  className="mt-4 px-4 py-2 rounded text-sm font-medium"
-                  style={{ background: 'oklch(0.28 0.09 155)', color: 'white', border: 'none' }}
+      {/* Business type cards */}
+      <section className="bg-gray-50 py-12 border-b border-gray-200">
+        <div className="container">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2" style={{ fontFamily: 'Sora, sans-serif' }}>
+              Find the Best Account for Your Business Type
+            </h2>
+            <p className="text-gray-600 text-sm">Tailored recommendations based on how your business is structured</p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
+            {businessTypeCards.map((card) => (
+              <Link key={card.href} href={card.href} className="no-underline">
+                <div
+                  className="rounded-xl p-4 text-center hover:shadow-md transition-all cursor-pointer group border border-gray-200 hover:border-teal-300"
+                  style={{ backgroundColor: card.color }}
                 >
-                  Clear all filters
-                </button>
-              </div>
-            ) : (
-              <div className="space-y-4">
-                {filtered.map((bank, index) => (
-                  <BankCard key={bank.id} bank={bank} rank={index + 1} />
-                ))}
-              </div>
-            )}
+                  <div className="text-2xl mb-2">{card.icon}</div>
+                  <div
+                    className="text-xs font-bold text-gray-800 group-hover:text-teal-700 transition-colors leading-tight"
+                    style={{ fontFamily: 'Sora, sans-serif' }}
+                  >
+                    {card.title}
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            {/* Bottom editorial note */}
-            <div className="mt-8 p-5 rounded-lg border-l-4" style={{ background: 'oklch(0.95 0.02 155)', borderColor: 'oklch(0.28 0.09 155)' }}>
-              <p className="text-sm leading-relaxed" style={{ color: 'oklch(0.3 0.02 65)' }}>
-                <strong>How we rank accounts:</strong> Our rankings are based on a combination of monthly fees, transaction costs, features, customer reviews, FSCS protection status, and overall value for money. We update our data monthly. Some links are affiliate links — we may earn a commission if you open an account, but this never influences our editorial rankings.
+      {/* Bank list */}
+      <section className="py-12 bg-white">
+        <div className="container">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+            <div>
+              <div
+                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-semibold border border-teal-100 mb-3"
+              >
+                <SlidersHorizontal className="w-3 h-3" /> Click any card to see full plan details
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Sora, sans-serif' }}>
+                Best UK Business Bank Accounts {new Date().getFullYear()}
+              </h2>
+              <p className="text-gray-600 text-sm mt-1">
+                Ranked by our editorial team based on fees, features, and customer satisfaction. Updated {currentMonth}.
               </p>
             </div>
+            <Link
+              href="/compare"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-teal-600 hover:text-teal-800 no-underline whitespace-nowrap"
+            >
+              View all {banks.length} accounts <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
-        </div>
-      </div>
 
-      {/* Category quick links */}
-      <section className="border-t border-gray-200 py-12" style={{ background: 'white' }}>
-        <div className="container">
-          <div className="section-divider" />
-          <h2 className="text-2xl font-bold mb-8" style={{ fontFamily: 'Playfair Display, serif', color: 'oklch(0.18 0.02 65)' }}>
-            Compare by Business Type
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {[
-              { label: 'Sole Trader', href: '/category/sole-trader', icon: '👤', desc: 'Self-employed accounts' },
-              { label: 'Limited Company', href: '/category/limited-company', icon: '🏢', desc: 'Ltd company banking' },
-              { label: 'Contractor', href: '/category/contractor', icon: '🔧', desc: 'Contractor-friendly' },
-              { label: 'Startup', href: '/category/startup', icon: '🚀', desc: 'New business accounts' },
-              { label: 'Freelancer', href: '/category/freelancer', icon: '💻', desc: 'Freelance banking' },
-              { label: 'International', href: '/category/international', icon: '🌍', desc: 'Multi-currency' },
-            ].map((cat) => (
-              <Link
-                key={cat.href}
-                href={cat.href}
-                className="bank-card p-4 text-center hover:no-underline group"
-              >
-                <div className="text-2xl mb-2">{cat.icon}</div>
-                <div className="font-semibold text-sm mb-1 group-hover:underline" style={{ fontFamily: 'Playfair Display, serif', color: 'oklch(0.28 0.09 155)' }}>
-                  {cat.label}
-                </div>
-                <div className="text-xs" style={{ color: 'oklch(0.55 0.01 65)' }}>{cat.desc}</div>
-              </Link>
+          <div className="space-y-4 mb-4">
+            {featuredBanks.map((bank, i) => (
+              <BankCard key={bank.id} bank={bank} rank={i + 1} showOffer={true} />
             ))}
+          </div>
+
+          {showAll && (
+            <div className="space-y-4 mb-4">
+              {remainingBanks.map((bank, i) => (
+                <BankCard key={bank.id} bank={bank} rank={featuredBanks.length + i + 1} showOffer={true} />
+              ))}
+            </div>
+          )}
+
+          <div className="flex flex-col sm:flex-row items-center gap-3 mt-6">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="flex items-center gap-2 px-6 py-3 border-2 border-teal-600 text-teal-700 font-semibold rounded-xl hover:bg-teal-50 transition-colors bg-transparent"
+              style={{ fontFamily: 'Sora, sans-serif' }}
+            >
+              {showAll ? (
+                <><ChevronUp className="w-4 h-4" /> Show fewer accounts</>
+              ) : (
+                <><ChevronDown className="w-4 h-4" /> Show all {banks.length} accounts</>
+              )}
+            </button>
+            <Link
+              href="/compare"
+              className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white no-underline transition-all hover:opacity-90"
+              style={{ background: 'oklch(55% .12 210)', fontFamily: 'Sora, sans-serif' }}
+            >
+              Full comparison with filters <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          {/* Disclaimer */}
+          <div className="mt-6 p-4 bg-gray-50 rounded-xl border border-gray-200">
+            <p className="text-xs text-gray-500 leading-relaxed">
+              <strong>How we rank accounts:</strong> Our rankings are based on a combination of monthly fees, transaction costs, features, customer reviews, FSCS protection status, and overall value for money. We update our data monthly. Some links are affiliate links — we may earn a commission if you open an account, but this never influences our editorial rankings.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Featured guides */}
-      <section className="py-12" style={{ background: 'oklch(0.98 0.008 85)' }}>
+      {/* Account type categories grid */}
+      <section className="py-12 bg-gray-50 border-t border-gray-200">
         <div className="container">
-          <div className="section-divider" />
-          <h2 className="text-2xl font-bold mb-8" style={{ fontFamily: 'Playfair Display, serif', color: 'oklch(0.18 0.02 65)' }}>
-            Business Banking Guides
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2" style={{ fontFamily: 'Sora, sans-serif' }}>
+              Types of Business Bank Account Available
+            </h2>
+            <p className="text-gray-600 text-sm">Browse by account type to find the best account for your specific needs</p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+            {accountTypeCategories.map((cat) => {
+              const count = (cat as any).suitability
+                ? getBanksBySuitability((cat as any).suitability).length
+                : getBanksByType(cat.type).length;
+              const catHrefMap: Record<string, string> = {
+                'free': '/category/free-business-accounts',
+                'fast-opening': '/category/fast-opening',
+                'overdraft': '/category/overdraft',
+                'multi-currency': '/category/multi-currency',
+                'branch-access': '/category/high-street',
+                'accounting': '/category/accounting',
+                'cash-deposit': '/category/cash-deposit',
+                'freelancer': '/category/freelancer',
+                'startup': '/category/startup',
+                'joint': '/category/partnership',
+                'sole-trader': '/category/sole-trader',
+                'multi-director': '/category/partnership',
+                'no-credit-check': '/category/no-credit-check',
+                'switcher': '/category/small-business',
+                'small-business': '/category/small-business',
+                'bad-credit': '/category/bad-credit',
+                'international': '/category/international',
+                'online': '/compare',
+              };
+              const href = catHrefMap[cat.type] || `/category/${cat.type}`;
+              return (
+                <Link key={cat.type} href={href} className="no-underline">
+                  <div className="bg-white border border-gray-200 rounded-xl p-4 hover:border-teal-300 hover:shadow-md transition-all cursor-pointer group">
+                    <div className="text-2xl mb-2">{cat.icon}</div>
+                    <div
+                      className="text-sm font-semibold text-gray-900 mb-1 group-hover:text-teal-700 transition-colors leading-tight"
+                      style={{ fontFamily: 'Sora, sans-serif' }}
+                    >
+                      {cat.label}
+                    </div>
+                    <div className="text-xs text-gray-500">{count} accounts</div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Why us */}
+      <section className="py-14 bg-white border-t border-gray-100">
+        <div className="container">
+          <div className="max-w-3xl mx-auto text-center mb-10">
+            <h2 className="text-2xl font-bold text-gray-900 mb-3" style={{ fontFamily: 'Sora, sans-serif' }}>
+              Why Compare Business Accounts With Us?
+            </h2>
+            <p className="text-gray-600 text-sm leading-relaxed">
+              We're an independent comparison site — we're not owned by a bank and we don't favour any provider. Our rankings are based on genuine editorial assessment.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { title: 'How to Open a Business Bank Account', href: '/guides/how-to-open-a-business-bank-account', desc: 'Step-by-step guide to opening your first business account in the UK, including what documents you need.' },
-              { title: 'Best Free Business Bank Accounts 2025', href: '/guides/best-free-business-bank-accounts', desc: 'Our pick of the best no-fee business bank accounts available to UK businesses right now.' },
-              { title: 'Sole Trader Bank Account Guide', href: '/guides/sole-trader-business-bank-account', desc: 'Do sole traders need a business account? What are the best options? We answer all your questions.' },
-              { title: 'Limited Company Banking Guide', href: '/guides/limited-company-business-bank-account', desc: 'Limited companies must have a separate business account. Here\'s how to choose the right one.' },
-              { title: 'How to Switch Business Bank Accounts', href: '/guides/switching-business-bank-account', desc: 'Switching is easier than you think. Our guide walks you through the process step by step.' },
-              { title: 'Business Bank Account Fees Explained', href: '/guides/business-bank-account-fees', desc: 'Monthly fees, transaction charges, cash deposit fees — we break down every cost to watch out for.' },
-            ].map((guide) => (
-              <Link
-                key={guide.href}
-                href={guide.href}
-                className="bank-card p-5 hover:no-underline group"
-              >
-                <h3 className="font-bold text-base mb-2 group-hover:underline" style={{ fontFamily: 'Playfair Display, serif', color: 'oklch(0.18 0.02 65)' }}>
-                  {guide.title}
+              {
+                icon: '🏆',
+                title: 'Truly Independent',
+                desc: "Our editorial team is not influenced by advertising spend. We review every account on its merits.",
+              },
+              {
+                icon: '🔄',
+                title: 'Updated Monthly',
+                desc: 'We update fees, offers, and account details every month to ensure you always see accurate information.',
+              },
+              {
+                icon: '📊',
+                title: 'Data-Driven Rankings',
+                desc: 'Our rankings use a weighted scoring system covering fees, features, customer ratings, and FSCS protection.',
+              },
+              {
+                icon: '🤝',
+                title: 'No Favouritism',
+                desc: 'We compare all 22 UK business bank accounts — high street and digital — on the same criteria.',
+              },
+            ].map((item) => (
+              <div key={item.title} className="text-center p-6 rounded-2xl bg-gray-50 border border-gray-100">
+                <div className="text-3xl mb-3">{item.icon}</div>
+                <h3 className="font-bold text-gray-900 mb-2 text-sm" style={{ fontFamily: 'Sora, sans-serif' }}>
+                  {item.title}
                 </h3>
-                <p className="text-sm leading-relaxed" style={{ color: 'oklch(0.45 0.01 65)' }}>
-                  {guide.desc}
-                </p>
-                <div className="mt-3 flex items-center gap-1 text-xs font-semibold" style={{ color: 'oklch(0.28 0.09 155)' }}>
-                  Read guide <ChevronRight className="w-3.5 h-3.5" />
+                <p className="text-xs text-gray-600 leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Guides */}
+      <section className="py-12 bg-gray-50 border-t border-gray-200">
+        <div className="container">
+          <div className="flex items-end justify-between mb-8">
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Sora, sans-serif' }}>
+                Business Banking Guides
+              </h2>
+              <p className="text-gray-600 text-sm mt-1">Expert guides to help you make the right choice</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {guides.map((guide) => (
+              <Link key={guide.href} href={guide.href} className="no-underline group">
+                <div className="bg-white border border-gray-200 rounded-xl p-5 hover:border-teal-300 hover:shadow-md transition-all h-full">
+                  <div className="text-2xl mb-3">{guide.icon}</div>
+                  <h3
+                    className="font-semibold text-gray-900 text-sm mb-2 group-hover:text-teal-700 transition-colors leading-snug"
+                    style={{ fontFamily: 'Sora, sans-serif' }}
+                  >
+                    {guide.title}
+                  </h3>
+                  <div className="flex items-center justify-between mt-auto pt-3">
+                    <span className="text-xs text-gray-500">{guide.time}</span>
+                    <span className="text-xs font-semibold text-teal-600 flex items-center gap-1">
+                      Read guide <ArrowRight className="w-3 h-3" />
+                    </span>
+                  </div>
                 </div>
               </Link>
             ))}
           </div>
         </div>
       </section>
+
+      {/* FAQ */}
+      <section className="py-14 bg-white border-t border-gray-100">
+        <div className="container">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center" style={{ fontFamily: 'Sora, sans-serif' }}>
+              Frequently Asked Questions
+            </h2>
+            <div className="space-y-3">
+              {faqs.map((faq) => (
+                <FaqItem key={faq.question} question={faq.question} answer={faq.answer} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
     </div>
   );
 }

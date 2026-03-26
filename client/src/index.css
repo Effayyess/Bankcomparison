@@ -1,9 +1,3 @@
-/* Design: Authoritative Broadsheet
-   Racing green (#1a5c3a / oklch(0.28 0.09 155)) + cream + gold (oklch(0.72 0.12 82))
-   Fonts: Playfair Display (headings) + DM Sans (UI) + Libre Baskerville (body editorial)
-   Signature: thick green top border on cards, gold accent badges, editorial whitespace
-*/
-
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -49,40 +43,39 @@
 }
 
 :root {
-  /* Racing green as primary */
-  --primary: oklch(0.28 0.09 155);
-  --primary-foreground: oklch(0.98 0.01 85);
-  --sidebar-primary: oklch(0.28 0.09 155);
-  --sidebar-primary-foreground: oklch(0.98 0.01 85);
-  --chart-1: oklch(0.28 0.09 155);
-  --chart-2: oklch(0.45 0.12 155);
-  --chart-3: oklch(0.62 0.12 155);
-  --chart-4: oklch(0.72 0.12 82);
-  --chart-5: oklch(0.55 0.2 27);
-  --radius: 0.5rem;
-  --background: oklch(0.98 0.008 85);
-  --foreground: oklch(0.18 0.02 65);
+  --radius: 0.75rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.02 65);
+  --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.02 65);
-  --secondary: oklch(0.95 0.01 85);
-  --secondary-foreground: oklch(0.35 0.02 65);
-  --muted: oklch(0.95 0.01 85);
-  --muted-foreground: oklch(0.55 0.01 65);
-  --accent: oklch(0.95 0.02 155);
-  --accent-foreground: oklch(0.28 0.09 155);
-  --destructive: oklch(0.55 0.2 27);
-  --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.9 0.005 85);
-  --input: oklch(0.9 0.005 85);
-  --ring: oklch(0.28 0.09 155);
-  --sidebar: oklch(0.98 0.008 85);
-  --sidebar-foreground: oklch(0.18 0.02 65);
-  --sidebar-accent: oklch(0.95 0.02 155);
-  --sidebar-accent-foreground: oklch(0.28 0.09 155);
-  --sidebar-border: oklch(0.9 0.005 85);
-  --sidebar-ring: oklch(0.28 0.09 155);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.55 0.12 210);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.55 0.12 210);
+  --chart-1: oklch(0.55 0.12 210);
+  --chart-2: oklch(0.6 0.1 162);
+  --chart-3: oklch(0.7 0.12 82);
+  --chart-4: oklch(0.65 0.12 300);
+  --chart-5: oklch(0.7 0.12 25);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.55 0.12 210);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.55 0.12 210);
 }
 
 @layer base {
@@ -91,7 +84,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'DM Sans', system-ui, sans-serif;
+    font-family: 'Sora', sans-serif;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -103,9 +96,6 @@
   input[type="checkbox"]:not(:disabled),
   input[type="radio"]:not(:disabled) {
     @apply cursor-pointer;
-  }
-  h1, h2, h3, h4 {
-    font-family: 'Playfair Display', Georgia, serif;
   }
 }
 
@@ -136,121 +126,5 @@
       padding-right: 2rem;
       max-width: 1280px;
     }
-  }
-
-  /* Authoritative Broadsheet: Bank card with green top accent */
-  .bank-card {
-    background: white;
-    border: 1px solid oklch(0.9 0.005 85);
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 3px oklch(0 0 0 / 0.06), 0 1px 2px oklch(0 0 0 / 0.04);
-    overflow: hidden;
-    transition: box-shadow 0.15s ease, transform 0.15s ease;
-  }
-
-  .bank-card:hover {
-    box-shadow: 0 4px 12px oklch(0 0 0 / 0.1), 0 2px 4px oklch(0 0 0 / 0.06);
-    transform: translateY(-1px);
-  }
-
-  /* Badge styles */
-  .badge-green {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-    padding: 0.2rem 0.6rem;
-    border-radius: 9999px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    font-family: 'DM Sans', sans-serif;
-    background: oklch(0.93 0.04 155);
-    color: oklch(0.28 0.09 155);
-  }
-
-  .badge-gold {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-    padding: 0.2rem 0.6rem;
-    border-radius: 9999px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    font-family: 'DM Sans', sans-serif;
-    background: oklch(0.95 0.06 82);
-    color: oklch(0.45 0.1 65);
-  }
-
-  .badge-slate {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-    padding: 0.2rem 0.6rem;
-    border-radius: 9999px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    font-family: 'DM Sans', sans-serif;
-    background: oklch(0.93 0.005 85);
-    color: oklch(0.45 0.01 65);
-  }
-
-  /* Editorial section divider */
-  .section-divider {
-    width: 3rem;
-    height: 3px;
-    background: oklch(0.72 0.12 82);
-    margin-bottom: 1rem;
-    border-radius: 2px;
-  }
-
-  /* Editorial prose styles */
-  .prose-editorial h2 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: oklch(0.18 0.02 65);
-    margin-top: 1.5rem;
-    margin-bottom: 0.75rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid oklch(0.9 0.005 85);
-  }
-
-  .prose-editorial h3 {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: oklch(0.28 0.09 155);
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .prose-editorial p {
-    font-family: 'Libre Baskerville', Georgia, serif;
-    font-size: 0.9rem;
-    line-height: 1.8;
-    color: oklch(0.35 0.02 65);
-    margin-bottom: 1rem;
-  }
-
-  .prose-editorial ul {
-    list-style: disc;
-    padding-left: 1.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .prose-editorial li {
-    font-family: 'Libre Baskerville', Georgia, serif;
-    font-size: 0.9rem;
-    line-height: 1.7;
-    color: oklch(0.35 0.02 65);
-    margin-bottom: 0.25rem;
-  }
-
-  .prose-editorial strong {
-    font-weight: 700;
-    color: oklch(0.18 0.02 65);
-  }
-
-  .prose-editorial .not-prose {
-    font-family: 'DM Sans', sans-serif;
   }
 }

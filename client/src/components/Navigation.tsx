@@ -1,66 +1,88 @@
-// Design: Authoritative Broadsheet | Navigation
-// Racing green masthead with gold accent links and dropdown menus
-// Dropdown hover bug fixed: using onMouseEnter/onMouseLeave on the wrapper div
-
-import { useState, useRef } from 'react';
+// Navigation — matches original buscompare design exactly
+// Dark navy top bar + white nav with teal accents + dropdown menus
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'wouter';
-import { Menu, X, ChevronDown, Building2 } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 
-interface NavDropdownItem {
+interface NavChild {
   label: string;
   href: string;
-  description?: string;
+  disabled?: boolean;
 }
 
 interface NavItem {
   label: string;
-  href?: string;
-  dropdown?: NavDropdownItem[];
+  href: string;
+  children?: NavChild[];
 }
 
 const navItems: NavItem[] = [
   {
     label: 'Compare Accounts',
     href: '/compare',
-    dropdown: [
-      { label: 'All Business Accounts', href: '/compare', description: 'Compare all 22 UK business bank accounts' },
-      { label: 'Free Business Accounts', href: '/category/free-business-accounts', description: 'No monthly fee options' },
-      { label: 'App-Only Banks', href: '/category/app-only-banks', description: 'Digital-first business banking' },
-      { label: 'High Street Banks', href: '/category/high-street-banks', description: 'Traditional branch banking' },
+    children: [
+      { label: 'All Business Accounts', href: '/compare' },
+      { label: 'Free Business Accounts', href: '/category/free-business-accounts' },
+      { label: 'Fast Opening Accounts', href: '/category/fast-opening' },
+      { label: 'Accounts with Overdraft', href: '/category/overdraft' },
+      { label: 'Multi-Currency Accounts', href: '/category/multi-currency' },
+      { label: 'Accounts with Branch Access', href: '/category/high-street' },
+      { label: 'Accounts with Accounting', href: '/category/accounting' },
+      { label: 'Cash Deposit Accounts', href: '/category/cash-deposit' },
     ],
   },
   {
     label: 'By Business Type',
-    dropdown: [
-      { label: 'Sole Trader', href: '/category/sole-trader', description: 'Best accounts for sole traders' },
-      { label: 'Limited Company', href: '/category/limited-company', description: 'Accounts for Ltd companies' },
-      { label: 'Contractor', href: '/category/contractor', description: 'Contractor-friendly banking' },
-      { label: 'Startup', href: '/category/startup', description: 'New business bank accounts' },
-      { label: 'Freelancer', href: '/category/freelancer', description: 'Self-employed banking' },
-      { label: 'International', href: '/category/international', description: 'Multi-currency accounts' },
+    href: '#',
+    children: [
+      { label: 'Sole Trader', href: '/category/sole-trader' },
+      { label: 'Limited Company', href: '/category/limited-company' },
+      { label: 'Contractor', href: '/category/contractor' },
+      { label: 'Freelancer', href: '/category/freelancer' },
+      { label: 'Startup', href: '/category/startup' },
+      { label: 'Small Business', href: '/category/small-business' },
+      { label: 'Partnership', href: '/category/partnership' },
+      { label: 'Charity / Non-Profit', href: '/category/charity' },
+      { label: 'E-commerce Business', href: '/category/ecommerce' },
     ],
   },
   {
-    label: 'Reviews',
-    dropdown: [
-      { label: 'Starling Bank Review', href: '/review/starling-bank' },
-      { label: 'Monzo Business Review', href: '/review/monzo-business' },
-      { label: 'Tide Review', href: '/review/tide' },
-      { label: 'Revolut Business Review', href: '/review/revolut-business' },
-      { label: 'Barclays Business Review', href: '/review/barclays-business' },
-      { label: 'HSBC Business Review', href: '/review/hsbc-business' },
-      { label: 'View All Reviews', href: '/compare' },
+    label: 'Bank Reviews',
+    href: '#',
+    children: [
+      { label: '— Digital Banks —', href: '#', disabled: true },
+      { label: 'Tide Business Review', href: '/tide-business' },
+      { label: 'Revolut Business Review', href: '/revolut-business' },
+      { label: 'Monzo Business Review', href: '/monzo-business' },
+      { label: 'Starling Bank Review', href: '/starling-bank' },
+      { label: 'Wise Business Review', href: '/wise-business' },
+      { label: 'ANNA Money Review', href: '/anna-money' },
+      { label: 'Mettle Review', href: '/mettle' },
+      { label: 'Zempler Bank Review', href: '/zempler-bank' },
+      { label: 'Airwallex Review', href: '/airwallex-business' },
+      { label: 'WorldFirst Review', href: '/worldfirst-business' },
+      { label: 'CountingUp Review', href: '/countingup' },
+      { label: '— High Street Banks —', href: '#', disabled: true },
+      { label: 'HSBC Business Review', href: '/hsbc-business' },
+      { label: 'Lloyds Business Review', href: '/lloyds-business' },
+      { label: 'Barclays Business Review', href: '/barclays-business' },
+      { label: 'NatWest Business Review', href: '/natwest-business' },
+      { label: 'Virgin Money Review', href: '/virgin-money-business' },
+      { label: 'RBS Business Review', href: '/rbs-business' },
+      { label: 'Co-operative Bank Review', href: '/cooperative-bank' },
+      { label: 'Cynergy Bank Review', href: '/cynergy-bank' },
     ],
   },
   {
     label: 'Guides',
-    dropdown: [
+    href: '/guides',
+    children: [
       { label: 'How to Open a Business Account', href: '/guides/how-to-open-a-business-bank-account' },
-      { label: 'Best Free Business Accounts', href: '/guides/best-free-business-bank-accounts' },
-      { label: 'Sole Trader Banking Guide', href: '/guides/sole-trader-business-bank-account' },
-      { label: 'Limited Company Banking', href: '/guides/limited-company-business-bank-account' },
-      { label: 'Switching Business Banks', href: '/guides/switching-business-bank-account' },
-      { label: 'Business Account Fees Explained', href: '/guides/business-bank-account-fees' },
+      { label: 'Business Account vs Personal', href: '/guides/business-account-vs-personal-account' },
+      { label: 'FSCS Protection Explained', href: '/guides/fscs-protection-explained' },
+      { label: 'How to Switch Business Account', href: '/guides/switching-business-bank-account' },
+      { label: 'Digital vs High Street Banks', href: '/guides/digital-vs-high-street-banks' },
+      { label: 'Business Bank Account Fees Guide', href: '/guides/business-bank-account-fees' },
     ],
   },
 ];
@@ -68,8 +90,20 @@ const navItems: NavItem[] = [
 export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
   const [location] = useLocation();
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    setMobileOpen(false);
+    setActiveDropdown(null);
+  }, [location]);
 
   const handleMouseEnter = (label: string) => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -82,164 +116,197 @@ export default function Navigation() {
     }, 150);
   };
 
+  const currentMonth = new Date().toLocaleString('en-GB', { month: 'long', year: 'numeric' });
+
   return (
-    <header className="sticky top-0 z-50 shadow-md" style={{ background: 'oklch(0.28 0.09 155)' }}>
-      {/* Top bar */}
-      <div className="border-b" style={{ borderColor: 'oklch(0.35 0.07 155)' }}>
-        <div className="container flex items-center justify-between h-14">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 no-underline">
-            <div
-              className="w-8 h-8 rounded flex items-center justify-center"
-              style={{ background: 'oklch(0.72 0.12 82)' }}
-            >
-              <Building2 className="w-4.5 h-4.5" style={{ color: 'oklch(0.15 0.04 155)' }} />
-            </div>
-            <div>
-              <span className="font-bold text-base leading-none" style={{ fontFamily: 'Playfair Display, serif', color: 'oklch(0.98 0.01 85)' }}>
-                CompareBusiness
-              </span>
-              <span className="text-xs block leading-none mt-0.5" style={{ color: 'oklch(0.72 0.12 82)', fontFamily: 'DM Sans, sans-serif' }}>
-                Account
-              </span>
-            </div>
-          </Link>
-
-          {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-1">
-            {navItems.map((item) => (
-              <div
-                key={item.label}
-                className="relative"
-                onMouseEnter={() => item.dropdown && handleMouseEnter(item.label)}
-                onMouseLeave={handleMouseLeave}
-              >
-                {item.href && !item.dropdown ? (
-                  <Link
-                    href={item.href}
-                    className="flex items-center gap-1 px-3 py-2 rounded text-sm font-medium transition-colors duration-150"
-                    style={{
-                      color: location === item.href ? 'oklch(0.72 0.12 82)' : 'oklch(0.9 0.02 85)',
-                      fontFamily: 'DM Sans, sans-serif',
-                    }}
-                  >
-                    {item.label}
-                  </Link>
-                ) : (
-                  <button
-                    className="flex items-center gap-1 px-3 py-2 rounded text-sm font-medium transition-colors duration-150"
-                    style={{
-                      color: activeDropdown === item.label ? 'oklch(0.72 0.12 82)' : 'oklch(0.9 0.02 85)',
-                      fontFamily: 'DM Sans, sans-serif',
-                      background: 'transparent',
-                      border: 'none',
-                    }}
-                  >
-                    {item.label}
-                    <ChevronDown
-                      className="w-3.5 h-3.5 transition-transform duration-150"
-                      style={{ transform: activeDropdown === item.label ? 'rotate(180deg)' : 'rotate(0deg)' }}
-                    />
-                  </button>
-                )}
-
-                {/* Dropdown */}
-                {item.dropdown && activeDropdown === item.label && (
-                  <div
-                    className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-56 z-50"
-                    onMouseEnter={() => handleMouseEnter(item.label)}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    {item.dropdown.map((sub) => (
-                      <Link
-                        key={sub.href}
-                        href={sub.href}
-                        onClick={() => setActiveDropdown(null)}
-                        className="block px-4 py-2.5 hover:bg-gray-50 transition-colors"
-                      >
-                        <span className="text-sm font-medium text-gray-800 block">{sub.label}</span>
-                        {sub.description && (
-                          <span className="text-xs text-gray-500 mt-0.5 block">{sub.description}</span>
-                        )}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </nav>
-
-          {/* CTA + Mobile toggle */}
-          <div className="flex items-center gap-3">
-            <Link
-              href="/compare"
-              className="hidden sm:inline-flex items-center px-4 py-2 rounded text-sm font-semibold transition-all duration-150 hover:opacity-90"
-              style={{
-                background: 'oklch(0.72 0.12 82)',
-                color: 'oklch(0.15 0.04 155)',
-                fontFamily: 'DM Sans, sans-serif',
-              }}
-            >
-              Compare Now
-            </Link>
-            <button
-              className="lg:hidden p-2 rounded"
-              style={{ color: 'oklch(0.9 0.02 85)' }}
-              onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label="Toggle menu"
-            >
-              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'shadow-md' : ''}`}
+    >
+      {/* Top announcement bar — dark navy */}
+      <div style={{ background: 'oklch(26% .07 240)' }} className="py-1.5">
+        <div className="container flex items-center justify-between">
+          <p className="text-xs text-white/80 font-medium" style={{ fontFamily: 'Sora, sans-serif' }}>
+            Independent UK business bank account comparisons — updated {currentMonth}
+          </p>
+          <div className="hidden sm:flex items-center gap-4">
+            <span className="text-xs text-white/70">⭐ Trusted by 50,000+ UK businesses</span>
           </div>
         </div>
       </div>
 
-      {/* Mobile menu */}
-      {mobileOpen && (
-        <div className="lg:hidden bg-white border-b border-gray-200 shadow-lg">
-          <div className="container py-4 space-y-1">
+      {/* Main nav — white */}
+      <nav className="bg-white border-b border-gray-100">
+        <div className="container flex items-center justify-between h-16">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2 no-underline">
+            <div
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-bold"
+              style={{ background: 'oklch(26% .07 240)', fontFamily: 'Sora, sans-serif' }}
+            >
+              CB
+            </div>
+            <div>
+              <div className="font-bold text-sm leading-tight" style={{ fontFamily: 'Sora, sans-serif', color: 'oklch(26% .07 240)' }}>
+                Compare Business
+              </div>
+              <div className="text-xs leading-tight" style={{ color: 'oklch(55% .12 210)', fontFamily: 'Sora, sans-serif' }}>
+                Account
+              </div>
+            </div>
+          </Link>
+
+          {/* Desktop nav items */}
+          <div className="hidden lg:flex items-center gap-0.5">
             {navItems.map((item) => (
-              <div key={item.label}>
-                {item.href && !item.dropdown ? (
+              <div
+                key={item.label}
+                className="relative"
+                onMouseEnter={() => item.children ? handleMouseEnter(item.label) : undefined}
+                onMouseLeave={item.children ? handleMouseLeave : undefined}
+              >
+                {item.children ? (
+                  <button
+                    className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-gray-50"
+                    style={{ color: 'oklch(26% .07 240)', fontFamily: 'Sora, sans-serif', background: 'transparent', border: 'none' }}
+                  >
+                    {item.label}
+                    <ChevronDown
+                      className="w-3.5 h-3.5 transition-transform"
+                      style={{
+                        transform: activeDropdown === item.label ? 'rotate(180deg)' : 'none',
+                        color: 'oklch(55% .12 210)',
+                      }}
+                    />
+                  </button>
+                ) : (
                   <Link
                     href={item.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="block px-3 py-2 rounded text-sm font-medium text-gray-700 hover:bg-gray-50"
+                    className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-gray-50 no-underline"
+                    style={{ color: 'oklch(26% .07 240)', fontFamily: 'Sora, sans-serif' }}
                   >
                     {item.label}
                   </Link>
-                ) : (
-                  <>
-                    <div className="px-3 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider mt-2">
-                      {item.label}
-                    </div>
-                    {item.dropdown?.map((sub) => (
-                      <Link
-                        key={sub.href}
-                        href={sub.href}
-                        onClick={() => setMobileOpen(false)}
-                        className="block px-5 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded"
-                      >
-                        {sub.label}
-                      </Link>
-                    ))}
-                  </>
+                )}
+
+                {/* Dropdown panel */}
+                {item.children && activeDropdown === item.label && (
+                  <div
+                    className="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50"
+                    style={{ minWidth: '220px', maxHeight: '80vh', overflowY: 'auto' }}
+                    onMouseEnter={() => handleMouseEnter(item.label)}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    {item.children.map((child) =>
+                      child.disabled ? (
+                        <div
+                          key={child.label}
+                          className="px-4 py-1.5 text-xs font-semibold uppercase tracking-wider"
+                          style={{ color: 'oklch(55% .12 210)', fontFamily: 'Sora, sans-serif' }}
+                        >
+                          {child.label}
+                        </div>
+                      ) : (
+                        <Link
+                          key={child.label}
+                          href={child.href}
+                          className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors no-underline"
+                          style={{ color: 'oklch(26% .07 240)', fontFamily: 'Sora, sans-serif' }}
+                        >
+                          {child.label}
+                        </Link>
+                      )
+                    )}
+                  </div>
                 )}
               </div>
             ))}
-            <div className="pt-3 border-t border-gray-100">
+          </div>
+
+          {/* CTA + mobile toggle */}
+          <div className="flex items-center gap-3">
+            <Link
+              href="/compare"
+              className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-semibold text-white transition-all hover:opacity-90 no-underline"
+              style={{ background: 'oklch(55% .12 210)', fontFamily: 'Sora, sans-serif' }}
+            >
+              Compare Now
+            </Link>
+            <button
+              className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? <X className="w-5 h-5" style={{ color: 'oklch(26% .07 240)' }} /> : <Menu className="w-5 h-5" style={{ color: 'oklch(26% .07 240)' }} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile menu */}
+        {mobileOpen && (
+          <div className="lg:hidden border-t border-gray-100 bg-white" style={{ maxHeight: '80vh', overflowY: 'auto' }}>
+            {navItems.map((item) => (
+              <div key={item.label}>
+                {item.children ? (
+                  <div>
+                    <button
+                      className="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold hover:bg-gray-50 border-none bg-transparent"
+                      style={{ color: 'oklch(26% .07 240)', fontFamily: 'Sora, sans-serif' }}
+                      onClick={() => setActiveDropdown(activeDropdown === item.label ? null : item.label)}
+                    >
+                      {item.label}
+                      <ChevronDown
+                        className="w-4 h-4 transition-transform"
+                        style={{ transform: activeDropdown === item.label ? 'rotate(180deg)' : 'none' }}
+                      />
+                    </button>
+                    {activeDropdown === item.label && (
+                      <div className="bg-gray-50 border-t border-gray-100">
+                        {item.children.map((child) =>
+                          child.disabled ? (
+                            <div
+                              key={child.label}
+                              className="px-6 py-1.5 text-xs font-semibold uppercase tracking-wider"
+                              style={{ color: 'oklch(55% .12 210)' }}
+                            >
+                              {child.label}
+                            </div>
+                          ) : (
+                            <Link
+                              key={child.label}
+                              href={child.href}
+                              className="block px-6 py-2.5 text-sm hover:bg-gray-100 no-underline"
+                              style={{ color: 'oklch(26% .07 240)' }}
+                            >
+                              {child.label}
+                            </Link>
+                          )
+                        )}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className="block px-4 py-3 text-sm font-semibold hover:bg-gray-50 no-underline border-t border-gray-50"
+                    style={{ color: 'oklch(26% .07 240)' }}
+                  >
+                    {item.label}
+                  </Link>
+                )}
+              </div>
+            ))}
+            <div className="px-4 py-3 border-t border-gray-100">
               <Link
                 href="/compare"
-                onClick={() => setMobileOpen(false)}
-                className="block w-full text-center px-4 py-2.5 rounded text-sm font-semibold"
-                style={{ background: 'oklch(0.28 0.09 155)', color: 'white' }}
+                className="block w-full text-center px-4 py-2.5 rounded-lg text-sm font-semibold text-white no-underline"
+                style={{ background: 'oklch(55% .12 210)' }}
               >
-                Compare All Accounts
+                Compare Now
               </Link>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </nav>
     </header>
   );
 }

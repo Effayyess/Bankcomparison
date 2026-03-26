@@ -3,7 +3,9 @@
 
 import { useParams, Link } from 'wouter';
 import { ChevronRight } from 'lucide-react';
-import { banks, getBanksBySuitability, getBanksByType, type Suitability } from '@/lib/bankData';
+import { banks, getBanksBySuitability, getBanksByType } from '@/lib/bankData';
+import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
 import BankCard from '@/components/BankCard';
 import NotFound from './NotFound';
 
@@ -96,7 +98,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     h1: 'Best Free Business Bank Accounts',
     description: 'Compare the best free UK business bank accounts with no monthly fee. Find accounts that are genuinely free with no hidden charges.',
     intro: 'A growing number of excellent business bank accounts are available with no monthly fee. These free accounts are not stripped-down products — many offer features that rival or exceed paid alternatives, including accounting integrations, invoicing tools, and FSCS protection.',
-    getBanks: () => banks.filter((b) => b.monthlyFee === 0),
+    getBanks: () => banks.filter((b) => b.monthlyFeeNum === 0),
     faq: [
       { q: 'Are free business bank accounts any good?', a: 'Yes — free business bank accounts have improved dramatically in recent years. Starling Bank, for example, is completely free and consistently rated as one of the best business bank accounts in the UK. Free does not mean inferior.' },
       { q: 'What is the catch with free business bank accounts?', a: 'Some free accounts charge for specific transactions (e.g., Tide charges 20p per transfer on its free plan). Others are free for a limited period (e.g., Barclays is free for 12 months). Always check the full fee schedule before opening.' },
@@ -108,7 +110,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     h1: 'Best App-Only Business Bank Accounts',
     description: 'Compare the best digital-only UK business bank accounts. Fast to open, feature-rich, and often free — the best app banks for UK businesses.',
     intro: 'App-only business bank accounts have transformed UK business banking. With no physical branches, these digital-first banks can offer lower fees, faster account opening, and more innovative features than traditional high street banks. The best app-only accounts are now the top choice for most UK small businesses.',
-    getBanks: () => getBanksByType('app-only'),
+    getBanks: () => getBanksByType('digital'),
     faq: [
       { q: 'Are app-only business bank accounts safe?', a: 'Yes — the major app-only banks are regulated by the FCA and PRA. Starling Bank is a fully licensed bank with FSCS protection. Others like Monzo, Tide, and Revolut are e-money institutions, which means your money is held in segregated accounts but not FSCS protected.' },
       { q: 'Can I deposit cash with an app-only business account?', a: 'Most app-only banks allow cash deposits via Post Office (Starling, Tide) or PayPoint (Monzo), though fees may apply. Revolut does not accept cash deposits at all. If you regularly handle cash, this is an important consideration.' },
@@ -120,11 +122,142 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     h1: 'Best High Street Business Bank Accounts',
     description: 'Compare the best UK high street business bank accounts. Find traditional banks with branch access, overdrafts, and full business banking services.',
     intro: 'High street business bank accounts remain the preferred choice for businesses that need branch access, cash handling facilities, or the full range of traditional banking services including overdrafts, loans, and relationship managers. While they typically charge monthly fees after an initial free period, they offer capabilities that app-only banks cannot match.',
-    getBanks: () => getBanksByType('high-street'),
+    getBanks: () => getBanksByType('highstreet'),
     faq: [
       { q: 'Which high street bank is best for business?', a: 'Barclays Business is our top-rated high street business bank, offering a strong digital platform alongside its branch network. NatWest Business is also excellent, particularly for new businesses as it offers 24 months free.' },
       { q: 'Do high street banks charge for business accounts?', a: 'Most high street banks offer a free period (typically 12–24 months for new businesses) before charging a monthly fee of around £6–£8.50. Transaction fees are usually included in the monthly fee.' },
       { q: 'When should I choose a high street bank over an app-only bank?', a: 'Choose a high street bank if you regularly deposit cash, need an overdraft or business loan, want a relationship manager, or prefer face-to-face banking. For most small businesses with low cash handling needs, an app-only bank will offer better value.' },
+    ],
+  },
+  // Aliases for nav links
+  'high-street': {
+    title: 'Best High Street Business Bank Accounts UK 2025',
+    h1: 'Best High Street Business Bank Accounts',
+    description: 'Compare the best UK high street business bank accounts with branch access.',
+    intro: 'High street business bank accounts offer branch access, cash handling, overdrafts, and relationship managers. They typically charge monthly fees after an initial free period.',
+    getBanks: () => getBanksByType('highstreet'),
+    faq: [
+      { q: 'Which high street bank is best for business?', a: 'Barclays Business is our top-rated high street business bank. NatWest Business is also excellent, particularly for new businesses as it offers 24 months free.' },
+    ],
+  },
+  'app-only': {
+    title: 'Best App-Only Business Bank Accounts UK 2025',
+    h1: 'Best App-Only Business Bank Accounts',
+    description: 'Compare the best digital-only UK business bank accounts. Fast to open, feature-rich, and often free.',
+    intro: 'App-only business bank accounts have transformed UK business banking with lower fees, faster opening, and innovative features.',
+    getBanks: () => getBanksByType('digital'),
+    faq: [
+      { q: 'Are app-only business bank accounts safe?', a: 'Yes — the major app-only banks are regulated by the FCA. Starling Bank has full FSCS protection. Others like Monzo and Tide are e-money institutions with segregated accounts.' },
+    ],
+  },
+  'fast-opening': {
+    title: 'Best Fast-Opening Business Bank Accounts UK 2025',
+    h1: 'Best Fast-Opening Business Bank Accounts',
+    description: 'Open a UK business bank account today. Compare accounts that can be opened same-day or within 24 hours.',
+    intro: 'Need a business bank account quickly? Several UK banks can open your account the same day — often within minutes. These app-only banks use digital identity verification to speed up the process.',
+    getBanks: () => getBanksByType('fast-opening'),
+    faq: [
+      { q: 'How quickly can I open a business bank account?', a: 'App-only banks like Starling, Monzo, and Tide can open accounts within minutes. High street banks typically take 3–7 days.' },
+    ],
+  },
+  'overdraft': {
+    title: 'Best Business Bank Accounts with Overdraft UK 2025',
+    h1: 'Best Business Bank Accounts with Overdraft',
+    description: 'Compare UK business bank accounts that offer overdraft facilities. Find accounts with flexible credit for your business.',
+    intro: 'An overdraft can be a vital safety net for businesses managing cash flow. Not all business bank accounts offer overdrafts — here are the ones that do.',
+    getBanks: () => getBanksByType('overdraft'),
+    faq: [
+      { q: 'Which business bank accounts offer overdrafts?', a: 'High street banks like Barclays, HSBC, NatWest, and Lloyds all offer business overdrafts. Starling Bank also offers an overdraft facility for eligible businesses.' },
+    ],
+  },
+  'multi-currency': {
+    title: 'Best Multi-Currency Business Bank Accounts UK 2025',
+    h1: 'Best Multi-Currency Business Bank Accounts',
+    description: 'Compare the best UK multi-currency business bank accounts for international businesses.',
+    intro: 'Multi-currency business accounts let you hold, send, and receive money in multiple currencies — ideal for businesses with international clients or suppliers.',
+    getBanks: () => getBanksBySuitability('international'),
+    faq: [
+      { q: 'What is the best multi-currency business account?', a: 'Wise Business is our top pick — it holds 40+ currencies at the real exchange rate. Revolut Business and Airwallex are also excellent.' },
+    ],
+  },
+  'cash-deposit': {
+    title: 'Best Business Bank Accounts for Cash Deposits UK 2025',
+    h1: 'Best Business Bank Accounts for Cash Deposits',
+    description: 'Compare UK business bank accounts that accept cash deposits. Find accounts with Post Office or branch cash deposit facilities.',
+    intro: 'If your business handles cash regularly, you need an account that makes depositing it easy and affordable. Here are the best options.',
+    getBanks: () => getBanksByType('cash-deposit'),
+    faq: [
+      { q: 'Which business bank accounts accept cash deposits?', a: 'High street banks accept cash at branches. Starling and Tide accept cash via Post Office. Monzo accepts cash via PayPoint. Revolut does not accept cash deposits.' },
+    ],
+  },
+  'accounting': {
+    title: 'Best Business Bank Accounts with Accounting Integration UK 2025',
+    h1: 'Best Business Bank Accounts with Accounting Integration',
+    description: 'Compare UK business bank accounts that integrate with Xero, QuickBooks, FreeAgent, and other accounting software.',
+    intro: 'Connecting your business bank account to your accounting software saves hours of manual data entry. Here are the best accounts with accounting integrations.',
+    getBanks: () => getBanksByType('accounting'),
+    faq: [
+      { q: 'Which business bank accounts integrate with Xero?', a: 'Starling Bank, Monzo Business, Tide, Barclays, NatWest, and most major banks integrate with Xero. Starling and Monzo also integrate with QuickBooks and FreeAgent.' },
+    ],
+  },
+  'small-business': {
+    title: 'Best Business Bank Accounts for Small Businesses UK 2025',
+    h1: 'Best Business Bank Accounts for Small Businesses',
+    description: 'Compare the best UK business bank accounts for small businesses. Find the right account for your SME.',
+    intro: 'Small businesses need a bank account that balances cost, features, and reliability. Here are our top picks for UK small businesses.',
+    getBanks: () => getBanksBySuitability('small-business'),
+    faq: [
+      { q: 'What is the best bank account for a small business?', a: 'For most small businesses, Starling Bank (free, FSCS protected) or Tide (excellent invoicing) are our top picks. For businesses needing branch access, Barclays or NatWest are recommended.' },
+    ],
+  },
+  'partnership': {
+    title: 'Best Business Bank Accounts for Partnerships UK 2025',
+    h1: 'Best Business Bank Accounts for Partnerships',
+    description: 'Compare the best UK business bank accounts for business partnerships. Find accounts that support multiple directors and signatories.',
+    intro: 'Business partnerships need an account that supports multiple signatories and provides clear visibility of shared finances.',
+    getBanks: () => getBanksBySuitability('partnership'),
+    faq: [
+      { q: 'Can a partnership open a business bank account?', a: 'Yes — most UK banks accept partnership applications. You will typically need details of all partners and a partnership agreement.' },
+    ],
+  },
+  'ecommerce': {
+    title: 'Best Business Bank Accounts for E-commerce UK 2025',
+    h1: 'Best Business Bank Accounts for E-commerce Businesses',
+    description: 'Compare the best UK business bank accounts for e-commerce and online businesses.',
+    intro: 'E-commerce businesses need accounts that handle high transaction volumes, integrate with payment processors, and support international payments.',
+    getBanks: () => getBanksBySuitability('ecommerce'),
+    faq: [
+      { q: 'What is the best bank account for an e-commerce business?', a: 'Revolut Business and Wise Business are excellent for e-commerce, offering multi-currency support and competitive rates. Starling and Monzo are also popular for their API integrations.' },
+    ],
+  },
+  'charity': {
+    title: 'Best Business Bank Accounts for Charities UK 2025',
+    h1: 'Best Business Bank Accounts for Charities',
+    description: 'Compare the best UK business bank accounts for charities and non-profit organisations.',
+    intro: 'Charities and non-profits have specific banking needs, including multiple signatories, transparent reporting, and ethical banking options.',
+    getBanks: () => getBanksBySuitability('charity'),
+    faq: [
+      { q: 'What is the best bank account for a charity?', a: 'The Co-operative Bank is well-known for its ethical banking and charity-friendly policies. Barclays and NatWest also offer specific charity account products.' },
+    ],
+  },
+  'no-credit-check': {
+    title: 'Best Business Bank Accounts with No Credit Check UK 2025',
+    h1: 'Best Business Bank Accounts with No Credit Check',
+    description: 'Compare UK business bank accounts that do not require a credit check. Open an account even with a poor credit history.',
+    intro: 'Several UK business bank accounts can be opened without a credit check — ideal for new businesses, those with a thin credit file, or anyone who has been declined elsewhere.',
+    getBanks: () => getBanksByType('no-credit-check'),
+    faq: [
+      { q: 'Can I open a business bank account with bad credit?', a: 'Yes — several accounts including Zempler Bank, Tide, and Revolut do not require a credit check. These are ideal if you have been declined by a high street bank.' },
+    ],
+  },
+  'bad-credit': {
+    title: 'Best Business Bank Accounts for Bad Credit UK 2025',
+    h1: 'Best Business Bank Accounts for Bad Credit',
+    description: 'Compare UK business bank accounts for businesses with bad credit or a poor credit history.',
+    intro: 'Having a poor credit history does not mean you cannot get a business bank account. Several UK banks specialise in accounts for businesses that have been declined elsewhere.',
+    getBanks: () => getBanksByType('bad-credit'),
+    faq: [
+      { q: 'Can I get a business bank account with bad credit?', a: 'Yes — Zempler Bank (formerly Cashplus) specialises in accounts for businesses with bad credit. Tide and Revolut also do not run credit checks.' },
     ],
   },
 };
@@ -141,24 +274,26 @@ export default function CategoryPage() {
   const categoryBanks = config.getBanks();
 
   return (
-    <div className="min-h-screen" style={{ background: 'oklch(0.98 0.008 85)' }}>
+    <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Sora, sans-serif' }}>
+      <Navigation />
+      <div style={{ paddingTop: '88px' }}>
       {/* Hero */}
       <section className="relative overflow-hidden" style={{ minHeight: '280px' }}>
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${CATEGORY_HERO})` }}
         />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg, oklch(0.15 0.07 155 / 0.9) 0%, oklch(0.15 0.07 155 / 0.7) 100%)' }} />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(10,30,60,0.88) 0%, rgba(10,30,60,0.65) 100%)' }} />
         <div className="relative container py-12">
-          <nav className="flex items-center gap-2 text-sm mb-4" style={{ color: 'oklch(0.75 0.02 85)' }}>
-            <Link href="/" className="hover:underline" style={{ color: 'oklch(0.85 0.02 85)' }}>Home</Link>
+          <nav className="flex items-center gap-2 text-sm mb-4 text-white/70">
+            <Link href="/" className="hover:text-white no-underline text-white/80">Home</Link>
             <ChevronRight className="w-3.5 h-3.5" />
-            <span style={{ color: 'oklch(0.85 0.02 85)' }}>{config.h1}</span>
+            <span className="text-white/90">{config.h1}</span>
           </nav>
-          <h1 className="text-3xl md:text-4xl font-bold mb-3" style={{ fontFamily: 'Playfair Display, serif', color: 'oklch(0.98 0.01 85)' }}>
+          <h1 className="text-3xl md:text-4xl font-bold mb-3 text-white" style={{ fontFamily: 'Sora, sans-serif' }}>
             {config.h1}
           </h1>
-          <p className="text-base max-w-2xl" style={{ color: 'oklch(0.85 0.02 85)' }}>
+          <p className="text-base max-w-2xl" style={{ color: 'rgba(255,255,255,0.85)' }}>
             {config.description}
           </p>
         </div>
@@ -169,15 +304,15 @@ export default function CategoryPage() {
           {/* Main content */}
           <div className="flex-1 min-w-0">
             {/* Intro */}
-            <div className="bank-card p-6 mb-6">
-              <p className="text-base leading-relaxed" style={{ color: 'oklch(0.3 0.02 65)', fontFamily: 'Libre Baskerville, serif' }}>
+            <div className="bg-white rounded-2xl border border-gray-200 p-6 mb-6">
+              <p className="text-sm leading-relaxed text-gray-700">
                 {config.intro}
               </p>
             </div>
 
             {/* Results */}
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold" style={{ fontFamily: 'Playfair Display, serif', color: 'oklch(0.18 0.02 65)' }}>
+              <h2 className="text-xl font-bold text-gray-900" style={{ fontFamily: 'Sora, sans-serif' }}>
                 {categoryBanks.length} Accounts Found
               </h2>
             </div>
@@ -189,17 +324,17 @@ export default function CategoryPage() {
             </div>
 
             {/* FAQ */}
-            <div className="bank-card p-6">
-              <h2 className="text-xl font-bold mb-6" style={{ fontFamily: 'Playfair Display, serif', color: 'oklch(0.18 0.02 65)' }}>
+            <div className="bg-white rounded-2xl border border-gray-200 p-6">
+              <h2 className="text-xl font-bold mb-6 text-gray-900" style={{ fontFamily: 'Sora, sans-serif' }}>
                 Frequently Asked Questions
               </h2>
               <div className="space-y-5">
                 {config.faq.map((item) => (
                   <div key={item.q} className="border-b border-gray-100 pb-5 last:border-0 last:pb-0">
-                    <h3 className="font-bold text-base mb-2" style={{ fontFamily: 'Playfair Display, serif', color: 'oklch(0.18 0.02 65)' }}>
+                    <h3 className="font-bold text-sm mb-2 text-gray-900" style={{ fontFamily: 'Sora, sans-serif' }}>
                       {item.q}
                     </h3>
-                    <p className="text-sm leading-relaxed" style={{ color: 'oklch(0.35 0.02 65)', fontFamily: 'Libre Baskerville, serif' }}>
+                    <p className="text-sm leading-relaxed text-gray-600">
                       {item.a}
                     </p>
                   </div>
@@ -212,7 +347,7 @@ export default function CategoryPage() {
           <aside className="hidden lg:block w-64 flex-shrink-0">
             <div className="sticky top-24 space-y-4">
               <div className="bank-card p-5">
-                <h3 className="font-bold text-sm mb-3 uppercase tracking-wider" style={{ fontFamily: 'DM Sans, sans-serif', color: 'oklch(0.28 0.09 155)' }}>
+                <h3 className="font-bold text-sm mb-3 text-gray-900" style={{ fontFamily: 'Sora, sans-serif' }}>
                   Other Categories
                 </h3>
                 <ul className="space-y-2">
@@ -223,8 +358,7 @@ export default function CategoryPage() {
                       <li key={key}>
                         <Link
                           href={`/category/${key}`}
-                          className="text-sm hover:underline flex items-center gap-1"
-                          style={{ color: 'oklch(0.28 0.09 155)' }}
+                          className="text-sm hover:text-teal-700 flex items-center gap-1 no-underline text-teal-600"
                         >
                           <ChevronRight className="w-3 h-3" />
                           {cat.h1.replace('Best Business Bank Accounts for ', '').replace('Best ', '')}
@@ -235,7 +369,7 @@ export default function CategoryPage() {
               </div>
 
               <div className="bank-card p-5">
-                <h3 className="font-bold text-sm mb-3 uppercase tracking-wider" style={{ fontFamily: 'DM Sans, sans-serif', color: 'oklch(0.28 0.09 155)' }}>
+                <h3 className="font-bold text-sm mb-3 text-gray-900" style={{ fontFamily: 'Sora, sans-serif' }}>
                   Useful Guides
                 </h3>
                 <ul className="space-y-2">
@@ -245,7 +379,7 @@ export default function CategoryPage() {
                     { label: 'Fees Explained', href: '/guides/business-bank-account-fees' },
                   ].map((item) => (
                     <li key={item.href}>
-                      <Link href={item.href} className="text-sm hover:underline flex items-center gap-1" style={{ color: 'oklch(0.28 0.09 155)' }}>
+                      <Link href={item.href} className="text-sm hover:text-teal-700 flex items-center gap-1 no-underline text-teal-600">
                         <ChevronRight className="w-3 h-3" />
                         {item.label}
                       </Link>
@@ -256,6 +390,8 @@ export default function CategoryPage() {
             </div>
           </aside>
         </div>
+      </div>
+      <Footer />
       </div>
     </div>
   );

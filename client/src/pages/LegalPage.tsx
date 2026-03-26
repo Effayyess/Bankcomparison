@@ -283,94 +283,91 @@ We aim to respond to all editorial enquiries within 5 working days.`,
   },
 };
 
+import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
+
 export default function LegalPage({ slug: slugProp }: { slug?: string }) {
   const params = useParams<{ slug: string }>();
   const slug = slugProp || params.slug || '';
   const page = legalPages[slug];
-
   if (!page) {
     return <NotFound />;
   }
-
   return (
-    <div className="min-h-screen" style={{ background: 'oklch(0.98 0.008 85)' }}>
-      {/* Header */}
-      <div className="border-b border-gray-200" style={{ background: 'white' }}>
-        <div className="container py-8">
-          <nav className="flex items-center gap-2 text-sm mb-4" style={{ color: 'oklch(0.55 0.01 65)' }}>
-            <Link href="/" className="hover:underline" style={{ color: 'oklch(0.28 0.09 155)' }}>Home</Link>
-            <ChevronRight className="w-3.5 h-3.5" />
-            <span>{page.h1}</span>
-          </nav>
-          <div className="flex items-center gap-2 mb-2">
-            <Shield className="w-5 h-5" style={{ color: 'oklch(0.28 0.09 155)' }} />
-            <span className="text-sm" style={{ color: 'oklch(0.55 0.01 65)' }}>Last updated: {page.lastUpdated}</span>
+    <div className="min-h-screen bg-gray-50">
+      <Navigation />
+      <div style={{ paddingTop: '88px' }}>
+        {/* Hero */}
+        <div className="text-white py-10" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%)' }}>
+          <div className="container">
+            <nav className="flex items-center gap-2 text-sm mb-4 text-gray-400">
+              <Link href="/" className="hover:text-white transition-colors">Home</Link>
+              <ChevronRight className="w-3.5 h-3.5" />
+              <span className="text-gray-300">{page.h1}</span>
+            </nav>
+            <div className="flex items-center gap-2 mb-2">
+              <Shield className="w-4 h-4 text-teal-400" />
+              <span className="text-sm text-gray-400">Last updated: {page.lastUpdated}</span>
+            </div>
+            <h1 className="text-3xl font-bold text-white" style={{ fontFamily: 'Sora, sans-serif' }}>
+              {page.h1}
+            </h1>
           </div>
-          <h1 className="text-3xl font-bold" style={{ fontFamily: 'Playfair Display, serif', color: 'oklch(0.18 0.02 65)' }}>
-            {page.h1}
-          </h1>
         </div>
-      </div>
-
-      <div className="container py-10">
-        <div className="max-w-3xl">
-          {/* Intro */}
-          <div className="bank-card p-6 mb-6">
-            <p className="text-base leading-relaxed" style={{ color: 'oklch(0.3 0.02 65)', fontFamily: 'Libre Baskerville, serif' }}>
-              {page.intro}
-            </p>
-          </div>
-
-          {/* Sections */}
-          {page.sections.map((section) => (
-            <div key={section.heading} className="bank-card p-6 mb-4">
-              <h2 className="text-xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, serif', color: 'oklch(0.18 0.02 65)' }}>
-                {section.heading}
-              </h2>
-              <div>
-                {section.content.split('\n\n').map((para, i) => {
-                  const formatted = para
-                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                    .replace(/\n- /g, '<br/>• ');
-                  return (
-                    <p
-                      key={i}
-                      className="text-sm leading-relaxed mb-3 last:mb-0"
-                      style={{ color: 'oklch(0.35 0.02 65)', fontFamily: 'Libre Baskerville, serif' }}
-                      dangerouslySetInnerHTML={{ __html: formatted }}
-                    />
-                  );
-                })}
+        {/* Content */}
+        <div className="container py-10">
+          <div className="max-w-3xl">
+            {/* Intro */}
+            <div className="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-sm">
+              <p className="text-base leading-relaxed text-gray-700">{page.intro}</p>
+            </div>
+            {/* Sections */}
+            {page.sections.map((section) => (
+              <div key={section.heading} className="bg-white border border-gray-200 rounded-xl p-6 mb-4 shadow-sm">
+                <h2 className="text-xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>
+                  {section.heading}
+                </h2>
+                <div>
+                  {section.content.split('\n\n').map((para, i) => {
+                    const formatted = para
+                      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                      .replace(/\n- /g, '<br/>• ');
+                    return (
+                      <p
+                        key={i}
+                        className="text-sm leading-relaxed text-gray-600 mb-3 last:mb-0"
+                        dangerouslySetInnerHTML={{ __html: formatted }}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+            {/* Other legal pages */}
+            <div className="bg-white border border-gray-200 rounded-xl p-5 mt-6 shadow-sm">
+              <h3 className="font-bold text-sm text-gray-700 mb-3 uppercase tracking-wider">Other Legal Documents</h3>
+              <div className="flex flex-wrap gap-3">
+                {[
+                  { label: 'Privacy Policy', href: '/privacy-policy' },
+                  { label: 'Cookie Policy', href: '/cookie-policy' },
+                  { label: 'Terms of Use', href: '/terms-of-use' },
+                  { label: 'Editorial Policy', href: '/editorial-policy' },
+                ]
+                  .filter((item) => !item.href.includes(slug))
+                  .map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="text-sm font-medium text-teal-700 hover:text-teal-900 hover:underline px-3 py-1.5 rounded border border-gray-200 bg-gray-50 transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
               </div>
             </div>
-          ))}
-
-          {/* Other legal pages */}
-          <div className="bank-card p-5 mt-6">
-            <h3 className="font-bold text-sm mb-3 uppercase tracking-wider" style={{ fontFamily: 'DM Sans, sans-serif', color: 'oklch(0.28 0.09 155)' }}>
-              Other Legal Documents
-            </h3>
-            <div className="flex flex-wrap gap-3">
-              {[
-                { label: 'Privacy Policy', href: '/privacy-policy' },
-                { label: 'Cookie Policy', href: '/cookie-policy' },
-                { label: 'Terms of Use', href: '/terms-of-use' },
-                { label: 'Editorial Policy', href: '/editorial-policy' },
-              ]
-                .filter((item) => !item.href.includes(slug))
-                .map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="text-sm font-medium hover:underline px-3 py-1.5 rounded border"
-                    style={{ color: 'oklch(0.28 0.09 155)', borderColor: 'oklch(0.88 0.01 85)' }}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-            </div>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );
