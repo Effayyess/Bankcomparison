@@ -1,5 +1,6 @@
 // Footer — matches original buscompare-7vygqn9p.manus.space exactly
-// Design: dark navy oklch(0.18 0.05 240), trust bar, 5-col grid, Sora font
+// Design: dark navy, trust bar (3 items), 4-col grid (brand + 3 link cols), no separate Guides column
+// Guides & Resources is a link inside Compare Accounts column
 
 import { Link } from 'wouter';
 import { Shield, Award, Users, Building2 } from 'lucide-react';
@@ -9,7 +10,8 @@ export default function Footer() {
 
   return (
     <footer style={{ background: 'oklch(0.18 0.05 240)', fontFamily: 'Sora, sans-serif' }} className="text-white">
-      {/* Trust bar */}
+
+      {/* Trust bar — 3 items */}
       <div style={{ background: 'oklch(0.22 0.06 240)', borderBottom: '1px solid oklch(0.30 0.06 240)' }}>
         <div className="container py-6">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -38,29 +40,33 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Main columns */}
+      {/* Main columns — 4 cols: brand (wider) + Compare Accounts + By Business Type + Bank Reviews */}
       <div className="container py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-          {/* Brand col (spans 2) */}
-          <div className="lg:col-span-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+          {/* Brand column */}
+          <div>
             <Link href="/" className="flex items-center gap-2.5 mb-4 no-underline">
               <div
-                className="w-9 h-9 rounded-lg flex items-center justify-center text-white"
+                className="w-9 h-9 rounded-lg flex items-center justify-center text-white flex-shrink-0"
                 style={{ background: 'oklch(0.26 0.07 240)' }}
               >
                 <Building2 className="w-5 h-5" />
               </div>
               <div>
-                <p className="font-bold text-sm leading-tight text-white">Compare Business</p>
-                <p className="text-xs leading-tight" style={{ color: 'rgba(255,255,255,0.5)' }}>Account</p>
+                <p className="font-bold text-sm leading-tight text-white">Compare Business Account</p>
+                <p className="text-xs leading-tight" style={{ color: 'rgba(255,255,255,0.5)' }}>comparebusinessaccount.co.uk</p>
               </div>
             </Link>
-            <p className="text-sm leading-relaxed mb-4 max-w-xs" style={{ color: 'rgba(255,255,255,0.55)' }}>
-              The UK's leading independent comparison site for business bank accounts. We compare all 22 major providers so you don't have to.
+            <p className="text-sm leading-relaxed mb-4" style={{ color: 'rgba(255,255,255,0.55)' }}>
+              Independent UK business bank account comparisons and expert reviews. We help UK businesses find the right banking solution for their needs.
             </p>
-            <p className="text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.35)' }}>
-              comparebusinessaccount.co.uk is an independent comparison website and is not regulated or authorised by the Financial Conduct Authority (FCA). We do not provide financial advice, and the information on this website is for informational purposes only.
-            </p>
+            <div
+              className="rounded-lg p-3 text-xs leading-relaxed"
+              style={{ background: 'oklch(0.22 0.06 240)', color: 'rgba(255,255,255,0.5)' }}
+            >
+              <span className="font-semibold text-white">Advertising Disclosure:</span> We may receive compensation when you click on links to products. This does not affect our editorial independence or the integrity of our reviews.
+            </div>
           </div>
 
           {/* Compare Accounts */}
@@ -71,9 +77,9 @@ export default function Footer() {
             <ul className="space-y-2.5">
               {[
                 { label: 'All Business Accounts', href: '/compare' },
-                { label: 'Free Business Accounts', href: '/best-free-business-bank-account' },
-                { label: 'Digital Banks', href: '/compare' },
-                { label: 'High Street Banks', href: '/compare' },
+                { label: 'Free Business Accounts', href: '/category/free-business-accounts' },
+                { label: 'Digital Banks', href: '/category/app-only-banks' },
+                { label: 'High Street Banks', href: '/category/high-street-banks' },
                 { label: 'Guides & Resources', href: '/guides' },
               ].map(link => (
                 <li key={link.label}>
@@ -92,12 +98,12 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2.5">
               {[
-                { label: 'Sole Trader', href: '/best-business-bank-account-sole-trader' },
-                { label: 'Limited Company', href: '/best-business-bank-account-limited-company' },
-                { label: 'Contractor', href: '/best-business-bank-account-contractor' },
-                { label: 'Freelancer', href: '/best-business-bank-account-freelancer' },
-                { label: 'Startup', href: '/best-business-bank-account-startup' },
-                { label: 'Small Business', href: '/best-business-bank-account-small-business' },
+                { label: 'Sole Trader', href: '/category/sole-trader' },
+                { label: 'Limited Company', href: '/category/limited-company' },
+                { label: 'Contractor', href: '/category/contractor' },
+                { label: 'Freelancer', href: '/category/freelancer' },
+                { label: 'Startup', href: '/category/startup' },
+                { label: 'Small Business', href: '/category/small-business' },
               ].map(link => (
                 <li key={link.label}>
                   <Link href={link.href} className="text-sm hover:text-white transition-colors no-underline" style={{ color: 'rgba(255,255,255,0.55)' }}>
@@ -108,12 +114,12 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Bank Reviews + Guides */}
+          {/* Bank Reviews */}
           <div>
             <h3 className="font-bold text-sm mb-4" style={{ color: 'oklch(0.72 0.12 210)' }}>
               Bank Reviews
             </h3>
-            <ul className="space-y-2.5 mb-6">
+            <ul className="space-y-2.5">
               {[
                 { label: 'Starling Bank', href: '/starling-bank' },
                 { label: 'Monzo Business', href: '/monzo-business' },
@@ -121,7 +127,7 @@ export default function Footer() {
                 { label: 'Revolut Business', href: '/revolut-business' },
                 { label: 'Wise Business', href: '/wise-business' },
                 { label: 'Barclays Business', href: '/barclays-business' },
-                { label: 'HSBC Business', href: '/hsbc-business' },
+                { label: 'HSBC Kinetic', href: '/hsbc-business' },
                 { label: 'NatWest Business', href: '/natwest-business' },
               ].map(link => (
                 <li key={link.label}>
@@ -131,33 +137,23 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-            <h3 className="font-bold text-sm mb-4" style={{ color: 'oklch(0.72 0.12 210)' }}>
-              Guides
-            </h3>
-            <ul className="space-y-2.5">
-              {[
-                { label: 'How to Open a Business Account', href: '/guides/how-to-open-a-business-bank-account' },
-                { label: 'Business Account vs Personal', href: '/guides/business-vs-personal-account' },
-                { label: 'FSCS Protection Explained', href: '/guides/fscs-protection-explained' },
-                { label: 'How to Switch Business Account', href: '/guides/how-to-switch-business-bank-account' },
-              ].map(link => (
-                <li key={link.label}>
-                  <Link href={link.href} className="text-sm hover:text-white transition-colors no-underline" style={{ color: 'rgba(255,255,255,0.55)' }}>
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
           </div>
+
         </div>
       </div>
 
-      {/* Bottom bar */}
+      {/* Bottom bar — important info + FSCS + copyright + legal links */}
       <div style={{ background: 'oklch(0.14 0.04 240)', borderTop: '1px solid oklch(0.25 0.06 240)' }}>
-        <div className="container py-5">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="container py-6">
+          <p className="text-xs leading-relaxed mb-3" style={{ color: 'rgba(255,255,255,0.4)' }}>
+            <span className="font-semibold" style={{ color: 'rgba(255,255,255,0.6)' }}>Important Information:</span> comparebusinessaccount.co.uk is an independent comparison website and is not regulated or authorised by the Financial Conduct Authority (FCA). We do not provide financial advice, and the information on this website is for informational purposes only. Always read the full terms and conditions before opening any financial product. Business bank account features and fees are subject to change — please verify current details directly with the provider.
+          </p>
+          <p className="text-xs leading-relaxed mb-5" style={{ color: 'rgba(255,255,255,0.4)' }}>
+            FSCS protection covers eligible deposits up to £85,000 per person per authorised institution. Not all providers listed are FSCS protected — please check individual provider details. Think carefully before taking on any financial product.
+          </p>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <p className="text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>
-              © {year} CompareBusinessAccount.co.uk — All rights reserved
+              © {year} Compare Business Account. All rights reserved.
             </p>
             <div className="flex flex-wrap items-center gap-4">
               {[
@@ -175,6 +171,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
     </footer>
   );
 }

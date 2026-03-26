@@ -323,7 +323,7 @@ export default function BankCard({ bank, rank }: BankCardProps) {
                       </div>
                     ))}
                   </div>
-                  <div className="space-y-1">
+                  <div className="space-y-1 mb-3">
                     {bank.cons.slice(0, 3).map((c) => (
                       <div key={c} className="flex items-start gap-1.5 text-xs text-gray-600">
                         <X className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-red-400" />
@@ -331,19 +331,18 @@ export default function BankCard({ bank, rank }: BankCardProps) {
                       </div>
                     ))}
                   </div>
+                  {/* T&C offer detail box — inside Pros & Cons column, below cons */}
+                  {bank.welcomeOfferDetail && (
+                    <div
+                      className="flex items-start gap-2 p-2.5 rounded-lg text-xs"
+                      style={{ background: '#fff7ed', border: '1px solid #fed7aa', color: '#9a3412' }}
+                    >
+                      <Info className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" style={{ color: '#ea580c' }} />
+                      <span>{bank.welcomeOfferDetail}</span>
+                    </div>
+                  )}
                 </div>
               </div>
-
-              {/* Offer detail box */}
-              {bank.welcomeOfferDetail && (
-                <div
-                  className="mt-4 flex items-start gap-2 p-3 rounded-lg text-xs"
-                  style={{ background: '#fffbeb', border: '1px solid #fde68a', color: '#92400e' }}
-                >
-                  <Info className="w-4 h-4 flex-shrink-0 mt-0.5 text-amber-500" />
-                  <span>{bank.welcomeOfferDetail}</span>
-                </div>
-              )}
 
               {/* Bottom CTAs */}
               <div className="mt-4 flex gap-2">
