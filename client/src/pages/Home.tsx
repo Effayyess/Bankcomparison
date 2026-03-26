@@ -2,8 +2,8 @@
 // Hero image, trust bar, business type cards, bank list with show-more, account type grid, why us, guides, FAQ
 import { useState } from 'react';
 import { Link } from 'wouter';
-import { Shield, Star, RefreshCw, ChevronDown, ChevronUp, ArrowRight, SlidersHorizontal, Info } from 'lucide-react';
-import { banks, accountTypeCategories, businessTypeCards, guides, getBanksByType, getBanksBySuitability } from '@/lib/bankData';
+import { Shield, Star, RefreshCw, ChevronDown, ChevronUp, ArrowRight, SlidersHorizontal, Info, BookOpen, Award, Clock } from 'lucide-react';
+import { banks, accountTypeCategories, businessTypeCards, guides, getBanksByType, getBanksBySuitability, type AccountTypeCategory } from '@/lib/bankData';
 import BankCard from '@/components/BankCard';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -40,6 +40,18 @@ const faqs = [
   {
     question: 'Which business bank account is best for a sole trader?',
     answer: 'For sole traders, the best options are typically Starling Bank (free, FSCS protected, great app), Tide (free plan, invoicing built in), and Monzo Business Lite (free, excellent mobile app). If you need branch access, HSBC or Lloyds offer free accounts with a full branch network. The right choice depends on whether you need cash deposits, accounting integrations, or international payments.',
+  },
+  {
+    question: 'Which business bank account is best for a limited company?',
+    answer: 'For limited companies, top choices include Starling Bank (free, FSCS protected, overdraft available), Revolut Business (if you need multi-currency), Tide (fast opening, good invoicing), and HSBC (free account, branch access, established reputation). Limited companies need a dedicated business account by law, so consider whether you need features like multi-user access, accounting integrations, or the ability to accept card payments.',
+  },
+  {
+    question: 'Are digital business bank accounts safe?',
+    answer: 'Yes, regulated digital business bank accounts are safe. Most are authorised by the Financial Conduct Authority (FCA) and either hold a full banking licence (like Starling and Monzo, which are FSCS protected up to £85,000) or are e-money institutions that must safeguard your funds in a separate ring-fenced account. Always check the FCA register before opening an account with any provider.',
+  },
+  {
+    question: 'Can I get a business bank account with bad credit?',
+    answer: 'Yes, several business bank accounts are available without a hard credit check. Zempler Bank (formerly Cashplus), Tide, Revolut, ANNA Money, and Countingup do not perform hard credit checks as part of their application process. These are particularly useful for new businesses or those with a limited credit history. Note that accounts with overdraft facilities will typically require a credit check.',
   },
 ];
 
@@ -81,48 +93,62 @@ export default function Home() {
     <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Sora, sans-serif' }}>
       <Navigation />
 
-      {/* Hero */}
-      <section className="relative overflow-hidden" style={{ minHeight: '420px', paddingTop: '88px' }}>
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${HERO_IMAGE})` }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: 'linear-gradient(135deg, rgba(10,30,60,0.92) 0%, rgba(10,30,60,0.75) 60%, rgba(10,30,60,0.45) 100%)' }}
-        />
+      {/* Hero — pure dark navy, no background image, matches original exactly */}
+      <section
+        className="relative overflow-hidden"
+        style={{ minHeight: '480px', paddingTop: '88px', background: '#0a1e3c' }}
+      >
         <div className="relative container py-16 md:py-20">
           <div className="max-w-2xl">
-            <div className="flex items-center gap-2 mb-4">
-              <span
-                className="text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full"
-                style={{ background: 'oklch(55% .12 210)', color: 'white' }}
-              >
-                Updated {currentMonth}
+            {/* Updated badge */}
+            <div className="flex items-center gap-2 mb-5">
+              <span className="flex items-center gap-1.5 text-xs font-semibold" style={{ color: '#4ade80' }}>
+                <Star className="w-3.5 h-3.5" style={{ fill: '#4ade80', color: '#4ade80' }} />
+                Updated {currentMonth} — Independent &amp; Unbiased
               </span>
             </div>
+            {/* 3-line title: white / teal / white */}
             <h1
-              className="text-4xl md:text-5xl font-bold leading-tight mb-4 text-white"
-              style={{ fontFamily: 'Sora, sans-serif' }}
+              className="font-bold leading-tight mb-5"
+              style={{ fontFamily: 'Sora, sans-serif', fontSize: 'clamp(2.2rem, 5vw, 3.5rem)', lineHeight: 1.1 }}
             >
-              Compare UK Business Bank Accounts
+              <span className="text-white">Compare the Best UK</span>
+              <br />
+              <span style={{ color: '#2dd4bf' }}>Business Bank</span>
+              <br />
+              <span className="text-white">Accounts</span>
             </h1>
-            <p className="text-lg mb-8 leading-relaxed" style={{ color: 'rgba(255,255,255,0.85)' }}>
-              Independent reviews of {banks.length} UK business bank accounts. Find the right account for your sole trader, limited company or startup — with no hidden agenda.
+            <p className="text-base md:text-lg mb-6 leading-relaxed" style={{ color: 'rgba(255,255,255,0.80)' }}>
+              Independent expert reviews and comparisons of every major UK business bank account. Find the right account for your business — from sole traders to limited companies.
             </p>
+            {/* Stats row */}
+            <div className="flex flex-wrap gap-x-5 gap-y-2 mb-7">
+              {[
+                `${banks.length} accounts compared`,
+                'Updated monthly',
+                'No hidden bias',
+                'Expert reviewed',
+              ].map((stat) => (
+                <div key={stat} className="flex items-center gap-1.5 text-sm" style={{ color: 'rgba(255,255,255,0.75)' }}>
+                  <span style={{ color: '#2dd4bf', fontSize: '1rem' }}>✓</span>
+                  {stat}
+                </div>
+              ))}
+            </div>
+            {/* CTA buttons */}
             <div className="flex flex-wrap gap-3">
               <Link
                 href="/compare"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all hover:opacity-90 no-underline text-white"
-                style={{ background: 'oklch(55% .12 210)' }}
+                style={{ background: '#0d9488' }}
               >
                 Compare All Accounts
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                href="/best-business-bank-account-sole-trader"
+                href="/category/sole-trader"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm border transition-all hover:bg-white/10 no-underline text-white"
-                style={{ borderColor: 'rgba(255,255,255,0.4)' }}
+                style={{ borderColor: 'rgba(255,255,255,0.35)', background: 'rgba(255,255,255,0.05)' }}
               >
                 Find My Account
               </Link>
@@ -207,14 +233,14 @@ export default function Home() {
 
           <div className="space-y-4 mb-4">
             {featuredBanks.map((bank, i) => (
-              <BankCard key={bank.id} bank={bank} rank={i + 1} showOffer={true} />
+              <BankCard key={bank.id} bank={bank} rank={i + 1} />
             ))}
           </div>
 
           {showAll && (
             <div className="space-y-4 mb-4">
               {remainingBanks.map((bank, i) => (
-                <BankCard key={bank.id} bank={bank} rank={featuredBanks.length + i + 1} showOffer={true} />
+                <BankCard key={bank.id} bank={bank} rank={featuredBanks.length + i + 1} />
               ))}
             </div>
           )}
@@ -259,9 +285,9 @@ export default function Home() {
             <p className="text-gray-600 text-sm">Browse by account type to find the best account for your specific needs</p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
-            {accountTypeCategories.map((cat) => {
-              const count = (cat as any).suitability
-                ? getBanksBySuitability((cat as any).suitability).length
+            {accountTypeCategories.map((cat: AccountTypeCategory) => {
+              const count = cat.suitability
+                ? getBanksBySuitability(cat.suitability).length
                 : getBanksByType(cat.type).length;
               const catHrefMap: Record<string, string> = {
                 'free': '/category/free-business-accounts',
@@ -303,7 +329,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why us */}
+      {/* Why us — matches original exactly */}
       <section className="py-14 bg-white border-t border-gray-100">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center mb-10">
@@ -317,28 +343,30 @@ export default function Home() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                icon: '🏆',
+                icon: <Shield className="w-6 h-6 text-teal-600" />,
                 title: 'Truly Independent',
                 desc: "Our editorial team is not influenced by advertising spend. We review every account on its merits.",
               },
               {
-                icon: '🔄',
-                title: 'Updated Monthly',
-                desc: 'We update fees, offers, and account details every month to ensure you always see accurate information.',
+                icon: <RefreshCw className="w-6 h-6 text-blue-600" />,
+                title: 'Always Up to Date',
+                desc: "We check and update every account's fees, features, and offers every month so you get accurate information.",
               },
               {
-                icon: '📊',
-                title: 'Data-Driven Rankings',
-                desc: 'Our rankings use a weighted scoring system covering fees, features, customer ratings, and FSCS protection.',
+                icon: <BookOpen className="w-6 h-6 text-purple-600" />,
+                title: 'Expert Reviews',
+                desc: 'Our long-form reviews cover everything: fees, features, security, customer service, and real user feedback.',
               },
               {
-                icon: '🤝',
-                title: 'No Favouritism',
-                desc: 'We compare all 22 UK business bank accounts — high street and digital — on the same criteria.',
+                icon: <Award className="w-6 h-6 text-amber-600" />,
+                title: 'EEAT Compliant',
+                desc: 'Our editorial team has 12+ years of financial services experience. We follow strict editorial guidelines.',
               },
             ].map((item) => (
-              <div key={item.title} className="text-center p-6 rounded-2xl bg-gray-50 border border-gray-100">
-                <div className="text-3xl mb-3">{item.icon}</div>
+              <div key={item.title} className="p-6 rounded-2xl bg-gray-50 border border-gray-100">
+                <div className="w-12 h-12 rounded-xl bg-white border border-gray-200 flex items-center justify-center mb-4 shadow-sm">
+                  {item.icon}
+                </div>
                 <h3 className="font-bold text-gray-900 mb-2 text-sm" style={{ fontFamily: 'Sora, sans-serif' }}>
                   {item.title}
                 </h3>
@@ -349,16 +377,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Guides */}
+      {/* Guides — matches original exactly */}
       <section className="py-12 bg-gray-50 border-t border-gray-200">
         <div className="container">
           <div className="flex items-end justify-between mb-8">
             <div>
               <h2 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Sora, sans-serif' }}>
-                Business Banking Guides
+                Expert Guides &amp; Resources
               </h2>
-              <p className="text-gray-600 text-sm mt-1">Expert guides to help you make the right choice</p>
+              <p className="text-gray-600 text-sm mt-1">In-depth guides to help you choose and manage your business bank account</p>
             </div>
+            <Link href="/guides" className="inline-flex items-center gap-1.5 text-sm font-semibold text-teal-600 hover:text-teal-800 no-underline whitespace-nowrap">
+              All guides <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {guides.map((guide) => (
@@ -371,11 +402,9 @@ export default function Home() {
                   >
                     {guide.title}
                   </h3>
-                  <div className="flex items-center justify-between mt-auto pt-3">
-                    <span className="text-xs text-gray-500">{guide.time}</span>
-                    <span className="text-xs font-semibold text-teal-600 flex items-center gap-1">
-                      Read guide <ArrowRight className="w-3 h-3" />
-                    </span>
+                  <div className="flex items-center gap-1.5 text-xs text-gray-400 mt-3">
+                    <Clock className="w-3 h-3" />
+                    {guide.time}
                   </div>
                 </div>
               </Link>
@@ -389,7 +418,7 @@ export default function Home() {
         <div className="container">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center" style={{ fontFamily: 'Sora, sans-serif' }}>
-              Frequently Asked Questions
+              Frequently Asked Questions About UK Business Bank Accounts
             </h2>
             <div className="space-y-3">
               {faqs.map((faq) => (

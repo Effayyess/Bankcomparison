@@ -253,7 +253,7 @@ export default function Compare() {
           {filtered.length > 0 ? (
             <div className="space-y-4">
               {filtered.map((bank, i) => (
-                <BankCard key={bank.id} bank={bank} rank={i + 1} showOffer={true} />
+                <BankCard key={bank.id} bank={bank} rank={i + 1} />
               ))}
             </div>
           ) : (

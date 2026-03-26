@@ -2,7 +2,7 @@
 // Dark navy top bar + white nav with teal accents + dropdown menus
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'wouter';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Building2 } from 'lucide-react';
 
 interface NavChild {
   label: string;
@@ -140,13 +140,13 @@ export default function Navigation() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 no-underline">
             <div
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-bold"
-              style={{ background: 'oklch(26% .07 240)', fontFamily: 'Sora, sans-serif' }}
+              className="w-9 h-9 rounded-lg flex items-center justify-center"
+              style={{ background: 'oklch(0.26 0.07 240)' }}
             >
-              CB
+              <Building2 className="w-5 h-5 text-white" />
             </div>
             <div>
-              <div className="font-bold text-sm leading-tight" style={{ fontFamily: 'Sora, sans-serif', color: 'oklch(26% .07 240)' }}>
+              <div className="font-bold text-lg leading-tight" style={{ fontFamily: 'Sora, sans-serif', color: 'oklch(0.26 0.07 240)' }}>
                 Compare Business
               </div>
               <div className="text-xs leading-tight" style={{ color: 'oklch(55% .12 210)', fontFamily: 'Sora, sans-serif' }}>
