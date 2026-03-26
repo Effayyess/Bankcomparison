@@ -91,10 +91,10 @@ export default function BankCard({ bank, rank }: BankCardProps) {
                 {rank}
               </div>
             )}
-            {/* Coloured logo square matching original */}
+            {/* Logo square — white background, no colour fill */}
             <div
               className="w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center overflow-hidden"
-              style={{ background: bank.logoColor }}
+              style={{ background: '#ffffff', border: '1px solid #e5e7eb' }}
             >
               {!imgError ? (
                 <img
@@ -104,7 +104,7 @@ export default function BankCard({ bank, rank }: BankCardProps) {
                   onError={() => setImgError(true)}
                 />
               ) : (
-                <span className="text-white font-bold text-sm">
+                <span className="font-bold text-sm" style={{ color: bank.logoColor }}>
                   {bank.provider.substring(0, 2).toUpperCase()}
                 </span>
               )}
