@@ -8,6 +8,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import BankCard from '@/components/BankCard';
 import NotFound from './NotFound';
+import SEO from '@/components/SEO';
 
 const CATEGORY_HERO = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663463044688/ARsFo8cnc8CpnHoXXZH5qW/category-hero-6Nc3QNrcoK9d5tYJhmmahE.webp';
 
@@ -34,19 +35,19 @@ const categoryOrder: Record<string, string[]> = {
   'high-street-banks': ['hsbc', 'lloyds', 'barclays', 'natwest', 'rbs', 'coop', 'virgin', 'cynergy'],
   'high-street': ['hsbc', 'lloyds', 'barclays', 'natwest', 'rbs', 'coop', 'virgin', 'cynergy'],
   'fast-opening': ['tide', 'tide-savings', 'revolut', 'airwallex', 'worldfirst', 'monzo', 'anna', 'starling', 'wise', 'mettle', 'countingup', 'equals', 'wallester', 'zempler'],
-  'overdraft': ['hsbc', 'lloyds', 'virgin', 'natwest', 'zempler', 'barclays', 'coop', 'rbs', 'monzo', 'starling', 'revolut', 'cynergy'],
+  'overdraft': ['tide', 'hsbc', 'lloyds', 'virgin', 'natwest', 'zempler', 'barclays', 'coop', 'rbs', 'monzo', 'starling', 'revolut', 'cynergy'],
   'multi-currency': ['revolut', 'airwallex', 'worldfirst', 'wallester', 'equals', 'wise', 'hsbc', 'tide', 'monzo', 'starling'],
   'cash-deposit': ['hsbc', 'tide', 'lloyds', 'tide-savings', 'virgin', 'natwest', 'zempler', 'wallester', 'barclays', 'coop', 'rbs', 'monzo', 'anna', 'countingup', 'starling', 'cynergy'],
-  'branch-access': ['hsbc', 'lloyds', 'virgin', 'natwest', 'barclays', 'coop', 'rbs', 'cynergy'],
+  'branch-access': ['hsbc', 'tide', 'lloyds', 'virgin', 'natwest', 'barclays', 'coop', 'rbs', 'cynergy'],
   'accounting': ['hsbc', 'tide', 'tide-savings', 'virgin', 'revolut', 'airwallex', 'natwest', 'zempler', 'worldfirst', 'wallester', 'coop', 'rbs', 'monzo', 'anna', 'countingup', 'mettle', 'starling', 'wise', 'equals', 'lloyds', 'barclays', 'cynergy'],
   'small-business': ['hsbc', 'tide', 'lloyds', 'tide-savings', 'virgin', 'revolut', 'airwallex', 'natwest', 'cynergy', 'zempler', 'worldfirst', 'wallester', 'barclays', 'coop', 'rbs', 'monzo', 'anna', 'countingup', 'mettle', 'starling', 'wise', 'equals'],
   'bad-credit': ['tide', 'tide-savings', 'revolut', 'airwallex', 'zempler', 'worldfirst', 'wallester', 'anna', 'countingup', 'monzo', 'starling', 'wise', 'mettle', 'equals'],
-  'corporate': ['hsbc', 'barclays', 'natwest', 'lloyds', 'revolut', 'airwallex', 'coop', 'rbs'],
+  'corporate': ['tide', 'hsbc', 'barclays', 'natwest', 'lloyds', 'revolut', 'airwallex', 'coop', 'rbs'],
   'multi-director': ['hsbc', 'tide', 'lloyds', 'tide-savings', 'virgin', 'revolut', 'airwallex', 'natwest', 'cynergy', 'zempler', 'worldfirst', 'wallester', 'barclays', 'coop', 'rbs', 'monzo', 'anna', 'countingup', 'mettle', 'starling', 'wise', 'equals'],
-  'joint': ['hsbc', 'lloyds', 'virgin', 'natwest', 'barclays', 'coop', 'rbs', 'starling', 'monzo', 'tide', 'revolut', 'airwallex', 'wise', 'mettle', 'cynergy', 'equals', 'worldfirst', 'wallester', 'zempler', 'anna'],
+  'joint': ['tide', 'hsbc', 'lloyds', 'virgin', 'natwest', 'barclays', 'coop', 'rbs', 'starling', 'monzo', 'revolut', 'airwallex', 'wise', 'mettle', 'cynergy', 'equals', 'worldfirst', 'wallester', 'zempler', 'anna'],
   'switcher': ['hsbc', 'tide', 'lloyds', 'natwest', 'barclays', 'coop', 'rbs', 'starling', 'monzo', 'virgin', 'revolut'],
   'online': ['hsbc', 'tide', 'tide-savings', 'virgin', 'revolut', 'airwallex', 'natwest', 'zempler', 'worldfirst', 'wallester', 'coop', 'rbs', 'monzo', 'anna', 'countingup', 'mettle', 'starling', 'wise', 'equals', 'lloyds', 'barclays', 'cynergy'],
-  'partnership': ['hsbc', 'lloyds', 'virgin', 'natwest', 'barclays', 'coop', 'rbs', 'starling', 'monzo', 'tide', 'revolut', 'airwallex', 'wise', 'mettle', 'cynergy'],
+  'partnership': ['tide', 'hsbc', 'lloyds', 'virgin', 'natwest', 'barclays', 'coop', 'rbs', 'starling', 'monzo', 'revolut', 'airwallex', 'wise', 'mettle', 'cynergy'],
 };
 
 function sortBanksByCategory(bankList: typeof banks, slug: string): typeof banks {
@@ -371,6 +372,12 @@ export default function CategoryPage() {
 
   return (
     <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Sora, sans-serif' }}>
+      <SEO
+        title={config.title}
+        description={config.description}
+        keywords={`${config.h1.toLowerCase()}, compare business bank accounts, best business bank account UK, business banking`}
+        canonicalPath={`/category/${slug}`}
+      />
       <Navigation />
       <div style={{ paddingTop: '88px' }}>
       {/* Hero */}

@@ -2,6 +2,7 @@
 // Each page manages its own Navigation + Footer
 
 import { Toaster } from "@/components/ui/sonner";
+import { HelmetProvider } from 'react-helmet-async';
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
@@ -13,6 +14,7 @@ import Compare from "./pages/Compare";
 import BankReview from "./pages/BankReview";
 import CategoryPage from "./pages/CategoryPage";
 import GuidePage from "./pages/GuidePage";
+import GuidesHub from "./pages/GuidesHub";
 import LegalPage from './pages/LegalPage';
 import FindMyAccount from './pages/FindMyAccount';
 
@@ -26,6 +28,7 @@ function Router() {
         <Route path="/compare" component={Compare} />
         <Route path="/find-my-account" component={FindMyAccount} />
         <Route path="/category/:slug" component={CategoryPage} />
+        <Route path="/guides" component={GuidesHub} />
         <Route path="/guides/:slug" component={GuidePage} />
         <Route path="/privacy-policy">
           {() => <LegalPage slug="privacy-policy" />}
@@ -39,6 +42,9 @@ function Router() {
         <Route path="/editorial-policy">
           {() => <LegalPage slug="editorial-policy" />}
         </Route>
+        <Route path="/contact">
+          {() => <LegalPage slug="contact" />}
+        </Route>
         {/* Bank review pages — /:slug (e.g. /starling-bank) — must be last specific route */}
         <Route path="/:slug" component={BankReview} />
         <Route path="/404" component={NotFound} />
@@ -50,14 +56,16 @@ function Router() {
 
 function App() {
   return (
-    <ErrorBoundary>
-      <ThemeProvider defaultTheme="light">
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
-      </ThemeProvider>
-    </ErrorBoundary>
+    <HelmetProvider>
+      <ErrorBoundary>
+        <ThemeProvider defaultTheme="light">
+          <TooltipProvider>
+            <Toaster />
+            <Router />
+          </TooltipProvider>
+        </ThemeProvider>
+      </ErrorBoundary>
+    </HelmetProvider>
   );
 }
 

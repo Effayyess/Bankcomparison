@@ -77,12 +77,12 @@ const navItems: NavItem[] = [
     label: 'Guides',
     href: '/guides',
     children: [
-      { label: 'How to Open a Business Account', href: '/guides/how-to-open-a-business-bank-account' },
-      { label: 'Business Account vs Personal', href: '/guides/business-account-vs-personal-account' },
-      { label: 'FSCS Protection Explained', href: '/guides/fscs-protection-explained' },
-      { label: 'How to Switch Business Account', href: '/guides/switching-business-bank-account' },
-      { label: 'Digital vs High Street Banks', href: '/guides/digital-vs-high-street-banks' },
-      { label: 'Business Bank Account Fees Guide', href: '/guides/business-bank-account-fees' },
+      { label: 'Getting Started', href: '/guides#getting-started' },
+      { label: 'By Business Type', href: '/guides#business-types' },
+      { label: 'Account Management', href: '/guides#account-management' },
+      { label: 'Fees & Security', href: '/guides#fees-and-security' },
+      { label: 'Tools & Software', href: '/guides#tools-and-software' },
+      { label: 'View All Guides', href: '/guides' },
     ],
   },
 ];
@@ -139,11 +139,8 @@ export default function Navigation() {
         <div className="container flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 no-underline">
-            <div
-              className="w-9 h-9 rounded-lg flex items-center justify-center"
-              style={{ background: 'oklch(0.26 0.07 240)' }}
-            >
-              <Building2 className="w-5 h-5 text-white" />
+            <div className="w-9 h-9 rounded-lg overflow-hidden flex-shrink-0">
+              <img src="/logo-square.png" alt="Compare Business Account" className="w-full h-full object-cover" />
             </div>
             <div>
               <div className="font-bold text-lg leading-tight" style={{ fontFamily: 'Sora, sans-serif', color: 'oklch(0.26 0.07 240)' }}>

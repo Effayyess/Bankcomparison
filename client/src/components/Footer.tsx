@@ -157,9 +157,9 @@ export default function Footer() {
             </p>
             <div className="flex flex-wrap items-center gap-4">
               {[
-                { label: 'Privacy Policy', href: '/privacy' },
-                { label: 'Cookie Policy', href: '/cookies' },
-                { label: 'Terms of Use', href: '/terms' },
+                { label: 'Privacy Policy', href: '/privacy-policy' },
+                { label: 'Cookie Policy', href: '/cookie-policy' },
+                { label: 'Terms of Use', href: '/terms-of-use' },
                 { label: 'Editorial Policy', href: '/editorial-policy' },
                 { label: 'Contact', href: '/contact' },
               ].map(link => (

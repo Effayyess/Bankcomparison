@@ -6,6 +6,7 @@ import { banks } from '@/lib/bankData';
 import BankCard from '@/components/BankCard';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import SEO from '@/components/SEO';
 
 const suitabilityFilters = [
   { value: 'all', label: 'All Businesses' },
@@ -78,6 +79,12 @@ export default function Compare() {
 
   return (
     <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Sora, sans-serif' }}>
+      <SEO
+        title="Compare Business Bank Accounts UK 2025 | All Accounts Side by Side"
+        description={`Compare all ${banks.length} UK business bank accounts. Filter by fees, features, FSCS protection, and business type. Find the best account for your business today.`}
+        keywords="compare business bank accounts, business bank account comparison, best business bank account UK, UK business banking comparison, business account comparison tool"
+        canonicalPath="/compare"
+      />
       <Navigation />
 
       <div style={{ paddingTop: '88px' }}>

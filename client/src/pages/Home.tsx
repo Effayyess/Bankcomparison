@@ -7,6 +7,7 @@ import { banks, accountTypeCategories, businessTypeCards, guides, getBanksByType
 import BankCard from '@/components/BankCard';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import SEO from '@/components/SEO';
 
 const HERO_IMAGE = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663463037748/7vygQN9pPuSYrBkN3gux2K/hero-banner-E9TkW2zNtdmXVsQo7kyxDY.webp';
 
@@ -89,8 +90,28 @@ export default function Home() {
 
   const currentMonth = new Date().toLocaleString('en-GB', { month: 'long', year: 'numeric' });
 
+  const homeSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Compare Business Account',
+    url: 'https://comparebusinessaccount.co.uk',
+    description: 'Independent comparison of the best UK business bank accounts. Compare fees, features, and reviews to find the right account for your business.',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://comparebusinessaccount.co.uk/compare?q={search_term_string}',
+      'query-input': 'required name=search_term_string',
+    },
+  };
+
   return (
     <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Sora, sans-serif' }}>
+      <SEO
+        title="Best Business Bank Accounts UK 2025 | Compare Business Account"
+        description="Compare the best UK business bank accounts. Independent reviews of Starling, Tide, Monzo, Revolut, HSBC and more. Find the right account for sole traders, limited companies and startups."
+        keywords="best business bank account, compare business bank account, UK business bank account, business bank account comparison, best business account UK, sole trader bank account, limited company bank account, free business bank account"
+        canonicalPath="/"
+        schema={homeSchema}
+      />
       <Navigation />
 
       {/* Hero — pure dark navy, no background image, matches original exactly */}

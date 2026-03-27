@@ -281,10 +281,54 @@ We aim to respond to all editorial enquiries within 5 working days.`,
       },
     ],
   },
+
+  'contact': {
+    title: 'Contact Us | CompareBusiness Account',
+    h1: 'Contact Us',
+    lastUpdated: 'March 2025',
+    intro: 'We are here to help. Whether you have a question about a business bank account, need help using our website, or want to provide feedback, please get in touch using the details below.',
+    sections: [
+      {
+        heading: 'General Enquiries',
+        content: `For general questions about our website, comparisons, or services:
+
+Email: info@comparebusinessaccount.co.uk
+
+We aim to respond to all general enquiries within 2-3 working days.`
+      },
+      {
+        heading: 'Editorial & Corrections',
+        content: `If you have spotted an inaccuracy on our website, want to suggest an update, or have a question about our editorial process:
+
+Email: editorial@comparebusinessaccount.co.uk
+
+Please include the URL of the page you are referring to in your email.`
+      },
+      {
+        heading: 'Partnerships & Advertising',
+        content: `If you represent a bank or financial institution and would like to discuss partnership opportunities:
+
+Email: partnerships@comparebusinessaccount.co.uk`
+      },
+      {
+        heading: 'Data Privacy',
+        content: `For questions about how we handle your personal data, or to exercise your rights under the UK GDPR:
+
+Email: privacy@comparebusinessaccount.co.uk`
+      },
+      {
+        heading: 'Important Note',
+        content: `CompareBusiness Account is an independent comparison website. **We are not a bank and we cannot access your bank account details, process transactions, or resolve issues with your specific bank.**
+
+If you have a problem with your business bank account, you must contact your bank directly using the contact details provided on their official website or the back of your bank card.`
+      }
+    ]
+  },
 };
 
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import SEO from '@/components/SEO';
 
 export default function LegalPage({ slug: slugProp }: { slug?: string }) {
   const params = useParams<{ slug: string }>();
@@ -295,6 +339,12 @@ export default function LegalPage({ slug: slugProp }: { slug?: string }) {
   }
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEO
+        title={page.title}
+        description={page.intro.slice(0, 160)}
+        canonicalPath={`/${slug}`}
+        noIndex={slug === 'contact'}
+      />
       <Navigation />
       <div style={{ paddingTop: '88px' }}>
         {/* Hero */}

@@ -6,6 +6,7 @@ import { Star, Check, X, ExternalLink, ChevronRight, Shield, Zap, Globe } from '
 import { banks, getBankBySlug } from '@/lib/bankData';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import SEO from '@/components/SEO';
 
 function StarRating({ rating, large }: { rating: number; large?: boolean }) {
   return (
@@ -48,9 +49,40 @@ export default function BankReview() {
 
   const currentMonth = new Date().toLocaleString('en-GB', { month: 'long', year: 'numeric' });
   const relatedBanks = banks.filter((b) => b.id !== bank.id && b.type === bank.type).slice(0, 4);
+  const year = new Date().getFullYear();
+
+  const reviewSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Review',
+    name: `${bank.name} Business Bank Account Review ${year}`,
+    reviewBody: bank.verdict || `Independent review of ${bank.name} business bank account.`,
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: bank.rating,
+      bestRating: 5,
+      worstRating: 1,
+    },
+    author: {
+      '@type': 'Organization',
+      name: 'Compare Business Account',
+    },
+    itemReviewed: {
+      '@type': 'FinancialProduct',
+      name: `${bank.name} Business Bank Account`,
+      brand: { '@type': 'Brand', name: bank.provider },
+    },
+  };
 
   return (
     <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Sora, sans-serif' }}>
+      <SEO
+        title={`${bank.name} Business Bank Account Review ${year} | Compare Business Account`}
+        description={`Read our independent ${bank.name} business bank account review. We cover fees, features, pros and cons, and who it's best for. Rated ${bank.rating}/5.`}
+        keywords={`${bank.name} review, ${bank.name} business bank account, ${bank.provider} business account review, ${bank.name} fees, ${bank.name} business banking`}
+        canonicalPath={`/${slug}`}
+        ogType="article"
+        schema={reviewSchema}
+      />
       <Navigation />
 
       <div style={{ paddingTop: '88px' }}>
@@ -231,7 +263,7 @@ export default function BankReview() {
                         <div className="font-bold text-gray-900 mb-1" style={{ fontFamily: 'Sora, sans-serif' }}>
                           {plan.name}
                         </div>
-                        <div className="text-xl font-bold mb-1" style={{ color: 'oklch(55% .12 210)' }}>
+                        <div className="text-xl font-bold mb-1" style={{ color: '#0f172a' }}>
                           {plan.price}
                         </div>
                         <div className="text-xs text-gray-500 mb-3">{plan.priceNote}</div>
@@ -265,7 +297,7 @@ export default function BankReview() {
                       <span
                         key={acc}
                         className="px-3 py-1.5 rounded-full text-sm font-medium border"
-                        style={{ background: 'oklch(0.95 0.02 210)', color: 'oklch(0.35 0.1 210)', borderColor: 'oklch(0.88 0.04 210)' }}
+                        style={{ background: '#f0fdfa', color: '#0f766e', borderColor: '#ccfbf1' }}
                       >
                         {acc}
                       </span>
@@ -290,10 +322,48 @@ export default function BankReview() {
               {/* Detailed review sections */}
               {bank.reviewContent && bank.reviewContent.length > 0 && bank.reviewContent.map((section) => (
                 <div key={section.heading} className="bg-white rounded-2xl border border-gray-200 p-6">
-                  <h2 className="text-lg font-bold text-gray-900 mb-3" style={{ fontFamily: 'Sora, sans-serif' }}>
+                  <h2 className="text-lg font-bold text-gray-900 mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>
                     {section.heading}
                   </h2>
-                  <p className="text-gray-700 text-sm leading-relaxed">{section.body}</p>
+                  <div className="text-gray-700 text-sm leading-relaxed space-y-3">
+                    {section.body.split('\n').map((line, idx) => {
+                      const trimmed = line.trim();
+                      if (!trimmed) return null;
+                      // Bullet points: lines starting with - or •
+                      if (trimmed.startsWith('- ') || trimmed.startsWith('• ')) {
+                        const text = trimmed.replace(/^[-•]\s+/, '');
+                        return (
+                          <div key={idx} className="flex items-start gap-2">
+                            <span className="mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: '#0d9488', marginTop: '6px' }} />
+                            <span dangerouslySetInnerHTML={{ __html: text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') }} />
+                          </div>
+                        );
+                      }
+                      // Sub-headings: lines ending with ':' or starting with ##
+                      if (trimmed.endsWith(':') && trimmed.length < 80) {
+                        return (
+                          <p key={idx} className="font-semibold text-gray-900 mt-4 mb-1">
+                            {trimmed}
+                          </p>
+                        );
+                      }
+                      // Numbered list items
+                      if (/^\d+\.\s/.test(trimmed)) {
+                        const text = trimmed.replace(/^\d+\.\s+/, '');
+                        const num = trimmed.match(/^(\d+)\./)?.[1];
+                        return (
+                          <div key={idx} className="flex items-start gap-2">
+                            <span className="flex-shrink-0 w-5 h-5 rounded-full text-xs font-bold flex items-center justify-center text-white" style={{ background: '#0d9488', marginTop: '1px' }}>{num}</span>
+                            <span dangerouslySetInnerHTML={{ __html: text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') }} />
+                          </div>
+                        );
+                      }
+                      // Regular paragraph
+                      return (
+                        <p key={idx} dangerouslySetInnerHTML={{ __html: trimmed.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') }} />
+                      );
+                    })}
+                  </div>
                 </div>
               ))}
             </div>
