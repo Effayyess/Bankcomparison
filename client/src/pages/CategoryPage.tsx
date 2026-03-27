@@ -63,7 +63,7 @@ function sortBanksByCategory(bankList: typeof banks, slug: string): typeof banks
 }
 const categoryConfigs: Record<string, CategoryConfig> = {
   'sole-trader': {
-    title: 'Best Business Bank Accounts for Sole Traders UK 2025',
+    title: `Best Business Bank Accounts for Sole Traders UK ${new Date().getFullYear()}`,
     h1: 'Best Business Bank Accounts for Sole Traders',
     description: 'Compare the best UK business bank accounts for sole traders. Find free accounts with no monthly fee, instant opening, and great accounting integrations.',
     intro: 'As a sole trader, you are not legally required to have a separate business bank account — but it is strongly recommended. Mixing personal and business finances makes tax returns harder, looks unprofessional to clients, and makes it difficult to track your business performance. The good news is that many excellent accounts are available completely free.',
@@ -75,7 +75,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     ],
   },
   'limited-company': {
-    title: 'Best Business Bank Accounts for Limited Companies UK 2025',
+    title: `Best Business Bank Accounts for Limited Companies UK ${new Date().getFullYear()}`,
     h1: 'Best Business Bank Accounts for Limited Companies',
     description: 'Compare the best UK business bank accounts for limited companies. Limited companies must have a separate business account — find the right one here.',
     intro: 'Unlike sole traders, limited companies are legally required to have a separate business bank account. This is because a limited company is a distinct legal entity from its directors and shareholders. The account must be in the company\'s name, and all business income and expenses must pass through it.',
@@ -87,7 +87,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     ],
   },
   'contractor': {
-    title: 'Best Business Bank Accounts for Contractors UK 2025',
+    title: `Best Business Bank Accounts for Contractors UK ${new Date().getFullYear()}`,
     h1: 'Best Business Bank Accounts for Contractors',
     description: 'Compare the best UK business bank accounts for contractors and consultants. Find accounts with great invoicing tools, accounting integrations, and low fees.',
     intro: 'Contractors — whether operating through a limited company or as sole traders — have specific banking needs. You need an account that makes invoicing clients straightforward, integrates with accounting software, and keeps costs low during quiet periods. Many contractors also benefit from accounts that handle multiple clients and projects clearly.',
@@ -99,7 +99,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     ],
   },
   'startup': {
-    title: 'Best Business Bank Accounts for Startups UK 2025',
+    title: `Best Business Bank Accounts for Startups UK ${new Date().getFullYear()}`,
     h1: 'Best Business Bank Accounts for Startups',
     description: 'Compare the best UK business bank accounts for startups. Find accounts with free periods, easy opening, and features designed for growing businesses.',
     intro: 'Choosing the right bank account is one of the first decisions a startup founder needs to make. You need an account that is easy to open quickly, has low or no fees while you are getting started, and offers the features you will need as you grow — from accounting integrations to international payments.',
@@ -111,7 +111,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     ],
   },
   'freelancer': {
-    title: 'Best Business Bank Accounts for Freelancers UK 2025',
+    title: `Best Business Bank Accounts for Freelancers UK ${new Date().getFullYear()}`,
     h1: 'Best Business Bank Accounts for Freelancers',
     description: 'Compare the best UK business bank accounts for freelancers. Find free accounts with invoicing tools, expense tracking, and tax management features.',
     intro: 'Freelancers need a business bank account that makes managing irregular income straightforward, helps with invoicing clients, and keeps tax preparation as painless as possible. The best accounts for freelancers combine low costs with smart financial tools.',
@@ -123,7 +123,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     ],
   },
   'international': {
-    title: 'Best Multi-Currency Business Bank Accounts UK 2025',
+    title: `Best Multi-Currency Business Bank Accounts UK ${new Date().getFullYear()}`,
     h1: 'Best Business Bank Accounts for International Businesses',
     description: 'Compare the best UK business bank accounts for international businesses. Find multi-currency accounts with competitive exchange rates and global payment capabilities.',
     intro: 'If your business operates internationally — whether you are selling to overseas customers, paying international suppliers, or employing staff abroad — you need a business bank account with strong international capabilities. The best accounts offer multi-currency wallets, competitive exchange rates, and low international transfer fees.',
@@ -135,7 +135,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     ],
   },
   'free-business-accounts': {
-    title: 'Best Free Business Bank Accounts UK 2025',
+    title: `Best Free Business Bank Accounts UK ${new Date().getFullYear()}`,
     h1: 'Best Free Business Bank Accounts',
     description: 'Compare the best free UK business bank accounts with no monthly fee. Find accounts that are genuinely free with no hidden charges.',
     intro: 'A growing number of excellent business bank accounts are available with no monthly fee. These free accounts are not stripped-down products — many offer features that rival or exceed paid alternatives, including accounting integrations, invoicing tools, and FSCS protection.',
@@ -147,7 +147,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     ],
   },
   'app-only-banks': {
-    title: 'Best App-Only Business Bank Accounts UK 2025',
+    title: `Best App-Only Business Bank Accounts UK ${new Date().getFullYear()}`,
     h1: 'Best App-Only Business Bank Accounts',
     description: 'Compare the best digital-only UK business bank accounts. Fast to open, feature-rich, and often free — the best app banks for UK businesses.',
     intro: 'App-only business bank accounts have transformed UK business banking. With no physical branches, these digital-first banks can offer lower fees, faster account opening, and more innovative features than traditional high street banks. The best app-only accounts are now the top choice for most UK small businesses.',
@@ -159,7 +159,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     ],
   },
   'high-street-banks': {
-    title: 'Best High Street Business Bank Accounts UK 2025',
+    title: `Best High Street Business Bank Accounts UK ${new Date().getFullYear()}`,
     h1: 'Best High Street Business Bank Accounts',
     description: 'Compare the best UK high street business bank accounts. Find traditional banks with branch access, overdrafts, and full business banking services.',
     intro: 'High street business bank accounts remain the preferred choice for businesses that need branch access, cash handling facilities, or the full range of traditional banking services including overdrafts, loans, and relationship managers. While they typically charge monthly fees after an initial free period, they offer capabilities that app-only banks cannot match.',
@@ -172,7 +172,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
   },
   // Aliases for nav links
   'high-street': {
-    title: 'Best High Street Business Bank Accounts UK 2025',
+    title: `Best High Street Business Bank Accounts UK ${new Date().getFullYear()}`,
     h1: 'Best High Street Business Bank Accounts',
     description: 'Compare the best UK high street business bank accounts with branch access.',
     intro: 'High street business bank accounts offer branch access, cash handling, overdrafts, and relationship managers. They typically charge monthly fees after an initial free period.',
@@ -182,7 +182,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     ],
   },
   'app-only': {
-    title: 'Best App-Only Business Bank Accounts UK 2025',
+    title: `Best App-Only Business Bank Accounts UK ${new Date().getFullYear()}`,
     h1: 'Best App-Only Business Bank Accounts',
     description: 'Compare the best digital-only UK business bank accounts. Fast to open, feature-rich, and often free.',
     intro: 'App-only business bank accounts have transformed UK business banking with lower fees, faster opening, and innovative features.',
@@ -192,7 +192,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     ],
   },
   'fast-opening': {
-    title: 'Best Fast-Opening Business Bank Accounts UK 2025',
+    title: `Best Fast-Opening Business Bank Accounts UK ${new Date().getFullYear()}`,
     h1: 'Best Fast-Opening Business Bank Accounts',
     description: 'Open a UK business bank account today. Compare accounts that can be opened same-day or within 24 hours.',
     intro: 'Need a business bank account quickly? Several UK banks can open your account the same day — often within minutes. These app-only banks use digital identity verification to speed up the process.',
@@ -202,7 +202,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     ],
   },
   'overdraft': {
-    title: 'Best Business Bank Accounts with Overdraft UK 2025',
+    title: `Best Business Bank Accounts with Overdraft UK ${new Date().getFullYear()}`,
     h1: 'Best Business Bank Accounts with Overdraft',
     description: 'Compare UK business bank accounts that offer overdraft facilities. Find accounts with flexible credit for your business.',
     intro: 'An overdraft can be a vital safety net for businesses managing cash flow. Not all business bank accounts offer overdrafts — here are the ones that do.',
@@ -212,7 +212,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     ],
   },
   'multi-currency': {
-    title: 'Best Multi-Currency Business Bank Accounts UK 2025',
+    title: `Best Multi-Currency Business Bank Accounts UK ${new Date().getFullYear()}`,
     h1: 'Best Multi-Currency Business Bank Accounts',
     description: 'Compare the best UK multi-currency business bank accounts for international businesses.',
     intro: 'Multi-currency business accounts let you hold, send, and receive money in multiple currencies — ideal for businesses with international clients or suppliers.',
@@ -222,7 +222,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     ],
   },
   'cash-deposit': {
-    title: 'Best Business Bank Accounts for Cash Deposits UK 2025',
+    title: `Best Business Bank Accounts for Cash Deposits UK ${new Date().getFullYear()}`,
     h1: 'Best Business Bank Accounts for Cash Deposits',
     description: 'Compare UK business bank accounts that accept cash deposits. Find accounts with Post Office or branch cash deposit facilities.',
     intro: 'If your business handles cash regularly, you need an account that makes depositing it easy and affordable. Here are the best options.',
@@ -232,7 +232,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     ],
   },
   'accounting': {
-    title: 'Best Business Bank Accounts with Accounting Integration UK 2025',
+    title: `Best Business Bank Accounts with Accounting Integration UK ${new Date().getFullYear()}`,
     h1: 'Best Business Bank Accounts with Accounting Integration',
     description: 'Compare UK business bank accounts that integrate with Xero, QuickBooks, FreeAgent, and other accounting software.',
     intro: 'Connecting your business bank account to your accounting software saves hours of manual data entry. Here are the best accounts with accounting integrations.',
@@ -242,7 +242,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     ],
   },
   'small-business': {
-    title: 'Best Business Bank Accounts for Small Businesses UK 2025',
+    title: `Best Business Bank Accounts for Small Businesses UK ${new Date().getFullYear()}`,
     h1: 'Best Business Bank Accounts for Small Businesses',
     description: 'Compare the best UK business bank accounts for small businesses. Find the right account for your SME.',
     intro: 'Small businesses need a bank account that balances cost, features, and reliability. Here are our top picks for UK small businesses.',
@@ -252,7 +252,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     ],
   },
   'partnership': {
-    title: 'Best Business Bank Accounts for Partnerships UK 2025',
+    title: `Best Business Bank Accounts for Partnerships UK ${new Date().getFullYear()}`,
     h1: 'Best Business Bank Accounts for Partnerships',
     description: 'Compare the best UK business bank accounts for business partnerships. Find accounts that support multiple directors and signatories.',
     intro: 'Business partnerships need an account that supports multiple signatories and provides clear visibility of shared finances.',
@@ -262,7 +262,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     ],
   },
   'ecommerce': {
-    title: 'Best Business Bank Accounts for E-commerce UK 2025',
+    title: `Best Business Bank Accounts for E-commerce UK ${new Date().getFullYear()}`,
     h1: 'Best Business Bank Accounts for E-commerce Businesses',
     description: 'Compare the best UK business bank accounts for e-commerce and online businesses.',
     intro: 'E-commerce businesses need accounts that handle high transaction volumes, integrate with payment processors, and support international payments.',
@@ -272,7 +272,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     ],
   },
   'charity': {
-    title: 'Best Business Bank Accounts for Charities UK 2025',
+    title: `Best Business Bank Accounts for Charities UK ${new Date().getFullYear()}`,
     h1: 'Best Business Bank Accounts for Charities',
     description: 'Compare the best UK business bank accounts for charities and non-profit organisations.',
     intro: 'Charities and non-profits have specific banking needs, including multiple signatories, transparent reporting, and ethical banking options.',
@@ -282,7 +282,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     ],
   },
   'no-credit-check': {
-    title: 'Best Business Bank Accounts with No Credit Check UK 2025',
+    title: `Best Business Bank Accounts with No Credit Check UK ${new Date().getFullYear()}`,
     h1: 'Best Business Bank Accounts with No Credit Check',
     description: 'Compare UK business bank accounts that do not require a credit check. Open an account even with a poor credit history.',
     intro: 'Several UK business bank accounts can be opened without a credit check — ideal for new businesses, those with a thin credit file, or anyone who has been declined elsewhere.',
@@ -292,7 +292,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     ],
   },
   'bad-credit': {
-    title: 'Best Business Bank Accounts for Bad Credit UK 2025',
+    title: `Best Business Bank Accounts for Bad Credit UK ${new Date().getFullYear()}`,
     h1: 'Best Business Bank Accounts for Bad Credit',
     description: 'Compare UK business bank accounts for businesses with bad credit or a poor credit history.',
     intro: 'Having a poor credit history does not mean you cannot get a business bank account. Several UK banks specialise in accounts for businesses that have been declined elsewhere.',
@@ -303,7 +303,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     ],
   },
   'corporate': {
-    title: 'Best Corporate Business Bank Accounts UK 2025',
+    title: `Best Corporate Business Bank Accounts UK ${new Date().getFullYear()}`,
     h1: 'Best Corporate Business Bank Accounts',
     description: 'Compare UK corporate business bank accounts for larger businesses, PLCs, and established companies.',
     intro: 'Larger businesses and corporate entities require more sophisticated banking services — including relationship managers, higher transaction limits, multi-currency capabilities, and dedicated business support. Here are the best corporate business bank accounts in the UK.',
@@ -314,7 +314,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     ],
   },
   'multi-director': {
-    title: 'Best Multi-Director Business Bank Accounts UK 2025',
+    title: `Best Multi-Director Business Bank Accounts UK ${new Date().getFullYear()}`,
     h1: 'Best Multi Director Business Bank Accounts',
     description: 'Compare UK business bank accounts that support multiple directors and signatories for limited companies.',
     intro: 'Limited companies with multiple directors need a business bank account that supports multiple signatories, provides clear access controls, and makes it easy to manage shared finances. Most UK business bank accounts support multiple directors, but the ease of adding them varies significantly.',
@@ -325,7 +325,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     ],
   },
   'joint': {
-    title: 'Best Joint Business Bank Accounts UK 2025',
+    title: `Best Joint Business Bank Accounts UK ${new Date().getFullYear()}`,
     h1: 'Best Joint Business Bank Accounts',
     description: 'Compare UK joint business bank accounts for partnerships, co-founders, and businesses with multiple owners.',
     intro: 'Joint business bank accounts allow two or more people to share access to a business account. They are ideal for business partnerships, husband-and-wife businesses, and companies with multiple co-founders. Most UK business banks support joint accounts with customisable access levels.',
@@ -336,7 +336,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     ],
   },
   'switcher': {
-    title: 'Best Switcher Business Bank Accounts UK 2025',
+    title: `Best Switcher Business Bank Accounts UK ${new Date().getFullYear()}`,
     h1: 'Best Switcher Business Bank Accounts',
     description: 'Compare the best UK business bank accounts for switching. Use the Current Account Switch Service to move your account easily.',
     intro: 'Switching your business bank account has never been easier. The Current Account Switch Service (CASS) guarantees a smooth switch within 7 working days, with all payments automatically redirected. Many banks offer incentives for switchers — including cashback, fee waivers, and welcome bonuses.',
@@ -347,7 +347,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     ],
   },
   'online': {
-    title: 'Best Online Business Bank Accounts UK 2025',
+    title: `Best Online Business Bank Accounts UK ${new Date().getFullYear()}`,
     h1: 'Best Online Business Bank Accounts',
     description: 'Compare the best fully digital UK business bank accounts. Manage everything online with no branch visits required.',
     intro: 'Online business bank accounts let you manage all your banking digitally — from opening the account to making payments, checking statements, and integrating with accounting software. The best online accounts offer powerful mobile apps, instant notifications, and seamless integrations.',

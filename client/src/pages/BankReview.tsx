@@ -94,7 +94,7 @@ export default function BankReview() {
               <ChevronRight className="w-3 h-3" />
               <Link href="/compare" className="hover:text-teal-600 no-underline">Compare Accounts</Link>
               <ChevronRight className="w-3 h-3" />
-              <span className="text-gray-900 font-medium">{bank.name} Review</span>
+              <span className="text-gray-900 font-medium">{bank.name} Business Bank Review</span>
             </nav>
           </div>
         </div>
@@ -138,7 +138,7 @@ export default function BankReview() {
                   </span>
                 </div>
                 <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1" style={{ fontFamily: 'Sora, sans-serif' }}>
-                  {bank.name} Review {new Date().getFullYear()}
+                  {bank.name} Business Bank Review {new Date().getFullYear()}
                 </h1>
                 <p className="text-gray-500 text-sm mb-3">{bank.provider}</p>
                 <div className="flex items-center gap-3 mb-3">

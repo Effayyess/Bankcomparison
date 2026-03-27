@@ -106,7 +106,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Sora, sans-serif' }}>
       <SEO
-        title="Best Business Bank Accounts UK 2025 | Compare Business Account"
+        title={`Best Business Bank Accounts UK ${new Date().getFullYear()} | Compare Business Account`}
         description="Compare the best UK business bank accounts. Independent reviews of Starling, Tide, Monzo, Revolut, HSBC and more. Find the right account for sole traders, limited companies and startups."
         keywords="best business bank account, compare business bank account, UK business bank account, business bank account comparison, best business account UK, sole trader bank account, limited company bank account, free business bank account"
         canonicalPath="/"

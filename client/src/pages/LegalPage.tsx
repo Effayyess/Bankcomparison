@@ -22,7 +22,7 @@ const legalPages: Record<string, LegalPage> = {
   'privacy-policy': {
     title: 'Privacy Policy | CompareBusiness Account',
     h1: 'Privacy Policy',
-    lastUpdated: 'March 2025',
+    lastUpdated: '',
     intro: 'This Privacy Policy explains how CompareBusiness Account ("we", "us", "our") collects, uses, and protects your personal information when you visit our website at comparebusinessaccount.co.uk.',
     sections: [
       {
@@ -100,7 +100,7 @@ We will respond to your enquiry within 30 days.`,
   'cookie-policy': {
     title: 'Cookie Policy | CompareBusiness Account',
     h1: 'Cookie Policy',
-    lastUpdated: 'March 2025',
+    lastUpdated: '',
     intro: 'This Cookie Policy explains how CompareBusiness Account uses cookies and similar tracking technologies on our website. By continuing to use our website, you consent to our use of cookies as described in this policy.',
     sections: [
       {
@@ -145,7 +145,7 @@ For more information about managing cookies, visit aboutcookies.org or allaboutc
   'terms-of-use': {
     title: 'Terms of Use | CompareBusiness Account',
     h1: 'Terms of Use',
-    lastUpdated: 'March 2025',
+    lastUpdated: '',
     intro: 'These Terms of Use govern your use of the CompareBusiness Account website at comparebusinessaccount.co.uk. By using our website, you agree to these terms. Please read them carefully.',
     sections: [
       {
@@ -198,7 +198,7 @@ We do not accept liability for any loss or damage resulting from:
   'editorial-policy': {
     title: 'Editorial Policy | CompareBusiness Account',
     h1: 'Editorial Policy',
-    lastUpdated: 'March 2025',
+    lastUpdated: '',
     intro: 'CompareBusiness Account is committed to providing independent, accurate, and unbiased information to help UK business owners make informed decisions about their business banking. This Editorial Policy explains how we research, write, and maintain our content.',
     sections: [
       {
@@ -285,7 +285,7 @@ We aim to respond to all editorial enquiries within 5 working days.`,
   'contact': {
     title: 'Contact Us | CompareBusiness Account',
     h1: 'Contact Us',
-    lastUpdated: 'March 2025',
+    lastUpdated: '',
     intro: 'We are here to help. Whether you have a question about a business bank account, need help using our website, or want to provide feedback, please get in touch using the details below.',
     sections: [
       {
@@ -357,7 +357,7 @@ export default function LegalPage({ slug: slugProp }: { slug?: string }) {
             </nav>
             <div className="flex items-center gap-2 mb-2">
               <Shield className="w-4 h-4 text-teal-400" />
-              <span className="text-sm text-gray-400">Last updated: {page.lastUpdated}</span>
+              <span className="text-sm text-gray-400">Last updated: {new Date().toLocaleString('en-GB', { month: 'long', year: 'numeric' })}</span>
             </div>
             <h1 className="text-3xl font-bold text-white" style={{ fontFamily: 'Sora, sans-serif' }}>
               {page.h1}
