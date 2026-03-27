@@ -168,7 +168,7 @@ export default function Navigation() {
                       className="w-3.5 h-3.5 transition-transform"
                       style={{
                         transform: activeDropdown === item.label ? 'rotate(180deg)' : 'none',
-                        color: 'oklch(55% .12 210)',
+                        color: 'oklch(0.72 0.12 210)',
                       }}
                     />
                   </button>
@@ -195,7 +195,7 @@ export default function Navigation() {
                         <div
                           key={child.label}
                           className="px-4 py-1.5 text-xs font-semibold uppercase tracking-wider"
-                          style={{ color: 'oklch(55% .12 210)', fontFamily: 'Sora, sans-serif' }}
+                          style={{ color: 'oklch(0.72 0.12 210)', fontFamily: 'Sora, sans-serif' }}
                         >
                           {child.label}
                         </div>
@@ -221,7 +221,7 @@ export default function Navigation() {
             <Link
               href="/compare"
               className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-semibold text-white transition-all hover:opacity-90 no-underline"
-              style={{ background: 'oklch(55% .12 210)', fontFamily: 'Sora, sans-serif' }}
+              style={{ background: 'oklch(0.72 0.12 210)', fontFamily: 'Sora, sans-serif' }}
             >
               Compare Now
             </Link>
@@ -260,7 +260,7 @@ export default function Navigation() {
                             <div
                               key={child.label}
                               className="px-6 py-1.5 text-xs font-semibold uppercase tracking-wider"
-                              style={{ color: 'oklch(55% .12 210)' }}
+                              style={{ color: 'oklch(0.72 0.12 210)' }}
                             >
                               {child.label}
                             </div>
@@ -293,7 +293,7 @@ export default function Navigation() {
               <Link
                 href="/compare"
                 className="block w-full text-center px-4 py-2.5 rounded-lg text-sm font-semibold text-white no-underline"
-                style={{ background: 'oklch(55% .12 210)' }}
+                style={{ background: 'oklch(0.72 0.12 210)' }}
               >
                 Compare Now
               </Link>

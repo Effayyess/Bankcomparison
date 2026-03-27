@@ -110,7 +110,7 @@ export default function Compare() {
                 placeholder="Search by bank name..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm bg-white focus:outline-none focus:border-teal-400 focus:ring-1 focus:ring-teal-400"
+                className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm bg-white focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
               />
               {search && (
                 <button onClick={() => setSearch('')} className="absolute right-3 top-1/2 -translate-y-1/2 bg-transparent border-none">
@@ -120,18 +120,18 @@ export default function Compare() {
             </div>
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-700 hover:border-teal-400 transition-colors"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-700 hover:border-blue-400 transition-colors"
             >
               <SlidersHorizontal className="w-4 h-4" />
               Filters
               {hasActiveFilters && (
-                <span className="w-2 h-2 rounded-full bg-teal-500" />
+                <span className="w-2 h-2 rounded-full bg-blue-500" />
               )}
             </button>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-700 focus:outline-none focus:border-teal-400"
+              className="px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-700 focus:outline-none focus:border-blue-400"
             >
               {sortOptions.map((opt) => (
                 <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -148,7 +148,7 @@ export default function Compare() {
                 className="px-3 py-1.5 rounded-full text-xs font-semibold border transition-all"
                 style={
                   suitability === f.value
-                    ? { background: 'oklch(55% .12 210)', color: 'white', borderColor: 'oklch(55% .12 210)' }
+                    ? { background: 'oklch(0.72 0.12 210)', color: 'white', borderColor: 'oklch(0.72 0.12 210)' }
                     : { background: 'white', color: '#374151', borderColor: '#e5e7eb' }
                 }
               >
@@ -173,7 +173,7 @@ export default function Compare() {
                           value={f.value}
                           checked={bankType === f.value}
                           onChange={() => setBankType(f.value)}
-                          className="accent-teal-600"
+                          className="accent-blue-600"
                         />
                         <span className="text-sm text-gray-700">{f.label}</span>
                       </label>
@@ -197,7 +197,7 @@ export default function Compare() {
                           value={f.value}
                           checked={feeType === f.value}
                           onChange={() => setFeeType(f.value)}
-                          className="accent-teal-600"
+                          className="accent-blue-600"
                         />
                         <span className="text-sm text-gray-700">{f.label}</span>
                       </label>
@@ -214,7 +214,7 @@ export default function Compare() {
                         type="checkbox"
                         checked={fscsOnly}
                         onChange={(e) => setFscsOnly(e.target.checked)}
-                        className="accent-teal-600 w-4 h-4"
+                        className="accent-blue-600 w-4 h-4"
                       />
                       <span className="text-sm text-gray-700">FSCS Protected only</span>
                     </label>
@@ -223,7 +223,7 @@ export default function Compare() {
                         type="checkbox"
                         checked={intlOnly}
                         onChange={(e) => setIntlOnly(e.target.checked)}
-                        className="accent-teal-600 w-4 h-4"
+                        className="accent-blue-600 w-4 h-4"
                       />
                       <span className="text-sm text-gray-700">International payments only</span>
                     </label>
@@ -235,7 +235,7 @@ export default function Compare() {
                 <div className="mt-4 pt-4 border-t border-gray-100">
                   <button
                     onClick={clearFilters}
-                    className="text-xs font-semibold text-teal-600 hover:text-teal-800 bg-transparent border-none"
+                    className="text-xs font-semibold text-blue-600 hover:text-blue-800 bg-transparent border-none"
                   >
                     Clear all filters
                   </button>
@@ -249,7 +249,7 @@ export default function Compare() {
             <p className="text-sm text-gray-600">
               Showing <strong>{filtered.length}</strong> of {banks.length} accounts
               {hasActiveFilters && (
-                <button onClick={clearFilters} className="ml-2 text-teal-600 text-xs font-semibold hover:underline bg-transparent border-none">
+                <button onClick={clearFilters} className="ml-2 text-blue-600 text-xs font-semibold hover:underline bg-transparent border-none">
                   Clear filters
                 </button>
               )}
@@ -273,7 +273,7 @@ export default function Compare() {
               <button
                 onClick={clearFilters}
                 className="px-4 py-2 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90"
-                style={{ background: 'oklch(55% .12 210)' }}
+                style={{ background: 'oklch(0.72 0.12 210)' }}
               >
                 Clear all filters
               </button>

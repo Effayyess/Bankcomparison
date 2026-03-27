@@ -38,7 +38,7 @@ export default function BankReview() {
         <div className="container py-20 text-center" style={{ paddingTop: '120px' }}>
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Bank review not found</h1>
           <p className="text-gray-600 mb-6">We couldn't find a review for that bank account.</p>
-          <Link href="/" className="inline-flex items-center gap-2 text-teal-600 font-semibold no-underline">
+          <Link href="/" className="inline-flex items-center gap-2 text-blue-600 font-semibold no-underline">
             ← Back to comparisons
           </Link>
         </div>
@@ -90,9 +90,9 @@ export default function BankReview() {
         <div className="bg-white border-b border-gray-100">
           <div className="container py-3">
             <nav className="flex items-center gap-2 text-xs text-gray-500">
-              <Link href="/" className="hover:text-teal-600 no-underline">Home</Link>
+              <Link href="/" className="hover:text-blue-600 no-underline">Home</Link>
               <ChevronRight className="w-3 h-3" />
-              <Link href="/compare" className="hover:text-teal-600 no-underline">Compare Accounts</Link>
+              <Link href="/compare" className="hover:text-blue-600 no-underline">Compare Accounts</Link>
               <ChevronRight className="w-3 h-3" />
               <span className="text-gray-900 font-medium">{bank.name} Business Bank Review</span>
             </nav>
@@ -160,7 +160,7 @@ export default function BankReview() {
                   target={bank.affiliateUrl ? '_blank' : undefined}
                   rel={bank.affiliateUrl ? 'noopener noreferrer sponsored' : undefined}
                   className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90 no-underline"
-                  style={{ background: 'oklch(55% .12 210)' }}
+                  style={{ background: 'oklch(0.72 0.12 210)' }}
                 >
                   Open Account <ExternalLink className="w-3.5 h-3.5" />
                 </a>
@@ -258,7 +258,7 @@ export default function BankReview() {
                     {bank.plans.map((plan) => (
                       <div
                         key={plan.name}
-                        className="rounded-xl border border-gray-200 p-4 hover:border-teal-300 transition-colors"
+                        className="rounded-xl border border-gray-200 p-4 hover:border-blue-300 transition-colors"
                       >
                         <div className="font-bold text-gray-900 mb-1" style={{ fontFamily: 'Sora, sans-serif' }}>
                           {plan.name}
@@ -268,7 +268,7 @@ export default function BankReview() {
                         </div>
                         <div className="text-xs text-gray-500 mb-3">{plan.priceNote}</div>
                         {plan.highlight && (
-                          <div className="text-xs font-semibold text-teal-700 bg-teal-50 px-2 py-1 rounded-lg mb-3">
+                          <div className="text-xs font-semibold text-blue-700 bg-blue-50 px-2 py-1 rounded-lg mb-3">
                             {plan.highlight}
                           </div>
                         )}
@@ -334,7 +334,7 @@ export default function BankReview() {
                         const text = trimmed.replace(/^[-•]\s+/, '');
                         return (
                           <div key={idx} className="flex items-start gap-2">
-                            <span className="mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: '#0d9488', marginTop: '6px' }} />
+                            <span className="mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: '#2563eb', marginTop: '6px' }} />
                             <span dangerouslySetInnerHTML={{ __html: text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') }} />
                           </div>
                         );
@@ -353,7 +353,7 @@ export default function BankReview() {
                         const num = trimmed.match(/^(\d+)\./)?.[1];
                         return (
                           <div key={idx} className="flex items-start gap-2">
-                            <span className="flex-shrink-0 w-5 h-5 rounded-full text-xs font-bold flex items-center justify-center text-white" style={{ background: '#0d9488', marginTop: '1px' }}>{num}</span>
+                            <span className="flex-shrink-0 w-5 h-5 rounded-full text-xs font-bold flex items-center justify-center text-white" style={{ background: '#2563eb', marginTop: '1px' }}>{num}</span>
                             <span dangerouslySetInnerHTML={{ __html: text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') }} />
                           </div>
                         );
@@ -388,11 +388,11 @@ export default function BankReview() {
                   ].map(({ label, value, icon }) => (
                     <div key={label} className="flex items-center justify-between gap-2 py-1.5" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
                       <div className="flex items-center gap-2 text-sm" style={{ color: 'rgba(255,255,255,0.75)' }}>
-                        <span style={{ color: '#0d9488' }}>{icon}</span>
+                        <span style={{ color: '#2563eb' }}>{icon}</span>
                         {label}
                       </div>
                       {value ? (
-                        <div className="flex items-center justify-center w-5 h-5 rounded-full flex-shrink-0" style={{ backgroundColor: '#0d9488' }}>
+                        <div className="flex items-center justify-center w-5 h-5 rounded-full flex-shrink-0" style={{ backgroundColor: '#2563eb' }}>
                           <Check className="w-3 h-3 text-white" />
                         </div>
                       ) : (
@@ -459,7 +459,7 @@ export default function BankReview() {
                   target={bank.affiliateUrl ? '_blank' : undefined}
                   rel={bank.affiliateUrl ? 'noopener noreferrer sponsored' : undefined}
                   className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90 no-underline"
-                  style={{ background: '#0d9488', color: 'white' }}
+                  style={{ background: '#2563eb', color: 'white' }}
                 >
                   Open Account <ExternalLink className="w-3.5 h-3.5" />
                 </a>
@@ -491,7 +491,7 @@ export default function BankReview() {
                   </div>
                   <Link
                     href="/compare"
-                    className="block text-center text-xs font-semibold text-teal-600 mt-3 no-underline hover:text-teal-800"
+                    className="block text-center text-xs font-semibold text-blue-600 mt-3 no-underline hover:text-blue-800"
                   >
                     Compare all accounts →
                   </Link>

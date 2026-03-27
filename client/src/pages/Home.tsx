@@ -68,7 +68,7 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
           {question}
         </span>
         {open ? (
-          <ChevronUp className="w-4 h-4 text-teal-600 flex-shrink-0" />
+          <ChevronUp className="w-4 h-4 text-blue-600 flex-shrink-0" />
         ) : (
           <ChevronDown className="w-4 h-4 text-gray-400 flex-shrink-0" />
         )}
@@ -123,8 +123,8 @@ export default function Home() {
           <div className="max-w-2xl">
             {/* Updated badge */}
             <div className="flex items-center gap-2 mb-5">
-              <span className="flex items-center gap-1.5 text-xs font-semibold" style={{ color: '#4ade80' }}>
-                <Star className="w-3.5 h-3.5" style={{ fill: '#4ade80', color: '#4ade80' }} />
+              <span className="flex items-center gap-1.5 text-xs font-semibold" style={{ color: '#60a5fa' }}>
+                <Star className="w-3.5 h-3.5" style={{ fill: '#60a5fa', color: '#60a5fa' }} />
                 Updated {currentMonth} — Independent &amp; Unbiased
               </span>
             </div>
@@ -135,7 +135,7 @@ export default function Home() {
             >
               <span className="text-white">Compare the Best UK</span>
               <br />
-              <span style={{ color: '#2dd4bf' }}>Business Bank</span>
+              <span style={{ color: '#60a5fa' }}>Business Bank</span>
               <br />
               <span className="text-white">Accounts</span>
             </h1>
@@ -151,7 +151,7 @@ export default function Home() {
                 'Expert reviewed',
               ].map((stat) => (
                 <div key={stat} className="flex items-center gap-1.5 text-sm" style={{ color: 'rgba(255,255,255,0.75)' }}>
-                  <span style={{ color: '#2dd4bf', fontSize: '1rem' }}>✓</span>
+                  <span style={{ color: '#60a5fa', fontSize: '1rem' }}>✓</span>
                   {stat}
                 </div>
               ))}
@@ -161,7 +161,7 @@ export default function Home() {
               <Link
                 href="/compare"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all hover:opacity-90 no-underline text-white"
-                style={{ background: '#0d9488' }}
+                style={{ background: '#2563eb' }}
               >
                 Compare All Accounts
                 <ArrowRight className="w-4 h-4" />
@@ -184,7 +184,7 @@ export default function Home() {
         <div className="container py-4">
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-600">
             {[
-              { icon: <Shield className="w-4 h-4 text-teal-500" />, text: 'FCA Regulated Providers Only' },
+              { icon: <Shield className="w-4 h-4 text-blue-500" />, text: 'FCA Regulated Providers Only' },
               { icon: <Star className="w-4 h-4 text-amber-500" />, text: '100% Independent Reviews' },
               { icon: <RefreshCw className="w-4 h-4 text-blue-500" />, text: 'Updated Monthly' },
               { icon: <Info className="w-4 h-4 text-purple-500" />, text: 'Trusted by 50,000+ UK Businesses' },
@@ -202,7 +202,7 @@ export default function Home() {
       <section className="py-14 border-b border-gray-200" style={{ background: '#0f172a' }}>
         <div className="container">
           <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-900/50 text-teal-300 text-xs font-semibold border border-teal-700/50 mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/50 text-blue-300 text-xs font-semibold border border-blue-700/50 mb-4">
               Tailored Recommendations
             </div>
             <h2 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Sora, sans-serif' }}>
@@ -214,14 +214,14 @@ export default function Home() {
             {businessTypeCards.map((card) => (
               <Link key={card.href} href={card.href} className="no-underline h-full">
                 <div
-                  className="rounded-xl p-4 text-center transition-all cursor-pointer group border border-slate-700 hover:border-teal-500 hover:shadow-lg hover:shadow-teal-900/30 flex flex-col items-center justify-start h-full min-h-[120px]"
+                  className="rounded-xl p-4 text-center transition-all cursor-pointer group border border-slate-700 hover:border-blue-500 hover:shadow-lg hover:shadow-blue-900/30 flex flex-col items-center justify-start h-full min-h-[120px]"
                   style={{ backgroundColor: '#1e293b' }}
                 >
                   <div className="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-3 text-xl flex-shrink-0" style={{ backgroundColor: card.color }}>
                     {card.icon}
                   </div>
                   <div
-                    className="text-xs font-semibold text-slate-300 group-hover:text-teal-400 transition-colors leading-tight flex-1"
+                    className="text-xs font-semibold text-slate-300 group-hover:text-blue-400 transition-colors leading-tight flex-1"
                     style={{ fontFamily: 'Sora, sans-serif' }}
                   >
                     {card.title}
@@ -242,7 +242,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
             <div>
               <div
-                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-semibold border border-teal-100 mb-3"
+                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold border border-blue-100 mb-3"
               >
                 <SlidersHorizontal className="w-3 h-3" /> Click any card to see full plan details
               </div>
@@ -255,7 +255,7 @@ export default function Home() {
             </div>
             <Link
               href="/compare"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-teal-600 hover:text-teal-800 no-underline whitespace-nowrap"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 hover:text-blue-800 no-underline whitespace-nowrap"
             >
               View all {banks.length} accounts <ArrowRight className="w-4 h-4" />
             </Link>
@@ -278,7 +278,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row items-center gap-3 mt-6">
             <button
               onClick={() => setShowAll(!showAll)}
-              className="flex items-center gap-2 px-6 py-3 border-2 border-teal-600 text-teal-700 font-semibold rounded-xl hover:bg-teal-50 transition-colors bg-transparent"
+              className="flex items-center gap-2 px-6 py-3 border-2 border-blue-600 text-blue-700 font-semibold rounded-xl hover:bg-blue-50 transition-colors bg-transparent"
               style={{ fontFamily: 'Sora, sans-serif' }}
             >
               {showAll ? (
@@ -290,7 +290,7 @@ export default function Home() {
             <Link
               href="/compare"
               className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white no-underline transition-all hover:opacity-90"
-              style={{ background: 'oklch(55% .12 210)', fontFamily: 'Sora, sans-serif' }}
+              style={{ background: 'oklch(0.72 0.12 210)', fontFamily: 'Sora, sans-serif' }}
             >
               Full comparison with filters <ArrowRight className="w-4 h-4" />
             </Link>
@@ -343,12 +343,12 @@ export default function Home() {
               return (
                 <Link key={cat.type} href={href} className="no-underline h-full">
                   <div
-                    className="rounded-xl p-4 text-center transition-all cursor-pointer group border border-slate-700 hover:border-teal-500 hover:shadow-lg hover:shadow-teal-900/30 flex flex-col items-center justify-start h-full min-h-[110px]"
+                    className="rounded-xl p-4 text-center transition-all cursor-pointer group border border-slate-700 hover:border-blue-500 hover:shadow-lg hover:shadow-blue-900/30 flex flex-col items-center justify-start h-full min-h-[110px]"
                     style={{ backgroundColor: '#1e293b' }}
                   >
                     <div className="text-2xl mb-2 flex-shrink-0">{cat.icon}</div>
                     <div
-                      className="text-xs font-semibold text-slate-300 group-hover:text-teal-400 transition-colors leading-tight flex-1"
+                      className="text-xs font-semibold text-slate-300 group-hover:text-blue-400 transition-colors leading-tight flex-1"
                       style={{ fontFamily: 'Sora, sans-serif' }}
                     >
                       {cat.label}
@@ -376,7 +376,7 @@ export default function Home() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                icon: <Shield className="w-6 h-6 text-teal-600" />,
+                icon: <Shield className="w-6 h-6 text-blue-600" />,
                 title: 'Truly Independent',
                 desc: "Our editorial team is not influenced by advertising spend. We review every account on its merits.",
               },
@@ -420,17 +420,17 @@ export default function Home() {
               </h2>
               <p className="text-gray-600 text-sm mt-1">In-depth guides to help you choose and manage your business bank account</p>
             </div>
-            <Link href="/guides" className="inline-flex items-center gap-1.5 text-sm font-semibold text-teal-600 hover:text-teal-800 no-underline whitespace-nowrap">
+            <Link href="/guides" className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 hover:text-blue-800 no-underline whitespace-nowrap">
               All guides <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {guides.map((guide) => (
               <Link key={guide.href} href={guide.href} className="no-underline group">
-                <div className="bg-white border border-gray-200 rounded-xl p-5 hover:border-teal-300 hover:shadow-md transition-all h-full">
+                <div className="bg-white border border-gray-200 rounded-xl p-5 hover:border-blue-300 hover:shadow-md transition-all h-full">
                   <div className="text-2xl mb-3">{guide.icon}</div>
                   <h3
-                    className="font-semibold text-gray-900 text-sm mb-2 group-hover:text-teal-700 transition-colors leading-snug"
+                    className="font-semibold text-gray-900 text-sm mb-2 group-hover:text-blue-700 transition-colors leading-snug"
                     style={{ fontFamily: 'Sora, sans-serif' }}
                   >
                     {guide.title}

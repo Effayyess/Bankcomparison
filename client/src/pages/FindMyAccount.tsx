@@ -1,5 +1,5 @@
 // Find My Account — multi-select filter wizard
-// Design: dark navy hero (#0f172a), teal accents (#0d9488), Sora font
+// Design: dark navy hero (#0f172a), teal accents (#2563eb), Sora font
 // Filter cards match the business-type card style: #1e293b background, slate-700 border, teal hover
 
 import { useState, useMemo } from 'react';
@@ -21,19 +21,19 @@ interface FilterOption {
 
 const FILTER_OPTIONS: FilterOption[] = [
   // Features
-  { id: 'free', label: 'Free Account', description: 'No monthly fee', icon: '🆓', color: '#0d9488', category: 'features' },
+  { id: 'free', label: 'Free Account', description: 'No monthly fee', icon: '🆓', color: '#2563eb', category: 'features' },
   { id: 'fast-opening', label: 'Fast Opening', description: 'Open in minutes', icon: '⚡', color: '#f59e0b', category: 'features' },
   { id: 'no-credit-check', label: 'No Credit Check', description: 'No hard credit check', icon: '✅', color: '#10b981', category: 'features' },
   { id: 'accounting', label: 'Accounting Integration', description: 'Xero, QuickBooks, FreeAgent', icon: '📊', color: '#6366f1', category: 'features' },
-  { id: 'cash-deposit', label: 'Cash Deposits', description: 'Deposit cash at Post Office', icon: '💵', color: '#0d9488', category: 'features' },
+  { id: 'cash-deposit', label: 'Cash Deposits', description: 'Deposit cash at Post Office', icon: '💵', color: '#2563eb', category: 'features' },
   { id: 'branch-access', label: 'Branch Access', description: 'Visit a branch in person', icon: '🏦', color: '#3b82f6', category: 'features' },
   { id: 'overdraft', label: 'Overdraft Available', description: 'Arranged overdraft facility', icon: '💳', color: '#ec4899', category: 'features' },
   { id: 'multi-currency', label: 'Multi-Currency', description: 'Hold multiple currencies', icon: '💱', color: '#f97316', category: 'features' },
   { id: 'international', label: 'International Payments', description: 'Low-cost global transfers', icon: '🌍', color: '#0ea5e9', category: 'features' },
   { id: 'digital', label: 'App-Only / Digital', description: 'Fully digital, no branches', icon: '📱', color: '#8b5cf6', category: 'features' },
-  { id: 'switcher', label: 'Easy Switching', description: 'CASS switching supported', icon: '🔄', color: '#14b8a6', category: 'features' },
+  { id: 'switcher', label: 'Easy Switching', description: 'CASS switching supported', icon: '🔄', color: '#3b82f6', category: 'features' },
   // Business type
-  { id: 'sole-trader', label: 'Sole Trader', description: 'Self-employed individual', icon: '👤', color: '#0d9488', category: 'business-type' },
+  { id: 'sole-trader', label: 'Sole Trader', description: 'Self-employed individual', icon: '👤', color: '#2563eb', category: 'business-type' },
   { id: 'limited-company', label: 'Limited Company', description: 'Registered Ltd company', icon: '🏢', color: '#3b82f6', category: 'business-type' },
   { id: 'startup', label: 'Startup', description: 'New or early-stage business', icon: '🚀', color: '#f97316', category: 'business-type' },
   { id: 'freelancer', label: 'Freelancer', description: 'Independent contractor', icon: '💻', color: '#6366f1', category: 'business-type' },
@@ -41,7 +41,7 @@ const FILTER_OPTIONS: FilterOption[] = [
   { id: 'partnership', label: 'Partnership / Joint', description: 'Business with multiple owners', icon: '🤝', color: '#10b981', category: 'business-type' },
   // Preferences
   { id: 'bad-credit', label: 'Bad Credit History', description: 'Poor or thin credit file', icon: '🔓', color: '#ef4444', category: 'preferences' },
-  { id: 'small-business', label: 'Small Business', description: 'Established SME', icon: '🏪', color: '#0d9488', category: 'preferences' },
+  { id: 'small-business', label: 'Small Business', description: 'Established SME', icon: '🏪', color: '#2563eb', category: 'preferences' },
   { id: 'ecommerce', label: 'E-commerce', description: 'Online retail or marketplace', icon: '🛒', color: '#8b5cf6', category: 'preferences' },
 ];
 
@@ -109,7 +109,7 @@ export default function FindMyAccount() {
               <span className="text-white/90">Find My Account</span>
             </nav>
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#0d9488' }}>
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#2563eb' }}>
                 <SlidersHorizontal className="w-5 h-5 text-white" />
               </div>
               <h1 className="text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'Sora, sans-serif' }}>
@@ -141,12 +141,12 @@ export default function FindMyAccount() {
                           className="relative rounded-xl p-4 text-center transition-all cursor-pointer group flex flex-col items-center justify-start min-h-[110px]"
                           style={{
                             backgroundColor: isSelected ? 'rgba(13,148,136,0.2)' : '#1e293b',
-                            border: isSelected ? '2px solid #0d9488' : '2px solid #334155',
-                            boxShadow: isSelected ? '0 0 0 1px #0d9488, 0 4px 16px rgba(13,148,136,0.2)' : 'none',
+                            border: isSelected ? '2px solid #2563eb' : '2px solid #334155',
+                            boxShadow: isSelected ? '0 0 0 1px #2563eb, 0 4px 16px rgba(13,148,136,0.2)' : 'none',
                           }}
                         >
                           {isSelected && (
-                            <div className="absolute top-2 right-2 w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: '#0d9488' }}>
+                            <div className="absolute top-2 right-2 w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: '#2563eb' }}>
                               <Check className="w-3 h-3 text-white" />
                             </div>
                           )}
@@ -178,7 +178,7 @@ export default function FindMyAccount() {
                   onClick={() => setShowResults(true)}
                   disabled={selected.size === 0}
                   className="flex-1 py-3 px-6 rounded-xl font-bold text-white text-sm transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                  style={{ backgroundColor: selected.size > 0 ? '#0d9488' : '#475569' }}
+                  style={{ backgroundColor: selected.size > 0 ? '#2563eb' : '#475569' }}
                 >
                   <SlidersHorizontal className="w-4 h-4" />
                   Find Matching Accounts
@@ -237,7 +237,7 @@ export default function FindMyAccount() {
                     <button
                       onClick={reset}
                       className="inline-flex items-center gap-2 text-sm font-semibold"
-                      style={{ color: '#0d9488' }}
+                      style={{ color: '#2563eb' }}
                     >
                       <RotateCcw className="w-4 h-4" />
                       Reset and try again
@@ -277,7 +277,7 @@ export default function FindMyAccount() {
                       <Link
                         href="/compare"
                         className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-white text-sm no-underline transition-all hover:opacity-90"
-                        style={{ backgroundColor: '#0d9488' }}
+                        style={{ backgroundColor: '#2563eb' }}
                       >
                         Compare All Accounts <ArrowRight className="w-4 h-4" />
                       </Link>

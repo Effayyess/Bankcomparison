@@ -356,7 +356,7 @@ export default function LegalPage({ slug: slugProp }: { slug?: string }) {
               <span className="text-gray-300">{page.h1}</span>
             </nav>
             <div className="flex items-center gap-2 mb-2">
-              <Shield className="w-4 h-4 text-teal-400" />
+              <Shield className="w-4 h-4 text-blue-400" />
               <span className="text-sm text-gray-400">Last updated: {new Date().toLocaleString('en-GB', { month: 'long', year: 'numeric' })}</span>
             </div>
             <h1 className="text-3xl font-bold text-white" style={{ fontFamily: 'Sora, sans-serif' }}>
@@ -408,7 +408,7 @@ export default function LegalPage({ slug: slugProp }: { slug?: string }) {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="text-sm font-medium text-teal-700 hover:text-teal-900 hover:underline px-3 py-1.5 rounded border border-gray-200 bg-gray-50 transition-colors"
+                      className="text-sm font-medium text-blue-700 hover:text-blue-900 hover:underline px-3 py-1.5 rounded border border-gray-200 bg-gray-50 transition-colors"
                     >
                       {item.label}
                     </Link>

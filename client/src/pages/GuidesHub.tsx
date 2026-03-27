@@ -20,7 +20,7 @@ export default function GuidesHub() {
         <section className="relative overflow-hidden" style={{ background: '#0f172a' }}>
           <div className="absolute inset-0" style={{ background: '#0f172a', opacity: 1 }} />
           <div className="relative container py-16 md:py-20 text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-teal-400 text-sm font-medium mb-6" style={{ fontFamily: 'Sora, sans-serif' }}>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-blue-400 text-sm font-medium mb-6" style={{ fontFamily: 'Sora, sans-serif' }}>
               <BookOpen className="w-4 h-4" />
               Business Banking Hub
             </div>
@@ -53,9 +53,9 @@ export default function GuidesHub() {
                         <li key={guideSlug}>
                           <Link 
                             href={`/guides/${guideSlug}`}
-                            className="group flex items-start gap-3 text-gray-700 hover:text-teal-700 transition-colors"
+                            className="group flex items-start gap-3 text-gray-700 hover:text-blue-700 transition-colors"
                           >
-                            <ChevronRight className="w-5 h-5 text-teal-500 shrink-0 mt-0.5 group-hover:translate-x-1 transition-transform" />
+                            <ChevronRight className="w-5 h-5 text-blue-500 shrink-0 mt-0.5 group-hover:translate-x-1 transition-transform" />
                             <span className="font-medium leading-snug">{guide.title.split(' | ')[0]}</span>
                           </Link>
                         </li>
@@ -80,7 +80,7 @@ export default function GuidesHub() {
             <Link
               href="/compare"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-white transition-all hover:opacity-90 shadow-lg"
-              style={{ background: '#0d9488' }}
+              style={{ background: '#2563eb' }}
             >
               Compare Accounts Now
               <ChevronRight className="w-5 h-5" />

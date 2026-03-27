@@ -140,7 +140,7 @@ export default function BankCard({ bank, rank }: BankCardProps) {
               <StarRating rating={bank.rating} />
               <span className="text-xs font-semibold text-gray-700">{bank.rating}</span>
             </div>
-            <p className="text-xs font-medium" style={{ color: '#0d9488' }}>
+            <p className="text-xs font-medium" style={{ color: '#2563eb' }}>
               Best for: {bank.bestFor}
             </p>
           </div>
@@ -156,7 +156,7 @@ export default function BankCard({ bank, rank }: BankCardProps) {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold text-white no-underline transition-opacity hover:opacity-90"
-              style={{ background: '#0d9488' }}
+              style={{ background: '#2563eb' }}
               onClick={!bank.affiliateUrl ? (e) => e.preventDefault() : undefined}
             >
               Open Account <ExternalLink className="w-3 h-3" />
@@ -216,7 +216,7 @@ export default function BankCard({ bank, rank }: BankCardProps) {
                     className="px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all cursor-pointer"
                     style={
                       selectedPlan === i
-                        ? { background: '#0d9488', color: '#fff', borderColor: '#0d9488' }
+                        ? { background: '#2563eb', color: '#fff', borderColor: '#2563eb' }
                         : { background: '#fff', color: '#374151', borderColor: '#d1d5db' }
                     }
                   >
@@ -351,7 +351,7 @@ export default function BankCard({ bank, rank }: BankCardProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-semibold text-white no-underline transition-opacity hover:opacity-90"
-                  style={{ background: '#0d9488' }}
+                  style={{ background: '#2563eb' }}
                   onClick={!bank.affiliateUrl ? (e) => e.preventDefault() : undefined}
                 >
                   Open Account <ExternalLink className="w-3.5 h-3.5" />

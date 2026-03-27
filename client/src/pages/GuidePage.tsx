@@ -58,15 +58,15 @@ export default function GuidePage() {
         <div className="absolute inset-0" style={{ background: '#0f172a', opacity: 1 }} />
         <div className="relative container py-10">
           <nav className="flex items-center gap-2 text-sm mb-4 text-slate-400">
-            <Link href="/" className="hover:text-teal-400 transition-colors text-slate-300">Home</Link>
+            <Link href="/" className="hover:text-blue-400 transition-colors text-slate-300">Home</Link>
             <ChevronRight className="w-3.5 h-3.5" />
             <span className="text-slate-300">Guides</span>
             <ChevronRight className="w-3.5 h-3.5" />
             <span className="text-slate-400 truncate max-w-xs">{guide.h1}</span>
           </nav>
           <div className="flex items-center gap-2 mb-3">
-            <BookOpen className="w-5 h-5 text-teal-400" />
-            <span className="text-sm font-medium text-teal-400" style={{ fontFamily: 'Sora, sans-serif' }}>Business Banking Guide</span>
+            <BookOpen className="w-5 h-5 text-blue-400" />
+            <span className="text-sm font-medium text-blue-400" style={{ fontFamily: 'Sora, sans-serif' }}>Business Banking Guide</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'Sora, sans-serif' }}>
             {guide.h1}
@@ -87,7 +87,7 @@ export default function GuidePage() {
 
             {/* Table of contents */}
             <div className="bg-white border border-gray-200 rounded-xl p-5 mb-6 shadow-sm">
-              <h2 className="text-sm font-bold mb-3 uppercase tracking-wider text-teal-700" style={{ fontFamily: 'Sora, sans-serif' }}>
+              <h2 className="text-sm font-bold mb-3 uppercase tracking-wider text-blue-700" style={{ fontFamily: 'Sora, sans-serif' }}>
                 In This Guide
               </h2>
               <ol className="space-y-1.5">
@@ -95,9 +95,9 @@ export default function GuidePage() {
                   <li key={section.id}>
                     <a
                       href={`#${section.id}`}
-                      className="text-sm hover:text-teal-700 flex items-center gap-2 text-gray-600 transition-colors"
+                      className="text-sm hover:text-blue-700 flex items-center gap-2 text-gray-600 transition-colors"
                     >
-                      <span className="text-xs font-bold text-teal-600 w-5 shrink-0">{i + 1}.</span>
+                      <span className="text-xs font-bold text-blue-600 w-5 shrink-0">{i + 1}.</span>
                       {section.heading}
                     </a>
                   </li>
@@ -149,10 +149,10 @@ export default function GuidePage() {
                             {rows.map((row, j) => {
                               const cells = row.split('|').filter(c => c.trim());
                               return (
-                                <tr key={j} className={j === 0 ? 'border-b-2 border-teal-600' : 'border-b border-gray-100'}>
+                                <tr key={j} className={j === 0 ? 'border-b-2 border-blue-600' : 'border-b border-gray-100'}>
                                   {cells.map((cell, k) => (
                                     j === 0 ? (
-                                      <th key={k} className="text-left py-2 px-3 font-semibold text-xs uppercase tracking-wide text-teal-700" style={{ fontFamily: 'Sora, sans-serif' }}>
+                                      <th key={k} className="text-left py-2 px-3 font-semibold text-xs uppercase tracking-wide text-blue-700" style={{ fontFamily: 'Sora, sans-serif' }}>
                                         {cell.trim()}
                                       </th>
                                     ) : (
@@ -194,7 +194,7 @@ export default function GuidePage() {
               <Link
                 href="/compare"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all hover:opacity-90 text-white"
-                style={{ background: '#0d9488' }}
+                style={{ background: '#2563eb' }}
               >
                 Compare All Accounts
                 <ChevronRight className="w-4 h-4" />
@@ -206,7 +206,7 @@ export default function GuidePage() {
           <aside className="hidden lg:block w-64 flex-shrink-0">
             <div className="sticky top-24 space-y-4">
               <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
-                <h3 className="font-bold text-sm mb-3 uppercase tracking-wider text-teal-700" style={{ fontFamily: 'Sora, sans-serif' }}>
+                <h3 className="font-bold text-sm mb-3 uppercase tracking-wider text-blue-700" style={{ fontFamily: 'Sora, sans-serif' }}>
                   Related Guides
                 </h3>
                 <ul className="space-y-2">
@@ -214,9 +214,9 @@ export default function GuidePage() {
                     <li key={relSlug}>
                       <Link
                         href={`/guides/${relSlug}`}
-                        className="text-sm hover:text-teal-700 flex items-center gap-1 text-gray-600 transition-colors"
+                        className="text-sm hover:text-blue-700 flex items-center gap-1 text-gray-600 transition-colors"
                       >
-                        <ChevronRight className="w-3 h-3 text-teal-500" />
+                        <ChevronRight className="w-3 h-3 text-blue-500" />
                         {guideSlugToTitle[relSlug] || relSlug}
                       </Link>
                     </li>
@@ -225,7 +225,7 @@ export default function GuidePage() {
               </div>
 
               <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
-                <h3 className="font-bold text-sm mb-3 uppercase tracking-wider text-teal-700" style={{ fontFamily: 'Sora, sans-serif' }}>
+                <h3 className="font-bold text-sm mb-3 uppercase tracking-wider text-blue-700" style={{ fontFamily: 'Sora, sans-serif' }}>
                   Compare Accounts
                 </h3>
                 <ul className="space-y-2">
@@ -236,8 +236,8 @@ export default function GuidePage() {
                     { label: 'Limited Company', href: '/category/limited-company' },
                   ].map((item) => (
                     <li key={item.href}>
-                      <Link href={item.href} className="text-sm hover:text-teal-700 flex items-center gap-1 text-gray-600 transition-colors">
-                        <ChevronRight className="w-3 h-3 text-teal-500" />
+                      <Link href={item.href} className="text-sm hover:text-blue-700 flex items-center gap-1 text-gray-600 transition-colors">
+                        <ChevronRight className="w-3 h-3 text-blue-500" />
                         {item.label}
                       </Link>
                     </li>
@@ -252,7 +252,7 @@ export default function GuidePage() {
                 <Link
                   href="/compare"
                   className="block text-center text-xs font-semibold py-2 px-3 rounded-lg text-white transition-all hover:opacity-90"
-                  style={{ background: '#0d9488' }}
+                  style={{ background: '#2563eb' }}
                 >
                   Compare Now
                 </Link>

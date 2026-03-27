@@ -474,7 +474,7 @@ export default function CategoryPage() {
                     <li key={item.key}>
                       <Link
                         href={`/category/${item.key}`}
-                        className="text-sm hover:text-teal-700 flex items-center gap-1 no-underline text-teal-600"
+                        className="text-sm hover:text-blue-700 flex items-center gap-1 no-underline text-blue-600"
                       >
                         <ChevronRight className="w-3 h-3" />
                         {item.label}
@@ -495,7 +495,7 @@ export default function CategoryPage() {
                     { label: 'Fees Explained', href: '/guides/business-bank-account-fees' },
                   ].map((item) => (
                     <li key={item.href}>
-                      <Link href={item.href} className="text-sm hover:text-teal-700 flex items-center gap-1 no-underline text-teal-600">
+                      <Link href={item.href} className="text-sm hover:text-blue-700 flex items-center gap-1 no-underline text-blue-600">
                         <ChevronRight className="w-3 h-3" />
                         {item.label}
                       </Link>
