@@ -3,7 +3,7 @@
 // Guides & Resources is a link inside Compare Accounts column
 
 import { Link } from 'wouter';
-import { Shield, Award, Users, Building2 } from 'lucide-react';
+import { Shield, Award, Users } from 'lucide-react';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -47,11 +47,8 @@ export default function Footer() {
           {/* Brand column */}
           <div>
             <Link href="/" className="flex items-center gap-2.5 mb-4 no-underline">
-              <div
-                className="w-9 h-9 rounded-lg flex items-center justify-center text-white flex-shrink-0"
-                style={{ background: 'oklch(0.26 0.07 240)' }}
-              >
-                <Building2 className="w-5 h-5" />
+              <div className="w-9 h-9 rounded-lg overflow-hidden flex-shrink-0">
+                <img src="/logo-square.png" alt="Compare Business Account" className="w-full h-full object-cover" />
               </div>
               <div>
                 <p className="font-bold text-sm leading-tight text-white">Compare Business Account</p>

@@ -18,7 +18,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   {
-    label: 'Compare Accounts',
+    label: 'Compare Bank Accounts',
     href: '/compare',
     children: [
       { label: 'All Business Accounts', href: '/compare' },
@@ -143,11 +143,8 @@ export default function Navigation() {
               <img src="/logo-square.png" alt="Compare Business Account" className="w-full h-full object-cover" />
             </div>
             <div>
-              <div className="font-bold text-lg leading-tight" style={{ fontFamily: 'Sora, sans-serif', color: 'oklch(0.26 0.07 240)' }}>
-                Compare Business
-              </div>
-              <div className="text-xs leading-tight" style={{ color: 'oklch(55% .12 210)', fontFamily: 'Sora, sans-serif' }}>
-                Account
+              <div className="font-bold text-base leading-tight" style={{ fontFamily: 'Sora, sans-serif', color: 'oklch(0.26 0.07 240)' }}>
+                Compare Business Account
               </div>
             </div>
           </Link>

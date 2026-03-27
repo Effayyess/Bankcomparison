@@ -36,7 +36,12 @@ export default function SEO({
       {noIndex && <meta name="robots" content="noindex, nofollow" />}
       {canonical && <link rel="canonical" href={canonical} />}
 
+      {/* GEO Optimisation */}
+      <meta name="geo.region" content="GB" />
+      <meta name="geo.placename" content="United Kingdom" />
+
       {/* Open Graph */}
+      <meta property="og:locale" content="en_GB" />
       <meta property="og:type" content={ogType} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
