@@ -458,27 +458,23 @@ export default function GuidePage() {
   }
 
   return (
-    <div className="min-h-screen" style={{ background: 'oklch(0.98 0.008 85)' }}>
-      {/* Hero */}
-      <section className="relative overflow-hidden" style={{ minHeight: '240px' }}>
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${GUIDE_HERO})` }}
-        />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg, oklch(0.15 0.07 155 / 0.92) 0%, oklch(0.15 0.07 155 / 0.65) 100%)' }} />
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero — matches site's navy hero style */}
+      <section className="relative overflow-hidden" style={{ background: '#0f172a', minHeight: '220px' }}>
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #134e4a 100%)', opacity: 0.95 }} />
         <div className="relative container py-10">
-          <nav className="flex items-center gap-2 text-sm mb-4" style={{ color: 'oklch(0.75 0.02 85)' }}>
-            <Link href="/" className="hover:underline" style={{ color: 'oklch(0.85 0.02 85)' }}>Home</Link>
+          <nav className="flex items-center gap-2 text-sm mb-4 text-slate-400">
+            <Link href="/" className="hover:text-teal-400 transition-colors text-slate-300">Home</Link>
             <ChevronRight className="w-3.5 h-3.5" />
-            <span style={{ color: 'oklch(0.85 0.02 85)' }}>Guides</span>
+            <span className="text-slate-300">Guides</span>
             <ChevronRight className="w-3.5 h-3.5" />
-            <span style={{ color: 'oklch(0.75 0.02 85)' }}>{guide.h1}</span>
+            <span className="text-slate-400 truncate max-w-xs">{guide.h1}</span>
           </nav>
           <div className="flex items-center gap-2 mb-3">
-            <BookOpen className="w-5 h-5" style={{ color: 'oklch(0.72 0.12 82)' }} />
-            <span className="text-sm font-medium" style={{ color: 'oklch(0.72 0.12 82)' }}>Business Banking Guide</span>
+            <BookOpen className="w-5 h-5 text-teal-400" />
+            <span className="text-sm font-medium text-teal-400" style={{ fontFamily: 'Sora, sans-serif' }}>Business Banking Guide</span>
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: 'Playfair Display, serif', color: 'oklch(0.98 0.01 85)' }}>
+          <h1 className="text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'Sora, sans-serif' }}>
             {guide.h1}
           </h1>
         </div>
@@ -489,15 +485,15 @@ export default function GuidePage() {
           {/* Main content */}
           <article className="flex-1 min-w-0">
             {/* Intro */}
-            <div className="bank-card p-6 mb-6">
-              <p className="text-base leading-relaxed" style={{ color: 'oklch(0.3 0.02 65)', fontFamily: 'Libre Baskerville, serif', fontSize: '1.05rem' }}>
+            <div className="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-sm">
+              <p className="text-base leading-relaxed text-gray-700" style={{ fontFamily: 'Sora, sans-serif' }}>
                 {guide.intro}
               </p>
             </div>
 
             {/* Table of contents */}
-            <div className="bank-card p-5 mb-6">
-              <h2 className="text-sm font-bold mb-3 uppercase tracking-wider" style={{ fontFamily: 'DM Sans, sans-serif', color: 'oklch(0.28 0.09 155)' }}>
+            <div className="bg-white border border-gray-200 rounded-xl p-5 mb-6 shadow-sm">
+              <h2 className="text-sm font-bold mb-3 uppercase tracking-wider text-teal-700" style={{ fontFamily: 'Sora, sans-serif' }}>
                 In This Guide
               </h2>
               <ol className="space-y-1.5">
@@ -505,10 +501,9 @@ export default function GuidePage() {
                   <li key={section.id}>
                     <a
                       href={`#${section.id}`}
-                      className="text-sm hover:underline flex items-center gap-2"
-                      style={{ color: 'oklch(0.28 0.09 155)' }}
+                      className="text-sm hover:text-teal-700 flex items-center gap-2 text-gray-600 transition-colors"
                     >
-                      <span className="text-xs font-bold" style={{ color: 'oklch(0.72 0.12 82)' }}>{i + 1}.</span>
+                      <span className="text-xs font-bold text-teal-600 w-5 shrink-0">{i + 1}.</span>
                       {section.heading}
                     </a>
                   </li>
@@ -518,34 +513,33 @@ export default function GuidePage() {
 
             {/* Sections */}
             {guide.sections.map((section) => (
-              <div key={section.id} id={section.id} className="bank-card p-6 mb-6">
-                <h2 className="text-xl font-bold mb-4" style={{ fontFamily: 'Playfair Display, serif', color: 'oklch(0.18 0.02 65)' }}>
+              <div key={section.id} id={section.id} className="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-sm">
+                <h2 className="text-xl font-bold mb-4 text-gray-900" style={{ fontFamily: 'Sora, sans-serif' }}>
                   {section.heading}
                 </h2>
-                <div className="prose-editorial">
+                <div>
                   {section.content.split('\n\n').map((para, i) => {
                     if (para.startsWith('**') && para.includes('**\n')) {
-                      // Subheading style
                       const lines = para.split('\n');
                       return (
                         <div key={i} className="mb-4">
                           {lines.map((line, j) => {
                             if (line.startsWith('**') && line.endsWith('**')) {
                               return (
-                                <h3 key={j} className="font-bold text-base mt-4 mb-1" style={{ fontFamily: 'DM Sans, sans-serif', color: 'oklch(0.18 0.02 65)' }}>
+                                <h3 key={j} className="font-bold text-base mt-4 mb-2 text-gray-800" style={{ fontFamily: 'Sora, sans-serif' }}>
                                   {line.replace(/\*\*/g, '')}
                                 </h3>
                               );
                             }
                             if (line.startsWith('- ')) {
                               return (
-                                <p key={j} className="text-sm ml-4 mb-1" style={{ color: 'oklch(0.35 0.02 65)', fontFamily: 'Libre Baskerville, serif' }}>
+                                <p key={j} className="text-sm ml-4 mb-1 text-gray-600">
                                   • {line.slice(2).replace(/\*\*(.*?)\*\*/g, '$1')}
                                 </p>
                               );
                             }
                             return line ? (
-                              <p key={j} className="text-sm leading-relaxed mb-2" style={{ color: 'oklch(0.35 0.02 65)', fontFamily: 'Libre Baskerville, serif' }}>
+                              <p key={j} className="text-sm leading-relaxed mb-2 text-gray-600">
                                 {line.replace(/\*\*(.*?)\*\*/g, '$1')}
                               </p>
                             ) : null;
@@ -554,7 +548,6 @@ export default function GuidePage() {
                       );
                     }
                     if (para.includes('|')) {
-                      // Table
                       const rows = para.split('\n').filter(r => r.includes('|') && !r.match(/^[\s|:-]+$/));
                       return (
                         <div key={i} className="overflow-x-auto mb-4">
@@ -562,14 +555,14 @@ export default function GuidePage() {
                             {rows.map((row, j) => {
                               const cells = row.split('|').filter(c => c.trim());
                               return (
-                                <tr key={j} className={j === 0 ? 'border-b-2' : 'border-b border-gray-100'} style={{ borderColor: j === 0 ? 'oklch(0.28 0.09 155)' : undefined }}>
+                                <tr key={j} className={j === 0 ? 'border-b-2 border-teal-600' : 'border-b border-gray-100'}>
                                   {cells.map((cell, k) => (
                                     j === 0 ? (
-                                      <th key={k} className="text-left py-2 px-3 font-semibold text-xs uppercase tracking-wide" style={{ color: 'oklch(0.28 0.09 155)' }}>
+                                      <th key={k} className="text-left py-2 px-3 font-semibold text-xs uppercase tracking-wide text-teal-700" style={{ fontFamily: 'Sora, sans-serif' }}>
                                         {cell.trim()}
                                       </th>
                                     ) : (
-                                      <td key={k} className="py-2 px-3" style={{ color: 'oklch(0.35 0.02 65)' }}>
+                                      <td key={k} className="py-2 px-3 text-gray-600 text-sm">
                                         {cell.trim()}
                                       </td>
                                     )
@@ -581,15 +574,13 @@ export default function GuidePage() {
                         </div>
                       );
                     }
-                    // Regular paragraph
                     const formatted = para
                       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                       .replace(/\n- /g, '<br/>• ');
                     return (
                       <p
                         key={i}
-                        className="text-sm leading-relaxed mb-4"
-                        style={{ color: 'oklch(0.35 0.02 65)', fontFamily: 'Libre Baskerville, serif' }}
+                        className="text-sm leading-relaxed mb-4 text-gray-600"
                         dangerouslySetInnerHTML={{ __html: formatted }}
                       />
                     );
@@ -599,17 +590,17 @@ export default function GuidePage() {
             ))}
 
             {/* CTA */}
-            <div className="bank-card p-6 text-center" style={{ background: 'oklch(0.28 0.09 155)' }}>
-              <h3 className="text-xl font-bold mb-2" style={{ fontFamily: 'Playfair Display, serif', color: 'oklch(0.98 0.01 85)' }}>
+            <div className="rounded-xl p-6 text-center" style={{ background: '#0f172a' }}>
+              <h3 className="text-xl font-bold mb-2 text-white" style={{ fontFamily: 'Sora, sans-serif' }}>
                 Ready to compare business bank accounts?
               </h3>
-              <p className="text-sm mb-4" style={{ color: 'oklch(0.8 0.02 85)' }}>
+              <p className="text-sm mb-4 text-slate-300">
                 Use our comparison tool to find the best account for your business.
               </p>
               <Link
                 href="/compare"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded font-semibold text-sm transition-all hover:opacity-90"
-                style={{ background: 'oklch(0.72 0.12 82)', color: 'oklch(0.15 0.04 155)' }}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all hover:opacity-90 text-white"
+                style={{ background: '#0d9488' }}
               >
                 Compare All Accounts
                 <ChevronRight className="w-4 h-4" />
@@ -620,8 +611,8 @@ export default function GuidePage() {
           {/* Sidebar */}
           <aside className="hidden lg:block w-64 flex-shrink-0">
             <div className="sticky top-24 space-y-4">
-              <div className="bank-card p-5">
-                <h3 className="font-bold text-sm mb-3 uppercase tracking-wider" style={{ fontFamily: 'DM Sans, sans-serif', color: 'oklch(0.28 0.09 155)' }}>
+              <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+                <h3 className="font-bold text-sm mb-3 uppercase tracking-wider text-teal-700" style={{ fontFamily: 'Sora, sans-serif' }}>
                   Related Guides
                 </h3>
                 <ul className="space-y-2">
@@ -629,10 +620,9 @@ export default function GuidePage() {
                     <li key={relSlug}>
                       <Link
                         href={`/guides/${relSlug}`}
-                        className="text-sm hover:underline flex items-center gap-1"
-                        style={{ color: 'oklch(0.28 0.09 155)' }}
+                        className="text-sm hover:text-teal-700 flex items-center gap-1 text-gray-600 transition-colors"
                       >
-                        <ChevronRight className="w-3 h-3" />
+                        <ChevronRight className="w-3 h-3 text-teal-500" />
                         {guideSlugToTitle[relSlug] || relSlug}
                       </Link>
                     </li>
@@ -640,8 +630,8 @@ export default function GuidePage() {
                 </ul>
               </div>
 
-              <div className="bank-card p-5">
-                <h3 className="font-bold text-sm mb-3 uppercase tracking-wider" style={{ fontFamily: 'DM Sans, sans-serif', color: 'oklch(0.28 0.09 155)' }}>
+              <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+                <h3 className="font-bold text-sm mb-3 uppercase tracking-wider text-teal-700" style={{ fontFamily: 'Sora, sans-serif' }}>
                   Compare Accounts
                 </h3>
                 <ul className="space-y-2">
@@ -652,13 +642,26 @@ export default function GuidePage() {
                     { label: 'Limited Company', href: '/category/limited-company' },
                   ].map((item) => (
                     <li key={item.href}>
-                      <Link href={item.href} className="text-sm hover:underline flex items-center gap-1" style={{ color: 'oklch(0.28 0.09 155)' }}>
-                        <ChevronRight className="w-3 h-3" />
+                      <Link href={item.href} className="text-sm hover:text-teal-700 flex items-center gap-1 text-gray-600 transition-colors">
+                        <ChevronRight className="w-3 h-3 text-teal-500" />
                         {item.label}
                       </Link>
                     </li>
                   ))}
                 </ul>
+              </div>
+
+              {/* Quick compare CTA */}
+              <div className="rounded-xl p-5" style={{ background: '#0f172a' }}>
+                <h3 className="font-bold text-sm mb-2 text-white" style={{ fontFamily: 'Sora, sans-serif' }}>Find Your Best Account</h3>
+                <p className="text-xs text-slate-400 mb-3">Compare all 22 UK business bank accounts side by side.</p>
+                <Link
+                  href="/compare"
+                  className="block text-center text-xs font-semibold py-2 px-3 rounded-lg text-white transition-all hover:opacity-90"
+                  style={{ background: '#0d9488' }}
+                >
+                  Compare Now
+                </Link>
               </div>
             </div>
           </aside>

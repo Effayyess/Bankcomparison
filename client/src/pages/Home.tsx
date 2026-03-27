@@ -177,27 +177,35 @@ export default function Home() {
       </div>
 
       {/* Business type cards */}
-      <section className="bg-gray-50 py-12 border-b border-gray-200">
+      <section className="py-14 border-b border-gray-200" style={{ background: '#0f172a' }}>
         <div className="container">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2" style={{ fontFamily: 'Sora, sans-serif' }}>
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-900/50 text-teal-300 text-xs font-semibold border border-teal-700/50 mb-4">
+              Tailored Recommendations
+            </div>
+            <h2 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Sora, sans-serif' }}>
               Find the Best Account for Your Business Type
             </h2>
-            <p className="text-gray-600 text-sm">Tailored recommendations based on how your business is structured</p>
+            <p className="text-slate-400 text-sm">Tailored recommendations based on how your business is structured</p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
             {businessTypeCards.map((card) => (
               <Link key={card.href} href={card.href} className="no-underline">
                 <div
-                  className="rounded-xl p-4 text-center hover:shadow-md transition-all cursor-pointer group border border-gray-200 hover:border-teal-300"
-                  style={{ backgroundColor: card.color }}
+                  className="rounded-xl p-4 text-center transition-all cursor-pointer group border border-slate-700 hover:border-teal-500 hover:shadow-lg hover:shadow-teal-900/30"
+                  style={{ backgroundColor: '#1e293b' }}
                 >
-                  <div className="text-2xl mb-2">{card.icon}</div>
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-3 text-xl" style={{ backgroundColor: card.color }}>
+                    {card.icon}
+                  </div>
                   <div
-                    className="text-xs font-bold text-gray-800 group-hover:text-teal-700 transition-colors leading-tight"
+                    className="text-xs font-semibold text-slate-300 group-hover:text-teal-400 transition-colors leading-tight"
                     style={{ fontFamily: 'Sora, sans-serif' }}
                   >
                     {card.title}
+                  </div>
+                  <div className="text-xs text-slate-500 mt-1 leading-tight hidden sm:block">
+                    {card.desc}
                   </div>
                 </div>
               </Link>
@@ -416,15 +424,13 @@ export default function Home() {
       {/* FAQ */}
       <section className="py-14 bg-white border-t border-gray-100">
         <div className="container">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center" style={{ fontFamily: 'Sora, sans-serif' }}>
-              Frequently Asked Questions About UK Business Bank Accounts
-            </h2>
-            <div className="space-y-3">
-              {faqs.map((faq) => (
-                <FaqItem key={faq.question} question={faq.question} answer={faq.answer} />
-              ))}
-            </div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center" style={{ fontFamily: 'Sora, sans-serif' }}>
+            Frequently Asked Questions About UK Business Bank Accounts
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-5xl mx-auto">
+            {faqs.map((faq) => (
+              <FaqItem key={faq.question} question={faq.question} answer={faq.answer} />
+            ))}
           </div>
         </div>
       </section>
