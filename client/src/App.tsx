@@ -18,6 +18,7 @@ import GuidesHub from './pages/GuidesHub';
 import GuidesCategory from './pages/GuidesCategory';
 import LegalPage from './pages/LegalPage';
 import FindMyAccount from './pages/FindMyAccount';
+import StickyPromoBar from './components/StickyPromoBar';
 
 function Router() {
   return (
@@ -66,6 +67,7 @@ function App() {
           <TooltipProvider>
             <Toaster />
             <Router />
+            <StickyPromoBar />
           </TooltipProvider>
         </ThemeProvider>
       </ErrorBoundary>
