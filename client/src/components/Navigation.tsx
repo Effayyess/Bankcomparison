@@ -221,7 +221,7 @@ export default function Navigation() {
             <Link
               href="/compare"
               className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-semibold text-white transition-all hover:opacity-90 no-underline"
-              style={{ background: 'oklch(0.72 0.12 210)', fontFamily: 'Sora, sans-serif' }}
+              style={{ background: '#2563eb', fontFamily: 'Sora, sans-serif' }}
             >
               Compare Now
             </Link>
@@ -293,8 +293,8 @@ export default function Navigation() {
               <Link
                 href="/compare"
                 className="block w-full text-center px-4 py-2.5 rounded-lg text-sm font-semibold text-white no-underline"
-                style={{ background: 'oklch(0.72 0.12 210)' }}
-              >
+                style={{ background: '#2563eb' }}
+                >
                 Compare Now
               </Link>
             </div>

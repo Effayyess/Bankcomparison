@@ -148,7 +148,7 @@ export default function Compare() {
                 className="px-3 py-1.5 rounded-full text-xs font-semibold border transition-all"
                 style={
                   suitability === f.value
-                    ? { background: 'oklch(0.72 0.12 210)', color: 'white', borderColor: 'oklch(0.72 0.12 210)' }
+                    ? { background: '#2563eb', color: 'white', borderColor: 'oklch(0.72 0.12 210)' }
                     : { background: 'white', color: '#374151', borderColor: '#e5e7eb' }
                 }
               >
@@ -273,7 +273,7 @@ export default function Compare() {
               <button
                 onClick={clearFilters}
                 className="px-4 py-2 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90"
-                style={{ background: 'oklch(0.72 0.12 210)' }}
+                style={{ background: '#2563eb' }}
               >
                 Clear all filters
               </button>

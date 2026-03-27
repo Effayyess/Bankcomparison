@@ -160,7 +160,7 @@ export default function BankReview() {
                   target={bank.affiliateUrl ? '_blank' : undefined}
                   rel={bank.affiliateUrl ? 'noopener noreferrer sponsored' : undefined}
                   className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90 no-underline"
-                  style={{ background: 'oklch(0.72 0.12 210)' }}
+                  style={{ background: '#2563eb' }}
                 >
                   Open Account <ExternalLink className="w-3.5 h-3.5" />
                 </a>

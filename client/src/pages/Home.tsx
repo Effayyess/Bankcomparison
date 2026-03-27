@@ -290,7 +290,7 @@ export default function Home() {
             <Link
               href="/compare"
               className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white no-underline transition-all hover:opacity-90"
-              style={{ background: 'oklch(0.72 0.12 210)', fontFamily: 'Sora, sans-serif' }}
+              style={{ background: '#2563eb', fontFamily: 'Sora, sans-serif' }}
             >
               Full comparison with filters <ArrowRight className="w-4 h-4" />
             </Link>
