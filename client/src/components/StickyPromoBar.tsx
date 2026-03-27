@@ -18,59 +18,81 @@ export default function StickyPromoBar() {
         boxShadow: '0 -4px 24px rgba(0,0,0,0.25)',
       }}
     >
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 py-2 sm:py-2.5">
-        <div className="flex items-center justify-between gap-2">
+      {/* Mobile layout — single compact row */}
+      <div className="flex sm:hidden items-center justify-between gap-2 px-3 py-1.5">
+        <div className="flex items-center gap-2 min-w-0 flex-1">
+          <img
+            src={TIDE_LOGO}
+            alt="Tide"
+            className="w-6 h-6 object-contain flex-shrink-0"
+            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+          />
+          <p className="text-gray-900 font-bold text-xs leading-tight truncate">
+            Get up to <strong>£200 cashback</strong> — code <span className="font-mono font-bold">REFER200</span>
+          </p>
+        </div>
+        <div className="flex items-center gap-1 flex-shrink-0">
+          <a
+            href="https://www.tide.co/partners/refer-save-refer200/bca/"
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold text-white no-underline whitespace-nowrap"
+            style={{ background: '#1d4ed8' }}
+          >
+            <Gift className="w-3 h-3" />
+            Open
+          </a>
+          <button
+            onClick={() => setDismissed(true)}
+            aria-label="Dismiss offer"
+            className="p-1 rounded-lg hover:bg-black/10 flex-shrink-0"
+            style={{ color: 'rgba(0,0,0,0.45)' }}
+          >
+            <X className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      </div>
 
-          {/* Left: logo + copy */}
-          <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
-
-            {/* Tide logo */}
-            <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center overflow-hidden">
-              <img
-                src={TIDE_LOGO}
-                alt="Tide"
-                className="w-full h-full object-contain"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).style.display = 'none';
-                }}
-              />
-            </div>
-
-            {/* Offer copy */}
+      {/* Desktop layout — fuller details */}
+      <div className="hidden sm:block max-w-7xl mx-auto px-6 py-2.5">
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3 min-w-0 flex-1">
+            <img
+              src={TIDE_LOGO}
+              alt="Tide"
+              className="w-10 h-10 object-contain flex-shrink-0"
+              onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+            />
             <div className="min-w-0">
-              <p className="text-gray-900 font-bold text-xs sm:text-sm leading-tight">
-                <span className="font-extrabold">£200 cashback</span>
-                {' '}— Open a Tide Business Account using code{' '}
+              <p className="text-gray-900 font-bold text-sm leading-tight">
+                Get up to <strong>£200 cashback</strong> when you open a Tide Business Account — use code{' '}
                 <span className="font-mono font-bold tracking-wider">REFER200</span>
               </p>
-              <p className="text-gray-700 text-xs mt-0.5 hidden sm:block">
-                New customers only. T&amp;Cs apply.
+              <p className="text-gray-700 text-xs mt-0.5">
+                £75 cashback when you spend £100 in 30 days. Plus £125 when you deposit £5,000 into Tide Instant Saver within 7 days. New customers only. T&amp;Cs apply.
               </p>
             </div>
           </div>
-
-          {/* Right: CTA + dismiss */}
-          <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+          <div className="flex items-center gap-2 flex-shrink-0">
             <a
               href="https://www.tide.co/partners/refer-save-refer200/bca/"
               target="_blank"
               rel="noopener noreferrer sponsored"
-              className="inline-flex items-center gap-1 sm:gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-bold text-white transition-all hover:opacity-90 no-underline flex-shrink-0 shadow-sm whitespace-nowrap"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold text-white transition-all hover:opacity-90 no-underline flex-shrink-0 shadow-sm whitespace-nowrap"
               style={{ background: '#1d4ed8' }}
             >
-              <Gift className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-              <span>Open Account</span>
+              <Gift className="w-4 h-4" />
+              Open Account
             </a>
             <button
               onClick={() => setDismissed(true)}
               aria-label="Dismiss offer"
-              className="p-1 sm:p-1.5 rounded-lg transition-colors hover:bg-black/10 flex-shrink-0"
+              className="p-1.5 rounded-lg transition-colors hover:bg-black/10 flex-shrink-0"
               style={{ color: 'rgba(0,0,0,0.45)' }}
             >
-              <X className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              <X className="w-4 h-4" />
             </button>
           </div>
-
         </div>
       </div>
     </div>

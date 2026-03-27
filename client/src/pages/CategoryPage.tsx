@@ -41,7 +41,7 @@ const categoryOrder: Record<string, string[]> = {
   'branch-access': ['hsbc', 'tide', 'lloyds', 'virgin', 'natwest', 'barclays', 'coop', 'rbs', 'cynergy'],
   'accounting': ['hsbc', 'tide', 'virgin', 'revolut', 'airwallex', 'natwest', 'zempler', 'worldfirst', 'wallester', 'coop', 'rbs', 'monzo', 'anna', 'countingup', 'mettle', 'starling', 'wise', 'equals', 'lloyds', 'barclays', 'cynergy'],
   'small-business': ['hsbc', 'tide', 'lloyds', 'virgin', 'revolut', 'airwallex', 'natwest', 'cynergy', 'zempler', 'worldfirst', 'wallester', 'barclays', 'coop', 'rbs', 'monzo', 'anna', 'countingup', 'mettle', 'starling', 'wise', 'equals'],
-  'bad-credit': ['tide', 'revolut', 'airwallex', 'zempler', 'worldfirst', 'wallester', 'anna', 'countingup', 'monzo', 'starling', 'wise', 'mettle', 'equals'],
+  'bad-credit': ['zempler', 'tide', 'revolut', 'airwallex', 'worldfirst', 'wallester', 'anna', 'countingup', 'monzo', 'starling', 'wise', 'mettle', 'equals'],
   'corporate': ['tide', 'hsbc', 'barclays', 'natwest', 'lloyds', 'revolut', 'airwallex', 'coop', 'rbs'],
   'multi-director': ['hsbc', 'tide', 'lloyds', 'virgin', 'revolut', 'airwallex', 'natwest', 'cynergy', 'zempler', 'worldfirst', 'wallester', 'barclays', 'coop', 'rbs', 'monzo', 'anna', 'countingup', 'mettle', 'starling', 'wise', 'equals'],
   'joint': ['tide', 'hsbc', 'lloyds', 'virgin', 'natwest', 'barclays', 'coop', 'rbs', 'starling', 'monzo', 'revolut', 'airwallex', 'wise', 'mettle', 'cynergy', 'equals', 'worldfirst', 'wallester', 'zempler', 'anna'],
