@@ -24,8 +24,8 @@ export default function StickyPromoBar() {
           {/* Left: logo + badge + copy */}
           <div className="flex items-center gap-3 min-w-0">
 
-            {/* Tide logo — white pill background so it shows on yellow */}
-            <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center overflow-hidden p-1">
+            {/* Tide logo — no background, shown directly on yellow */}
+            <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center overflow-hidden">
               <img
                 src={TIDE_LOGO}
                 alt="Tide"
@@ -52,12 +52,13 @@ export default function StickyPromoBar() {
                   className="inline-block px-1.5 py-0.5 rounded text-white text-sm font-extrabold mr-1"
                   style={{ background: '#1d4ed8' }}
                 >
-                  £250 cashback
+                  £200 cashback
                 </span>
-                Open a Tide Business Account &amp; spend £500 in 30 days
+                Open a Tide Business Account — use code
+                <span className="font-mono font-bold mx-1 px-1.5 py-0.5 rounded bg-gray-900 text-yellow-300 text-xs tracking-wider">REFER200</span>
               </p>
               <p className="text-gray-700 text-xs mt-0.5 hidden sm:block">
-                New customers only. T&amp;Cs apply. Offer subject to change.
+                New customers only. Spend £500 within 30 days. T&amp;Cs apply.
               </p>
             </div>
           </div>
