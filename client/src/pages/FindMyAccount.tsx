@@ -100,7 +100,7 @@ export default function FindMyAccount() {
         {/* Hero — dark navy matching main site */}
         <section
           className="relative overflow-hidden py-14"
-          style={{ background: 'linear-gradient(135deg, #0f172a 0%, #134e4a 100%)' }}
+          style={{ background: '#0f172a' }}
         >
           <div className="container relative">
             <nav className="flex items-center gap-2 text-sm mb-4 text-white/70">
@@ -123,7 +123,7 @@ export default function FindMyAccount() {
         </section>
 
         {/* Filter sections — dark navy background matching business-type section */}
-        <section className="py-12" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #0d2a27 100%)' }}>
+        <section className="py-12" style={{ background: '#0f172a' }}>
           <div className="container">
             <div className="max-w-5xl mx-auto">
               {filterCategories.map(cat => (

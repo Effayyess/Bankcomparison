@@ -376,7 +376,7 @@ export default function BankReview() {
               {/* CTA box — teal gradient */}
               <div
                 className="rounded-2xl p-5 text-white"
-                style={{ background: 'linear-gradient(135deg, #0f172a 0%, #134e4a 100%)', border: '1px solid #1e293b' }}
+                style={{ background: '#0f172a', border: '1px solid #1e293b' }}
               >
                 <h3 className="font-bold text-sm mb-2" style={{ fontFamily: 'Sora, sans-serif' }}>
                   Ready to open an account?
@@ -389,7 +389,7 @@ export default function BankReview() {
                   target={bank.affiliateUrl ? '_blank' : undefined}
                   rel={bank.affiliateUrl ? 'noopener noreferrer sponsored' : undefined}
                   className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90 no-underline"
-                  style={{ background: 'oklch(55% .12 210)', color: 'white' }}
+                  style={{ background: '#0d9488', color: 'white' }}
                 >
                   Open Account <ExternalLink className="w-3.5 h-3.5" />
                 </a>

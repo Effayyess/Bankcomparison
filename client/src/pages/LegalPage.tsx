@@ -298,7 +298,7 @@ export default function LegalPage({ slug: slugProp }: { slug?: string }) {
       <Navigation />
       <div style={{ paddingTop: '88px' }}>
         {/* Hero */}
-        <div className="text-white py-10" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%)' }}>
+        <div className="text-white py-10" style={{ background: '#0f172a' }}>
           <div className="container">
             <nav className="flex items-center gap-2 text-sm mb-4 text-gray-400">
               <Link href="/" className="hover:text-white transition-colors">Home</Link>

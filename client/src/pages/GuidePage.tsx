@@ -461,7 +461,7 @@ export default function GuidePage() {
     <div className="min-h-screen bg-gray-50">
       {/* Hero — matches site's navy hero style */}
       <section className="relative overflow-hidden" style={{ background: '#0f172a', minHeight: '220px' }}>
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #134e4a 100%)', opacity: 0.95 }} />
+        <div className="absolute inset-0" style={{ background: '#0f172a', opacity: 1 }} />
         <div className="relative container py-10">
           <nav className="flex items-center gap-2 text-sm mb-4 text-slate-400">
             <Link href="/" className="hover:text-teal-400 transition-colors text-slate-300">Home</Link>

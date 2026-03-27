@@ -374,12 +374,7 @@ export default function CategoryPage() {
       <Navigation />
       <div style={{ paddingTop: '88px' }}>
       {/* Hero */}
-      <section className="relative overflow-hidden" style={{ minHeight: '280px' }}>
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${CATEGORY_HERO})` }}
-        />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(10,30,60,0.88) 0%, rgba(10,30,60,0.65) 100%)' }} />
+      <section className="relative overflow-hidden" style={{ background: '#0f172a', minHeight: '220px' }}>
         <div className="relative container py-12">
           <nav className="flex items-center gap-2 text-sm mb-4 text-white/70">
             <Link href="/" className="hover:text-white no-underline text-white/80">Home</Link>

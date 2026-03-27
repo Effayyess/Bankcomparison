@@ -285,7 +285,7 @@ export default function Home() {
       </section>
 
       {/* Account type categories grid */}
-      <section className="py-12" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #0d2a27 100%)' }}>
+      <section className="py-12" style={{ background: '#0f172a' }}>
         <div className="container">
           <div className="text-center mb-8">
             <h2 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Sora, sans-serif' }}>
