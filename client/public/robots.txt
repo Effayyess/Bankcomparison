@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://comparebusinessaccount.co.uk/sitemap.xml
+Sitemap: https://businessbankcompare.co.uk/sitemap.xml

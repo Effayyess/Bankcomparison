@@ -11,8 +11,8 @@ interface SEOProps {
   schema?: object;
 }
 
-const SITE_URL = 'https://comparebusinessaccount.co.uk';
-const SITE_NAME = 'Compare Business Account';
+const SITE_URL = 'https://businessbankcompare.co.uk';
+const SITE_NAME = 'Business Bank Compare';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
 
 export default function SEO({

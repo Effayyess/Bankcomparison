@@ -891,7 +891,7 @@ Airwallex is built specifically for global businesses and e-commerce. They offer
   },
   'what-do-i-need-to-open-a-business-bank-account-uk': {
     slug: 'what-do-i-need-to-open-a-business-bank-account-uk',
-    title: 'What Do I Need To Open A Business Bank Account UK 2026 | Compare Business Account',
+    title: 'What Do I Need To Open A Business Bank Account UK 2026 | Business Bank Compare',
     metaDescription: 'Discover the essential requirements and documents to open a business bank account in the UK in 2026 quickly and securely.',
     h1: 'What Do I Need To Open A Business Bank Account in the UK?',
     intro: 'Opening a business bank account is a crucial step for any UK entrepreneur or company in 2026. It helps manage finances professionally, comply with HMRC regulations, and build business credit. This guide outlines everything you need to open a business bank account in the UK, including the necessary documents, eligibility criteria, and relevant regulatory considerations.',
@@ -976,7 +976,7 @@ Following these guidelines empowers you to secure a business bank account that s
   },
   'how-long-does-it-take-to-open-a-business-bank-account': {
     slug: 'how-long-does-it-take-to-open-a-business-bank-account',
-    title: 'How Long Does It Take To Open A Business Bank Account UK 2026 | Compare Business Account',
+    title: 'How Long Does It Take To Open A Business Bank Account UK 2026 | Business Bank Compare',
     metaDescription: 'Discover how long it takes to open a UK business bank account in 2026. Get insights on documents, FCA regulations, and the best business banking options.',
     h1: 'How Long Does It Take To Open A Business Bank Account in the UK?',
     intro: 'Opening a business bank account is a critical step for UK entrepreneurs to manage their finances efficiently and comply with HMRC and Companies House requirements. In 2026, the time it takes to open a business bank account can vary widely depending on your provider, business type, and the documentation you submit. This comprehensive guide explores the typical timelines involved, key requirements, and tips to ensure a swift application process.',
@@ -1062,7 +1062,7 @@ Ensuring you select an FCA-authorised bank helps safeguard your business finance
   },
   'can-i-open-a-business-bank-account-online-uk': {
     slug: 'can-i-open-a-business-bank-account-online-uk',
-    title: 'Can I Open a Business Bank Account Online UK 2026? | Compare Business Accounts',
+    title: 'Can I Open a Business Bank Account Online UK 2026? | Business Bank Compare',
     metaDescription: 'Discover how to open a UK business bank account online in 2026. Learn the process, requirements, and best providers with FSCS protection.',
     h1: 'Can I Open a Business Bank Account Online in the UK?',
     intro: 'Opening a business bank account online is now easier than ever for UK entrepreneurs in 2026. Whether you’re a sole trader, partnership, or limited company, many banks and fintech providers offer fully digital account setup services. This comprehensive guide covers everything you need to know about applying for a UK business bank account online, including eligibility, documentation, security, and how to choose the best account for your needs.',
@@ -1265,7 +1265,7 @@ By proactively managing these factors, non-UK resident business owners can harne
   },
   'best-business-bank-account-for-ecommerce-uk': {
     slug: 'best-business-bank-account-for-ecommerce-uk',
-    title: 'Best Business Bank Account for Ecommerce UK 2026 | Compare Business Account',
+    title: 'Best Business Bank Account for Ecommerce UK 2026 | Business Bank Compare',
     metaDescription: 'Discover the best business bank accounts for ecommerce in the UK. Compare features, fees & FCA-regulated options to find the right account for your online business.',
     h1: 'Best Business Bank Account for Ecommerce in the UK 2026',
     intro: 'Choosing the right business bank account is crucial for any ecommerce venture in the UK. With numerous FCA-regulated banks and fintech providers available, understanding fees, integration options, and security is essential to streamline your finances and comply with HMRC regulations in 2026.',
@@ -1343,7 +1343,7 @@ By choosing a compliant business bank account and maintaining proper bookkeeping
   },
   'best-business-bank-account-for-freelancers-uk': {
     slug: 'best-business-bank-account-for-freelancers-uk',
-    title: 'Best Business Bank Account for Freelancers UK 2026 | Compare Business Account',
+    title: 'Best Business Bank Account for Freelancers UK 2026 | Business Bank Compare',
     metaDescription: 'Discover the best business bank account for UK freelancers in 2026. Compare fees, features, and FCA protections for your sole trader or limited company.',
     h1: 'Best Business Bank Account for Freelancers UK 2026',
     intro: 'Choosing the right business bank account is essential for UK freelancers to manage their finances efficiently and stay compliant with HMRC and Companies House regulations. In 2026, the market offers a wealth of options tailored to freelancers’ unique needs, including fee transparency, FCA and FSCS protection, and seamless integration with accounting software. This guide helps you navigate your choices to find the best account for your freelance business.',
@@ -1445,7 +1445,7 @@ A well-managed business bank account lays the foundation for sustainable growth 
   },
   'charity-bank-accounts-uk-guide': {
     slug: 'charity-bank-accounts-uk-guide',
-    title: 'Charity Bank Accounts UK Guide 2026 | Compare Business Accounts',
+    title: 'Charity Bank Accounts UK Guide 2026 | Business Bank Compare',
     metaDescription: 'Discover the essential 2026 UK guide to charity bank accounts. Compare top accounts, understand FCA and FSCS protections and manage your charity finances effectively.',
     h1: 'Charity Bank Accounts UK Guide 2026: How to Choose the Right Account for Your Charity',
     intro: 'Managing a charity’s finances effectively starts with choosing the right bank account. In 2026, UK charities have access to a variety of tailored bank accounts designed to meet their unique financial and regulatory needs. This in-depth guide explains everything you need to know about charity bank accounts in the UK, including key features, regulatory protections, and advice on selecting the best provider for your organisation’s goals.',
@@ -1528,7 +1528,7 @@ A well-managed charity bank account not only facilitates smooth day-to-day opera
   },
   'partnership-business-bank-accounts-uk': {
     slug: 'partnership-business-bank-accounts-uk',
-    title: 'Partnership Business Bank Accounts UK 2026 | Compare Business Account',
+    title: 'Partnership Business Bank Accounts UK 2026 | Business Bank Compare',
     metaDescription: 'Discover the best partnership business bank accounts in the UK for 2026. Compare features, fees, and benefits tailored for UK partnerships.',
     h1: 'The Ultimate Guide to Partnership Business Bank Accounts in the UK (2026)',
     intro: 'Setting up a business bank account is a crucial step for any partnership in the UK. In 2026, the financial landscape continues to evolve, with tailored accounts designed to meet the unique needs of partnerships. This comprehensive guide helps UK business owners understand their options, benefits, and legal requirements when choosing the perfect partnership business bank account.',
@@ -1624,7 +1624,7 @@ Using comparison tools can simplify the selection process and help ensure you ge
   },
   'how-to-switch-business-bank-accounts-uk': {
     slug: 'how-to-switch-business-bank-accounts-uk',
-    title: 'How To Switch Business Bank Accounts UK 2026 | Compare Business Account',
+    title: 'How To Switch Business Bank Accounts UK 2026 | Business Bank Compare',
     metaDescription: 'Discover how to switch your business bank account in the UK smoothly with our expert 2026 guide. Compare accounts & save time today.',
     h1: 'How To Switch Business Bank Accounts in the UK: A Step-by-Step Guide for 2026',
     intro: 'Switching your business bank account in the UK can streamline your finances, reduce fees, and improve your banking experience. Whether you’re a sole trader, limited company, or partnership, this comprehensive 2026 guide covers everything you need to successfully switch your business account, highlighting key regulations from the FCA, FSCS protections, and compliance with HMRC and Companies House.',
@@ -1730,7 +1730,7 @@ By following these steps, you safeguard your business finances and ensure a seam
   },
   'business-bank-account-limits-and-restrictions': {
     slug: 'business-bank-account-limits-and-restrictions',
-    title: 'Business Bank Account Limits and Restrictions UK 2026 | Compare Business Account',
+    title: 'Business Bank Account Limits and Restrictions UK 2026 | Business Bank Compare',
     metaDescription: 'Discover key business bank account limits and restrictions for UK companies in 2026. Stay compliant with FCA, FSCS, HMRC requirements. Compare accounts now.',
     h1: 'Business Bank Account Limits and Restrictions in the UK: What You Need to Know in 2026',
     intro: 'Navigating business bank account limits and restrictions is essential for UK entrepreneurs and companies in 2026. Understanding these rules ensures compliance with financial regulations set by the FCA and protects your business finances under FSCS safeguards. This guide covers key restrictions, transaction caps, and legal requirements to help you choose the right business bank account with confidence.',
@@ -1825,7 +1825,7 @@ By proactively managing accounts and understanding FSCS rules, UK businesses can
   },
   'managing-cash-flow-with-your-business-account': {
     slug: 'managing-cash-flow-with-your-business-account',
-    title: 'Managing Cash Flow with Your Business Account UK 2026 | Compare Business Account',
+    title: 'Managing Cash Flow with Your Business Account UK 2026 | Business Bank Compare',
     metaDescription: 'Master managing cash flow with your UK business account in 2026. Tips on FCA, FSCS protection, HMRC, and optimising your finances effectively.',
     h1: 'Managing Cash Flow with Your Business Account: A Comprehensive UK Guide for 2026',
     intro: 'Effectively managing cash flow is crucial for every UK business to thrive in 2026’s dynamic market. Your business account plays a vital role in tracking income, expenses, and ensuring you meet your obligations like HMRC payments and Companies House filings. This guide offers practical advice, highlighting FCA regulations, FSCS protection, and smart strategies to optimise cash flow management.',
@@ -1897,7 +1897,7 @@ By planning proactively, you can leverage your business account to not only mana
   },
   'how-to-add-a-director-to-a-business-bank-account': {
     slug: 'how-to-add-a-director-to-a-business-bank-account',
-    title: 'How To Add A Director To A Business Bank Account UK 2026 | Compare Business Account',
+    title: 'How To Add A Director To A Business Bank Account UK 2026 | Business Bank Compare',
     metaDescription: 'Learn how to add a director to your UK business bank account in 2026 with our step-by-step guide compliant with FCA, HMRC & Companies House regulations.',
     h1: 'How To Add A Director To A Business Bank Account in the UK',
     intro: 'Adding a director to your business bank account is a common necessity for growing companies in the UK. Whether you’ve appointed a new director or need to update signatories, this 2026 guide walks you through the process, ensuring compliance with FCA regulations and Companies House requirements. Understand the key documents, timelines, and practical tips for a smooth update to your business banking arrangements.',
@@ -1987,7 +1987,7 @@ By following these steps, your business benefits from smooth director transition
   },
   'hidden-fees-in-business-bank-accounts-uk': {
     slug: 'hidden-fees-in-business-bank-accounts-uk',
-    title: 'Hidden Fees in Business Bank Accounts UK 2026 | Compare Business Accounts',
+    title: 'Hidden Fees in Business Bank Accounts UK 2026 | Business Bank Compare',
     metaDescription: 'Discover hidden fees in UK business bank accounts. Learn how to avoid extra charges and choose the best account for your business in 2026.',
     h1: 'Understanding Hidden Fees in UK Business Bank Accounts in 2026',
     intro: 'When managing your business finances, choosing the right business bank account is crucial. However, many UK businesses overlook hidden fees that can increase banking costs significantly. This guide will help you identify common hidden charges in business bank accounts, understand FCA regulations, and protect your business’s funds through the FSCS. Learn how to compare accounts effectively and avoid costly surprises in 2026.',
@@ -2060,7 +2060,7 @@ Comparing business bank accounts on platforms tailored to UK businesses can help
   },
   'are-digital-business-banks-safe-uk': {
     slug: 'are-digital-business-banks-safe-uk',
-    title: 'Are Digital Business Banks Safe in the UK 2026? | Compare Business Account',
+    title: 'Are Digital Business Banks Safe in the UK 2026? | Business Bank Compare',
     metaDescription: 'Discover the safety of digital business banks in the UK in 2026. Understand FCA regulations, FSCS protection, and how to choose the best secure business account.',
     h1: 'Are Digital Business Banks Safe in the UK in 2026?',
     intro: 'As UK businesses increasingly turn to digital business banks for convenience and innovation, questions around their safety remain paramount. In 2026, understanding the regulatory landscape, customer protections like the FSCS, and how digital banks securely handle your funds is essential for any business owner.',
@@ -2150,7 +2150,7 @@ UK businesses adopting digital banking solutions can anticipate ongoing improvem
   },
   'business-bank-account-transaction-fees-explained': {
     slug: 'business-bank-account-transaction-fees-explained',
-    title: 'Business Bank Account Transaction Fees Explained UK 2026 | Compare Business Accounts',
+    title: 'Business Bank Account Transaction Fees Explained UK 2026 | Business Bank Compare',
     metaDescription: 'Understand UK business bank account transaction fees in 2026. Compare costs, FCA protection & choose the right account for your company.',
     h1: 'Business Bank Account Transaction Fees Explained: A 2026 UK Guide',
     intro: 'Navigating business bank account transaction fees is crucial for UK companies looking to optimise banking costs. In 2026, understanding the fees charged on day-to-day transactions can help your business save money and improve cash flow. This guide explains key charges, regulatory protections such as the FCA and FSCS, and offers tips for comparison across UK banks.',
@@ -2222,7 +2222,7 @@ Regularly reviewing transaction fees ensures you remain aligned with your busine
   },
   'how-to-avoid-business-banking-fees-uk': {
     slug: 'how-to-avoid-business-banking-fees-uk',
-    title: 'How To Avoid Business Banking Fees UK 2026 | Compare Business Account',
+    title: 'How To Avoid Business Banking Fees UK 2026 | Business Bank Compare',
     metaDescription: 'Discover expert tips to avoid costly business banking fees in the UK. Save money on business accounts and optimise your banking in 2026.',
     h1: 'How To Avoid Business Banking Fees in the UK: A 2026 Guide',
     intro: 'Managing a business bank account in the UK can be costly if you’re not careful. With fees ranging from monthly charges to transaction costs, it\'s important to understand how to avoid unnecessary expenses. This guide walks you through practical strategies to eliminate or reduce business banking fees in 2026, ensuring your company keeps more of its hard-earned money.',
@@ -2301,7 +2301,7 @@ By staying proactive, you ensure your business banking remains cost-effective an
   },
   'business-bank-accounts-with-invoicing-tools': {
     slug: 'business-bank-accounts-with-invoicing-tools',
-    title: 'Best Business Bank Accounts With Invoicing Tools UK 2026 | Compare Business Account',
+    title: 'Best Business Bank Accounts With Invoicing Tools UK 2026 | Business Bank Compare',
     metaDescription: 'Discover top UK business bank accounts with invoicing tools designed to streamline your finances and improve cash flow in 2026.',
     h1: 'Business Bank Accounts with Invoicing Tools: A 2026 UK Guide',
     intro: 'Navigating business finances efficiently is crucial for UK companies. In 2026, business bank accounts equipped with invoicing tools have become essential, offering seamless financial management. This guide explores the best business accounts in the UK featuring integrated invoicing capabilities, ensuring compliance with FCA regulations and FSCS protection while simplifying interactions with HMRC and Companies House.',
@@ -2395,7 +2395,7 @@ Finally, don’t overlook training your team on using invoicing features effecti
   },
   'best-business-bank-accounts-for-xero-integration': {
     slug: 'best-business-bank-accounts-for-xero-integration',
-    title: 'Best Business Bank Accounts for Xero Integration UK 2026 | Compare Business Account',
+    title: 'Best Business Bank Accounts for Xero Integration UK 2026 | Business Bank Compare',
     metaDescription: 'Discover the best UK business bank accounts with seamless Xero integration for 2026. Save time, improve cash flow & streamline accounting today.',
     h1: 'Best Business Bank Accounts for Xero Integration in the UK (2026)',
     intro: 'Choosing the right business bank account that integrates effortlessly with Xero can transform how you manage your finances. In 2026, UK businesses have more options than ever to combine robust banking services with smooth, automated accounting. This guide explores the top business bank accounts compatible with Xero, helping you streamline bookkeeping, comply with FCA and HMRC requirements, and optimise your financial workflow.',
@@ -2496,7 +2496,7 @@ Overall, integrating your business bank account with Xero creates a powerful eco
   },
   'business-bank-accounts-with-expense-cards': {
     slug: 'business-bank-accounts-with-expense-cards',
-    title: 'Best Business Bank Accounts With Expense Cards UK 2026 | Compare Business Account',
+    title: 'Best Business Bank Accounts With Expense Cards UK 2026 | Business Bank Compare',
     metaDescription: 'Compare the best UK business bank accounts with expense cards to streamline spending and manage finances efficiently in 2026.',
     h1: 'Business Bank Accounts With Expense Cards: The Ultimate UK Guide 2026',
     intro: 'Managing business expenses can be a complex task, but choosing the right business bank account with integrated expense cards can simplify your financial processes. In this comprehensive UK guide for 2026, discover how expense cards can empower your business spending, ensure compliance with FCA and HMRC regulations, and help you track expenses seamlessly.',
@@ -2622,7 +2622,7 @@ For more details, always consult your chosen bank and consider professional fina
   },
   'open-banking-for-uk-businesses-explained': {
     slug: 'open-banking-for-uk-businesses-explained',
-    title: 'Open Banking for UK Businesses Explained 2026 | Compare Business Accounts',
+    title: 'Open Banking for UK Businesses Explained 2026 | Business Bank Compare',
     metaDescription: 'Discover how Open Banking revolutionises UK business banking in 2026. Compare accounts, understand FCA regulations & boost your business finances.',
     h1: 'Open Banking for UK Businesses Explained: A 2026 Guide',
     intro: 'Open Banking is transforming how UK businesses manage their finances, offering enhanced transparency, efficiency, and tailored banking solutions. Backed by FCA regulations and the latest technology, it empowers companies to streamline payments, lending, and accounting. This guide covers everything UK businesses need to know about Open Banking in 2026.',
@@ -2692,14 +2692,14 @@ These applications help UK SMEs and larger companies maximise operational effici
 - **Customer Support:** Responsive support based in the UK is essential for resolving issues promptly.
 - **FSCS Coverage:** Confirm whether the provider is covered by the FSCS to protect your deposits.
 
-Comparing business accounts on platforms like Compare Business Account can help in finding UK-focused solutions that leverage Open Banking technology, ensuring compliance and operational advantages in 2026 and beyond.`
+Comparing business accounts on platforms like Business Bank Compare can help in finding UK-focused solutions that leverage Open Banking technology, ensuring compliance and operational advantages in 2026 and beyond.`
       },
     ],
     relatedGuides: ['best-business-bank-accounts-uk-2026', 'how-to-apply-business-loans-uk-2026']
   },
   'what-do-i-need-to-open-a-business-bank-account-uk': {
     slug: 'what-do-i-need-to-open-a-business-bank-account-uk',
-    title: 'What Do I Need To Open A Business Bank Account UK 2026 | Compare Business Account',
+    title: 'What Do I Need To Open A Business Bank Account UK 2026 | Business Bank Compare',
     metaDescription: 'Discover what you need to open a business bank account in the UK in 2026. Essential documents, requirements, and tips to get started smoothly.',
     h1: 'What Do I Need To Open A Business Bank Account in the UK?',
     intro: 'Opening a business bank account is a key step for any UK entrepreneur looking to manage finances professionally and separately from personal funds. In 2026, UK banks require specific documentation and information to set up your business account efficiently. This guide outlines the essential requirements and considerations to help you open your UK business bank account with ease.',
@@ -2776,7 +2776,7 @@ Proper ongoing management helps keep your business finances organised, transpare
   },
   'how-long-does-it-take-to-open-a-business-bank-account': {
     slug: 'how-long-does-it-take-to-open-a-business-bank-account',
-    title: 'How Long Does It Take to Open a Business Bank Account UK 2026 | Compare Business Account',
+    title: 'How Long Does It Take to Open a Business Bank Account UK 2026 | Business Bank Compare',
     metaDescription: 'Discover how long it takes to open a UK business bank account in 2026. Understand processes, requirements & get tips for faster approval.',
     h1: 'How Long Does It Take to Open a Business Bank Account in the UK?',
     intro: 'Opening a business bank account is a crucial step for any UK company, helping separate personal and business finances while complying with HMRC regulations. In 2026, the timeline to open a UK business bank account varies depending on the bank, business type, and required documentation. This guide outlines the typical process, factors influencing timing, and tips to speed up approval.',
@@ -2834,7 +2834,7 @@ Due to these essential checks, delays can sometimes occur, especially if additio
 - **Choose digital-first banks:** Many UK fintech and challenger banks offer streamlined, online application processes with decisions within 24–72 hours.
 - **Be transparent about your business:** Clearly explain your business activities and expected transactions during the application to avoid additional checks.
 - **Respond quickly to bank queries:** Banks often request extra information; speedy replies accelerate approval.
-- **Use comparison tools:** Platforms like Compare Business Account help you select providers suited to your business type, saving time.
+- **Use comparison tools:** Platforms like Business Bank Compare help you select providers suited to your business type, saving time.
 
 Following these strategies can help you get an account up and running faster while meeting the FCA’s compliance needs.`
       },
@@ -2860,7 +2860,7 @@ Remember, even after opening, your account remains subject to ongoing compliance
   },
   'can-i-open-a-business-bank-account-online-uk': {
     slug: 'can-i-open-a-business-bank-account-online-uk',
-    title: 'Can I Open A Business Bank Account Online UK 2026? | Compare Business Account',
+    title: 'Can I Open A Business Bank Account Online UK 2026? | Business Bank Compare',
     metaDescription: 'Discover how to open a UK business bank account online in 2026. Compare features, requirements & FCA regulated banks with FSCS protection today.',
     h1: 'Can I Open A Business Bank Account Online in the UK?',
     intro: 'Opening a business bank account online in the UK has become increasingly accessible in 2026, enabling startups and established businesses to manage finances smoothly. This comprehensive guide covers everything you need to know about applying for a UK business bank account online, including eligibility, documentation, FCA regulation, and FSCS protection.',
@@ -3035,7 +3035,7 @@ Ensure you maintain clear records and consult with UK tax professionals to meet 
   },
   'best-business-bank-account-for-ecommerce-uk': {
     slug: 'best-business-bank-account-for-ecommerce-uk',
-    title: 'Best Business Bank Account for Ecommerce UK 2026 | Compare Business Accounts',
+    title: 'Best Business Bank Account for Ecommerce UK 2026 | Business Bank Compare',
     metaDescription: 'Discover the best business bank accounts for ecommerce in the UK in 2026. Compare features, fees & FCA protection to choose the perfect account.',
     h1: 'Best Business Bank Account for Ecommerce UK in 2026',
     intro: 'Choosing the right business bank account is essential for ecommerce businesses in the UK to manage finances efficiently, comply with regulations, and access tailored banking features. In 2026, UK ecommerce firms have unique needs such as seamless payment integration, robust security, and FCA protections. This guide explores the top business bank accounts designed for ecommerce merchants, helping you make an informed choice.',
@@ -3137,7 +3137,7 @@ By choosing an FCA-approved business account with FSCS protection, ecommerce ent
   },
   'best-business-bank-account-for-freelancers-uk': {
     slug: 'best-business-bank-account-for-freelancers-uk',
-    title: 'Best Business Bank Account for Freelancers UK 2026 | Compare Business Account',
+    title: 'Best Business Bank Account for Freelancers UK 2026 | Business Bank Compare',
     metaDescription: 'Discover the best business bank accounts for freelancers in the UK. Compare features, fees, FCA protection & more to find your perfect business banking solution.',
     h1: 'Best Business Bank Account for Freelancers in the UK: 2026 Complete Guide',
     intro: 'Finding the right business bank account is crucial for freelancers in the UK to manage their finances efficiently, comply with HMRC and Companies House regulations, and benefit from FCA and FSCS protection. This guide explores the best business bank accounts available in 2026, tailored specifically for freelancers, providing a detailed comparison of fees, features, and benefits.',
@@ -3230,7 +3230,7 @@ Following these tips will safeguard your financial health and help maintain a re
   },
   'charity-bank-accounts-uk-guide': {
     slug: 'charity-bank-accounts-uk-guide',
-    title: 'Charity Bank Accounts UK Guide 2026 | Compare Business Account',
+    title: 'Charity Bank Accounts UK Guide 2026 | Business Bank Compare',
     metaDescription: 'Discover everything you need to know about charity bank accounts in the UK for 2026. Compare options, fees & benefits to choose the best account for your charity.',
     h1: 'Charity Bank Accounts UK Guide 2026',
     intro: 'Managing your charity’s finances efficiently begins with selecting the right charity bank account. This 2026 guide covers everything UK charities need to know about business bank accounts, including FCA regulation, FSCS protection, HMRC reporting, and Companies House requirements. Compare top providers tailored for UK charities and make an informed choice seamlessly.',
@@ -3320,7 +3320,7 @@ When comparing, evaluate fees, service quality, digital capabilities, and charit
   },
   'partnership-business-bank-accounts-uk': {
     slug: 'partnership-business-bank-accounts-uk',
-    title: 'Partnership Business Bank Accounts UK 2026 | Compare Business Account',
+    title: 'Partnership Business Bank Accounts UK 2026 | Business Bank Compare',
     metaDescription: 'Explore the best partnership business bank accounts in the UK for 2026. Compare fees, features, and FCA-regulated options tailored for UK partnerships.',
     h1: 'The Ultimate Guide to Partnership Business Bank Accounts in the UK 2026',
     intro: 'Managing your partnership’s finances begins with choosing the right business bank account. In 2026, UK partnerships need secure, compliant, and cost-effective banking solutions to thrive. This guide covers everything you need to know about partnership business bank accounts – from legal requirements to FCA regulation, FSCS protection, and key account features tailored for UK partnerships.',
@@ -3433,7 +3433,7 @@ Opening a dedicated partnership bank account simplifies financial management, su
   },
   'how-to-switch-business-bank-accounts-uk': {
     slug: 'how-to-switch-business-bank-accounts-uk',
-    title: 'How To Switch Business Bank Accounts UK 2026 | Compare Business Account',
+    title: 'How To Switch Business Bank Accounts UK 2026 | Business Bank Compare',
     metaDescription: 'Discover how to switch business bank accounts in the UK with ease. Step-by-step guide for 2026, FCA compliance, FSCS protection, HMRC & Companies House.',
     h1: 'How To Switch Business Bank Accounts in the UK: A 2026 Guide',
     intro: 'Switching your business bank account in the UK can seem daunting, but with the right guidance, the process is smooth, secure, and compliant with UK financial regulations. This 2026 guide explains everything you need to know to switch your business account effectively while ensuring compliance with FCA standards, FSCS protection, and notifications to HMRC and Companies House.',
@@ -3541,7 +3541,7 @@ Taking these steps will help safeguard your cash flow and ensure continued smoot
   },
   'business-bank-account-limits-and-restrictions': {
     slug: 'business-bank-account-limits-and-restrictions',
-    title: 'Business Bank Account Limits and Restrictions UK 2026 | Compare Business Accounts',
+    title: 'Business Bank Account Limits and Restrictions UK 2026 | Business Bank Compare',
     metaDescription: 'Discover key business bank account limits and restrictions in the UK for 2026. Compare options with FCA and FSCS compliance to find the best account for your business.',
     h1: 'Business Bank Account Limits and Restrictions in the UK: What Every Business Owner Should Know in 2026',
     intro: 'Navigating business bank account limits and restrictions is crucial for UK businesses in 2026. From transaction thresholds to deposit safeguards, understanding these factors can help you choose the right banking partner. This guide covers essential aspects including FCA regulations, FSCS protection, and compliance with HMRC and Companies House requirements.',
@@ -3613,7 +3613,7 @@ However, with these advancements come new regulatory considerations overseen by 
   },
   'managing-cash-flow-with-your-business-account': {
     slug: 'managing-cash-flow-with-your-business-account',
-    title: 'Managing Cash Flow with Your Business Account UK 2026 | Compare Business Account',
+    title: 'Managing Cash Flow with Your Business Account UK 2026 | Business Bank Compare',
     metaDescription: 'Discover expert tips on managing cash flow with your business account in the UK, ensuring financial stability and growth in 2026.',
     h1: 'Managing Cash Flow with Your Business Account in the UK: A 2026 Guide',
     intro: 'Effective cash flow management is vital for UK businesses to thrive in 2026. Your business account plays a central role in monitoring, managing, and optimising your finances. This guide covers key strategies to help you maintain liquidity, navigate regulatory requirements such as FCA compliance, and make the most of your account features to support sustainable growth.',
@@ -3686,7 +3686,7 @@ Aligning your cash flow processes with regulatory requirements protects your bus
   },
   'how-to-add-a-director-to-a-business-bank-account': {
     slug: 'how-to-add-a-director-to-a-business-bank-account',
-    title: 'How To Add A Director To A Business Bank Account UK 2026 | Compare Business Account',
+    title: 'How To Add A Director To A Business Bank Account UK 2026 | Business Bank Compare',
     metaDescription: 'Learn how to add a director to a UK business bank account in 2026 with our comprehensive, step-by-step guide. Stay FCA compliant & secure your business funds.',
     h1: 'How To Add A Director To A Business Bank Account in the UK (2026)',
     intro: 'Adding a director to your UK business bank account can be essential for smooth financial management and operational flexibility. Whether expanding your leadership team or formalising new roles, understanding the process ensures compliance and security. This guide covers everything from legal considerations to the practical steps you need to follow in 2026 for UK businesses.',
@@ -3762,7 +3762,7 @@ By managing access carefully and ensuring all directors understand their banking
   },
   'hidden-fees-in-business-bank-accounts-uk': {
     slug: 'hidden-fees-in-business-bank-accounts-uk',
-    title: 'Hidden Fees in Business Bank Accounts UK 2026 | Compare Business Account',
+    title: 'Hidden Fees in Business Bank Accounts UK 2026 | Business Bank Compare',
     metaDescription: 'Discover hidden fees in UK business bank accounts & how to avoid costly surprises. Compare business accounts with confidence in 2026.',
     h1: 'Understanding Hidden Fees in Business Bank Accounts in the UK',
     intro: 'Choosing the right business bank account in the UK is essential for managing your company’s finances efficiently. However, many UK-based businesses encounter hidden fees that can impact their bottom line. This guide explains common hidden charges in business bank accounts, helping you make informed decisions and avoid unexpected costs in 2026.',
@@ -3827,7 +3827,7 @@ While these organisations do not govern banking fees, ensuring your bank stateme
   },
   'are-digital-business-banks-safe-uk': {
     slug: 'are-digital-business-banks-safe-uk',
-    title: 'Are Digital Business Banks Safe in the UK 2026? | Compare Business Accounts',
+    title: 'Are Digital Business Banks Safe in the UK 2026? | Business Bank Compare',
     metaDescription: 'Discover whether digital business banks are safe in the UK in 2026 with insights on FCA regulation, FSCS protection and how to choose the best business account.',
     h1: 'Are Digital Business Banks Safe in the UK? Your 2026 Guide',
     intro: 'Digital business banks have revolutionised how UK companies manage their finances, offering convenience and innovative features. But as these banks grow in popularity, many UK business owners want to know: Are digital business banks safe? This comprehensive 2026 guide unpacks key safety considerations, regulatory protections, and practical tips to help you confidently choose your next business account.',
@@ -3912,7 +3912,7 @@ Digital business banks can provide tremendous convenience and innovation to UK b
   },
   'business-bank-account-transaction-fees-explained': {
     slug: 'business-bank-account-transaction-fees-explained',
-    title: 'Business Bank Account Transaction Fees Explained UK 2026 | Compare Business Account',
+    title: 'Business Bank Account Transaction Fees Explained UK 2026 | Business Bank Compare',
     metaDescription: 'Understand UK business bank account transaction fees in 2026. Compare costs, FCA protections & save on charges with our comprehensive guide.',
     h1: 'Business Bank Account Transaction Fees Explained for UK Businesses in 2026',
     intro: 'Navigating business bank account transaction fees can be challenging for UK companies. With regulations from the FCA and protections like FSCS in place, understanding these fees is crucial to managing your business finances effectively in 2026. This guide simplifies transaction charges, helping you compare accounts and find the best fit for your business needs.',
@@ -3988,7 +3988,7 @@ Our comparison platform allows UK businesses to easily identify accounts with th
   },
   'how-to-avoid-business-banking-fees-uk': {
     slug: 'how-to-avoid-business-banking-fees-uk',
-    title: 'How To Avoid Business Banking Fees UK 2026 | Compare Business Account',
+    title: 'How To Avoid Business Banking Fees UK 2026 | Business Bank Compare',
     metaDescription: 'Discover how UK businesses can avoid expensive banking fees in 2026 with expert tips, FCA guidance, and top account comparisons.',
     h1: 'How To Avoid Business Banking Fees in the UK: A 2026 Guide',
     intro: 'Business banking fees can significantly impact your UK business’s bottom line. In 2026, with evolving regulations from the FCA and the rise of fintech, it’s crucial to understand how to avoid unnecessary charges. This guide provides practical strategies, insights on FCA regulations, and tips to choose the right business account to keep your finances efficient and cost-effective.',
@@ -4073,7 +4073,7 @@ These solutions often operate under FCA regulation and may provide FSCS protecti
   },
   'business-bank-accounts-with-invoicing-tools': {
     slug: 'business-bank-accounts-with-invoicing-tools',
-    title: 'Top Business Bank Accounts With Invoicing Tools UK 2026 | Compare Business Account',
+    title: 'Top Business Bank Accounts With Invoicing Tools UK 2026 | Business Bank Compare',
     metaDescription: 'Discover the best UK business bank accounts with built-in invoicing tools for 2026. Streamline your payments, stay FCA compliant & manage finances easily.',
     h1: 'Business Bank Accounts With Invoicing Tools: A Comprehensive UK Guide 2026',
     intro: 'In 2026, UK businesses demand seamless financial solutions to manage their operations efficiently. Business bank accounts with integrated invoicing tools have become vital for SMEs, simplifying payment processing and compliance with FCA and HMRC requirements. This guide explores the best options available in the UK market, ensuring your business stays organised, compliant, and competitive.',
@@ -4150,7 +4150,7 @@ This level of integration supports SMEs and startups in staying agile within the
   },
   'best-business-bank-accounts-for-xero-integration': {
     slug: 'best-business-bank-accounts-for-xero-integration',
-    title: 'Best Business Bank Accounts for Xero Integration UK 2026 | Compare Business Account',
+    title: 'Best Business Bank Accounts for Xero Integration UK 2026 | Business Bank Compare',
     metaDescription: 'Discover the best UK business bank accounts with seamless Xero integration for 2026. Compare features, FCA protection, and benefits today.',
     h1: 'Best Business Bank Accounts for Xero Integration in the UK 2026',
     intro: 'Choosing the right business bank account is vital for efficient financial management and seamless bookkeeping. For UK businesses, integrating your bank account with Xero—the leading cloud accounting software—can save time and reduce errors. In this guide, we compare the best business bank accounts with Xero compatibility, FCA regulation, and FSCS protection to help your business thrive in 2026.',
@@ -4255,7 +4255,7 @@ Start by comparing the top providers highlighted here, visit their official webs
   },
   'business-bank-accounts-with-expense-cards': {
     slug: 'business-bank-accounts-with-expense-cards',
-    title: 'Business Bank Accounts With Expense Cards UK 2026 | Compare Business Account',
+    title: 'Business Bank Accounts With Expense Cards UK 2026 | Business Bank Compare',
     metaDescription: 'Discover the best business bank accounts with expense cards in the UK for 2026. Compare features, FCA protection & HMRC compliance easily.',
     h1: 'The Ultimate Guide to Business Bank Accounts With Expense Cards in the UK (2026)',
     intro: 'Managing business finances efficiently is vital for UK companies in 2026. Business bank accounts with expense cards allow seamless control over spending while keeping accounts transparent and compliant with UK regulations. This guide explores top providers, FCA protections, and tax considerations for your business.',
@@ -4333,7 +4333,7 @@ Most providers support quick digital onboarding with full HMRC and Companies Hou
   },
   'open-banking-for-uk-businesses-explained': {
     slug: 'open-banking-for-uk-businesses-explained',
-    title: 'Open Banking for UK Businesses Explained 2026 | Compare Business Account',
+    title: 'Open Banking for UK Businesses Explained 2026 | Business Bank Compare',
     metaDescription: 'Discover how Open Banking empowers UK businesses in 2026 with secure, FCA-regulated services and seamless financial management.',
     h1: 'Open Banking for UK Businesses Explained: A 2026 Guide',
     intro: 'Open Banking is revolutionising the way UK businesses manage their finances by providing secure, seamless access to banking data through FCA-regulated platforms. In 2026, understanding Open Banking is essential for businesses aiming to optimise cash flow, streamline accounting, and improve financial decision-making. This guide explains what Open Banking means for UK businesses, its benefits, and how to safely harness this technology.',

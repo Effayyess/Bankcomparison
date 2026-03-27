@@ -48,11 +48,11 @@ export default function Footer() {
           <div>
             <Link href="/" className="flex items-center gap-2.5 mb-4 no-underline">
               <div className="w-9 h-9 rounded-lg overflow-hidden flex-shrink-0">
-                <img src="/logo-square.png" alt="Compare Business Account" className="w-full h-full object-cover" />
+                <img src="/logo-square.png" alt="Business Bank Compare" className="w-full h-full object-cover" />
               </div>
               <div>
-                <p className="font-bold text-sm leading-tight text-white">Compare Business Account</p>
-                <p className="text-xs leading-tight" style={{ color: 'rgba(255,255,255,0.5)' }}>comparebusinessaccount.co.uk</p>
+                <p className="font-bold text-sm leading-tight text-white">Business Bank Compare</p>
+                <p className="text-xs leading-tight" style={{ color: 'rgba(255,255,255,0.5)' }}>businessbankcompare.co.uk</p>
               </div>
             </Link>
             <p className="text-sm leading-relaxed mb-4" style={{ color: 'rgba(255,255,255,0.55)' }}>
@@ -143,14 +143,14 @@ export default function Footer() {
       <div style={{ background: 'oklch(0.14 0.04 240)', borderTop: '1px solid oklch(0.25 0.06 240)' }}>
         <div className="container py-6">
           <p className="text-xs leading-relaxed mb-3" style={{ color: 'rgba(255,255,255,0.4)' }}>
-            <span className="font-semibold" style={{ color: 'rgba(255,255,255,0.6)' }}>Important Information:</span> comparebusinessaccount.co.uk is an independent comparison website and is not regulated or authorised by the Financial Conduct Authority (FCA). We do not provide financial advice, and the information on this website is for informational purposes only. Always read the full terms and conditions before opening any financial product. Business bank account features and fees are subject to change — please verify current details directly with the provider.
+            <span className="font-semibold" style={{ color: 'rgba(255,255,255,0.6)' }}>Important Information:</span> businessbankcompare.co.uk is an independent comparison website and is not regulated or authorised by the Financial Conduct Authority (FCA). We do not provide financial advice, and the information on this website is for informational purposes only. Always read the full terms and conditions before opening any financial product. Business bank account features and fees are subject to change — please verify current details directly with the provider.
           </p>
           <p className="text-xs leading-relaxed mb-5" style={{ color: 'rgba(255,255,255,0.4)' }}>
             FSCS protection covers eligible deposits up to £120,000 per person per authorised institution. Not all providers listed are FSCS protected — please check individual provider details. Think carefully before taking on any financial product.
           </p>
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <p className="text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>
-              © {year} Compare Business Account. All rights reserved.
+              © {year} Business Bank Compare. All rights reserved.
             </p>
             <div className="flex flex-wrap items-center gap-4">
               {[

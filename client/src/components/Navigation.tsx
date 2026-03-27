@@ -140,11 +140,11 @@ export default function Navigation() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 no-underline">
             <div className="w-9 h-9 rounded-lg overflow-hidden flex-shrink-0">
-              <img src="/logo-square.png" alt="Compare Business Account" className="w-full h-full object-cover" />
+              <img src="/logo-square.png" alt="Business Bank Compare" className="w-full h-full object-cover" />
             </div>
             <div>
               <div className="font-bold text-base leading-tight" style={{ fontFamily: 'Sora, sans-serif', color: 'oklch(0.26 0.07 240)' }}>
-                Compare Business Account
+                Business Bank Compare
               </div>
             </div>
           </Link>

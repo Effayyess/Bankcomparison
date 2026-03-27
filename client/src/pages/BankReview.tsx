@@ -64,7 +64,7 @@ export default function BankReview() {
     },
     author: {
       '@type': 'Organization',
-      name: 'Compare Business Account',
+      name: 'Business Bank Compare',
     },
     itemReviewed: {
       '@type': 'FinancialProduct',
@@ -76,7 +76,7 @@ export default function BankReview() {
   return (
     <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Sora, sans-serif' }}>
       <SEO
-        title={`${bank.name} Business Bank Account Review ${year} | Compare Business Account`}
+        title={`${bank.name} Business Bank Account Review ${year} | Business Bank Compare`}
         description={`Read our independent ${bank.name} business bank account review. We cover fees, features, pros and cons, and who it's best for. Rated ${bank.rating}/5.`}
         keywords={`${bank.name} review, ${bank.name} business bank account, ${bank.provider} business account review, ${bank.name} fees, ${bank.name} business banking`}
         canonicalPath={`/${slug}`}

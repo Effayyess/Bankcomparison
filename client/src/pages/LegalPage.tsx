@@ -20,10 +20,10 @@ interface LegalPage {
 
 const legalPages: Record<string, LegalPage> = {
   'privacy-policy': {
-    title: 'Privacy Policy | CompareBusiness Account',
+    title: 'Privacy Policy | Business Bank Compare',
     h1: 'Privacy Policy',
     lastUpdated: '',
-    intro: 'This Privacy Policy explains how CompareBusiness Account ("we", "us", "our") collects, uses, and protects your personal information when you visit our website at comparebusinessaccount.co.uk.',
+    intro: 'This Privacy Policy explains how Business Bank Compare ("we", "us", "our") collects, uses, and protects your personal information when you visit our website at businessbankcompare.co.uk.',
     sections: [
       {
         heading: 'Information We Collect',
@@ -82,7 +82,7 @@ These services may collect information about your use of our website in accordan
 - **Right to data portability:** You can ask us to provide your information in a portable format
 - **Right to object:** You can object to our processing of your information in certain circumstances
 
-To exercise any of these rights, please contact us at privacy@comparebusinessaccount.co.uk.
+To exercise any of these rights, please contact us at privacy@businessbankcompare.co.uk.
 
 You also have the right to lodge a complaint with the Information Commissioner's Office (ICO) at ico.org.uk.`,
       },
@@ -90,7 +90,7 @@ You also have the right to lodge a complaint with the Information Commissioner's
         heading: 'Contact Us',
         content: `If you have any questions about this Privacy Policy or how we handle your personal information, please contact us at:
 
-Email: privacy@comparebusinessaccount.co.uk
+Email: privacy@businessbankcompare.co.uk
 
 We will respond to your enquiry within 30 days.`,
       },
@@ -98,10 +98,10 @@ We will respond to your enquiry within 30 days.`,
   },
 
   'cookie-policy': {
-    title: 'Cookie Policy | CompareBusiness Account',
+    title: 'Cookie Policy | Business Bank Compare',
     h1: 'Cookie Policy',
     lastUpdated: '',
-    intro: 'This Cookie Policy explains how CompareBusiness Account uses cookies and similar tracking technologies on our website. By continuing to use our website, you consent to our use of cookies as described in this policy.',
+    intro: 'This Cookie Policy explains how Business Bank Compare uses cookies and similar tracking technologies on our website. By continuing to use our website, you consent to our use of cookies as described in this policy.',
     sections: [
       {
         heading: 'What Are Cookies?',
@@ -143,14 +143,14 @@ For more information about managing cookies, visit aboutcookies.org or allaboutc
   },
 
   'terms-of-use': {
-    title: 'Terms of Use | CompareBusiness Account',
+    title: 'Terms of Use | Business Bank Compare',
     h1: 'Terms of Use',
     lastUpdated: '',
-    intro: 'These Terms of Use govern your use of the CompareBusiness Account website at comparebusinessaccount.co.uk. By using our website, you agree to these terms. Please read them carefully.',
+    intro: 'These Terms of Use govern your use of the Business Bank Compare website at businessbankcompare.co.uk. By using our website, you agree to these terms. Please read them carefully.',
     sections: [
       {
         heading: 'About Our Website',
-        content: `CompareBusiness Account is an independent comparison website that provides information about UK business bank accounts. We are not a bank, financial institution, or financial adviser.
+        content: `Business Bank Compare is an independent comparison website that provides information about UK business bank accounts. We are not a bank, financial institution, or financial adviser.
 
 The information on our website is provided for general informational purposes only and does not constitute financial, legal, or professional advice. Always seek professional advice before making financial decisions.`,
       },
@@ -170,13 +170,13 @@ Our editorial rankings and reviews are independent of our affiliate relationship
       },
       {
         heading: 'Intellectual Property',
-        content: `All content on this website, including text, graphics, logos, and images, is owned by or licensed to CompareBusiness Account and is protected by copyright law.
+        content: `All content on this website, including text, graphics, logos, and images, is owned by or licensed to Business Bank Compare and is protected by copyright law.
 
 You may not reproduce, distribute, or create derivative works from our content without our express written permission. You may share links to our content, provided you attribute the source.`,
       },
       {
         heading: 'Limitation of Liability',
-        content: `To the fullest extent permitted by law, CompareBusiness Account shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising from your use of our website or reliance on information contained on it.
+        content: `To the fullest extent permitted by law, Business Bank Compare shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising from your use of our website or reliance on information contained on it.
 
 We do not accept liability for any loss or damage resulting from:
 - Inaccurate or outdated information on our website
@@ -196,14 +196,14 @@ We do not accept liability for any loss or damage resulting from:
   },
 
   'editorial-policy': {
-    title: 'Editorial Policy | CompareBusiness Account',
+    title: 'Editorial Policy | Business Bank Compare',
     h1: 'Editorial Policy',
     lastUpdated: '',
-    intro: 'CompareBusiness Account is committed to providing independent, accurate, and unbiased information to help UK business owners make informed decisions about their business banking. This Editorial Policy explains how we research, write, and maintain our content.',
+    intro: 'Business Bank Compare is committed to providing independent, accurate, and unbiased information to help UK business owners make informed decisions about their business banking. This Editorial Policy explains how we research, write, and maintain our content.',
     sections: [
       {
         heading: 'Our Independence',
-        content: `CompareBusiness Account is an independent comparison website. We are not owned by, affiliated with, or funded by any bank or financial institution.
+        content: `Business Bank Compare is an independent comparison website. We are not owned by, affiliated with, or funded by any bank or financial institution.
 
 Our editorial team makes all ranking and recommendation decisions independently, based on our own research and assessment criteria. Commercial relationships (such as affiliate partnerships) do not influence our editorial rankings or the content of our reviews.
 
@@ -267,7 +267,7 @@ Each article and review displays the date it was last updated so you can assess 
       },
       {
         heading: 'Corrections Policy',
-        content: `We take accuracy seriously. If you believe any information on our website is incorrect, please contact us at editorial@comparebusinessaccount.co.uk. We will investigate and, if necessary, correct the information promptly.
+        content: `We take accuracy seriously. If you believe any information on our website is incorrect, please contact us at editorial@businessbankcompare.co.uk. We will investigate and, if necessary, correct the information promptly.
 
 Significant corrections will be noted in the relevant article.`,
       },
@@ -275,7 +275,7 @@ Significant corrections will be noted in the relevant article.`,
         heading: 'Contact Our Editorial Team',
         content: `If you have questions about our editorial process, want to report an inaccuracy, or have a media enquiry, please contact us at:
 
-Email: editorial@comparebusinessaccount.co.uk
+Email: editorial@businessbankcompare.co.uk
 
 We aim to respond to all editorial enquiries within 5 working days.`,
       },
@@ -283,7 +283,7 @@ We aim to respond to all editorial enquiries within 5 working days.`,
   },
 
   'contact': {
-    title: 'Contact Us | CompareBusiness Account',
+    title: 'Contact Us | Business Bank Compare',
     h1: 'Contact Us',
     lastUpdated: '',
     intro: 'We are here to help. Whether you have a question about a business bank account, need help using our website, or want to provide feedback, please get in touch using the details below.',
@@ -292,7 +292,7 @@ We aim to respond to all editorial enquiries within 5 working days.`,
         heading: 'General Enquiries',
         content: `For general questions about our website, comparisons, or services:
 
-Email: info@comparebusinessaccount.co.uk
+Email: info@businessbankcompare.co.uk
 
 We aim to respond to all general enquiries within 2-3 working days.`
       },
@@ -300,7 +300,7 @@ We aim to respond to all general enquiries within 2-3 working days.`
         heading: 'Editorial & Corrections',
         content: `If you have spotted an inaccuracy on our website, want to suggest an update, or have a question about our editorial process:
 
-Email: editorial@comparebusinessaccount.co.uk
+Email: editorial@businessbankcompare.co.uk
 
 Please include the URL of the page you are referring to in your email.`
       },
@@ -308,17 +308,17 @@ Please include the URL of the page you are referring to in your email.`
         heading: 'Partnerships & Advertising',
         content: `If you represent a bank or financial institution and would like to discuss partnership opportunities:
 
-Email: partnerships@comparebusinessaccount.co.uk`
+Email: partnerships@businessbankcompare.co.uk`
       },
       {
         heading: 'Data Privacy',
         content: `For questions about how we handle your personal data, or to exercise your rights under the UK GDPR:
 
-Email: privacy@comparebusinessaccount.co.uk`
+Email: privacy@businessbankcompare.co.uk`
       },
       {
         heading: 'Important Note',
-        content: `CompareBusiness Account is an independent comparison website. **We are not a bank and we cannot access your bank account details, process transactions, or resolve issues with your specific bank.**
+        content: `Business Bank Compare is an independent comparison website. **We are not a bank and we cannot access your bank account details, process transactions, or resolve issues with your specific bank.**
 
 If you have a problem with your business bank account, you must contact your bank directly using the contact details provided on their official website or the back of your bank card.`
       }

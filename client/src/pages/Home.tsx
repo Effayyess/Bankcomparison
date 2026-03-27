@@ -93,12 +93,12 @@ export default function Home() {
   const homeSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Compare Business Account',
-    url: 'https://comparebusinessaccount.co.uk',
+    name: 'Business Bank Compare',
+    url: 'https://businessbankcompare.co.uk',
     description: 'Independent comparison of the best UK business bank accounts. Compare fees, features, and reviews to find the right account for your business.',
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://comparebusinessaccount.co.uk/compare?q={search_term_string}',
+      target: 'https://businessbankcompare.co.uk/compare?q={search_term_string}',
       'query-input': 'required name=search_term_string',
     },
   };
@@ -106,7 +106,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Sora, sans-serif' }}>
       <SEO
-        title={`Best Business Bank Accounts UK ${new Date().getFullYear()} | Compare Business Account`}
+        title={`Best Business Bank Accounts UK ${new Date().getFullYear()} | Business Bank Compare`}
         description="Compare the best UK business bank accounts. Independent reviews of Starling, Tide, Monzo, Revolut, HSBC and more. Find the right account for sole traders, limited companies and startups."
         keywords="best business bank account, compare business bank account, UK business bank account, business bank account comparison, best business account UK, sole trader bank account, limited company bank account, free business bank account"
         canonicalPath="/"
@@ -367,7 +367,7 @@ export default function Home() {
         <div className="container">
           <div className="max-w-3xl mx-auto text-center mb-10">
             <h2 className="text-2xl font-bold text-gray-900 mb-3" style={{ fontFamily: 'Sora, sans-serif' }}>
-              Why Compare Business Accounts With Us?
+              Why Business Bank Compare With Us?
             </h2>
             <p className="text-gray-600 text-sm leading-relaxed">
               We're an independent comparison site — we're not owned by a bank and we don't favour any provider. Our rankings are based on genuine editorial assessment.

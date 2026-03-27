@@ -9,7 +9,7 @@ export default function GuidesHub() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <SEO
-        title={`Business Banking Guides & Resources UK ${new Date().getFullYear()} | Compare Business Account`}
+        title={`Business Banking Guides & Resources UK ${new Date().getFullYear()} | Business Bank Compare`}
         description="Expert guides on UK business banking. Learn how to open an account, switch banks, understand fees, and find the best account for your business type."
         keywords="business bank account guide, UK business banking guides, how to open business bank account, business banking tips, sole trader banking guide"
         canonicalPath="/guides"

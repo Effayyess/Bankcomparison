@@ -34,7 +34,7 @@ export default function GuidesCategory({ categoryId }: Props) {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <SEO
-        title={`${category.title} — Business Banking Guides UK ${new Date().getFullYear()} | Compare Business Account`}
+        title={`${category.title} — Business Banking Guides UK ${new Date().getFullYear()} | Business Bank Compare`}
         description={category.description}
         keywords={`business bank account guide, ${category.title.toLowerCase()}, UK business banking`}
         canonicalPath={`/guides/category/${category.id}`}
