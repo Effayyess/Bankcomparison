@@ -13,8 +13,9 @@ import Home from "./pages/Home";
 import Compare from "./pages/Compare";
 import BankReview from "./pages/BankReview";
 import CategoryPage from "./pages/CategoryPage";
-import GuidePage from "./pages/GuidePage";
-import GuidesHub from "./pages/GuidesHub";
+import GuidePage from './pages/GuidePage';
+import GuidesHub from './pages/GuidesHub';
+import GuidesCategory from './pages/GuidesCategory';
 import LegalPage from './pages/LegalPage';
 import FindMyAccount from './pages/FindMyAccount';
 
@@ -29,6 +30,9 @@ function Router() {
         <Route path="/find-my-account" component={FindMyAccount} />
         <Route path="/category/:slug" component={CategoryPage} />
         <Route path="/guides" component={GuidesHub} />
+        <Route path="/guides/category/:categoryId">
+          {(params) => <GuidesCategory categoryId={params.categoryId} />}
+        </Route>
         <Route path="/guides/:slug" component={GuidePage} />
         <Route path="/privacy-policy">
           {() => <LegalPage slug="privacy-policy" />}
