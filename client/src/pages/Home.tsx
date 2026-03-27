@@ -31,7 +31,7 @@ const faqs = [
   },
   {
     question: 'What is FSCS protection?',
-    answer: 'The Financial Services Compensation Scheme (FSCS) protects eligible deposits up to £85,000 per person per authorised firm (£170,000 for joint accounts). Some newer banks, like Tide (via ClearBank), offer protection up to £120,000. E-money institutions like Revolut and Wise are not FSCS protected but must safeguard your funds in a separate account. Always check the protection status before opening an account.',
+    answer: 'The Financial Services Compensation Scheme (FSCS) protects eligible deposits up to £120,000 per person per authorised firm (£240,000 for joint accounts). This limit increased from £85,000 on 1 December 2025. E-money institutions like Revolut and Wise are not FSCS protected but must safeguard your funds in a separate ring-fenced account. Always check the protection status before opening an account.',
   },
   {
     question: 'What is the best free business bank account in the UK?',
@@ -47,7 +47,7 @@ const faqs = [
   },
   {
     question: 'Are digital business bank accounts safe?',
-    answer: 'Yes, regulated digital business bank accounts are safe. Most are authorised by the Financial Conduct Authority (FCA) and either hold a full banking licence (like Starling and Monzo, which are FSCS protected up to £85,000) or are e-money institutions that must safeguard your funds in a separate ring-fenced account. Always check the FCA register before opening an account with any provider.',
+    answer: 'Yes, regulated digital business bank accounts are safe. Most are authorised by the Financial Conduct Authority (FCA) and either hold a full banking licence (like Starling and Monzo, which are FSCS protected up to £120,000) or are e-money institutions that must safeguard your funds in a separate ring-fenced account. Always check the FCA register before opening an account with any provider.',
   },
   {
     question: 'Can I get a business bank account with bad credit?',
@@ -285,13 +285,13 @@ export default function Home() {
       </section>
 
       {/* Account type categories grid */}
-      <section className="py-12 bg-gray-50 border-t border-gray-200">
+      <section className="py-12" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #0d2a27 100%)' }}>
         <div className="container">
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2" style={{ fontFamily: 'Sora, sans-serif' }}>
+            <h2 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Sora, sans-serif' }}>
               Types of Business Bank Account Available
             </h2>
-            <p className="text-gray-600 text-sm">Browse by account type to find the best account for your specific needs</p>
+            <p className="text-slate-400 text-sm">Browse by account type to find the best account for your specific needs</p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
             {accountTypeCategories.map((cat: AccountTypeCategory) => {
@@ -320,16 +320,19 @@ export default function Home() {
               };
               const href = catHrefMap[cat.type] || `/category/${cat.type}`;
               return (
-                <Link key={cat.type} href={href} className="no-underline">
-                  <div className="bg-white border border-gray-200 rounded-xl p-4 hover:border-teal-300 hover:shadow-md transition-all cursor-pointer group">
-                    <div className="text-2xl mb-2">{cat.icon}</div>
+                <Link key={cat.type} href={href} className="no-underline h-full">
+                  <div
+                    className="rounded-xl p-4 text-center transition-all cursor-pointer group border border-slate-700 hover:border-teal-500 hover:shadow-lg hover:shadow-teal-900/30 flex flex-col items-center justify-start h-full min-h-[110px]"
+                    style={{ backgroundColor: '#1e293b' }}
+                  >
+                    <div className="text-2xl mb-2 flex-shrink-0">{cat.icon}</div>
                     <div
-                      className="text-sm font-semibold text-gray-900 mb-1 group-hover:text-teal-700 transition-colors leading-tight"
+                      className="text-xs font-semibold text-slate-300 group-hover:text-teal-400 transition-colors leading-tight flex-1"
                       style={{ fontFamily: 'Sora, sans-serif' }}
                     >
                       {cat.label}
                     </div>
-                    <div className="text-xs text-gray-500">{count} accounts</div>
+                    <div className="text-xs text-slate-500 mt-1">{count} accounts</div>
                   </div>
                 </Link>
               );

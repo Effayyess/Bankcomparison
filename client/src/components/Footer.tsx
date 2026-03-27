@@ -149,7 +149,7 @@ export default function Footer() {
             <span className="font-semibold" style={{ color: 'rgba(255,255,255,0.6)' }}>Important Information:</span> comparebusinessaccount.co.uk is an independent comparison website and is not regulated or authorised by the Financial Conduct Authority (FCA). We do not provide financial advice, and the information on this website is for informational purposes only. Always read the full terms and conditions before opening any financial product. Business bank account features and fees are subject to change — please verify current details directly with the provider.
           </p>
           <p className="text-xs leading-relaxed mb-5" style={{ color: 'rgba(255,255,255,0.4)' }}>
-            FSCS protection covers eligible deposits up to £85,000 per person per authorised institution. Not all providers listed are FSCS protected — please check individual provider details. Think carefully before taking on any financial product.
+            FSCS protection covers eligible deposits up to £120,000 per person per authorised institution. Not all providers listed are FSCS protected — please check individual provider details. Think carefully before taking on any financial product.
           </p>
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <p className="text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>

@@ -299,13 +299,13 @@ export default function BankReview() {
             </div>
 
             {/* Sidebar */}
-            <div className="space-y-6">
-              {/* Key features */}
-              <div className="bg-white rounded-2xl border border-gray-200 p-5">
-                <h3 className="text-sm font-bold text-gray-900 mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>
+            <div className="space-y-5">
+              {/* Key features — dark navy matching footer */}
+              <div className="rounded-2xl p-5 text-white" style={{ background: '#0f172a', border: '1px solid #1e293b' }}>
+                <h3 className="text-sm font-bold text-white mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>
                   Key Features
                 </h3>
-                <div className="space-y-2.5">
+                <div className="space-y-3">
                   {[
                     { label: 'FSCS Protected', value: bank.fscsProtection, icon: <Shield className="w-4 h-4" /> },
                     { label: 'International Payments', value: bank.internationalPayments, icon: <Globe className="w-4 h-4" /> },
@@ -316,24 +316,28 @@ export default function BankReview() {
                     { label: 'No Credit Check', value: bank.hasNoCreditCheck, icon: <span className="text-sm">✅</span> },
                     { label: 'Overdraft Available', value: bank.overdraft, icon: <span className="text-sm">💳</span> },
                   ].map(({ label, value, icon }) => (
-                    <div key={label} className="flex items-center justify-between gap-2">
-                      <div className="flex items-center gap-2 text-sm text-gray-700">
-                        <span className="text-gray-400">{icon}</span>
+                    <div key={label} className="flex items-center justify-between gap-2 py-1.5" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+                      <div className="flex items-center gap-2 text-sm" style={{ color: 'rgba(255,255,255,0.75)' }}>
+                        <span style={{ color: '#0d9488' }}>{icon}</span>
                         {label}
                       </div>
                       {value ? (
-                        <Check className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                        <div className="flex items-center justify-center w-5 h-5 rounded-full flex-shrink-0" style={{ backgroundColor: '#0d9488' }}>
+                          <Check className="w-3 h-3 text-white" />
+                        </div>
                       ) : (
-                        <X className="w-4 h-4 text-gray-300 flex-shrink-0" />
+                        <div className="flex items-center justify-center w-5 h-5 rounded-full flex-shrink-0" style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}>
+                          <X className="w-3 h-3" style={{ color: 'rgba(255,255,255,0.3)' }} />
+                        </div>
                       )}
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Suitable for */}
-              <div className="bg-white rounded-2xl border border-gray-200 p-5">
-                <h3 className="text-sm font-bold text-gray-900 mb-3" style={{ fontFamily: 'Sora, sans-serif' }}>
+              {/* Suitable for — dark navy matching footer */}
+              <div className="rounded-2xl p-5" style={{ background: '#0f172a', border: '1px solid #1e293b' }}>
+                <h3 className="text-sm font-bold text-white mb-3" style={{ fontFamily: 'Sora, sans-serif' }}>
                   Suitable For
                 </h3>
                 <div className="flex flex-wrap gap-2">
@@ -341,7 +345,7 @@ export default function BankReview() {
                     <span
                       key={s}
                       className="text-xs px-2.5 py-1 rounded-full font-medium capitalize"
-                      style={{ background: 'oklch(0.93 0.04 210)', color: 'oklch(0.35 0.12 210)' }}
+                      style={{ backgroundColor: 'rgba(13,148,136,0.15)', color: '#5eead4', border: '1px solid rgba(13,148,136,0.3)' }}
                     >
                       {s.replace(/-/g, ' ')}
                     </span>
@@ -349,17 +353,18 @@ export default function BankReview() {
                 </div>
               </div>
 
-              {/* Business types */}
+              {/* Business types — dark navy matching footer */}
               {bank.businessTypes.length > 0 && (
-                <div className="bg-white rounded-2xl border border-gray-200 p-5">
-                  <h3 className="text-sm font-bold text-gray-900 mb-3" style={{ fontFamily: 'Sora, sans-serif' }}>
+                <div className="rounded-2xl p-5" style={{ background: '#0f172a', border: '1px solid #1e293b' }}>
+                  <h3 className="text-sm font-bold text-white mb-3" style={{ fontFamily: 'Sora, sans-serif' }}>
                     Business Types Accepted
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {bank.businessTypes.map((bt) => (
                       <span
                         key={bt}
-                        className="text-xs px-2.5 py-1 rounded-full bg-gray-100 text-gray-700 font-medium"
+                        className="text-xs px-2.5 py-1 rounded-full font-medium"
+                        style={{ backgroundColor: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.7)', border: '1px solid rgba(255,255,255,0.12)' }}
                       >
                         {bt}
                       </span>
@@ -368,10 +373,10 @@ export default function BankReview() {
                 </div>
               )}
 
-              {/* CTA box */}
+              {/* CTA box — teal gradient */}
               <div
                 className="rounded-2xl p-5 text-white"
-                style={{ background: 'oklch(26% .07 240)' }}
+                style={{ background: 'linear-gradient(135deg, #0f172a 0%, #134e4a 100%)', border: '1px solid #1e293b' }}
               >
                 <h3 className="font-bold text-sm mb-2" style={{ fontFamily: 'Sora, sans-serif' }}>
                   Ready to open an account?

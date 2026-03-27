@@ -1,5 +1,6 @@
 // Find My Account — multi-select filter wizard
-// Design: dark navy hero (#0f172a), teal accents (#0d9488), Sora font, white cards
+// Design: dark navy hero (#0f172a), teal accents (#0d9488), Sora font
+// Filter cards match the business-type card style: #1e293b background, slate-700 border, teal hover
 
 import { useState, useMemo } from 'react';
 import { Link } from 'wouter';
@@ -14,33 +15,34 @@ interface FilterOption {
   label: string;
   description: string;
   icon: string;
+  color: string;
   category: 'features' | 'business-type' | 'preferences';
 }
 
 const FILTER_OPTIONS: FilterOption[] = [
   // Features
-  { id: 'free', label: 'Free Account', description: 'No monthly fee', icon: '🆓', category: 'features' },
-  { id: 'fast-opening', label: 'Fast Opening', description: 'Open in minutes', icon: '⚡', category: 'features' },
-  { id: 'no-credit-check', label: 'No Credit Check', description: 'No hard credit check', icon: '✅', category: 'features' },
-  { id: 'accounting', label: 'Accounting Integration', description: 'Xero, QuickBooks, FreeAgent', icon: '📊', category: 'features' },
-  { id: 'cash-deposit', label: 'Cash Deposits', description: 'Deposit cash at Post Office or branch', icon: '💵', category: 'features' },
-  { id: 'branch-access', label: 'Branch Access', description: 'Visit a branch in person', icon: '🏦', category: 'features' },
-  { id: 'overdraft', label: 'Overdraft Available', description: 'Arranged overdraft facility', icon: '💳', category: 'features' },
-  { id: 'multi-currency', label: 'Multi-Currency', description: 'Hold multiple currencies', icon: '💱', category: 'features' },
-  { id: 'international', label: 'International Payments', description: 'Low-cost global transfers', icon: '🌍', category: 'features' },
-  { id: 'digital', label: 'App-Only / Digital', description: 'Fully digital, no branches', icon: '📱', category: 'features' },
-  { id: 'switcher', label: 'Easy Switching', description: 'CASS switching supported', icon: '🔄', category: 'features' },
+  { id: 'free', label: 'Free Account', description: 'No monthly fee', icon: '🆓', color: '#0d9488', category: 'features' },
+  { id: 'fast-opening', label: 'Fast Opening', description: 'Open in minutes', icon: '⚡', color: '#f59e0b', category: 'features' },
+  { id: 'no-credit-check', label: 'No Credit Check', description: 'No hard credit check', icon: '✅', color: '#10b981', category: 'features' },
+  { id: 'accounting', label: 'Accounting Integration', description: 'Xero, QuickBooks, FreeAgent', icon: '📊', color: '#6366f1', category: 'features' },
+  { id: 'cash-deposit', label: 'Cash Deposits', description: 'Deposit cash at Post Office', icon: '💵', color: '#0d9488', category: 'features' },
+  { id: 'branch-access', label: 'Branch Access', description: 'Visit a branch in person', icon: '🏦', color: '#3b82f6', category: 'features' },
+  { id: 'overdraft', label: 'Overdraft Available', description: 'Arranged overdraft facility', icon: '💳', color: '#ec4899', category: 'features' },
+  { id: 'multi-currency', label: 'Multi-Currency', description: 'Hold multiple currencies', icon: '💱', color: '#f97316', category: 'features' },
+  { id: 'international', label: 'International Payments', description: 'Low-cost global transfers', icon: '🌍', color: '#0ea5e9', category: 'features' },
+  { id: 'digital', label: 'App-Only / Digital', description: 'Fully digital, no branches', icon: '📱', color: '#8b5cf6', category: 'features' },
+  { id: 'switcher', label: 'Easy Switching', description: 'CASS switching supported', icon: '🔄', color: '#14b8a6', category: 'features' },
   // Business type
-  { id: 'sole-trader', label: 'Sole Trader', description: 'Self-employed individual', icon: '👤', category: 'business-type' },
-  { id: 'limited-company', label: 'Limited Company', description: 'Registered Ltd company', icon: '🏢', category: 'business-type' },
-  { id: 'startup', label: 'Startup', description: 'New or early-stage business', icon: '🚀', category: 'business-type' },
-  { id: 'freelancer', label: 'Freelancer', description: 'Independent contractor', icon: '💻', category: 'business-type' },
-  { id: 'contractor', label: 'Contractor', description: 'Contract worker or consultant', icon: '🔧', category: 'business-type' },
-  { id: 'partnership', label: 'Partnership / Joint', description: 'Business with multiple owners', icon: '🤝', category: 'business-type' },
+  { id: 'sole-trader', label: 'Sole Trader', description: 'Self-employed individual', icon: '👤', color: '#0d9488', category: 'business-type' },
+  { id: 'limited-company', label: 'Limited Company', description: 'Registered Ltd company', icon: '🏢', color: '#3b82f6', category: 'business-type' },
+  { id: 'startup', label: 'Startup', description: 'New or early-stage business', icon: '🚀', color: '#f97316', category: 'business-type' },
+  { id: 'freelancer', label: 'Freelancer', description: 'Independent contractor', icon: '💻', color: '#6366f1', category: 'business-type' },
+  { id: 'contractor', label: 'Contractor', description: 'Contract worker or consultant', icon: '🔧', color: '#f59e0b', category: 'business-type' },
+  { id: 'partnership', label: 'Partnership / Joint', description: 'Business with multiple owners', icon: '🤝', color: '#10b981', category: 'business-type' },
   // Preferences
-  { id: 'bad-credit', label: 'Bad Credit History', description: 'Poor or thin credit file', icon: '🔓', category: 'preferences' },
-  { id: 'small-business', label: 'Small Business', description: 'Established SME', icon: '🏪', category: 'preferences' },
-  { id: 'ecommerce', label: 'E-commerce', description: 'Online retail or marketplace', icon: '🛒', category: 'preferences' },
+  { id: 'bad-credit', label: 'Bad Credit History', description: 'Poor or thin credit file', icon: '🔓', color: '#ef4444', category: 'preferences' },
+  { id: 'small-business', label: 'Small Business', description: 'Established SME', icon: '🏪', color: '#0d9488', category: 'preferences' },
+  { id: 'ecommerce', label: 'E-commerce', description: 'Online retail or marketplace', icon: '🛒', color: '#8b5cf6', category: 'preferences' },
 ];
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -73,16 +75,11 @@ export default function FindMyAccount() {
 
   const matchedBanks = useMemo(() => {
     if (selected.size === 0) return [];
-
     const selectedArr = Array.from(selected);
-
     return banks.filter(bank => {
       return selectedArr.every(filter => {
-        // Check accountTypes
         if (bank.accountTypes.includes(filter)) return true;
-        // Check suitableFor
         if (bank.suitableFor.includes(filter)) return true;
-        // Special mappings
         if (filter === 'free' && bank.monthlyFeeNum === 0) return true;
         if (filter === 'bad-credit' && (bank.accountTypes.includes('no-credit-check') || bank.suitableFor.includes('bad-credit'))) return true;
         if (filter === 'digital' && bank.accountTypes.includes('digital')) return true;
@@ -94,13 +91,13 @@ export default function FindMyAccount() {
     });
   }, [selected]);
 
-  const categories = ['features', 'business-type', 'preferences'] as const;
+  const filterCategories = ['features', 'business-type', 'preferences'] as const;
 
   return (
-    <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Sora, sans-serif' }}>
+    <div className="min-h-screen" style={{ fontFamily: 'Sora, sans-serif', background: '#f8fafc' }}>
       <Navigation />
       <div style={{ paddingTop: '88px' }}>
-        {/* Hero */}
+        {/* Hero — dark navy matching main site */}
         <section
           className="relative overflow-hidden py-14"
           style={{ background: 'linear-gradient(135deg, #0f172a 0%, #134e4a 100%)' }}
@@ -125,76 +122,103 @@ export default function FindMyAccount() {
           </div>
         </section>
 
-        <div className="container py-10">
-          <div className="max-w-4xl mx-auto">
-            {/* Filter sections */}
-            {categories.map(cat => (
-              <div key={cat} className="mb-8">
-                <h2 className="text-lg font-bold text-gray-900 mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>
-                  {CATEGORY_LABELS[cat]}
-                </h2>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                  {FILTER_OPTIONS.filter(f => f.category === cat).map(option => {
-                    const isSelected = selected.has(option.id);
-                    return (
-                      <button
-                        key={option.id}
-                        onClick={() => toggleFilter(option.id)}
-                        className={`relative rounded-xl p-4 text-left transition-all border-2 cursor-pointer group ${
-                          isSelected
-                            ? 'border-teal-500 bg-teal-50 shadow-md'
-                            : 'border-gray-200 bg-white hover:border-teal-300 hover:shadow-sm'
-                        }`}
-                      >
-                        {isSelected && (
-                          <div className="absolute top-2 right-2 w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: '#0d9488' }}>
-                            <Check className="w-3 h-3 text-white" />
+        {/* Filter sections — dark navy background matching business-type section */}
+        <section className="py-12" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #0d2a27 100%)' }}>
+          <div className="container">
+            <div className="max-w-5xl mx-auto">
+              {filterCategories.map(cat => (
+                <div key={cat} className="mb-10">
+                  <h2 className="text-lg font-bold text-white mb-5" style={{ fontFamily: 'Sora, sans-serif' }}>
+                    {CATEGORY_LABELS[cat]}
+                  </h2>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                    {FILTER_OPTIONS.filter(f => f.category === cat).map(option => {
+                      const isSelected = selected.has(option.id);
+                      return (
+                        <button
+                          key={option.id}
+                          onClick={() => toggleFilter(option.id)}
+                          className="relative rounded-xl p-4 text-center transition-all cursor-pointer group flex flex-col items-center justify-start min-h-[110px]"
+                          style={{
+                            backgroundColor: isSelected ? 'rgba(13,148,136,0.2)' : '#1e293b',
+                            border: isSelected ? '2px solid #0d9488' : '2px solid #334155',
+                            boxShadow: isSelected ? '0 0 0 1px #0d9488, 0 4px 16px rgba(13,148,136,0.2)' : 'none',
+                          }}
+                        >
+                          {isSelected && (
+                            <div className="absolute top-2 right-2 w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: '#0d9488' }}>
+                              <Check className="w-3 h-3 text-white" />
+                            </div>
+                          )}
+                          <div
+                            className="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2 text-xl flex-shrink-0"
+                            style={{ backgroundColor: isSelected ? option.color : 'rgba(255,255,255,0.08)' }}
+                          >
+                            {option.icon}
                           </div>
-                        )}
-                        <div className="text-2xl mb-2">{option.icon}</div>
-                        <div className={`text-sm font-semibold leading-tight mb-1 ${isSelected ? 'text-teal-700' : 'text-gray-900'}`}>
-                          {option.label}
-                        </div>
-                        <div className="text-xs text-gray-500 leading-tight">
-                          {option.description}
-                        </div>
-                      </button>
-                    );
-                  })}
+                          <div
+                            className="text-xs font-semibold leading-tight flex-1 transition-colors"
+                            style={{ color: isSelected ? '#5eead4' : '#cbd5e1', fontFamily: 'Sora, sans-serif' }}
+                          >
+                            {option.label}
+                          </div>
+                          <div className="text-xs mt-1 leading-tight" style={{ color: '#64748b' }}>
+                            {option.description}
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
 
-            {/* Action buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 mb-8">
-              <button
-                onClick={() => setShowResults(true)}
-                disabled={selected.size === 0}
-                className="flex-1 py-3 px-6 rounded-xl font-bold text-white text-sm transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                style={{ backgroundColor: selected.size > 0 ? '#0d9488' : '#9ca3af' }}
-              >
-                <SlidersHorizontal className="w-4 h-4" />
-                Find Matching Accounts
-                {selected.size > 0 && (
-                  <span className="ml-1 bg-white/20 rounded-full px-2 py-0.5 text-xs">
-                    {selected.size} filter{selected.size !== 1 ? 's' : ''}
-                  </span>
-                )}
-              </button>
-              {selected.size > 0 && (
+              {/* Action buttons */}
+              <div className="flex flex-col sm:flex-row gap-3 mt-4">
                 <button
-                  onClick={reset}
-                  className="py-3 px-6 rounded-xl font-semibold text-gray-600 text-sm border border-gray-200 bg-white hover:bg-gray-50 transition-all flex items-center justify-center gap-2"
+                  onClick={() => setShowResults(true)}
+                  disabled={selected.size === 0}
+                  className="flex-1 py-3 px-6 rounded-xl font-bold text-white text-sm transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  style={{ backgroundColor: selected.size > 0 ? '#0d9488' : '#475569' }}
                 >
-                  <RotateCcw className="w-4 h-4" />
-                  Reset Filters
+                  <SlidersHorizontal className="w-4 h-4" />
+                  Find Matching Accounts
+                  {selected.size > 0 && (
+                    <span className="ml-1 rounded-full px-2 py-0.5 text-xs font-bold" style={{ backgroundColor: 'rgba(255,255,255,0.2)' }}>
+                      {selected.size} filter{selected.size !== 1 ? 's' : ''}
+                    </span>
+                  )}
                 </button>
+                {selected.size > 0 && (
+                  <button
+                    onClick={reset}
+                    className="py-3 px-6 rounded-xl font-semibold text-sm transition-all flex items-center justify-center gap-2"
+                    style={{ backgroundColor: '#1e293b', border: '1px solid #334155', color: '#94a3b8' }}
+                  >
+                    <RotateCcw className="w-4 h-4" />
+                    Reset Filters
+                  </button>
+                )}
+              </div>
+
+              {/* Prompt when nothing selected */}
+              {!showResults && selected.size === 0 && (
+                <div className="mt-6 rounded-2xl p-8 text-center" style={{ backgroundColor: '#1e293b', border: '1px dashed #334155' }}>
+                  <div className="text-4xl mb-3">👆</div>
+                  <h3 className="font-bold text-white mb-2" style={{ fontFamily: 'Sora, sans-serif' }}>Select your requirements above</h3>
+                  <p className="text-sm" style={{ color: '#64748b' }}>
+                    Choose one or more options — you can mix features and business types to find the perfect match.
+                  </p>
+                </div>
               )}
             </div>
+          </div>
+        </section>
 
-            {/* Results */}
-            {showResults && (
-              <div>
+        {/* Results section — white background */}
+        {showResults && (
+          <section className="py-10 bg-white">
+            <div className="container">
+              <div className="max-w-5xl mx-auto">
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-xl font-bold text-gray-900" style={{ fontFamily: 'Sora, sans-serif' }}>
                     {matchedBanks.length > 0
@@ -204,7 +228,7 @@ export default function FindMyAccount() {
                 </div>
 
                 {matchedBanks.length === 0 ? (
-                  <div className="bg-white rounded-2xl border border-gray-200 p-8 text-center">
+                  <div className="bg-gray-50 rounded-2xl border border-gray-200 p-8 text-center">
                     <div className="text-4xl mb-3">🔍</div>
                     <h3 className="font-bold text-gray-900 mb-2">No exact matches found</h3>
                     <p className="text-gray-600 text-sm mb-4">
@@ -212,7 +236,8 @@ export default function FindMyAccount() {
                     </p>
                     <button
                       onClick={reset}
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-teal-600 hover:text-teal-800"
+                      className="inline-flex items-center gap-2 text-sm font-semibold"
+                      style={{ color: '#0d9488' }}
                     >
                       <RotateCcw className="w-4 h-4" />
                       Reset and try again
@@ -221,15 +246,16 @@ export default function FindMyAccount() {
                 ) : (
                   <>
                     {/* Selected filters summary */}
-                    <div className="bg-teal-50 border border-teal-200 rounded-xl p-4 mb-6">
-                      <p className="text-sm text-teal-800 font-medium mb-2">Filtering by:</p>
+                    <div className="rounded-xl p-4 mb-6" style={{ backgroundColor: '#f0fdfa', border: '1px solid #99f6e4' }}>
+                      <p className="text-sm font-medium mb-2" style={{ color: '#0f766e' }}>Filtering by:</p>
                       <div className="flex flex-wrap gap-2">
                         {Array.from(selected).map(id => {
                           const opt = FILTER_OPTIONS.find(f => f.id === id);
                           return opt ? (
                             <span
                               key={id}
-                              className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-teal-100 text-teal-800 border border-teal-200"
+                              className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold"
+                              style={{ backgroundColor: '#ccfbf1', color: '#0f766e', border: '1px solid #99f6e4' }}
                             >
                               {opt.icon} {opt.label}
                             </span>
@@ -244,7 +270,7 @@ export default function FindMyAccount() {
                       ))}
                     </div>
 
-                    <div className="bg-white rounded-2xl border border-gray-200 p-6 text-center">
+                    <div className="bg-gray-50 rounded-2xl border border-gray-200 p-6 text-center">
                       <p className="text-gray-600 text-sm mb-3">
                         Want to compare all {banks.length} accounts side by side?
                       </p>
@@ -259,20 +285,10 @@ export default function FindMyAccount() {
                   </>
                 )}
               </div>
-            )}
+            </div>
+          </section>
+        )}
 
-            {/* Prompt when nothing selected yet */}
-            {!showResults && selected.size === 0 && (
-              <div className="bg-white rounded-2xl border border-dashed border-gray-300 p-8 text-center">
-                <div className="text-4xl mb-3">👆</div>
-                <h3 className="font-bold text-gray-900 mb-2">Select your requirements above</h3>
-                <p className="text-gray-500 text-sm">
-                  Choose one or more options — you can mix features and business types to find the perfect match.
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
         <Footer />
       </div>
     </div>

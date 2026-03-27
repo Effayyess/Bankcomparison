@@ -142,7 +142,7 @@ If you need a business account urgently, an app-only bank is your best option. S
         id: 'best-free-accounts',
         heading: 'Our Top Free Business Bank Accounts',
         content: `**1. Starling Bank — Best Overall Free Account**
-Starling Bank is our top pick for a free business bank account. It is a fully licensed bank (meaning FSCS protection up to £85,000), charges no monthly fee, and offers free UK transfers. The mobile app is consistently rated among the best in the market, and it integrates with Xero, QuickBooks, and FreeAgent. Cash deposits are available via Post Office for £3.
+Starling Bank is our top pick for a free business bank account. It is a fully licensed bank (meaning FSCS protection up to £120,000), charges no monthly fee, and offers free UK transfers. The mobile app is consistently rated among the best in the market, and it integrates with Xero, QuickBooks, and FreeAgent. Cash deposits are available via Post Office for £3.
 
 **2. Monzo Business (Lite) — Best for Startups**
 Monzo's free Lite plan is an excellent option for startups and small businesses. It offers free UK transfers, FSCS protection, and good accounting integrations. The app is excellent. For businesses that need more features, the Pro plan at £5/month is worth considering.
