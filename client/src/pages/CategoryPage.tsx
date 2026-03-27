@@ -20,6 +20,46 @@ interface CategoryConfig {
   faq: { q: string; a: string }[];
 }
 
+const categoryOrder: Record<string, string[]> = {
+  'sole-trader': ['hsbc', 'tide', 'lloyds', 'tide-savings', 'virgin', 'revolut', 'natwest', 'cynergy', 'zempler', 'barclays', 'coop', 'rbs', 'monzo', 'anna', 'countingup', 'mettle', 'starling', 'wise', 'equals', 'airwallex', 'worldfirst', 'wallester'],
+  'startup': ['hsbc', 'tide', 'lloyds', 'tide-savings', 'virgin', 'revolut', 'airwallex', 'natwest', 'cynergy', 'zempler', 'worldfirst', 'wallester', 'barclays', 'coop', 'rbs', 'monzo', 'anna', 'countingup', 'mettle', 'starling', 'wise', 'equals'],
+  'freelancer': ['hsbc', 'tide', 'tide-savings', 'revolut', 'airwallex', 'zempler', 'worldfirst', 'wallester', 'monzo', 'anna', 'countingup', 'mettle', 'starling', 'wise', 'equals', 'lloyds', 'virgin', 'natwest', 'barclays', 'coop', 'rbs', 'cynergy'],
+  'contractor': ['hsbc', 'tide', 'tide-savings', 'revolut', 'airwallex', 'zempler', 'worldfirst', 'wallester', 'monzo', 'anna', 'countingup', 'mettle', 'starling', 'wise', 'equals', 'lloyds', 'virgin', 'natwest', 'barclays', 'coop', 'rbs', 'cynergy'],
+  'limited-company': ['hsbc', 'tide', 'lloyds', 'tide-savings', 'virgin', 'revolut', 'airwallex', 'natwest', 'cynergy', 'zempler', 'worldfirst', 'wallester', 'barclays', 'coop', 'rbs', 'monzo', 'anna', 'countingup', 'mettle', 'starling', 'wise', 'equals'],
+  'international': ['hsbc', 'revolut', 'equals', 'wallester', 'airwallex', 'worldfirst', 'wise', 'tide', 'monzo', 'starling', 'barclays', 'natwest', 'lloyds'],
+  'free-business-accounts': ['hsbc', 'tide', 'tide-savings', 'virgin', 'airwallex', 'natwest', 'zempler', 'worldfirst', 'wallester', 'coop', 'rbs', 'monzo', 'anna', 'countingup', 'mettle', 'starling', 'wise', 'equals', 'lloyds', 'cynergy'],
+  'no-credit-check': ['tide', 'tide-savings', 'revolut', 'airwallex', 'zempler', 'worldfirst', 'wallester', 'anna', 'equals', 'countingup', 'monzo', 'starling', 'wise', 'mettle'],
+  'app-only-banks': ['tide', 'tide-savings', 'revolut', 'airwallex', 'worldfirst', 'monzo', 'anna', 'countingup', 'mettle', 'starling', 'wise', 'equals', 'wallester', 'zempler'],
+  'app-only': ['tide', 'tide-savings', 'revolut', 'airwallex', 'worldfirst', 'monzo', 'anna', 'countingup', 'mettle', 'starling', 'wise', 'equals', 'wallester', 'zempler'],
+  'high-street-banks': ['hsbc', 'lloyds', 'barclays', 'natwest', 'rbs', 'coop', 'virgin', 'cynergy'],
+  'high-street': ['hsbc', 'lloyds', 'barclays', 'natwest', 'rbs', 'coop', 'virgin', 'cynergy'],
+  'fast-opening': ['tide', 'tide-savings', 'revolut', 'airwallex', 'worldfirst', 'monzo', 'anna', 'starling', 'wise', 'mettle', 'countingup', 'equals', 'wallester', 'zempler'],
+  'overdraft': ['hsbc', 'lloyds', 'virgin', 'natwest', 'zempler', 'barclays', 'coop', 'rbs', 'monzo', 'starling', 'revolut', 'cynergy'],
+  'multi-currency': ['revolut', 'airwallex', 'worldfirst', 'wallester', 'equals', 'wise', 'hsbc', 'tide', 'monzo', 'starling'],
+  'cash-deposit': ['hsbc', 'tide', 'lloyds', 'tide-savings', 'virgin', 'natwest', 'zempler', 'wallester', 'barclays', 'coop', 'rbs', 'monzo', 'anna', 'countingup', 'starling', 'cynergy'],
+  'branch-access': ['hsbc', 'lloyds', 'virgin', 'natwest', 'barclays', 'coop', 'rbs', 'cynergy'],
+  'accounting': ['hsbc', 'tide', 'tide-savings', 'virgin', 'revolut', 'airwallex', 'natwest', 'zempler', 'worldfirst', 'wallester', 'coop', 'rbs', 'monzo', 'anna', 'countingup', 'mettle', 'starling', 'wise', 'equals', 'lloyds', 'barclays', 'cynergy'],
+  'small-business': ['hsbc', 'tide', 'lloyds', 'tide-savings', 'virgin', 'revolut', 'airwallex', 'natwest', 'cynergy', 'zempler', 'worldfirst', 'wallester', 'barclays', 'coop', 'rbs', 'monzo', 'anna', 'countingup', 'mettle', 'starling', 'wise', 'equals'],
+  'bad-credit': ['tide', 'tide-savings', 'revolut', 'airwallex', 'zempler', 'worldfirst', 'wallester', 'anna', 'countingup', 'monzo', 'starling', 'wise', 'mettle', 'equals'],
+  'corporate': ['hsbc', 'barclays', 'natwest', 'lloyds', 'revolut', 'airwallex', 'coop', 'rbs'],
+  'multi-director': ['hsbc', 'tide', 'lloyds', 'tide-savings', 'virgin', 'revolut', 'airwallex', 'natwest', 'cynergy', 'zempler', 'worldfirst', 'wallester', 'barclays', 'coop', 'rbs', 'monzo', 'anna', 'countingup', 'mettle', 'starling', 'wise', 'equals'],
+  'joint': ['hsbc', 'lloyds', 'virgin', 'natwest', 'barclays', 'coop', 'rbs', 'starling', 'monzo', 'tide', 'revolut', 'airwallex', 'wise', 'mettle', 'cynergy', 'equals', 'worldfirst', 'wallester', 'zempler', 'anna'],
+  'switcher': ['hsbc', 'tide', 'lloyds', 'natwest', 'barclays', 'coop', 'rbs', 'starling', 'monzo', 'virgin', 'revolut'],
+  'online': ['hsbc', 'tide', 'tide-savings', 'virgin', 'revolut', 'airwallex', 'natwest', 'zempler', 'worldfirst', 'wallester', 'coop', 'rbs', 'monzo', 'anna', 'countingup', 'mettle', 'starling', 'wise', 'equals', 'lloyds', 'barclays', 'cynergy'],
+  'partnership': ['hsbc', 'lloyds', 'virgin', 'natwest', 'barclays', 'coop', 'rbs', 'starling', 'monzo', 'tide', 'revolut', 'airwallex', 'wise', 'mettle', 'cynergy'],
+};
+
+function sortBanksByCategory(bankList: typeof banks, slug: string): typeof banks {
+  const order = categoryOrder[slug];
+  if (!order) return bankList;
+  return [...bankList].sort((a, b) => {
+    const ai = order.indexOf(a.id);
+    const bi = order.indexOf(b.id);
+    const aPos = ai === -1 ? 999 : ai;
+    const bPos = bi === -1 ? 999 : bi;
+    return aPos - bPos;
+  });
+}
 const categoryConfigs: Record<string, CategoryConfig> = {
   'sole-trader': {
     title: 'Best Business Bank Accounts for Sole Traders UK 2025',
@@ -255,9 +295,65 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     h1: 'Best Business Bank Accounts for Bad Credit',
     description: 'Compare UK business bank accounts for businesses with bad credit or a poor credit history.',
     intro: 'Having a poor credit history does not mean you cannot get a business bank account. Several UK banks specialise in accounts for businesses that have been declined elsewhere.',
-    getBanks: () => getBanksByType('bad-credit'),
+    getBanks: () => getBanksBySuitability('bad-credit'),
     faq: [
       { q: 'Can I get a business bank account with bad credit?', a: 'Yes — Zempler Bank (formerly Cashplus) specialises in accounts for businesses with bad credit. Tide and Revolut also do not run credit checks.' },
+      { q: 'Which banks do not credit check for business accounts?', a: 'Zempler Bank, Tide, Revolut, ANNA Money, Wallester, Monzo, and CountingUp all offer accounts without a credit check. These are ideal for businesses that have been declined elsewhere.' },
+    ],
+  },
+  'corporate': {
+    title: 'Best Corporate Business Bank Accounts UK 2025',
+    h1: 'Best Corporate Business Bank Accounts',
+    description: 'Compare UK corporate business bank accounts for larger businesses, PLCs, and established companies.',
+    intro: 'Larger businesses and corporate entities require more sophisticated banking services — including relationship managers, higher transaction limits, multi-currency capabilities, and dedicated business support. Here are the best corporate business bank accounts in the UK.',
+    getBanks: () => getBanksByType('corporate'),
+    faq: [
+      { q: 'What is a corporate business bank account?', a: 'A corporate business bank account is designed for larger businesses with more complex banking needs. They typically offer higher transaction limits, dedicated relationship managers, and a wider range of financial products.' },
+      { q: 'Which banks offer corporate business accounts?', a: 'HSBC, Barclays, NatWest, and Lloyds all offer dedicated corporate banking services for larger businesses. Revolut Business and Airwallex also offer corporate-grade features for growing businesses.' },
+    ],
+  },
+  'multi-director': {
+    title: 'Best Multi-Director Business Bank Accounts UK 2025',
+    h1: 'Best Multi Director Business Bank Accounts',
+    description: 'Compare UK business bank accounts that support multiple directors and signatories for limited companies.',
+    intro: 'Limited companies with multiple directors need a business bank account that supports multiple signatories, provides clear access controls, and makes it easy to manage shared finances. Most UK business bank accounts support multiple directors, but the ease of adding them varies significantly.',
+    getBanks: () => getBanksBySuitability('limited-company'),
+    faq: [
+      { q: 'Can multiple directors share a business bank account?', a: 'Yes — most UK business bank accounts support multiple directors and signatories. You can typically set different permission levels for each director.' },
+      { q: 'Which business bank accounts are best for multiple directors?', a: 'Starling Bank, Monzo Business, and Tide all support multiple directors with easy online management. High street banks like Barclays and NatWest also support multi-director accounts.' },
+    ],
+  },
+  'joint': {
+    title: 'Best Joint Business Bank Accounts UK 2025',
+    h1: 'Best Joint Business Bank Accounts',
+    description: 'Compare UK joint business bank accounts for partnerships, co-founders, and businesses with multiple owners.',
+    intro: 'Joint business bank accounts allow two or more people to share access to a business account. They are ideal for business partnerships, husband-and-wife businesses, and companies with multiple co-founders. Most UK business banks support joint accounts with customisable access levels.',
+    getBanks: () => getBanksBySuitability('partnership'),
+    faq: [
+      { q: 'Can two people share a business bank account?', a: 'Yes — most UK business bank accounts support joint access. You can typically add multiple account holders with different permission levels.' },
+      { q: 'What is the best joint business bank account?', a: 'Starling Bank and Monzo Business are our top picks for joint accounts — they offer easy online management of multiple users. For partnerships, Barclays and NatWest also offer strong joint account features.' },
+    ],
+  },
+  'switcher': {
+    title: 'Best Switcher Business Bank Accounts UK 2025',
+    h1: 'Best Switcher Business Bank Accounts',
+    description: 'Compare the best UK business bank accounts for switching. Use the Current Account Switch Service to move your account easily.',
+    intro: 'Switching your business bank account has never been easier. The Current Account Switch Service (CASS) guarantees a smooth switch within 7 working days, with all payments automatically redirected. Many banks offer incentives for switchers — including cashback, fee waivers, and welcome bonuses.',
+    getBanks: () => getBanksByType('switcher'),
+    faq: [
+      { q: 'How do I switch my business bank account?', a: 'Use the Current Account Switch Service (CASS) — available at most major UK banks. The switch takes 7 working days and all your payments are automatically redirected. You can initiate the switch at your new bank.' },
+      { q: 'Will switching affect my business credit score?', a: 'Switching itself does not affect your credit score. However, applying for a new account may involve a credit check, which could leave a soft or hard footprint depending on the bank.' },
+    ],
+  },
+  'online': {
+    title: 'Best Online Business Bank Accounts UK 2025',
+    h1: 'Best Online Business Bank Accounts',
+    description: 'Compare the best fully digital UK business bank accounts. Manage everything online with no branch visits required.',
+    intro: 'Online business bank accounts let you manage all your banking digitally — from opening the account to making payments, checking statements, and integrating with accounting software. The best online accounts offer powerful mobile apps, instant notifications, and seamless integrations.',
+    getBanks: () => getBanksByType('online'),
+    faq: [
+      { q: 'Are online business bank accounts safe?', a: 'Yes — all FCA-regulated online business banks use bank-grade security including two-factor authentication, biometric login, and real-time fraud monitoring.' },
+      { q: 'Can I manage my entire business banking online?', a: 'Yes — with most digital banks like Starling, Monzo, and Tide, you can do everything online: open an account, make payments, manage expenses, and integrate with accounting software.' },
     ],
   },
 };
@@ -271,7 +367,7 @@ export default function CategoryPage() {
     return <NotFound />;
   }
 
-  const categoryBanks = config.getBanks();
+  const categoryBanks = sortBanksByCategory(config.getBanks(), slug);
 
   return (
     <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Sora, sans-serif' }}>
@@ -348,23 +444,41 @@ export default function CategoryPage() {
             <div className="sticky top-24 space-y-4">
               <div className="bank-card p-5">
                 <h3 className="font-bold text-sm mb-3 text-gray-900" style={{ fontFamily: 'Sora, sans-serif' }}>
-                  Other Categories
+                  Account Categories
                 </h3>
-                <ul className="space-y-2">
-                  {Object.entries(categoryConfigs)
-                    .filter(([key]) => key !== slug)
-                    .slice(0, 8)
-                    .map(([key, cat]) => (
-                      <li key={key}>
-                        <Link
-                          href={`/category/${key}`}
-                          className="text-sm hover:text-teal-700 flex items-center gap-1 no-underline text-teal-600"
-                        >
-                          <ChevronRight className="w-3 h-3" />
-                          {cat.h1.replace('Best Business Bank Accounts for ', '').replace('Best ', '')}
-                        </Link>
-                      </li>
-                    ))}
+                <ul className="space-y-1.5">
+                  {[
+                    { key: 'fast-opening',    label: 'Fast Opening Accounts' },
+                    { key: 'accounting',      label: 'With Accountancy' },
+                    { key: 'cash-deposit',    label: 'Cash Deposit Accounts' },
+                    { key: 'branch-access',   label: 'Branch Access Accounts' },
+                    { key: 'freelancer',      label: 'Freelancer Accounts' },
+                    { key: 'startup',         label: 'Startup Accounts' },
+                    { key: 'free-business-accounts', label: 'Free Business Accounts' },
+                    { key: 'joint',           label: 'Joint Business Accounts' },
+                    { key: 'overdraft',       label: 'Accounts With Overdraft' },
+                    { key: 'app-only-banks',  label: 'Online Business Accounts' },
+                    { key: 'sole-trader',     label: 'Sole Trader Accounts' },
+                    { key: 'multi-director',  label: 'Multi Director Accounts' },
+                    { key: 'no-credit-check', label: 'No Credit Check Accounts' },
+                    { key: 'switcher',        label: 'Switcher Accounts' },
+                    { key: 'small-business',  label: 'Small Business Accounts' },
+                    { key: 'bad-credit',      label: 'Bad Credit Accounts' },
+                    { key: 'corporate',       label: 'Corporate Accounts' },
+                    { key: 'international',   label: 'International Accounts' },
+                    { key: 'multi-currency',  label: 'Multi-Currency Accounts' },
+                    { key: 'high-street-banks', label: 'High Street Banks' },
+                  ].filter(item => item.key !== slug).map(item => (
+                    <li key={item.key}>
+                      <Link
+                        href={`/category/${item.key}`}
+                        className="text-sm hover:text-teal-700 flex items-center gap-1 no-underline text-teal-600"
+                      >
+                        <ChevronRight className="w-3 h-3" />
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
 

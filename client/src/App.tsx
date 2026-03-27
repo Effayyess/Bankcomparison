@@ -13,7 +13,8 @@ import Compare from "./pages/Compare";
 import BankReview from "./pages/BankReview";
 import CategoryPage from "./pages/CategoryPage";
 import GuidePage from "./pages/GuidePage";
-import LegalPage from "./pages/LegalPage";
+import LegalPage from './pages/LegalPage';
+import FindMyAccount from './pages/FindMyAccount';
 
 function Router() {
   return (
@@ -23,6 +24,7 @@ function Router() {
         {/* Specific routes MUST come before the /:slug catch-all */}
         <Route path="/" component={Home} />
         <Route path="/compare" component={Compare} />
+        <Route path="/find-my-account" component={FindMyAccount} />
         <Route path="/category/:slug" component={CategoryPage} />
         <Route path="/guides/:slug" component={GuidePage} />
         <Route path="/privacy-policy">

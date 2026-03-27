@@ -161,7 +161,7 @@ export const banks: BankAccount[] = [
     hasFastOpening: false,
     hasGlobalCurrencyAccounts: true,
     hasNoCreditCheck: false,
-    accountTypes: ['current', 'branch-access', 'cash-deposit', 'overdraft', 'international', 'online', 'accounting'],
+    accountTypes: ['current', 'branch-access', 'cash-deposit', 'overdraft', 'international', 'online', 'accounting', 'switcher', 'joint', 'corporate', 'highstreet'],
   },
   {
     id: 'worldfirst',
@@ -233,7 +233,7 @@ export const banks: BankAccount[] = [
     hasFastOpening: true,
     hasGlobalCurrencyAccounts: true,
     hasNoCreditCheck: true,
-    accountTypes: ['current', 'free', 'fast-opening', 'no-credit-check', 'multi-currency', 'international', 'online', 'accounting'],
+    accountTypes: ['current', 'free', 'fast-opening', 'no-credit-check', 'multi-currency', 'international', 'online', 'accounting', 'digital'],
   },
   {
     id: 'zempler',
@@ -323,7 +323,7 @@ export const banks: BankAccount[] = [
     hasFastOpening: true,
     hasGlobalCurrencyAccounts: false,
     hasNoCreditCheck: true,
-    accountTypes: ['current', 'free', 'no-credit-check', 'cash-deposit', 'overdraft', 'online', 'accounting'],
+    accountTypes: ['current', 'free', 'no-credit-check', 'cash-deposit', 'overdraft', 'online', 'accounting', 'digital'],
   },
   {
     id: 'anna',
@@ -419,14 +419,14 @@ export const banks: BankAccount[] = [
     openingFee: 'Free',
     affiliateUrl: 'https://anna.money/business-account/',
     creditCheck: false,
-    suitableFor: ['sole-trader', 'limited-company', 'freelancer', 'startup', 'contractor', 'small-business'],
+    suitableFor: ['sole-trader', 'limited-company', 'freelancer', 'startup', 'contractor', 'small-business', 'bad-credit'],
     hasAccounting: true,
     hasBranchAccess: false,
     hasCashDeposits: true,
     hasFastOpening: true,
     hasGlobalCurrencyAccounts: false,
     hasNoCreditCheck: true,
-    accountTypes: ['current', 'free', 'fast-opening', 'no-credit-check', 'cash-deposit', 'online', 'accounting'],
+    accountTypes: ['current', 'free', 'fast-opening', 'no-credit-check', 'cash-deposit', 'online', 'accounting', 'digital'],
   },
   {
     id: 'wallester',
@@ -489,14 +489,14 @@ export const banks: BankAccount[] = [
     openingFee: 'Free',
     affiliateUrl: 'https://wallester.com/business',
     creditCheck: false,
-    suitableFor: ['limited-company', 'small-business', 'international', 'ecommerce', 'startup'],
+    suitableFor: ['limited-company', 'small-business', 'international', 'ecommerce', 'startup', 'bad-credit'],
     hasAccounting: true,
     hasBranchAccess: false,
     hasCashDeposits: false,
     hasFastOpening: true,
     hasGlobalCurrencyAccounts: true,
     hasNoCreditCheck: true,
-    accountTypes: ['current', 'free', 'no-credit-check', 'multi-currency', 'international', 'online', 'accounting'],
+    accountTypes: ['current', 'free', 'no-credit-check', 'multi-currency', 'international', 'online', 'accounting', 'digital'],
   },
   {
     id: 'lloyds',
@@ -590,7 +590,7 @@ export const banks: BankAccount[] = [
     hasFastOpening: false,
     hasGlobalCurrencyAccounts: false,
     hasNoCreditCheck: false,
-    accountTypes: ['current', 'branch-access', 'cash-deposit', 'overdraft', 'online', 'accounting'],
+    accountTypes: ['current', 'branch-access', 'cash-deposit', 'overdraft', 'online', 'accounting', 'switcher', 'joint', 'corporate', 'highstreet'],
   },
   {
     id: 'coop',
@@ -660,7 +660,7 @@ export const banks: BankAccount[] = [
     hasFastOpening: false,
     hasGlobalCurrencyAccounts: false,
     hasNoCreditCheck: false,
-    accountTypes: ['current', 'free', 'branch-access', 'cash-deposit', 'overdraft', 'online', 'accounting'],
+    accountTypes: ['current', 'free', 'branch-access', 'cash-deposit', 'overdraft', 'online', 'accounting', 'switcher', 'joint', 'highstreet'],
   },
   {
     id: 'airwallex',
@@ -764,7 +764,7 @@ export const banks: BankAccount[] = [
     hasFastOpening: true,
     hasGlobalCurrencyAccounts: true,
     hasNoCreditCheck: true,
-    accountTypes: ['current', 'free', 'fast-opening', 'no-credit-check', 'multi-currency', 'international', 'online', 'accounting'],
+    accountTypes: ['current', 'free', 'fast-opening', 'no-credit-check', 'multi-currency', 'international', 'online', 'accounting', 'joint', 'digital'],
   },
   {
     id: 'tide',
@@ -885,14 +885,14 @@ export const banks: BankAccount[] = [
     openingFee: 'Free',
     affiliateUrl: 'https://www.tide.co/business-current-account/',
     creditCheck: false,
-    suitableFor: ['sole-trader', 'limited-company', 'small-business', 'startup', 'freelancer', 'contractor', 'partnership'],
+    suitableFor: ['sole-trader', 'limited-company', 'small-business', 'startup', 'freelancer', 'contractor', 'partnership', 'bad-credit'],
     hasAccounting: true,
     hasBranchAccess: false,
     hasCashDeposits: true,
     hasFastOpening: true,
     hasGlobalCurrencyAccounts: false,
     hasNoCreditCheck: true,
-    accountTypes: ['current', 'free', 'fast-opening', 'no-credit-check', 'cash-deposit', 'online', 'accounting'],
+    accountTypes: ['current', 'free', 'fast-opening', 'no-credit-check', 'cash-deposit', 'online', 'accounting', 'switcher', 'joint', 'digital'],
   },
   {
     id: 'countingup',
@@ -966,13 +966,13 @@ export const banks: BankAccount[] = [
     affiliateUrl: 'https://countingup.com/business-account/',
     creditCheck: false,
     hasAccounting: true,
-    suitableFor: ['sole-trader', 'limited-company', 'freelancer', 'startup', 'partnership', 'contractor', 'small-business'],
+    suitableFor: ['sole-trader', 'limited-company', 'freelancer', 'startup', 'partnership', 'contractor', 'small-business', 'bad-credit'],
     hasBranchAccess: false,
     hasCashDeposits: true,
     hasFastOpening: true,
     hasGlobalCurrencyAccounts: false,
     hasNoCreditCheck: true,
-    accountTypes: ['current', 'fast-opening', 'no-credit-check', 'cash-deposit', 'online', 'accounting'],
+    accountTypes: ['current', 'fast-opening', 'no-credit-check', 'cash-deposit', 'online', 'accounting', 'digital'],
   },
   {
     id: 'virgin',
@@ -1062,7 +1062,7 @@ export const banks: BankAccount[] = [
     hasFastOpening: false,
     hasGlobalCurrencyAccounts: false,
     hasNoCreditCheck: false,
-    accountTypes: ['current', 'free', 'branch-access', 'cash-deposit', 'overdraft', 'online', 'accounting'],
+    accountTypes: ['current', 'free', 'branch-access', 'cash-deposit', 'overdraft', 'online', 'accounting', 'joint', 'highstreet'],
   },
   {
     id: 'revolut',
@@ -1179,14 +1179,14 @@ export const banks: BankAccount[] = [
     openingFee: 'Free',
     affiliateUrl: 'https://business.revolut.com/signup',
     creditCheck: false,
-    suitableFor: ['limited-company', 'international', 'ecommerce', 'startup', 'contractor', 'freelancer', 'sole-trader'],
+    suitableFor: ['limited-company', 'international', 'ecommerce', 'startup', 'contractor', 'freelancer', 'sole-trader', 'bad-credit'],
     hasAccounting: true,
     hasBranchAccess: false,
     hasCashDeposits: false,
     hasFastOpening: true,
     hasGlobalCurrencyAccounts: true,
     hasNoCreditCheck: true,
-    accountTypes: ['current', 'fast-opening', 'no-credit-check', 'multi-currency', 'international', 'online', 'accounting'],
+    accountTypes: ['current', 'fast-opening', 'no-credit-check', 'multi-currency', 'international', 'online', 'accounting', 'joint', 'digital'],
   },
   {
     id: 'tide-savings',
@@ -1249,14 +1249,14 @@ export const banks: BankAccount[] = [
     openingFee: 'Free',
     affiliateUrl: 'https://www.tide.co/business-current-account/',
     creditCheck: false,
-    suitableFor: ['sole-trader', 'limited-company', 'small-business', 'startup', 'freelancer', 'contractor', 'partnership'],
+    suitableFor: ['sole-trader', 'limited-company', 'small-business', 'startup', 'freelancer', 'contractor', 'partnership', 'bad-credit'],
     hasAccounting: true,
     hasBranchAccess: false,
     hasCashDeposits: true,
     hasFastOpening: true,
     hasGlobalCurrencyAccounts: false,
     hasNoCreditCheck: true,
-    accountTypes: ['current', 'free', 'fast-opening', 'no-credit-check', 'cash-deposit', 'savings', 'online', 'accounting'],
+    accountTypes: ['current', 'free', 'fast-opening', 'no-credit-check', 'cash-deposit', 'savings', 'online', 'accounting', 'digital'],
   },
   {
     id: 'monzo',
@@ -1356,14 +1356,14 @@ export const banks: BankAccount[] = [
     openingFee: 'Free',
     affiliateUrl: 'https://monzo.com/business-banking/sign-up-for-business',
     creditCheck: false,
-    suitableFor: ['sole-trader', 'limited-company', 'freelancer', 'startup', 'contractor', 'small-business'],
+    suitableFor: ['sole-trader', 'limited-company', 'freelancer', 'startup', 'contractor', 'small-business', 'bad-credit'],
     hasAccounting: true,
     hasBranchAccess: false,
     hasCashDeposits: true,
     hasFastOpening: true,
     hasGlobalCurrencyAccounts: false,
     hasNoCreditCheck: true,
-    accountTypes: ['current', 'free', 'fast-opening', 'cash-deposit', 'overdraft', 'online', 'accounting'],
+    accountTypes: ['current', 'free', 'fast-opening', 'cash-deposit', 'overdraft', 'online', 'accounting', 'switcher', 'joint', 'digital'],
   },
   {
     id: 'barclays',
@@ -1469,7 +1469,7 @@ export const banks: BankAccount[] = [
     hasFastOpening: false,
     hasGlobalCurrencyAccounts: false,
     hasNoCreditCheck: false,
-    accountTypes: ['current', 'branch-access', 'cash-deposit', 'overdraft', 'online', 'accounting', 'startup'],
+    accountTypes: ['current', 'branch-access', 'cash-deposit', 'overdraft', 'online', 'accounting', 'startup', 'switcher', 'joint', 'corporate', 'highstreet'],
   },
   {
     id: 'natwest',
@@ -1559,7 +1559,7 @@ export const banks: BankAccount[] = [
     hasGlobalCurrencyAccounts: false,
     hasNoCreditCheck: false,
     hasAccounting: true,
-    accountTypes: ['current', 'free', 'branch-access', 'cash-deposit', 'overdraft', 'online', 'accounting', 'startup'],
+    accountTypes: ['current', 'free', 'branch-access', 'cash-deposit', 'overdraft', 'online', 'accounting', 'startup', 'switcher', 'joint', 'corporate', 'highstreet'],
   },
   {
     id: 'rbs',
@@ -1629,7 +1629,7 @@ export const banks: BankAccount[] = [
     hasGlobalCurrencyAccounts: false,
     hasNoCreditCheck: false,
     hasAccounting: true,
-    accountTypes: ['current', 'free', 'branch-access', 'cash-deposit', 'overdraft', 'online', 'accounting', 'startup'],
+    accountTypes: ['current', 'free', 'branch-access', 'cash-deposit', 'overdraft', 'online', 'accounting', 'startup', 'switcher', 'joint', 'highstreet'],
   },
   {
     id: 'starling',
@@ -1702,7 +1702,7 @@ export const banks: BankAccount[] = [
     hasGlobalCurrencyAccounts: false,
     hasNoCreditCheck: true,
     hasAccounting: true,
-    accountTypes: ['current', 'free', 'fast-opening', 'no-credit-check', 'cash-deposit', 'online', 'accounting'],
+    accountTypes: ['current', 'free', 'fast-opening', 'no-credit-check', 'cash-deposit', 'online', 'accounting', 'switcher', 'joint', 'digital'],
   },
   {
     id: 'wise',
@@ -1774,7 +1774,7 @@ export const banks: BankAccount[] = [
     hasFastOpening: true,
     hasGlobalCurrencyAccounts: true,
     hasNoCreditCheck: true,
-    accountTypes: ['current', 'free', 'fast-opening', 'no-credit-check', 'multi-currency', 'international', 'online', 'accounting'],
+    accountTypes: ['current', 'free', 'fast-opening', 'no-credit-check', 'multi-currency', 'international', 'online', 'accounting', 'joint', 'digital'],
   },
   {
     id: 'cynergy',
@@ -1843,7 +1843,7 @@ export const banks: BankAccount[] = [
     hasGlobalCurrencyAccounts: false,
     hasNoCreditCheck: false,
     hasAccounting: true,
-    accountTypes: ['current', 'free', 'cash-deposit', 'online', 'accounting'],
+    accountTypes: ['current', 'free', 'cash-deposit', 'online', 'accounting', 'joint', 'highstreet'],
   },
   {
     id: 'equals',
@@ -1913,7 +1913,7 @@ export const banks: BankAccount[] = [
     hasFastOpening: false,
     hasGlobalCurrencyAccounts: true,
     hasNoCreditCheck: true,
-    accountTypes: ['current', 'free', 'no-credit-check', 'multi-currency', 'international', 'online', 'accounting'],
+    accountTypes: ['current', 'free', 'no-credit-check', 'multi-currency', 'international', 'online', 'accounting', 'joint', 'digital'],
   },
   {
     id: 'mettle',
@@ -1978,19 +1978,33 @@ export const banks: BankAccount[] = [
     openingFee: 'Free',
     affiliateUrl: 'https://www.mettle.co.uk/business-bank-account/',
     creditCheck: false,
-    suitableFor: ['sole-trader', 'limited-company', 'freelancer', 'startup', 'contractor', 'small-business'],
+    suitableFor: ['sole-trader', 'limited-company', 'freelancer', 'startup', 'contractor', 'small-business', 'bad-credit'],
     hasAccounting: true,
     hasBranchAccess: false,
     hasCashDeposits: true,
     hasFastOpening: true,
     hasGlobalCurrencyAccounts: false,
     hasNoCreditCheck: true,
-    accountTypes: ['current', 'free', 'fast-opening', 'no-credit-check', 'online', 'accounting'],
+    accountTypes: ['current', 'free', 'fast-opening', 'no-credit-check', 'online', 'accounting', 'joint', 'digital'],
   }
 ];
 
-// Helper: get banks by accountType
+// Helper: get banks by accountType (also checks suitableFor for overlapping types)
 export function getBanksByType(type: string): BankAccount[] {
+  // Some types overlap with suitableFor tags
+  const suitabilityOverlap: Record<string, string> = {
+    'bad-credit': 'bad-credit',
+    'sole-trader': 'sole-trader',
+    'startup': 'startup',
+    'small-business': 'small-business',
+    'freelancer': 'freelancer',
+    'international': 'international',
+    'multi-director': 'limited-company',
+    'joint': 'partnership',
+  };
+  if (suitabilityOverlap[type]) {
+    return banks.filter(b => b.accountTypes.includes(type) || b.suitableFor.includes(suitabilityOverlap[type]));
+  }
   return banks.filter(b => b.accountTypes.includes(type));
 }
 
@@ -2014,25 +2028,25 @@ export interface AccountTypeCategory {
 }
 
 export const accountTypeCategories: AccountTypeCategory[] = [
-  { type: 'fast-opening', label: 'Fast Opening', icon: '⚡', description: 'Open your account the same day' },
-  { type: 'accounting', label: 'With Accountancy', icon: '📊', description: 'Xero, QuickBooks & FreeAgent integrations' },
-  { type: 'cash-deposit', label: 'Cash Deposits', icon: '💵', description: 'Deposit cash at Post Office or branch' },
-  { type: 'branch-access', label: 'Branch Access', icon: '🏦', description: 'Visit a branch in person' },
-  { type: 'freelancer', label: 'Freelancer Accounts', icon: '💻', description: 'Ideal for self-employed individuals', suitability: 'freelancer' },
-  { type: 'startup', label: 'Startup Accounts', icon: '🚀', description: 'Free periods for new businesses' },
-  { type: 'free', label: 'Free Accounts', icon: '🆓', description: 'No monthly fee' },
-  { type: 'joint', label: 'Joint Accounts', icon: '🤝', description: 'Shared business accounts', suitability: 'limited-company' },
-  { type: 'overdraft', label: 'With Overdraft', icon: '💳', description: 'Arranged overdraft available' },
-  { type: 'online', label: 'Online Accounts', icon: '🌐', description: 'Manage everything online' },
-  { type: 'sole-trader', label: 'Sole Trader Accounts', icon: '👤', description: 'Best for self-employed', suitability: 'sole-trader' },
-  { type: 'multi-director', label: 'Multi-Director', icon: '👥', description: 'Multiple signatories', suitability: 'limited-company' },
-  { type: 'no-credit-check', label: 'No Credit Check', icon: '✅', description: 'No credit check required' },
-  { type: 'switcher', label: 'Switcher Accounts', icon: '🔄', description: 'Switch your existing account', suitability: 'established-business' },
-  { type: 'small-business', label: 'Small Business', icon: '🏪', description: 'For established small businesses', suitability: 'small-business' },
-  { type: 'bad-credit', label: 'Bad Credit', icon: '🔓', description: 'For businesses with poor credit history' },
-  { type: 'corporate', label: 'Corporate Accounts', icon: '🏢', description: 'For larger businesses', suitability: 'established-business' },
-  { type: 'international', label: 'International', icon: '🌍', description: 'International payments & FX' },
-  { type: 'multi-currency', label: 'Multi-Currency', icon: '💱', description: 'Hold multiple currencies' },
+  { type: 'fast-opening',   label: 'Fast Opening Bank Accounts',        icon: '⚡', description: 'Open your account the same day or within 24 hours' },
+  { type: 'accounting',     label: 'Bank Accounts with Accountancy',    icon: '📊', description: 'Xero, QuickBooks & FreeAgent integrations' },
+  { type: 'cash-deposit',   label: 'Cash Deposit Bank Accounts',        icon: '💵', description: 'Deposit cash at Post Office or branch' },
+  { type: 'branch-access',  label: 'Bank Accounts with Branch Access',  icon: '🏦', description: 'Visit a branch in person' },
+  { type: 'freelancer',     label: 'Freelancer Bank Accounts',          icon: '💻', description: 'Ideal for self-employed individuals', suitability: 'freelancer' },
+  { type: 'startup',        label: 'Startup Business Bank Accounts',    icon: '🚀', description: 'Free periods and easy opening for new businesses' },
+  { type: 'free',           label: 'Free Business Bank Accounts',       icon: '🆓', description: 'No monthly fee accounts' },
+  { type: 'joint',          label: 'Joint Business Bank Accounts',      icon: '🤝', description: 'Shared business accounts for partnerships' },
+  { type: 'overdraft',      label: 'Business Accounts With Overdraft',  icon: '💳', description: 'Arranged overdraft facility available' },
+  { type: 'online',         label: 'Online Business Bank Accounts',     icon: '🌐', description: 'Fully digital, manage everything online' },
+  { type: 'sole-trader',    label: 'Sole Trader Business Accounts',     icon: '👤', description: 'Best accounts for self-employed individuals', suitability: 'sole-trader' },
+  { type: 'multi-director', label: 'Multi Director Business Accounts',  icon: '👥', description: 'Multiple signatories and directors', suitability: 'limited-company' },
+  { type: 'no-credit-check',label: 'No Credit Check Bank Accounts',    icon: '✅', description: 'Open an account without a credit check' },
+  { type: 'switcher',       label: 'Switcher Business Accounts',        icon: '🔄', description: 'Switch your existing business account easily' },
+  { type: 'small-business', label: 'Small Business Bank Accounts',      icon: '🏪', description: 'For established small businesses', suitability: 'small-business' },
+  { type: 'bad-credit',     label: 'Bad Credit Business Accounts',      icon: '🔓', description: 'For businesses with poor credit history', suitability: 'bad-credit' },
+  { type: 'corporate',      label: 'Corporate Business Bank Accounts',  icon: '🏢', description: 'For larger businesses and corporates' },
+  { type: 'international',  label: 'International Business Accounts',   icon: '🌍', description: 'International payments and FX transfers' },
+  { type: 'multi-currency', label: 'Multi Currency Business Accounts',  icon: '💱', description: 'Hold and transact in multiple currencies' },
 ];
 
 // Business type cards for homepage

@@ -146,10 +146,11 @@ export default function Home() {
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                href="/category/sole-trader"
+                href="/find-my-account"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm border transition-all hover:bg-white/10 no-underline text-white"
                 style={{ borderColor: 'rgba(255,255,255,0.35)', background: 'rgba(255,255,255,0.05)' }}
               >
+                <SlidersHorizontal className="w-4 h-4" />
                 Find My Account
               </Link>
             </div>
@@ -190,16 +191,16 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
             {businessTypeCards.map((card) => (
-              <Link key={card.href} href={card.href} className="no-underline">
+              <Link key={card.href} href={card.href} className="no-underline h-full">
                 <div
-                  className="rounded-xl p-4 text-center transition-all cursor-pointer group border border-slate-700 hover:border-teal-500 hover:shadow-lg hover:shadow-teal-900/30"
+                  className="rounded-xl p-4 text-center transition-all cursor-pointer group border border-slate-700 hover:border-teal-500 hover:shadow-lg hover:shadow-teal-900/30 flex flex-col items-center justify-start h-full min-h-[120px]"
                   style={{ backgroundColor: '#1e293b' }}
                 >
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-3 text-xl" style={{ backgroundColor: card.color }}>
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-3 text-xl flex-shrink-0" style={{ backgroundColor: card.color }}>
                     {card.icon}
                   </div>
                   <div
-                    className="text-xs font-semibold text-slate-300 group-hover:text-teal-400 transition-colors leading-tight"
+                    className="text-xs font-semibold text-slate-300 group-hover:text-teal-400 transition-colors leading-tight flex-1"
                     style={{ fontFamily: 'Sora, sans-serif' }}
                   >
                     {card.title}
