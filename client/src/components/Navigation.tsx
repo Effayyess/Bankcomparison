@@ -168,7 +168,7 @@ export default function Navigation() {
                       className="w-3.5 h-3.5 transition-transform"
                       style={{
                         transform: activeDropdown === item.label ? 'rotate(180deg)' : 'none',
-                        color: 'oklch(0.72 0.12 210)',
+                        color: '#60a5fa',
                       }}
                     />
                   </button>
@@ -195,7 +195,7 @@ export default function Navigation() {
                         <div
                           key={child.label}
                           className="px-4 py-1.5 text-xs font-semibold uppercase tracking-wider"
-                          style={{ color: 'oklch(0.72 0.12 210)', fontFamily: 'Sora, sans-serif' }}
+                          style={{ color: '#60a5fa', fontFamily: 'Sora, sans-serif' }}
                         >
                           {child.label}
                         </div>
@@ -260,7 +260,7 @@ export default function Navigation() {
                             <div
                               key={child.label}
                               className="px-6 py-1.5 text-xs font-semibold uppercase tracking-wider"
-                              style={{ color: 'oklch(0.72 0.12 210)' }}
+                              style={{ color: '#60a5fa' }}
                             >
                               {child.label}
                             </div>

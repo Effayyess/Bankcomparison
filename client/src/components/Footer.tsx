@@ -16,21 +16,21 @@ export default function Footer() {
         <div className="container py-6">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div className="flex items-center gap-3">
-              <Shield className="w-8 h-8 flex-shrink-0" style={{ color: 'oklch(0.72 0.12 210)' }} />
+              <Shield className="w-8 h-8 flex-shrink-0" style={{ color: '#60a5fa' }} />
               <div>
                 <p className="font-semibold text-sm">Independent &amp; Unbiased</p>
                 <p className="text-xs" style={{ color: 'rgba(255,255,255,0.5)' }}>Our reviews are editorially independent</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <Award className="w-8 h-8 flex-shrink-0" style={{ color: 'oklch(0.72 0.12 210)' }} />
+              <Award className="w-8 h-8 flex-shrink-0" style={{ color: '#60a5fa' }} />
               <div>
                 <p className="font-semibold text-sm">Expert Reviewed</p>
                 <p className="text-xs" style={{ color: 'rgba(255,255,255,0.5)' }}>Reviewed by qualified financial experts</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <Users className="w-8 h-8 flex-shrink-0" style={{ color: 'oklch(0.72 0.12 210)' }} />
+              <Users className="w-8 h-8 flex-shrink-0" style={{ color: '#60a5fa' }} />
               <div>
                 <p className="font-semibold text-sm">Trusted by 50,000+</p>
                 <p className="text-xs" style={{ color: 'rgba(255,255,255,0.5)' }}>UK business owners use our comparisons</p>
@@ -68,7 +68,7 @@ export default function Footer() {
 
           {/* Compare Accounts */}
           <div>
-            <h3 className="font-bold text-sm mb-4" style={{ color: 'oklch(0.72 0.12 210)' }}>
+            <h3 className="font-bold text-sm mb-4" style={{ color: '#60a5fa' }}>
               Compare Accounts
             </h3>
             <ul className="space-y-2.5">
@@ -90,7 +90,7 @@ export default function Footer() {
 
           {/* By Business Type */}
           <div>
-            <h3 className="font-bold text-sm mb-4" style={{ color: 'oklch(0.72 0.12 210)' }}>
+            <h3 className="font-bold text-sm mb-4" style={{ color: '#60a5fa' }}>
               By Business Type
             </h3>
             <ul className="space-y-2.5">
@@ -113,7 +113,7 @@ export default function Footer() {
 
           {/* Bank Reviews */}
           <div>
-            <h3 className="font-bold text-sm mb-4" style={{ color: 'oklch(0.72 0.12 210)' }}>
+            <h3 className="font-bold text-sm mb-4" style={{ color: '#60a5fa' }}>
               Bank Reviews
             </h3>
             <ul className="space-y-2.5">
