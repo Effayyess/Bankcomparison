@@ -27,6 +27,7 @@ const typeFilters = [
 ];
 
 const sortOptions = [
+  { value: 'featured', label: 'Featured' },
   { value: 'rating', label: 'Top Rated' },
   { value: 'fee-asc', label: 'Lowest Fee' },
   { value: 'fee-desc', label: 'Highest Fee' },
@@ -40,7 +41,7 @@ export default function Compare() {
   const [fscsOnly, setFscsOnly] = useState(false);
   const [intlOnly, setIntlOnly] = useState(false);
   const [search, setSearch] = useState('');
-  const [sortBy, setSortBy] = useState('rating');
+  const [sortBy, setSortBy] = useState('featured');
   const [showFilters, setShowFilters] = useState(false);
 
   const filtered = useMemo(() => {
@@ -55,13 +56,16 @@ export default function Compare() {
       return true;
     });
 
-    result = [...result].sort((a, b) => {
-      if (sortBy === 'rating') return b.rating - a.rating;
-      if (sortBy === 'fee-asc') return a.monthlyFeeNum - b.monthlyFeeNum;
-      if (sortBy === 'fee-desc') return b.monthlyFeeNum - a.monthlyFeeNum;
-      if (sortBy === 'name') return a.name.localeCompare(b.name);
-      return 0;
-    });
+    // For 'featured', preserve the original bankData.ts order (HSBC=1, Tide=2, ...)
+    if (sortBy !== 'featured') {
+      result = [...result].sort((a, b) => {
+        if (sortBy === 'rating') return b.rating - a.rating;
+        if (sortBy === 'fee-asc') return a.monthlyFeeNum - b.monthlyFeeNum;
+        if (sortBy === 'fee-desc') return b.monthlyFeeNum - a.monthlyFeeNum;
+        if (sortBy === 'name') return a.name.localeCompare(b.name);
+        return 0;
+      });
+    }
 
     return result;
   }, [suitability, bankType, feeType, fscsOnly, intlOnly, search, sortBy]);
