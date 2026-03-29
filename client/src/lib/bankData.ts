@@ -64,6 +64,7 @@ export interface BankAccount {
   hasGlobalCurrencyAccounts: boolean;
   hasNoCreditCheck: boolean;
   accountTypes: string[];
+  promoCode?: string;
 }
 
 export const banks: BankAccount[] = [
