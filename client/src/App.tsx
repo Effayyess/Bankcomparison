@@ -17,6 +17,7 @@ import GuidePage from './pages/GuidePage';
 import GuidesHub from './pages/GuidesHub';
 import GuidesCategory from './pages/GuidesCategory';
 import LegalPage from './pages/LegalPage';
+import ContactPage from './pages/ContactPage';
 import FindMyAccount from './pages/FindMyAccount';
 import StickyPromoBar from './components/StickyPromoBar';
 
@@ -47,9 +48,7 @@ function Router() {
         <Route path="/editorial-policy">
           {() => <LegalPage slug="editorial-policy" />}
         </Route>
-        <Route path="/contact">
-          {() => <LegalPage slug="contact" />}
-        </Route>
+        <Route path="/contact" component={ContactPage} />
         {/* Bank review pages — /:slug (e.g. /starling-bank) — must be last specific route */}
         <Route path="/:slug" component={BankReview} />
         <Route path="/404" component={NotFound} />

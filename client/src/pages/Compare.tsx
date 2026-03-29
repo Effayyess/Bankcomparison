@@ -1,12 +1,14 @@
-// Compare page — full comparison list with filters
-// Matches original buscompare design: teal accents, Sora font
-import { useState, useMemo } from 'react';
-import { Search, SlidersHorizontal, X } from 'lucide-react';
+// Compare page — full comparison list with sticky filters and advanced filtering
+// Matches original buscompare design: blue accents, Sora font
+import { useState, useMemo, useRef, useEffect } from 'react';
+import { Search, SlidersHorizontal, X, ChevronDown, ChevronUp, RotateCcw } from 'lucide-react';
 import { banks } from '@/lib/bankData';
 import BankCard from '@/components/BankCard';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
+
+// ─── Filter definitions ────────────────────────────────────────────────────────
 
 const suitabilityFilters = [
   { value: 'all', label: 'All Businesses' },
@@ -34,15 +36,119 @@ const sortOptions = [
   { value: 'name', label: 'A–Z' },
 ];
 
+// Advanced feature toggles — each maps to a boolean field on BankAccount
+const advancedFeatureFilters: {
+  key: string;
+  label: string;
+  description: string;
+  emoji: string;
+  filterFn: (bank: (typeof banks)[0]) => boolean;
+}[] = [
+  {
+    key: 'noFee',
+    label: 'No Monthly Fee',
+    description: 'Free accounts only',
+    emoji: '£',
+    filterFn: (b) => b.monthlyFeeNum === 0,
+  },
+  {
+    key: 'noCreditCheck',
+    label: 'No Credit Check',
+    description: 'Apply without a hard credit search',
+    emoji: '✓',
+    filterFn: (b) => !!b.hasNoCreditCheck,
+  },
+  {
+    key: 'fscs',
+    label: 'FSCS Protected',
+    description: 'Deposits protected up to £120,000',
+    emoji: '🛡',
+    filterFn: (b) => !!b.fscsProtection,
+  },
+  {
+    key: 'branchAccess',
+    label: 'Branch Access',
+    description: 'Visit a physical branch',
+    emoji: '🏦',
+    filterFn: (b) => !!b.hasBranchAccess,
+  },
+  {
+    key: 'cashDeposits',
+    label: 'Cash Deposits',
+    description: 'Deposit cash at Post Office or branch',
+    emoji: '💵',
+    filterFn: (b) => !!b.hasCashDeposits,
+  },
+  {
+    key: 'international',
+    label: 'International Payments',
+    description: 'Send & receive international transfers',
+    emoji: '🌍',
+    filterFn: (b) => !!b.internationalPayments,
+  },
+  {
+    key: 'accounting',
+    label: 'Accounting Integration',
+    description: 'Connects to Xero, QuickBooks, FreeAgent',
+    emoji: '📊',
+    filterFn: (b) => !!b.hasAccounting,
+  },
+  {
+    key: 'fastOpening',
+    label: 'Fast Account Opening',
+    description: 'Open an account in minutes',
+    emoji: '⚡',
+    filterFn: (b) => !!b.hasFastOpening,
+  },
+];
+
+// ─── Quick-filter pill presets ─────────────────────────────────────────────────
+const quickFilterPresets: { label: string; features: string[] }[] = [
+  { label: 'Free & No Credit Check', features: ['noFee', 'noCreditCheck'] },
+  { label: 'Best for Startups', features: ['noFee', 'fastOpening'] },
+  { label: 'Traditional Banking', features: ['branchAccess', 'fscs', 'cashDeposits'] },
+  { label: 'International Business', features: ['international', 'fscs'] },
+];
+
+// ─── Component ─────────────────────────────────────────────────────────────────
+
 export default function Compare() {
   const [suitability, setSuitability] = useState('all');
   const [bankType, setBankType] = useState('all');
   const [feeType, setFeeType] = useState('all');
-  const [fscsOnly, setFscsOnly] = useState(false);
-  const [intlOnly, setIntlOnly] = useState(false);
+  const [activeFeatures, setActiveFeatures] = useState<Set<string>>(new Set());
   const [search, setSearch] = useState('');
   const [sortBy, setSortBy] = useState('featured');
   const [showFilters, setShowFilters] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
+
+  // Sentinel ref for sticky detection
+  const sentinelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsSticky(!entry.isIntersecting),
+      { threshold: 0, rootMargin: '-88px 0px 0px 0px' }
+    );
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, []);
+
+  function toggleFeature(key: string) {
+    setActiveFeatures((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+  }
+
+  function applyPreset(features: string[]) {
+    setActiveFeatures(new Set(features));
+    setShowFilters(true);
+  }
 
   const filtered = useMemo(() => {
     let result = banks.filter((bank) => {
@@ -50,13 +156,20 @@ export default function Compare() {
       if (bankType !== 'all' && bank.type !== bankType) return false;
       if (feeType === 'free' && bank.monthlyFeeNum !== 0) return false;
       if (feeType === 'paid' && bank.monthlyFeeNum === 0) return false;
-      if (fscsOnly && !bank.fscsProtection) return false;
-      if (intlOnly && !bank.internationalPayments) return false;
-      if (search && !bank.name.toLowerCase().includes(search.toLowerCase()) && !bank.provider.toLowerCase().includes(search.toLowerCase())) return false;
+      // Advanced feature filters
+      for (const key of Array.from(activeFeatures)) {
+        const filter = advancedFeatureFilters.find((f) => f.key === key);
+        if (filter && !filter.filterFn(bank)) return false;
+      }
+      if (
+        search &&
+        !bank.name.toLowerCase().includes(search.toLowerCase()) &&
+        !bank.provider.toLowerCase().includes(search.toLowerCase())
+      )
+        return false;
       return true;
     });
 
-    // For 'featured', preserve the original bankData.ts order (HSBC=1, Tide=2, ...)
     if (sortBy !== 'featured') {
       result = [...result].sort((a, b) => {
         if (sortBy === 'rating') return b.rating - a.rating;
@@ -68,16 +181,27 @@ export default function Compare() {
     }
 
     return result;
-  }, [suitability, bankType, feeType, fscsOnly, intlOnly, search, sortBy]);
+  }, [suitability, bankType, feeType, activeFeatures, search, sortBy]);
 
-  const hasActiveFilters = suitability !== 'all' || bankType !== 'all' || feeType !== 'all' || fscsOnly || intlOnly || search;
+  const hasActiveFilters =
+    suitability !== 'all' ||
+    bankType !== 'all' ||
+    feeType !== 'all' ||
+    activeFeatures.size > 0 ||
+    !!search;
+
+  const activeFilterCount =
+    (suitability !== 'all' ? 1 : 0) +
+    (bankType !== 'all' ? 1 : 0) +
+    (feeType !== 'all' ? 1 : 0) +
+    activeFeatures.size +
+    (search ? 1 : 0);
 
   function clearFilters() {
     setSuitability('all');
     setBankType('all');
     setFeeType('all');
-    setFscsOnly(false);
-    setIntlOnly(false);
+    setActiveFeatures(new Set());
     setSearch('');
   }
 
@@ -118,79 +242,142 @@ export default function Compare() {
         {/* Page header */}
         <div className="bg-white border-b border-gray-200">
           <div className="container py-8">
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2" style={{ fontFamily: 'Sora, sans-serif' }}>
+            <h1
+              className="text-2xl md:text-3xl font-bold text-gray-900 mb-2"
+              style={{ fontFamily: 'Sora, sans-serif' }}
+            >
               Compare Business Bank Accounts UK {new Date().getFullYear()}
             </h1>
             <p className="text-gray-600 text-sm">
-              Independent comparison of {banks.length} UK business bank accounts. Filter by business type, features, and fees.
+              Independent comparison of {banks.length} UK business bank accounts. Filter by business type, features,
+              and fees.
             </p>
+
+            {/* Quick-filter presets */}
+            <div className="flex flex-wrap gap-2 mt-4">
+              <span className="text-xs font-semibold text-gray-500 self-center mr-1">Quick filters:</span>
+              {quickFilterPresets.map((preset) => {
+                const isActive =
+                  preset.features.length === activeFeatures.size &&
+                  preset.features.every((f) => activeFeatures.has(f));
+                return (
+                  <button
+                    key={preset.label}
+                    onClick={() => (isActive ? clearFilters() : applyPreset(preset.features))}
+                    className="px-3 py-1.5 rounded-full text-xs font-semibold border transition-all"
+                    style={
+                      isActive
+                        ? { background: '#0a1e3c', color: 'white', borderColor: '#0a1e3c' }
+                        : { background: 'white', color: '#374151', borderColor: '#e5e7eb' }
+                    }
+                  >
+                    {preset.label}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
-        <div className="container py-8">
-          {/* Search + filter toggle */}
-          <div className="flex flex-col sm:flex-row gap-3 mb-4">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search by bank name..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm bg-white focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
-              />
-              {search && (
-                <button onClick={() => setSearch('')} className="absolute right-3 top-1/2 -translate-y-1/2 bg-transparent border-none">
-                  <X className="w-4 h-4 text-gray-400" />
-                </button>
-              )}
-            </div>
-            <button
-              onClick={() => setShowFilters(!showFilters)}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-700 hover:border-blue-400 transition-colors"
-            >
-              <SlidersHorizontal className="w-4 h-4" />
-              Filters
-              {hasActiveFilters && (
-                <span className="w-2 h-2 rounded-full bg-blue-500" />
-              )}
-            </button>
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              className="px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-700 focus:outline-none focus:border-blue-400"
-            >
-              {sortOptions.map((opt) => (
-                <option key={opt.value} value={opt.value}>{opt.label}</option>
-              ))}
-            </select>
-          </div>
+        {/* Sentinel for sticky detection */}
+        <div ref={sentinelRef} style={{ height: 0 }} />
 
-          {/* Suitability filter pills */}
-          <div className="flex flex-wrap gap-2 mb-4">
-            {suitabilityFilters.map((f) => (
+        {/* ── Sticky filter bar ─────────────────────────────────────────────── */}
+        <div
+          className="bg-white border-b border-gray-200 z-30 transition-shadow"
+          style={{
+            position: 'sticky',
+            top: '88px',
+            boxShadow: isSticky ? '0 2px 12px rgba(0,0,0,0.08)' : 'none',
+          }}
+        >
+          <div className="container py-3">
+            {/* Row 1: search + filter toggle + sort */}
+            <div className="flex flex-col sm:flex-row gap-3 mb-3">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search by bank name..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm bg-white focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
+                />
+                {search && (
+                  <button
+                    onClick={() => setSearch('')}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 bg-transparent border-none"
+                  >
+                    <X className="w-4 h-4 text-gray-400" />
+                  </button>
+                )}
+              </div>
+
               <button
-                key={f.value}
-                onClick={() => setSuitability(f.value)}
-                className="px-3 py-1.5 rounded-full text-xs font-semibold border transition-all"
+                onClick={() => setShowFilters(!showFilters)}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl border text-sm font-medium text-gray-700 hover:border-blue-400 transition-colors whitespace-nowrap"
                 style={
-                  suitability === f.value
-                    ? { background: '#2563eb', color: 'white', borderColor: 'oklch(0.72 0.12 210)' }
-                    : { background: 'white', color: '#374151', borderColor: '#e5e7eb' }
+                  showFilters
+                    ? { borderColor: '#2563eb', background: '#eff6ff', color: '#1d4ed8' }
+                    : { borderColor: '#e5e7eb', background: 'white' }
                 }
               >
-                {f.label}
+                <SlidersHorizontal className="w-4 h-4" />
+                Filters
+                {activeFilterCount > 0 && (
+                  <span
+                    className="inline-flex items-center justify-center w-5 h-5 rounded-full text-xs font-bold text-white"
+                    style={{ background: '#2563eb' }}
+                  >
+                    {activeFilterCount}
+                  </span>
+                )}
+                {showFilters ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
               </button>
-            ))}
-          </div>
 
-          {/* Expanded filters */}
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-700 focus:outline-none focus:border-blue-400"
+              >
+                {sortOptions.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Row 2: Suitability pills */}
+            <div className="flex flex-wrap gap-2">
+              {suitabilityFilters.map((f) => (
+                <button
+                  key={f.value}
+                  onClick={() => setSuitability(f.value)}
+                  className="px-3 py-1.5 rounded-full text-xs font-semibold border transition-all"
+                  style={
+                    suitability === f.value
+                      ? { background: '#2563eb', color: 'white', borderColor: '#2563eb' }
+                      : { background: 'white', color: '#374151', borderColor: '#e5e7eb' }
+                  }
+                >
+                  {f.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="container py-6">
+          {/* ── Expanded advanced filters panel ──────────────────────────────── */}
           {showFilters && (
-            <div className="bg-white rounded-2xl border border-gray-200 p-5 mb-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="bg-white rounded-2xl border border-gray-200 p-5 mb-6 shadow-sm">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Bank type */}
                 <div>
-                  <label className="block text-xs font-semibold text-gray-700 mb-2">Bank Type</label>
+                  <label className="block text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wider">
+                    Bank Type
+                  </label>
                   <div className="flex flex-col gap-1.5">
                     {typeFilters.map((f) => (
                       <label key={f.value} className="flex items-center gap-2 cursor-pointer">
@@ -208,13 +395,15 @@ export default function Compare() {
                   </div>
                 </div>
 
-                {/* Fee type */}
+                {/* Monthly fee */}
                 <div>
-                  <label className="block text-xs font-semibold text-gray-700 mb-2">Monthly Fee</label>
+                  <label className="block text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wider">
+                    Monthly Fee
+                  </label>
                   <div className="flex flex-col gap-1.5">
                     {[
                       { value: 'all', label: 'Any fee' },
-                      { value: 'free', label: 'Free only' },
+                      { value: 'free', label: 'Free only (£0/month)' },
                       { value: 'paid', label: 'Paid only' },
                     ].map((f) => (
                       <label key={f.value} className="flex items-center gap-2 cursor-pointer">
@@ -232,42 +421,75 @@ export default function Compare() {
                   </div>
                 </div>
 
-                {/* Toggles */}
-                <div className="sm:col-span-2">
-                  <label className="block text-xs font-semibold text-gray-700 mb-2">Must-Have Features</label>
+                {/* Advanced feature toggles */}
+                <div>
+                  <label className="block text-xs font-semibold text-gray-700 mb-2 uppercase tracking-wider">
+                    Must-Have Features
+                  </label>
                   <div className="flex flex-col gap-2">
-                    <label className="flex items-center gap-2 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={fscsOnly}
-                        onChange={(e) => setFscsOnly(e.target.checked)}
-                        className="accent-blue-600 w-4 h-4"
-                      />
-                      <span className="text-sm text-gray-700">FSCS Protected only</span>
-                    </label>
-                    <label className="flex items-center gap-2 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={intlOnly}
-                        onChange={(e) => setIntlOnly(e.target.checked)}
-                        className="accent-blue-600 w-4 h-4"
-                      />
-                      <span className="text-sm text-gray-700">International payments only</span>
-                    </label>
+                    {advancedFeatureFilters.map((f) => (
+                      <label key={f.key} className="flex items-start gap-2 cursor-pointer group">
+                        <input
+                          type="checkbox"
+                          checked={activeFeatures.has(f.key)}
+                          onChange={() => toggleFeature(f.key)}
+                          className="accent-blue-600 w-4 h-4 mt-0.5 flex-shrink-0"
+                        />
+                        <div>
+                          <span className="text-sm text-gray-700 font-medium">{f.label}</span>
+                          <p className="text-xs text-gray-400 leading-tight">{f.description}</p>
+                        </div>
+                      </label>
+                    ))}
                   </div>
                 </div>
               </div>
 
               {hasActiveFilters && (
-                <div className="mt-4 pt-4 border-t border-gray-100">
+                <div className="mt-5 pt-4 border-t border-gray-100 flex items-center justify-between">
+                  <p className="text-xs text-gray-500">
+                    <strong>{filtered.length}</strong> of {banks.length} accounts match your filters
+                  </p>
                   <button
                     onClick={clearFilters}
-                    className="text-xs font-semibold text-blue-600 hover:text-blue-800 bg-transparent border-none"
+                    className="flex items-center gap-1.5 text-xs font-semibold text-blue-600 hover:text-blue-800 bg-transparent border-none"
                   >
+                    <RotateCcw className="w-3.5 h-3.5" />
                     Clear all filters
                   </button>
                 </div>
               )}
+            </div>
+          )}
+
+          {/* Active feature filter chips */}
+          {activeFeatures.size > 0 && (
+            <div className="flex flex-wrap gap-2 mb-4">
+              {Array.from(activeFeatures).map((key) => {
+                const filter = advancedFeatureFilters.find((f) => f.key === key);
+                if (!filter) return null;
+                return (
+                  <span
+                    key={key}
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border"
+                    style={{ background: '#eff6ff', color: '#1d4ed8', borderColor: '#bfdbfe' }}
+                  >
+                    {filter.label}
+                    <button
+                      onClick={() => toggleFeature(key)}
+                      className="bg-transparent border-none p-0 ml-0.5 text-blue-400 hover:text-blue-700"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </span>
+                );
+              })}
+              <button
+                onClick={() => setActiveFeatures(new Set())}
+                className="text-xs text-gray-500 hover:text-gray-700 bg-transparent border-none underline"
+              >
+                Clear
+              </button>
             </div>
           )}
 
@@ -276,7 +498,10 @@ export default function Compare() {
             <p className="text-sm text-gray-600">
               Showing <strong>{filtered.length}</strong> of {banks.length} accounts
               {hasActiveFilters && (
-                <button onClick={clearFilters} className="ml-2 text-blue-600 text-xs font-semibold hover:underline bg-transparent border-none">
+                <button
+                  onClick={clearFilters}
+                  className="ml-2 text-blue-600 text-xs font-semibold hover:underline bg-transparent border-none"
+                >
                   Clear filters
                 </button>
               )}
@@ -293,7 +518,10 @@ export default function Compare() {
           ) : (
             <div className="text-center py-16 bg-white rounded-2xl border border-gray-200">
               <div className="text-4xl mb-4">🔍</div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2" style={{ fontFamily: 'Sora, sans-serif' }}>
+              <h3
+                className="text-lg font-bold text-gray-900 mb-2"
+                style={{ fontFamily: 'Sora, sans-serif' }}
+              >
                 No accounts match your filters
               </h3>
               <p className="text-gray-500 text-sm mb-4">Try adjusting your filters to see more results.</p>
@@ -310,7 +538,10 @@ export default function Compare() {
           {/* Disclaimer */}
           <div className="mt-8 p-4 bg-gray-50 rounded-xl border border-gray-200">
             <p className="text-xs text-gray-500 leading-relaxed">
-              <strong>Disclaimer:</strong> Our rankings are based on a combination of monthly fees, transaction costs, features, customer reviews, FSCS protection status, and overall value for money. We update our data monthly. Some links are affiliate links — we may earn a commission if you open an account, but this never influences our editorial rankings.
+              <strong>Disclaimer:</strong> Our rankings are based on a combination of monthly fees, transaction costs,
+              features, customer reviews, FSCS protection status, and overall value for money. We update our data
+              monthly. Some links are affiliate links — we may earn a commission if you open an account, but this never
+              influences our editorial rankings.
             </p>
           </div>
         </div>

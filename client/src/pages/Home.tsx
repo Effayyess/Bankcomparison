@@ -85,22 +85,29 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
 function NewsletterSignup() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
     setStatus('loading');
-    // Store in localStorage as a simple client-side signup log
-    // In production this would call a Netlify function / API
+    setErrorMsg('');
     try {
-      const existing = JSON.parse(localStorage.getItem('newsletter_signups') || '[]');
-      if (!existing.includes(email)) {
-        existing.push(email);
-        localStorage.setItem('newsletter_signups', JSON.stringify(existing));
+      const res = await fetch('/.netlify/functions/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setStatus('success');
+        setEmail('');
+      } else {
+        setErrorMsg(data.error || 'Something went wrong. Please try again.');
+        setStatus('error');
       }
-      setStatus('success');
-      setEmail('');
     } catch {
+      setErrorMsg('Network error. Please check your connection and try again.');
       setStatus('error');
     }
   };
@@ -115,25 +122,30 @@ function NewsletterSignup() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="your@email.com"
-        required
-        className="flex-1 px-4 py-3 rounded-xl text-sm text-gray-900 bg-white border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
-        style={{ fontFamily: 'Sora, sans-serif' }}
-      />
-      <button
-        type="submit"
-        disabled={status === 'loading'}
-        className="px-6 py-3 rounded-xl font-semibold text-sm text-white transition-all hover:opacity-90 disabled:opacity-60 whitespace-nowrap"
-        style={{ background: '#2563eb', fontFamily: 'Sora, sans-serif' }}
-      >
-        {status === 'loading' ? 'Subscribing...' : 'Get Updates'}
-      </button>
-    </form>
+    <div className="max-w-md mx-auto">
+      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => { setEmail(e.target.value); if (status === 'error') setStatus('idle'); }}
+          placeholder="your@email.com"
+          required
+          className="flex-1 px-4 py-3 rounded-xl text-sm text-gray-900 bg-white border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          style={{ fontFamily: 'Sora, sans-serif' }}
+        />
+        <button
+          type="submit"
+          disabled={status === 'loading'}
+          className="px-6 py-3 rounded-xl font-semibold text-sm text-white transition-all hover:opacity-90 disabled:opacity-60 whitespace-nowrap"
+          style={{ background: '#2563eb', fontFamily: 'Sora, sans-serif' }}
+        >
+          {status === 'loading' ? 'Subscribing...' : 'Get Updates'}
+        </button>
+      </form>
+      {status === 'error' && errorMsg && (
+        <p className="text-red-400 text-xs mt-2 text-center">{errorMsg}</p>
+      )}
+    </div>
   );
 }
 
