@@ -370,13 +370,49 @@ export default function CategoryPage() {
 
   const categoryBanks = sortBanksByCategory(config.getBanks(), slug);
 
+  const categorySchema = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: config.h1,
+      description: config.description,
+      numberOfItems: categoryBanks.length,
+      itemListElement: categoryBanks.slice(0, 10).map((bank, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: `${bank.name} Business Bank Account`,
+        url: `https://businessbankcompare.co.uk/${bank.slug}`,
+        description: bank.tagline,
+      })),
+    },
+    ...(config.faq && config.faq.length > 0 ? [{
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: config.faq.map((faq) => ({
+        '@type': 'Question',
+        name: faq.q,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.a,
+        },
+      })),
+    }] : []),
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Sora, sans-serif' }}>
       <SEO
         title={config.title}
         description={config.description}
-        keywords={`${config.h1.toLowerCase()}, compare business bank accounts, best business bank account UK, business banking`}
+        keywords={`${config.h1.toLowerCase()}, compare business bank accounts, best business bank account UK, business banking UK, ${slug.replace(/-/g, ' ')} bank account`}
         canonicalPath={`/category/${slug}`}
+        dateModified={new Date().toISOString().split('T')[0]}
+        breadcrumbs={[
+          { name: 'Home', url: 'https://businessbankcompare.co.uk/' },
+          { name: 'Compare Accounts', url: 'https://businessbankcompare.co.uk/compare' },
+          { name: config.h1, url: `https://businessbankcompare.co.uk/category/${slug}` },
+        ]}
+        schema={categorySchema}
       />
       <Navigation />
       <div style={{ paddingTop: '88px' }}>

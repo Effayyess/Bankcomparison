@@ -81,13 +81,36 @@ export default function Compare() {
     setSearch('');
   }
 
+  const compareSchema = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: `Best UK Business Bank Accounts ${new Date().getFullYear()}`,
+      description: `Compare all ${banks.length} UK business bank accounts. Independent comparison by Business Bank Compare.`,
+      numberOfItems: banks.length,
+      itemListElement: banks.slice(0, 20).map((bank, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: `${bank.name} Business Bank Account`,
+        url: `https://businessbankcompare.co.uk/${bank.slug}`,
+        description: bank.tagline,
+      })),
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Sora, sans-serif' }}>
       <SEO
-        title={`Compare Business Bank Accounts UK ${new Date().getFullYear()} | All Accounts Side by Side`}
-        description={`Compare all ${banks.length} UK business bank accounts. Filter by fees, features, FSCS protection, and business type. Find the best account for your business today.`}
-        keywords="compare business bank accounts, business bank account comparison, best business bank account UK, UK business banking comparison, business account comparison tool"
+        title={`Compare Business Bank Accounts UK ${new Date().getFullYear()} | ${banks.length} Accounts Compared`}
+        description={`Compare all ${banks.length} UK business bank accounts side by side. Filter by fees, features, FSCS protection, business type, and more. Find the best account for sole traders, limited companies, and startups.`}
+        keywords="compare business bank accounts UK, business bank account comparison, best business bank account UK, business current account comparison, UK business banking comparison, free business bank account comparison, sole trader bank account comparison, limited company bank account"
         canonicalPath="/compare"
+        dateModified={new Date().toISOString().split('T')[0]}
+        breadcrumbs={[
+          { name: 'Home', url: 'https://businessbankcompare.co.uk/' },
+          { name: 'Compare Business Bank Accounts', url: 'https://businessbankcompare.co.uk/compare' },
+        ]}
+        schema={compareSchema}
       />
       <Navigation />
 

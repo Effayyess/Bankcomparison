@@ -51,36 +51,66 @@ export default function BankReview() {
   const relatedBanks = banks.filter((b) => b.id !== bank.id && b.type === bank.type).slice(0, 4);
   const year = new Date().getFullYear();
 
-  const reviewSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Review',
-    name: `${bank.name} Business Bank Account Review ${year}`,
-    reviewBody: bank.verdict || `Independent review of ${bank.name} business bank account.`,
-    reviewRating: {
-      '@type': 'Rating',
-      ratingValue: bank.rating,
-      bestRating: 5,
-      worstRating: 1,
-    },
-    author: {
-      '@type': 'Organization',
-      name: 'Business Bank Compare',
-    },
-    itemReviewed: {
+  const reviewSchema = [
+    {
+      '@context': 'https://schema.org',
       '@type': 'FinancialProduct',
       name: `${bank.name} Business Bank Account`,
+      description: bank.summary,
       brand: { '@type': 'Brand', name: bank.provider },
+      offers: {
+        '@type': 'Offer',
+        price: bank.monthlyFeeNum,
+        priceCurrency: 'GBP',
+        priceSpecification: {
+          '@type': 'UnitPriceSpecification',
+          price: bank.monthlyFeeNum,
+          priceCurrency: 'GBP',
+          billingDuration: 'P1M',
+        },
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: bank.rating,
+        bestRating: 5,
+        worstRating: 1,
+        ratingCount: 1,
+      },
+      review: {
+        '@type': 'Review',
+        name: `${bank.name} Business Bank Account Review ${year}`,
+        reviewBody: bank.summary,
+        reviewRating: {
+          '@type': 'Rating',
+          ratingValue: bank.rating,
+          bestRating: 5,
+          worstRating: 1,
+        },
+        author: {
+          '@type': 'Organization',
+          name: 'Business Bank Compare',
+          url: 'https://businessbankcompare.co.uk',
+        },
+        datePublished: new Date().toISOString().split('T')[0],
+      },
+      areaServed: { '@type': 'Country', name: 'United Kingdom' },
     },
-  };
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Sora, sans-serif' }}>
       <SEO
-        title={`${bank.name} Business Bank Account Review ${year} | Business Bank Compare`}
-        description={`Read our independent ${bank.name} business bank account review. We cover fees, features, pros and cons, and who it's best for. Rated ${bank.rating}/5.`}
-        keywords={`${bank.name} review, ${bank.name} business bank account, ${bank.provider} business account review, ${bank.name} fees, ${bank.name} business banking`}
+        title={`${bank.name} Business Bank Account Review ${year} | Fees, Features & Verdict`}
+        description={`${bank.name} business bank account review ${year}: ${bank.tagline}. Monthly fee: ${bank.monthlyFee}. Rated ${bank.rating}/5. Independent expert review covering fees, features, pros and cons.`}
+        keywords={`${bank.name} review, ${bank.name} business bank account, ${bank.provider} business account, ${bank.name} fees ${year}, ${bank.name} business banking UK, ${bank.name} business account review, is ${bank.name} good for business`}
         canonicalPath={`/${slug}`}
         ogType="article"
+        dateModified={new Date().toISOString().split('T')[0]}
+        breadcrumbs={[
+          { name: 'Home', url: 'https://businessbankcompare.co.uk/' },
+          { name: 'Compare Accounts', url: 'https://businessbankcompare.co.uk/compare' },
+          { name: `${bank.name} Review`, url: `https://businessbankcompare.co.uk/${slug}` },
+        ]}
         schema={reviewSchema}
       />
       <Navigation />

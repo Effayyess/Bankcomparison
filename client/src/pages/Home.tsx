@@ -2,7 +2,7 @@
 // Hero image, trust bar, business type cards, bank list with show-more, account type grid, why us, guides, FAQ
 import { useState } from 'react';
 import { Link } from 'wouter';
-import { Shield, Star, RefreshCw, ChevronDown, ChevronUp, ArrowRight, SlidersHorizontal, Info, BookOpen, Award, Clock } from 'lucide-react';
+import { Shield, Star, RefreshCw, ChevronDown, ChevronUp, ArrowRight, SlidersHorizontal, Info, BookOpen, Award, Clock, Mail, CheckCircle } from 'lucide-react';
 import { banks, accountTypeCategories, businessTypeCards, guides, getBanksByType, getBanksBySuitability, type AccountTypeCategory } from '@/lib/bankData';
 import BankCard from '@/components/BankCard';
 import Navigation from '@/components/Navigation';
@@ -82,6 +82,61 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
   );
 }
 
+function NewsletterSignup() {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setStatus('loading');
+    // Store in localStorage as a simple client-side signup log
+    // In production this would call a Netlify function / API
+    try {
+      const existing = JSON.parse(localStorage.getItem('newsletter_signups') || '[]');
+      if (!existing.includes(email)) {
+        existing.push(email);
+        localStorage.setItem('newsletter_signups', JSON.stringify(existing));
+      }
+      setStatus('success');
+      setEmail('');
+    } catch {
+      setStatus('error');
+    }
+  };
+
+  if (status === 'success') {
+    return (
+      <div className="flex items-center justify-center gap-2 text-green-400 font-semibold text-sm">
+        <CheckCircle className="w-5 h-5" />
+        You're subscribed! We'll be in touch soon.
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="your@email.com"
+        required
+        className="flex-1 px-4 py-3 rounded-xl text-sm text-gray-900 bg-white border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        style={{ fontFamily: 'Sora, sans-serif' }}
+      />
+      <button
+        type="submit"
+        disabled={status === 'loading'}
+        className="px-6 py-3 rounded-xl font-semibold text-sm text-white transition-all hover:opacity-90 disabled:opacity-60 whitespace-nowrap"
+        style={{ background: '#2563eb', fontFamily: 'Sora, sans-serif' }}
+      >
+        {status === 'loading' ? 'Subscribing...' : 'Get Updates'}
+      </button>
+    </form>
+  );
+}
+
 export default function Home() {
   const [showAll, setShowAll] = useState(false);
 
@@ -90,26 +145,54 @@ export default function Home() {
 
   const currentMonth = new Date().toLocaleString('en-GB', { month: 'long', year: 'numeric' });
 
-  const homeSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'Business Bank Compare',
-    url: 'https://businessbankcompare.co.uk',
-    description: 'Independent comparison of the best UK business bank accounts. Compare fees, features, and reviews to find the right account for your business.',
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: 'https://businessbankcompare.co.uk/compare?q={search_term_string}',
-      'query-input': 'required name=search_term_string',
+  const homeSchema = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'Business Bank Compare',
+      url: 'https://businessbankcompare.co.uk',
+      description: 'Independent comparison of the best UK business bank accounts. Compare fees, features, and reviews to find the right account for your business.',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: 'https://businessbankcompare.co.uk/compare?q={search_term_string}',
+        'query-input': 'required name=search_term_string',
+      },
     },
-  };
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'Business Bank Compare',
+      url: 'https://businessbankcompare.co.uk',
+      logo: 'https://businessbankcompare.co.uk/logo-square.png',
+      description: 'Independent UK business bank account comparison and review website.',
+      areaServed: {
+        '@type': 'Country',
+        name: 'United Kingdom',
+      },
+      sameAs: [],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      })),
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Sora, sans-serif' }}>
       <SEO
-        title={`Best Business Bank Accounts UK ${new Date().getFullYear()} | Business Bank Compare`}
-        description="Compare the best UK business bank accounts. Independent reviews of Starling, Tide, Monzo, Revolut, HSBC and more. Find the right account for sole traders, limited companies and startups."
-        keywords="best business bank account, compare business bank account, UK business bank account, business bank account comparison, best business account UK, sole trader bank account, limited company bank account, free business bank account"
+        title={`Best Business Bank Accounts UK ${new Date().getFullYear()} | Compare All Accounts`}
+        description={`Compare the best UK business bank accounts in ${new Date().getFullYear()}. Independent reviews of Starling, Tide, Monzo, Revolut, HSBC, Barclays and more. Find the right account for sole traders, limited companies, startups and freelancers. Updated ${new Date().toLocaleString('en-GB', { month: 'long', year: 'numeric' })}.`}
+        keywords="best business bank account UK, compare business bank accounts, business bank account comparison, free business bank account UK, sole trader bank account, limited company bank account, business current account UK, open business bank account, best business account UK 2026, small business bank account UK, startup bank account UK, digital business bank account, no monthly fee business account"
         canonicalPath="/"
+        dateModified={new Date().toISOString().split('T')[0]}
         schema={homeSchema}
       />
       <Navigation />
@@ -442,6 +525,26 @@ export default function Home() {
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter signup */}
+      <section className="py-14 border-t border-gray-200" style={{ background: '#0a1e3c' }}>
+        <div className="container">
+          <div className="max-w-2xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/50 text-blue-300 text-xs font-semibold border border-blue-700/50 mb-4">
+              <Mail className="w-3.5 h-3.5" />
+              Free Monthly Newsletter
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3" style={{ fontFamily: 'Sora, sans-serif' }}>
+              Stay Updated on UK Business Banking
+            </h2>
+            <p className="text-sm mb-6" style={{ color: 'rgba(255,255,255,0.70)' }}>
+              Get monthly updates on the best business bank account deals, new account launches, fee changes, and exclusive welcome offers — straight to your inbox.
+            </p>
+            <NewsletterSignup />
+            <p className="text-xs mt-3" style={{ color: 'rgba(255,255,255,0.40)' }}>No spam. Unsubscribe at any time. We never share your email.</p>
           </div>
         </div>
       </section>

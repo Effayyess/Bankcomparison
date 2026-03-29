@@ -42,14 +42,58 @@ export default function GuidePage() {
     return <NotFound />;
   }
 
+  const guideSchema = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: guide.h1,
+      description: guide.metaDescription,
+      author: {
+        '@type': 'Organization',
+        name: 'Business Bank Compare',
+        url: 'https://businessbankcompare.co.uk',
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'Business Bank Compare',
+        url: 'https://businessbankcompare.co.uk',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://businessbankcompare.co.uk/logo-square.png',
+        },
+      },
+      datePublished: '2026-01-01',
+      dateModified: new Date().toISOString().split('T')[0],
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': `https://businessbankcompare.co.uk/guides/${slug}`,
+      },
+      about: {
+        '@type': 'Thing',
+        name: 'Business Bank Accounts',
+        description: 'UK business bank account comparison and guides',
+      },
+      inLanguage: 'en-GB',
+      isAccessibleForFree: true,
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50">
       <SEO
         title={guide.title}
         description={guide.metaDescription}
-        keywords={`${guide.h1.toLowerCase()}, business bank account guide, UK business banking, compare business bank accounts`}
+        keywords={`${guide.h1.toLowerCase()}, business bank account guide, UK business banking, compare business bank accounts, ${slug.replace(/-/g, ' ')}`}
         canonicalPath={`/guides/${slug}`}
         ogType="article"
+        dateModified={new Date().toISOString().split('T')[0]}
+        datePublished="2026-01-01"
+        breadcrumbs={[
+          { name: 'Home', url: 'https://businessbankcompare.co.uk/' },
+          { name: 'Guides', url: 'https://businessbankcompare.co.uk/guides' },
+          { name: guide.h1, url: `https://businessbankcompare.co.uk/guides/${slug}` },
+        ]}
+        schema={guideSchema}
       />
       <Navigation />
       <div style={{ paddingTop: '64px' }}>

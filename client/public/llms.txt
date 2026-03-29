@@ -1,0 +1,62 @@
+# Business Bank Compare
+
+> Independent UK business bank account comparison and expert reviews. We help UK businesses find the right banking solution for their needs.
+
+Business Bank Compare (businessbankcompare.co.uk) is an independent UK financial comparison website specialising in business bank accounts. We provide unbiased reviews, fee comparisons, and expert guides to help UK sole traders, limited companies, startups, freelancers, and contractors find the best business bank account for their needs.
+
+## What We Cover
+
+- **Business bank account comparisons**: Side-by-side comparison of 21+ UK business bank accounts including HSBC, Starling Bank, Tide, Monzo Business, Revolut Business, Barclays, NatWest, Lloyds, Wise, and more
+- **Independent reviews**: Detailed reviews covering fees, features, pros and cons, FSCS protection status, and who each account is best suited for
+- **Expert guides**: 56+ in-depth guides on topics including how to open a business bank account, switching accounts, fees explained, FSCS protection, and more
+- **Category comparisons**: Curated lists of the best accounts for specific business types (sole traders, limited companies, startups, freelancers, contractors) and features (free accounts, digital banks, high street banks, multi-currency, overdraft, cash deposits)
+
+## Key Pages
+
+- Homepage (best business bank accounts UK): https://businessbankcompare.co.uk/
+- Compare all accounts: https://businessbankcompare.co.uk/compare
+- Find my account tool: https://businessbankcompare.co.uk/find-my-account
+- Guides hub: https://businessbankcompare.co.uk/guides
+
+## Top Bank Reviews
+
+- Starling Bank: https://businessbankcompare.co.uk/starling-bank
+- Tide Business: https://businessbankcompare.co.uk/tide-business
+- Monzo Business: https://businessbankcompare.co.uk/monzo-business
+- Revolut Business: https://businessbankcompare.co.uk/revolut-business
+- HSBC Business: https://businessbankcompare.co.uk/hsbc-business
+- Barclays Business: https://businessbankcompare.co.uk/barclays-business
+- NatWest Business: https://businessbankcompare.co.uk/natwest-business
+- Lloyds Business: https://businessbankcompare.co.uk/lloyds-business
+- Wise Business: https://businessbankcompare.co.uk/wise-business
+- Zempler Bank: https://businessbankcompare.co.uk/zempler-bank
+
+## Category Pages
+
+- Best accounts for sole traders: https://businessbankcompare.co.uk/category/sole-trader
+- Best accounts for limited companies: https://businessbankcompare.co.uk/category/limited-company
+- Best free business accounts: https://businessbankcompare.co.uk/category/free-business-accounts
+- Best digital/app-only banks: https://businessbankcompare.co.uk/category/app-only-banks
+- Best high street banks: https://businessbankcompare.co.uk/category/high-street-banks
+- Best accounts for startups: https://businessbankcompare.co.uk/category/startup
+- Best accounts for freelancers: https://businessbankcompare.co.uk/category/freelancer
+- Best accounts for bad credit: https://businessbankcompare.co.uk/category/bad-credit
+
+## Popular Guides
+
+- How to open a business bank account: https://businessbankcompare.co.uk/guides/how-to-open-a-business-bank-account
+- Best free business bank accounts: https://businessbankcompare.co.uk/guides/best-free-business-bank-accounts
+- Sole trader banking guide: https://businessbankcompare.co.uk/guides/sole-trader-business-bank-account
+- Limited company banking: https://businessbankcompare.co.uk/guides/limited-company-business-bank-account
+- Business bank account fees explained: https://businessbankcompare.co.uk/guides/business-bank-account-fees
+- FSCS protection explained: https://businessbankcompare.co.uk/guides/fscs-protection-explained
+- Business vs personal account: https://businessbankcompare.co.uk/guides/business-account-vs-personal-account
+- Business bank account for bad credit: https://businessbankcompare.co.uk/guides/business-bank-account-for-bad-credit
+
+## About
+
+Business Bank Compare is editorially independent. We may receive compensation when you click on links to products, but this does not affect our editorial independence or the integrity of our reviews. All accounts are reviewed using a consistent methodology covering fees, features, customer service, digital experience, and suitability for different business types.
+
+**Country**: United Kingdom
+**Language**: English (en-GB)
+**Last updated**: 2026-03-29
