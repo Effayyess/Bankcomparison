@@ -165,11 +165,27 @@ export default function Home() {
       name: 'Business Bank Compare',
       url: 'https://businessbankcompare.co.uk',
       description: 'Independent comparison of the best UK business bank accounts. Compare fees, features, and reviews to find the right account for your business.',
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: 'https://businessbankcompare.co.uk/compare?q={search_term_string}',
-        'query-input': 'required name=search_term_string',
+      potentialAction: [
+        {
+          '@type': 'SearchAction',
+          target: 'https://businessbankcompare.co.uk/compare?q={search_term_string}',
+          'query-input': 'required name=search_term_string',
+        },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': 'https://businessbankcompare.co.uk/',
+      url: 'https://businessbankcompare.co.uk/',
+      name: 'Best Business Bank Accounts UK — Compare All Accounts',
+      description: 'Independent comparison of the best UK business bank accounts. Compare fees, features, and reviews to find the right account for your business.',
+      speakable: {
+        '@type': 'SpeakableSpecification',
+        cssSelector: ['h1', '.hero-description', '.trust-bar'],
       },
+      inLanguage: 'en-GB',
+      isPartOf: { '@id': 'https://businessbankcompare.co.uk/' },
     },
     {
       '@context': 'https://schema.org',

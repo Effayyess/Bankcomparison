@@ -25,6 +25,7 @@ import FeeComparisonCalculator from './pages/calculators/FeeComparisonCalculator
 import SavingsInterestCalculator from './pages/calculators/SavingsInterestCalculator';
 import StickyPromoBar from './components/StickyPromoBar';
 import BusinessSavings from './pages/BusinessSavings';
+import HowWeReview from './pages/HowWeReview';
 
 function Router() {
   return (
@@ -59,6 +60,7 @@ function Router() {
           {() => <LegalPage slug="editorial-policy" />}
         </Route>
         <Route path="/contact" component={ContactPage} />
+        <Route path="/how-we-review" component={HowWeReview} />
         {/* Bank review pages — /:slug (e.g. /starling-bank) — must be last specific route */}
         <Route path="/:slug" component={BankReview} />
         <Route path="/404" component={NotFound} />

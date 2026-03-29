@@ -86,6 +86,9 @@ const navItems: NavItem[] = [
       { label: 'Business Banking Cost Calculator', href: '/calculators/business-cost' },
       { label: 'Fee Comparison Calculator', href: '/calculators/fee-comparison' },
       { label: 'Savings Interest Calculator', href: '/calculators/savings-interest' },
+      { label: '\u2014 About Our Reviews \u2014', href: '#', disabled: true },
+      { label: 'How We Review Accounts', href: '/how-we-review' },
+      { label: 'Meet Our Editorial Team', href: '/how-we-review' },
     ],
   },
 ];

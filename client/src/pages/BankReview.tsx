@@ -4,9 +4,11 @@ import { useState } from 'react';
 import { Link, useParams } from 'wouter';
 import { Star, Check, X, ExternalLink, ChevronRight, Shield, Zap, Globe } from 'lucide-react';
 import { banks, getBankBySlug } from '@/lib/bankData';
+import { authors, bankAuthorMap } from '@/lib/authorsData';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
+import AuthorByline from '@/components/AuthorByline';
 
 function StarRating({ rating, large }: { rating: number; large?: boolean }) {
   return (
@@ -51,6 +53,10 @@ export default function BankReview() {
   const relatedBanks = banks.filter((b) => b.id !== bank.id && b.type === bank.type).slice(0, 4);
   const year = new Date().getFullYear();
 
+  // Resolve author for this bank
+  const authorId = bankAuthorMap[slug] || 'james-hartley';
+  const author = authors[authorId];
+
   const reviewSchema = [
     {
       '@context': 'https://schema.org',
@@ -86,12 +92,30 @@ export default function BankReview() {
           bestRating: 5,
           worstRating: 1,
         },
-        author: {
+        author: author
+          ? {
+              '@type': 'Person',
+              name: author.name,
+              jobTitle: author.role,
+              url: `https://businessbankcompare.co.uk/how-we-review`,
+              image: `https://businessbankcompare.co.uk${author.photo}`,
+            }
+          : {
+              '@type': 'Organization',
+              name: 'Business Bank Compare',
+              url: 'https://businessbankcompare.co.uk',
+            },
+        publisher: {
           '@type': 'Organization',
           name: 'Business Bank Compare',
           url: 'https://businessbankcompare.co.uk',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://businessbankcompare.co.uk/logo-square.png',
+          },
         },
-        datePublished: new Date().toISOString().split('T')[0],
+        datePublished: '2026-01-01',
+        dateModified: new Date().toISOString().split('T')[0],
       },
       areaServed: { '@type': 'Country', name: 'United Kingdom' },
     },
@@ -202,6 +226,11 @@ export default function BankReview() {
                 <p className="text-xs text-gray-400 text-center">Updated {currentMonth}</p>
               </div>
             </div>
+
+            {/* Author byline — shown below the header row */}
+            <div className="mt-5">
+              <AuthorByline authorId={authorId} lastReviewed={currentMonth} variant="compact" showMethodologyLink={false} />
+            </div>
           </div>
         </div>
 
@@ -210,6 +239,9 @@ export default function BankReview() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Main content */}
             <div className="lg:col-span-2 space-y-6">
+
+              {/* Author byline — full version in main content */}
+              <AuthorByline authorId={authorId} lastReviewed={currentMonth} variant="full" />
 
               {/* Quick facts */}
               <div className="bg-white rounded-2xl border border-gray-200 p-6">
@@ -396,6 +428,16 @@ export default function BankReview() {
                   </div>
                 </div>
               ))}
+
+              {/* Bottom author byline — methodology link */}
+              <div className="bg-gray-50 border border-gray-200 rounded-2xl p-4 flex flex-wrap items-center justify-between gap-3 text-xs text-gray-500">
+                <span>
+                  Reviewed by <strong className="text-gray-700">{author?.name}</strong>, {author?.role} · Last reviewed: {currentMonth}
+                </span>
+                <Link href="/how-we-review" className="text-blue-600 hover:text-blue-800 font-medium no-underline">
+                  How we review →
+                </Link>
+              </div>
             </div>
 
             {/* Sidebar */}
@@ -473,7 +515,7 @@ export default function BankReview() {
                 </div>
               )}
 
-              {/* CTA box — teal gradient */}
+              {/* CTA box */}
               <div
                 className="rounded-2xl p-5 text-white"
                 style={{ background: '#0f172a', border: '1px solid #1e293b' }}
