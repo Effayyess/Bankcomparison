@@ -42,9 +42,10 @@ const feeModels: BankFeeModel[] = [
   {
     id: 'tide', name: 'Tide Business', provider: 'Tide', slug: 'tide-business',
     logo: banks.find(b => b.id === 'tide')?.logo ?? '',
-    monthlyFee: 0, perTransferFee: 20, freeTransfersPerMonth: 0,
-    perIncomingFee: 0, cashDepositRate: 1.0, cashDepositMin: 100,
-    cashDepositAccepted: true, intlTransferFee: 300, intlTransferPct: 0.5,
+    // 5 free transfers/mo then 20p each; cash: 0.99% at Post Office (min £2.50); intl: 20p + 1.5%
+    monthlyFee: 0, perTransferFee: 20, freeTransfersPerMonth: 5,
+    perIncomingFee: 0, cashDepositRate: 0.99, cashDepositMin: 250,
+    cashDepositAccepted: true, intlTransferFee: 20, intlTransferPct: 1.5,
     overdraftMonthlyFee: 0,
     affiliateUrl: banks.find(b => b.id === 'tide')?.affiliateUrl,
   },
@@ -60,18 +61,20 @@ const feeModels: BankFeeModel[] = [
   {
     id: 'monzo', name: 'Monzo Business', provider: 'Monzo', slug: 'monzo-business',
     logo: banks.find(b => b.id === 'monzo')?.logo ?? '',
+    // Lite plan (free): unlimited UK transfers, £1 flat per cash deposit, 1% intl FX
     monthlyFee: 0, perTransferFee: 0, freeTransfersPerMonth: 9999,
-    perIncomingFee: 0, cashDepositRate: 1.0, cashDepositMin: 50,
-    cashDepositAccepted: true, intlTransferFee: 50, intlTransferPct: 0.35,
+    perIncomingFee: 0, cashDepositRate: 0, cashDepositMin: 100,
+    cashDepositAccepted: true, intlTransferFee: 0, intlTransferPct: 1.0,
     overdraftMonthlyFee: 0,
     affiliateUrl: banks.find(b => b.id === 'monzo')?.affiliateUrl,
   },
   {
-    id: 'revolut', name: 'Revolut Business', provider: 'Revolut', slug: 'revolut-business',
+    id: 'revolut', name: 'Revolut Business Grow', provider: 'Revolut', slug: 'revolut-business',
     logo: banks.find(b => b.id === 'revolut')?.logo ?? '',
-    monthlyFee: 10, perTransferFee: 20, freeTransfersPerMonth: 10,
+    // Grow plan £30/mo: 100 free local transfers then 20p each; 5 free intl then £5+0.6%
+    monthlyFee: 30, perTransferFee: 20, freeTransfersPerMonth: 100,
     perIncomingFee: 0, cashDepositRate: 0, cashDepositMin: 0,
-    cashDepositAccepted: false, intlTransferFee: 0, intlTransferPct: 0,
+    cashDepositAccepted: false, intlTransferFee: 500, intlTransferPct: 0.6,
     overdraftMonthlyFee: 0,
     affiliateUrl: banks.find(b => b.id === 'revolut')?.affiliateUrl,
   },
@@ -96,9 +99,10 @@ const feeModels: BankFeeModel[] = [
   {
     id: 'barclays', name: 'Barclays Business', provider: 'Barclays', slug: 'barclays-business',
     logo: banks.find(b => b.id === 'barclays')?.logo ?? '',
-    monthlyFee: 0, perTransferFee: 35, freeTransfersPerMonth: 0,
-    perIncomingFee: 0, cashDepositRate: 0.9, cashDepositMin: 100,
-    cashDepositAccepted: true, intlTransferFee: 2500, intlTransferPct: 2.75,
+    // Free first 12 months then £8.50/mo; 0.6% cash via Post Office/self-service; £15+2.75% intl
+    monthlyFee: 8.50, perTransferFee: 35, freeTransfersPerMonth: 0,
+    perIncomingFee: 0, cashDepositRate: 0.6, cashDepositMin: 0,
+    cashDepositAccepted: true, intlTransferFee: 1500, intlTransferPct: 2.75,
     overdraftMonthlyFee: 0,
     affiliateUrl: banks.find(b => b.id === 'barclays')?.affiliateUrl,
   },
@@ -114,17 +118,19 @@ const feeModels: BankFeeModel[] = [
   {
     id: 'anna', name: 'ANNA Money', provider: 'ANNA', slug: 'anna-money',
     logo: banks.find(b => b.id === 'anna')?.logo ?? '',
+    // Pay As You Go: 0.95% on incoming payments; cash deposits accepted; 1% intl FX
     monthlyFee: 0, perTransferFee: 0, freeTransfersPerMonth: 9999,
-    perIncomingFee: 0, cashDepositRate: 1.0, cashDepositMin: 100,
-    cashDepositAccepted: true, intlTransferFee: 200, intlTransferPct: 0.5,
+    perIncomingFee: 95, cashDepositRate: 1.0, cashDepositMin: 0,
+    cashDepositAccepted: true, intlTransferFee: 0, intlTransferPct: 1.0,
     overdraftMonthlyFee: 0,
     affiliateUrl: banks.find(b => b.id === 'anna')?.affiliateUrl,
   },
   {
     id: 'mettle', name: 'Mettle by NatWest', provider: 'Mettle', slug: 'mettle',
     logo: banks.find(b => b.id === 'mettle')?.logo ?? '',
+    // Free account: unlimited UK transfers; £2.75 flat per cash deposit; no intl transfers
     monthlyFee: 0, perTransferFee: 0, freeTransfersPerMonth: 9999,
-    perIncomingFee: 0, cashDepositRate: 1.0, cashDepositMin: 0,
+    perIncomingFee: 0, cashDepositRate: 0, cashDepositMin: 275,
     cashDepositAccepted: true, intlTransferFee: 0, intlTransferPct: 0,
     overdraftMonthlyFee: 0,
     affiliateUrl: banks.find(b => b.id === 'mettle')?.affiliateUrl,
