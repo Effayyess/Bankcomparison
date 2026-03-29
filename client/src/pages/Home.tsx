@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import { Link } from 'wouter';
 import { Shield, Star, RefreshCw, ChevronDown, ChevronUp, ArrowRight, SlidersHorizontal, Info, BookOpen, Award, Clock, Mail, CheckCircle } from 'lucide-react';
-import { banks, accountTypeCategories, businessTypeCards, guides, getBanksByType, getBanksBySuitability, type AccountTypeCategory } from '@/lib/bankData';
+import { banks, accountTypeCategories, businessTypeCards, getBanksByType, getBanksBySuitability, savingsAccounts, type AccountTypeCategory } from '@/lib/bankData';
+import { guideCategories } from '../lib/guidesData';
 import BankCard from '@/components/BankCard';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -411,9 +412,11 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
             {accountTypeCategories.map((cat: AccountTypeCategory) => {
-              const count = cat.suitability
-                ? getBanksBySuitability(cat.suitability).length
-                : getBanksByType(cat.type).length;
+              const count = cat.type === 'savings'
+                ? savingsAccounts.length
+                : cat.suitability
+                  ? getBanksBySuitability(cat.suitability).length
+                  : getBanksByType(cat.type).length;
               const catHrefMap: Record<string, string> = {
                 'free': '/category/free-business-accounts',
                 'fast-opening': '/category/fast-opening',
@@ -433,6 +436,7 @@ export default function Home() {
                 'bad-credit': '/category/bad-credit',
                 'international': '/category/international',
                 'online': '/compare',
+                'savings': '/business-savings',
               };
               const href = catHrefMap[cat.type] || `/category/${cat.type}`;
               return (
@@ -505,7 +509,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Guides — matches original exactly */}
+      {/* Expert Guides — 11 categories from GuidesHub */}
       <section className="py-12 bg-gray-50 border-t border-gray-200">
         <div className="container">
           <div className="flex items-end justify-between mb-8">
@@ -513,30 +517,96 @@ export default function Home() {
               <h2 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Sora, sans-serif' }}>
                 Expert Guides &amp; Resources
               </h2>
-              <p className="text-gray-600 text-sm mt-1">In-depth guides to help you choose and manage your business bank account</p>
+              <p className="text-gray-600 text-sm mt-1">135+ in-depth guides covering every aspect of UK business banking</p>
             </div>
             <Link href="/guides" className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 hover:text-blue-800 no-underline whitespace-nowrap">
               All guides <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {guides.map((guide) => (
-              <Link key={guide.href} href={guide.href} className="no-underline group">
-                <div className="bg-white border border-gray-200 rounded-xl p-5 hover:border-blue-300 hover:shadow-md transition-all h-full">
-                  <div className="text-2xl mb-3">{guide.icon}</div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {guideCategories.map((cat) => (
+              <Link key={cat.id} href={`/guides#${cat.id}`} className="no-underline group">
+                <div className="bg-white border border-gray-200 rounded-xl p-5 hover:border-blue-300 hover:shadow-md transition-all h-full flex flex-col">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#eff6ff' }}>
+                      <BookOpen className="w-5 h-5 text-blue-600" />
+                    </div>
+                    <span className="text-xs font-bold text-blue-600 bg-blue-50 rounded-full px-2 py-0.5">
+                      {cat.guides.length} guides
+                    </span>
+                  </div>
                   <h3
-                    className="font-semibold text-gray-900 text-sm mb-2 group-hover:text-blue-700 transition-colors leading-snug"
+                    className="font-semibold text-gray-900 text-sm mb-2 group-hover:text-blue-700 transition-colors leading-snug flex-1"
                     style={{ fontFamily: 'Sora, sans-serif' }}
                   >
-                    {guide.title}
+                    {cat.title}
                   </h3>
-                  <div className="flex items-center gap-1.5 text-xs text-gray-400 mt-3">
-                    <Clock className="w-3 h-3" />
-                    {guide.time}
+                  <p className="text-xs text-gray-500 leading-relaxed line-clamp-2">{cat.description}</p>
+                  <div className="flex items-center gap-1 text-xs font-semibold text-blue-600 mt-3 group-hover:gap-2 transition-all">
+                    Browse guides <ArrowRight className="w-3 h-3" />
                   </div>
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Calculator Promo */}
+      <section className="py-14 border-t border-gray-100" style={{ background: '#f0f7ff' }}>
+        <div className="container">
+          <div className="max-w-5xl mx-auto">
+            <div className="flex flex-col lg:flex-row items-center gap-10">
+              {/* Left: copy */}
+              <div className="flex-1">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-semibold mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                  Free Tool
+                </div>
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3" style={{ fontFamily: 'Sora, sans-serif' }}>
+                  Find Out Exactly What Your Business Banking Is Costing You
+                </h2>
+                <p className="text-gray-600 text-sm leading-relaxed mb-6">
+                  Enter your monthly transaction volumes — transfers, cash deposits, international payments — and our calculator instantly ranks all major UK banks from cheapest to most expensive for <em>your</em> specific usage. Most businesses could save £200–£600 per year by switching.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Link href="/calculators/business-cost" className="no-underline">
+                    <button className="px-6 py-3 rounded-xl font-bold text-sm text-white transition-all hover:opacity-90" style={{ background: '#1e40af', fontFamily: 'Sora, sans-serif' }}>
+                      Calculate My Banking Cost
+                    </button>
+                  </Link>
+                  <Link href="/calculators" className="no-underline">
+                    <button className="px-6 py-3 rounded-xl font-bold text-sm text-blue-700 border-2 border-blue-200 bg-white hover:bg-blue-50 transition-all" style={{ fontFamily: 'Sora, sans-serif' }}>
+                      View All Calculators
+                    </button>
+                  </Link>
+                </div>
+              </div>
+              {/* Right: feature tiles */}
+              <div className="flex-shrink-0 w-full lg:w-80">
+                <div className="bg-white rounded-2xl border border-blue-100 shadow-sm p-6 space-y-4">
+                  {[
+                    { icon: '💷', label: 'Monthly fee comparison', desc: 'See true monthly cost at every bank' },
+                    { icon: '🔄', label: 'Transfer cost analysis', desc: 'UK transfers, Faster Payments & CHAPS' },
+                    { icon: '🌍', label: 'International payments', desc: 'FX margins and SWIFT fees included' },
+                    { icon: '💰', label: 'Cash deposit costs', desc: 'Branch and Post Office deposit rates' },
+                  ].map(f => (
+                    <div key={f.label} className="flex items-start gap-3">
+                      <span className="text-xl flex-shrink-0">{f.icon}</span>
+                      <div>
+                        <p className="text-sm font-semibold text-gray-900" style={{ fontFamily: 'Sora, sans-serif' }}>{f.label}</p>
+                        <p className="text-xs text-gray-500">{f.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                  <Link href="/calculators/business-cost" className="no-underline block mt-2">
+                    <div className="w-full text-center py-2.5 rounded-xl text-sm font-bold text-white" style={{ background: '#1e40af', fontFamily: 'Sora, sans-serif' }}>
+                      Try the Calculator →
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

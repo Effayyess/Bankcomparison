@@ -1,7 +1,7 @@
 // Compare page — full comparison list with sticky filters and advanced filtering
 // Matches original buscompare design: blue accents, Sora font
 import { useState, useMemo, useRef, useEffect } from 'react';
-import { Search, SlidersHorizontal, X, ChevronDown, ChevronUp, RotateCcw } from 'lucide-react';
+import { Search, SlidersHorizontal, X, ChevronDown, ChevronUp, RotateCcw, TrendingUp } from 'lucide-react';
 import { banks } from '@/lib/bankData';
 import BankCard from '@/components/BankCard';
 import Navigation from '@/components/Navigation';
@@ -19,6 +19,7 @@ const suitabilityFilters = [
   { value: 'contractor', label: 'Contractor' },
   { value: 'small-business', label: 'Small Business' },
   { value: 'international', label: 'International' },
+  { value: 'savings', label: 'Savings Accounts' },
 ];
 
 const typeFilters = [
@@ -150,8 +151,27 @@ export default function Compare() {
     setShowFilters(true);
   }
 
+  // Savings-only banks (no current account) — only show in 'all' and 'savings' views
+  const SAVINGS_ONLY_IDS = ['aldermore', 'shawbrook'];
+
   const filtered = useMemo(() => {
+    // Savings view: show only banks with a savings product
+    if (suitability === 'savings') {
+      return banks.filter((bank) => {
+        if (!bank.hasSavingsProduct) return false;
+        if (
+          search &&
+          !bank.name.toLowerCase().includes(search.toLowerCase()) &&
+          !bank.provider.toLowerCase().includes(search.toLowerCase())
+        ) return false;
+        return true;
+      });
+    }
+
     let result = banks.filter((bank) => {
+      // Always exclude savings-only banks (Aldermore, Shawbrook) from all views except savings
+      if (SAVINGS_ONLY_IDS.includes(bank.id)) return false;
+
       if (suitability !== 'all' && !bank.suitableFor.includes(suitability)) return false;
       if (bankType !== 'all' && bank.type !== bankType) return false;
       if (feeType === 'free' && bank.monthlyFeeNum !== 0) return false;
@@ -496,7 +516,10 @@ export default function Compare() {
           {/* Results count */}
           <div className="flex items-center justify-between mb-4">
             <p className="text-sm text-gray-600">
-              Showing <strong>{filtered.length}</strong> of {banks.length} accounts
+              {suitability === 'savings'
+                ? <>Showing <strong>{filtered.length}</strong> savings products with available rates</>
+                : <>Showing <strong>{filtered.length}</strong> of {banks.filter(b => !SAVINGS_ONLY_IDS.includes(b.id)).length} accounts</>
+              }
               {hasActiveFilters && (
                 <button
                   onClick={clearFilters}
@@ -507,6 +530,20 @@ export default function Compare() {
               )}
             </p>
           </div>
+
+          {/* Savings view info banner */}
+          {suitability === 'savings' && (
+            <div className="mb-4 p-4 rounded-xl border flex items-start gap-3" style={{ background: '#eff6ff', borderColor: '#bfdbfe' }}>
+              <TrendingUp className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="text-sm font-semibold text-blue-900 mb-1">Business Savings Accounts</p>
+                <p className="text-xs text-blue-700">
+                  Showing all {filtered.length} providers with business savings products. Click <strong>More Info</strong> on any card to see full savings rates, terms, and FSCS protection details.
+                  Rates correct as of {new Date().toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}.
+                </p>
+              </div>
+            </div>
+          )}
 
           {/* Bank list */}
           {filtered.length > 0 ? (
@@ -551,3 +588,4 @@ export default function Compare() {
     </div>
   );
 }
+

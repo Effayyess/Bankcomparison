@@ -29,6 +29,8 @@ const navItems: NavItem[] = [
       { label: 'Accounts with Branch Access', href: '/category/high-street' },
       { label: 'Accounts with Accounting', href: '/category/accounting' },
       { label: 'Cash Deposit Accounts', href: '/category/cash-deposit' },
+      { label: '— Savings —', href: '#', disabled: true },
+      { label: 'Business Savings Accounts', href: '/business-savings' },
     ],
   },
   {
@@ -74,15 +76,13 @@ const navItems: NavItem[] = [
     ],
   },
   {
-    label: 'Guides',
+    label: 'Learn',
     href: '/guides',
     children: [
-      { label: 'Getting Started', href: '/guides/category/getting-started' },
-      { label: 'By Business Type', href: '/guides/category/business-types' },
-      { label: 'Account Management', href: '/guides/category/account-management' },
-      { label: 'Fees & Security', href: '/guides/category/fees-and-security' },
-      { label: 'Tools & Software', href: '/guides/category/tools-and-software' },
-      { label: 'View All Guides', href: '/guides' },
+      { label: 'All Guides', href: '/guides' },
+      { label: 'Business Banking Cost Calculator', href: '/calculators/business-cost' },
+      { label: 'Fee Comparison Calculator', href: '/calculators/fee-comparison' },
+      { label: 'Savings Interest Calculator', href: '/calculators/savings-interest' },
     ],
   },
 ];
@@ -203,10 +203,12 @@ export default function Navigation() {
                         <Link
                           key={child.label}
                           href={child.href}
-                          className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors no-underline"
+                          className={`block px-4 py-2 text-sm transition-colors no-underline ${
+                            child.disabled ? 'pointer-events-none opacity-40 cursor-not-allowed' : 'hover:bg-gray-50'
+                          }`}
                           style={{ color: 'oklch(26% .07 240)', fontFamily: 'Sora, sans-serif' }}
                         >
-                          {child.label}
+                          {child.label}{child.disabled && child.href === '/calculators' ? ' (Coming Soon)' : ''}
                         </Link>
                       )
                     )}

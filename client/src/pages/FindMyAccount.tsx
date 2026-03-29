@@ -43,6 +43,8 @@ const FILTER_OPTIONS: FilterOption[] = [
   { id: 'bad-credit', label: 'Bad Credit History', description: 'Poor or thin credit file', icon: '🔓', color: '#ef4444', category: 'preferences' },
   { id: 'small-business', label: 'Small Business', description: 'Established SME', icon: '🏪', color: '#2563eb', category: 'preferences' },
   { id: 'ecommerce', label: 'E-commerce', description: 'Online retail or marketplace', icon: '🛒', color: '#8b5cf6', category: 'preferences' },
+  { id: 'savings', label: 'Business Savings', description: 'Earn interest on surplus cash', icon: '💰', color: '#10b981', category: 'preferences' },
+  { id: 'fscs', label: 'FSCS Protected', description: 'Protected up to £85,000', icon: '🛡️', color: '#2563eb', category: 'preferences' },
 ];
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -73,10 +75,15 @@ export default function FindMyAccount() {
     setShowResults(false);
   };
 
+  const SAVINGS_ONLY_IDS = ['aldermore', 'shawbrook'];
+
   const matchedBanks = useMemo(() => {
     if (selected.size === 0) return [];
     const selectedArr = Array.from(selected);
+    const wantsSavings = selectedArr.includes('savings');
     return banks.filter(bank => {
+      // Savings-only banks only appear when savings filter is selected
+      if (SAVINGS_ONLY_IDS.includes(bank.id) && !wantsSavings) return false;
       return selectedArr.every(filter => {
         if (bank.accountTypes.includes(filter)) return true;
         if (bank.suitableFor.includes(filter)) return true;
@@ -86,6 +93,8 @@ export default function FindMyAccount() {
         if (filter === 'branch-access' && bank.hasBranchAccess) return true;
         if (filter === 'cash-deposit' && bank.hasCashDeposits) return true;
         if (filter === 'accounting' && bank.hasAccounting) return true;
+        if (filter === 'savings' && bank.hasSavingsProduct) return true;
+        if (filter === 'fscs' && bank.fscsProtection) return true;
         return false;
       });
     });

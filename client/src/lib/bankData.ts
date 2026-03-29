@@ -65,6 +65,22 @@ export interface BankAccount {
   hasNoCreditCheck: boolean;
   accountTypes: string[];
   promoCode?: string;
+  hasSavingsProduct?: boolean;
+  savingsProducts?: {
+    productName: string;
+    type: 'easy-access' | 'notice' | 'fixed-rate';
+    aer: number;
+    aerLabel: string;
+    term: string;
+    minDepositLabel: string;
+    maxDepositLabel?: string;
+    minDeposit?: number;
+    maxDeposit?: number;
+    fscsProtected: boolean;
+    interestPaid: string;
+    badge?: string;
+    affiliateUrl?: string;
+  }[];
 }
 
 export const banks: BankAccount[] = [
@@ -455,6 +471,22 @@ Overall, HSBC's Small Business Banking Account is a well-rounded, reliable banki
   },
   {
     id: 'tide',
+  hasSavingsProduct: true,
+  savingsProducts: [
+    {
+      productName: 'Tide Savings Pot',
+      type: 'easy-access',
+      aerLabel: '4.07% AER',
+      aer: 4.07,
+      term: 'Instant access',
+      minDepositLabel: '£1',
+      minDeposit: 1,
+      maxDeposit: 250000,
+      interestPaid: 'Monthly',
+      fscsProtected: false,
+      badge: 'Popular',
+    },
+  ],
     name: 'Tide Business Bank Account',
     provider: 'Tide',
     slug: 'tide-business',
@@ -4236,6 +4268,22 @@ The Virgin Money M Account for Business is best suited to small enterprises prio
   },
   {
     id: 'revolut',
+  hasSavingsProduct: true,
+  savingsProducts: [
+    {
+      productName: 'Revolut Savings Vault',
+      type: 'easy-access',
+      aerLabel: '3.50% AER',
+      aer: 3.50,
+      term: 'Instant access',
+      minDepositLabel: '£1',
+      minDeposit: 1,
+      maxDeposit: 500000,
+      interestPaid: 'Daily',
+      fscsProtected: false,
+      badge: 'Safeguarded',
+    },
+  ],
     name: 'Revolut Business',
     provider: 'Revolut',
     slug: 'revolut-business',
@@ -4717,6 +4765,21 @@ In summary, Revolut Business Account is a top contender for companies looking to
   },
   {
     id: 'monzo',
+  hasSavingsProduct: true,
+  savingsProducts: [
+    {
+      productName: 'Monzo Business Savings Pot',
+      type: 'easy-access',
+      aerLabel: '3.00% AER',
+      aer: 3.00,
+      term: 'Instant access',
+      minDepositLabel: '£1',
+      minDeposit: 1,
+      maxDeposit: 500000,
+      interestPaid: 'Monthly',
+      fscsProtected: true,
+    },
+  ],
     name: 'Monzo Business',
     provider: 'Monzo',
     slug: 'monzo-business',
@@ -6211,6 +6274,21 @@ when choosing RBS, ensuring alignment with their financial management needs and 
   },
   {
     id: 'starling',
+  hasSavingsProduct: true,
+  savingsProducts: [
+    {
+      productName: 'Starling Savings Space',
+      type: 'easy-access',
+      aerLabel: '3.25% AER',
+      aer: 3.25,
+      term: 'Instant access',
+      minDepositLabel: '£1',
+      minDeposit: 1,
+      maxDeposit: 1000000,
+      interestPaid: 'Monthly',
+      fscsProtected: true,
+    },
+  ],
     name: 'Starling Bank Business Account',
     provider: 'Starling Bank',
     slug: 'starling-bank',
@@ -8117,10 +8195,362 @@ For these users, Mettle offers an excellent blend of modern banking, accounting 
     hasGlobalCurrencyAccounts: false,
     hasNoCreditCheck: true,
     accountTypes: ['current', 'free', 'fast-opening', 'no-credit-check', 'online', 'accounting', 'joint', 'digital'],
+  },
+  {
+    id: 'aldermore',
+    name: 'Aldermore Business Savings Account',
+    provider: 'Aldermore Bank',
+    slug: 'aldermore-business',
+    type: 'digital',
+    logo: '/aldermore-logo-clean.png',
+    logoColor: '#E84B1B',
+    tagline: 'Market-leading FSCS-protected business savings accounts — easy access, notice, and fixed rate',
+    monthlyFee: 'Free',
+    monthlyFeeNum: 0,
+    freeTransfers: 'N/A — savings accounts only',
+    atmWithdrawals: 'N/A',
+    spendingAbroad: 'N/A',
+    cashDeposits: 'N/A',
+    chequeDeposits: false,
+    overdraft: false,
+    fscsProtection: true,
+    accountingIntegrations: [],
+    businessTypes: ['Sole Trader', 'Limited Company', 'Partnership', 'LLP', 'Charity', 'SME'],
+    internationalPayments: false,
+    rating: 4.3,
+    ratingLabel: 'Very Good',
+    bestFor: 'FSCS-protected business savings — easy access, notice & fixed rate',
+    badge: 'Best for Savings',
+    welcomeOffer: 'Up to 4.95% AER on 1-year fixed savings',
+    welcomeOfferDetail: "Aldermore offers FSCS-protected business savings accounts with competitive rates — 4.15% AER easy access, 4.55% AER 60-day notice, and 4.95% AER 1-year fixed. Minimum deposit £1,000. No monthly fee.",
+    pros: [
+      'FSCS protected up to £85,000 per authorised institution',
+      'Competitive savings rates — up to 4.95% AER on 1-year fixed',
+      'Easy access, 60-day notice, and fixed-rate options available',
+      'No monthly fee on savings accounts',
+      'Minimum deposit from just £1,000',
+      'Online account management with dedicated business support',
+      'Suitable for sole traders, limited companies, charities, and SMEs',
+    ],
+    cons: [
+      'No current account or payment facilities',
+      'No branch network — online and phone only',
+      'Minimum deposit of £1,000 required',
+      'Fixed-rate accounts lock funds for the term',
+      'Notice accounts require advance notice to withdraw',
+    ],
+    summary: "Aldermore is a specialist UK savings bank offering FSCS-protected business savings accounts with some of the most competitive rates available. With easy access, notice, and fixed-rate options all available from £1,000, Aldermore is ideal for businesses looking to make their cash work harder while keeping it protected.",
+    reviewContent: [
+      {
+        heading: 'Overview',
+        body: 'Aldermore Bank is a UK-based specialist savings and lending bank, authorised by the Prudential Regulation Authority (PRA) and regulated by the Financial Conduct Authority (FCA). Unlike high street banks, Aldermore focuses exclusively on savings and lending products — meaning businesses that open an Aldermore savings account benefit from a provider whose entire focus is on delivering competitive rates and protecting customer deposits.\n\nAldermore offers three types of business savings accounts: easy access, notice (60-day), and fixed-rate bonds (1-year). All accounts are FSCS protected up to £85,000 per authorised institution, and all can be managed online or by phone.',
+      },
+      {
+        heading: 'Savings Rates & Products',
+        body: 'Aldermore consistently offers above-average savings rates for UK businesses. As of March 2026, the rates are:\n\n- **Easy Access Business Savings**: 4.15% AER — instant access, interest paid monthly\n- **60-Day Notice Business Savings**: 4.55% AER — 60 days notice required, interest paid monthly\n- **1-Year Fixed Rate Business Savings Bond**: 4.95% AER — funds locked for 12 months, interest paid on maturity\n\nAll accounts require a minimum deposit of £1,000. There is no maximum deposit limit stated, though FSCS protection applies up to £85,000.',
+      },
+      {
+        heading: 'FSCS Protection',
+        body: 'All Aldermore business savings accounts are fully FSCS protected up to £85,000 per authorised institution. This means your business deposits are protected by the UK government-backed Financial Services Compensation Scheme in the unlikely event that Aldermore were to fail. This is a critical distinction from e-money institutions such as Revolut and Tide, which use safeguarding rather than FSCS protection.',
+      },
+      {
+        heading: 'Who Is It Best For?',
+        body: 'Aldermore Business Savings is best suited to:\n\n- **Businesses with surplus cash** looking to earn a competitive return\n- **Companies with predictable cash flow** who can commit funds for 60 days or 12 months for higher rates\n- **Businesses that prioritise FSCS protection** over the highest possible rate\n- **Charities, not-for-profit organisations, and SMEs** of all sizes\n\nAldermore does not offer a business current account, so it is not suitable as a primary banking provider. It works best alongside a main business bank account.',
+      },
+      {
+        heading: 'Verdict',
+        body: 'Aldermore is an excellent choice for UK businesses looking to earn a competitive, FSCS-protected return on their cash savings. The three-tier product range (easy access, notice, fixed) gives businesses flexibility to match their savings strategy to their cash flow needs. Rates are consistently among the best available from a fully FSCS-protected UK bank.',
+      },
+    ],
+    plans: [
+      {
+        name: 'Easy Access',
+        price: '4.15% AER',
+        monthlyFeeNum: 0,
+        features: [
+          'Instant access to your funds',
+          'Interest paid monthly',
+          'Minimum deposit £1,000',
+          'FSCS protected up to £85,000',
+          'No monthly fee',
+        ],
+        highlight: 'Best for: Businesses needing flexible access',
+      },
+      {
+        name: '60-Day Notice',
+        price: '4.55% AER',
+        monthlyFeeNum: 0,
+        features: [
+          '60 days notice to withdraw',
+          'Interest paid monthly',
+          'Minimum deposit £1,000',
+          'FSCS protected up to £85,000',
+          'Higher rate than easy access',
+        ],
+        highlight: 'Best for: Businesses with planned cash needs',
+      },
+      {
+        name: '1-Year Fixed',
+        price: '4.95% AER',
+        monthlyFeeNum: 0,
+        features: [
+          'Fixed rate for 12 months',
+          'Interest paid on maturity',
+          'Minimum deposit £1,000',
+          'FSCS protected up to £85,000',
+          'Best rate in the Aldermore range',
+        ],
+        highlight: 'Best rate — ideal for surplus cash',
+      },
+    ],
+
+    affiliateUrl: 'https://www.aldermore.co.uk/business-savings/',
+    trustpilot: 4.1,
+    appRating: 4.0,
+    openingFee: 'Free',
+    creditCheck: true,
+    suitableFor: ['sole-trader', 'limited-company', 'small-business', 'established-business', 'charity', 'partnership'],
+    hasAccounting: true,
+    hasBranchAccess: false,
+    hasCashDeposits: true,
+    hasFastOpening: false,
+    hasGlobalCurrencyAccounts: false,
+    hasNoCreditCheck: false,
+    accountTypes: ['savings'],
+    hasSavingsProduct: true,
+    savingsProducts: [
+      {
+        productName: 'Aldermore Easy Access Business Savings',
+        type: 'easy-access',
+        aerLabel: '4.15% AER',
+        aer: 4.15,
+        term: 'Instant access',
+        minDepositLabel: '£1,000',
+        minDeposit: 1000,
+        maxDeposit: 1000000,
+        interestPaid: 'Monthly',
+        fscsProtected: true,
+      },
+      {
+        productName: 'Aldermore 60-Day Notice Business Savings',
+        type: 'notice',
+        aerLabel: '4.55% AER',
+        aer: 4.55,
+        term: '60-day notice',
+        minDepositLabel: '£1,000',
+        minDeposit: 1000,
+        maxDeposit: 1000000,
+        interestPaid: 'Monthly',
+        fscsProtected: true,
+      },
+      {
+        productName: 'Aldermore 1-Year Fixed Business Savings',
+        type: 'fixed-rate',
+        aerLabel: '4.95% AER',
+        aer: 4.95,
+        term: '1 year fixed',
+        minDepositLabel: '£1,000',
+        minDeposit: 1000,
+        maxDeposit: 1000000,
+        interestPaid: 'On maturity',
+        fscsProtected: true,
+        badge: 'Best Rate',
+      },
+    ],
+  },
+  {
+    id: 'shawbrook',
+    name: 'Shawbrook Business Savings Account',
+    provider: 'Shawbrook Bank',
+    slug: 'shawbrook-business',
+    type: 'digital',
+    logo: '/shawbrook-logo.svg',
+    logoColor: '#00A0D2',
+    tagline: 'Award-winning FSCS-protected business savings — easy access, notice, and fixed rate bonds',
+    monthlyFee: 'Free',
+    monthlyFeeNum: 0,
+    freeTransfers: 'N/A — savings accounts only',
+    atmWithdrawals: 'N/A',
+    spendingAbroad: 'N/A',
+    cashDeposits: 'N/A',
+    chequeDeposits: false,
+    overdraft: false,
+    fscsProtection: true,
+    accountingIntegrations: [],
+    businessTypes: ['Sole Trader', 'Limited Company', 'Partnership', 'LLP', 'Charity', 'SME'],
+    internationalPayments: false,
+    rating: 4.4,
+    ratingLabel: 'Excellent',
+    bestFor: 'Best business savings rates in the UK — FSCS protected',
+    badge: 'Best Savings Rates',
+    welcomeOffer: 'Up to 5.05% AER on 1-year fixed savings',
+    welcomeOfferDetail: "Shawbrook consistently offers some of the highest business savings rates in the UK — 4.35% AER easy access, 4.75% AER 95-day notice, and up to 5.05% AER on 1-year fixed bonds. All FSCS protected. Minimum deposit £1,000.",
+    pros: [
+      'Market-leading savings rates — up to 5.05% AER on 1-year fixed',
+      'FSCS protected up to £85,000 per authorised institution',
+      'Easy access, 95-day notice, and fixed-rate bonds available',
+      'Multiple industry awards for best business savings',
+      'No monthly fee on savings accounts',
+      'Minimum deposit from £1,000 (£5,000 for fixed-rate bonds)',
+      'Online account management with dedicated business support',
+    ],
+    cons: [
+      'No current account or payment facilities',
+      'No branch network — online and phone only',
+      'Fixed-rate bonds require minimum £5,000 deposit',
+      'Fixed-rate accounts lock funds for the full term',
+      '95-day notice required for notice account withdrawals',
+    ],
+    summary: "Shawbrook Bank is a multi-award-winning UK specialist savings bank offering FSCS-protected business savings accounts with market-leading rates. With easy access, 95-day notice, and fixed-rate bond options, Shawbrook is the go-to choice for businesses that want to maximise returns on their cash while keeping it fully protected.",
+    reviewContent: [
+      {
+        heading: 'Overview',
+        body: 'Shawbrook Bank is a multi-award-winning UK specialist savings and lending bank, authorised by the PRA and regulated by the FCA. Shawbrook has won numerous industry awards for its business savings products and consistently appears at the top of best-buy savings tables. Unlike high street banks, Shawbrook focuses exclusively on savings and lending — meaning businesses benefit from a provider whose sole focus is delivering competitive, FSCS-protected savings rates.',
+      },
+      {
+        heading: 'Savings Rates & Products',
+        body: 'Shawbrook offers four business savings products as of March 2026:\n\n- **Easy Access Business Savings**: 4.35% AER — instant access, interest paid monthly, min £1,000\n- **95-Day Notice Business Savings**: 4.75% AER — 95 days notice required, interest paid monthly, min £1,000\n- **1-Year Fixed Rate Business Savings Bond**: 5.05% AER — funds locked for 12 months, interest on maturity, min £5,000\n- **2-Year Fixed Rate Business Savings Bond**: 4.85% AER — funds locked for 24 months, interest on maturity, min £5,000\n\nShawbrook\'s 1-year fixed rate of 5.05% AER is among the highest available from any FSCS-protected UK business savings provider.',
+      },
+      {
+        heading: 'FSCS Protection',
+        body: 'All Shawbrook business savings accounts are fully FSCS protected up to £85,000 per authorised institution. This government-backed protection scheme means your business deposits are safe in the unlikely event that Shawbrook were to fail. This is a key differentiator from e-money providers that use safeguarding instead of FSCS protection.',
+      },
+      {
+        heading: 'Who Is It Best For?',
+        body: 'Shawbrook Business Savings is best suited to:\n\n- **Businesses with surplus cash** seeking the highest possible FSCS-protected return\n- **Companies with predictable cash flow** who can commit to 95-day notice or 12/24-month fixed terms\n- **Businesses that have already maximised their FSCS allowance** with one provider and want to spread deposits\n- **Charities, not-for-profit organisations, and established SMEs**\n\nShawbrook does not offer a business current account, so it works best alongside a primary business bank account.',
+      },
+      {
+        heading: 'Verdict',
+        body: 'Shawbrook is the standout choice for UK businesses looking for the best FSCS-protected savings rates. Its 1-year fixed rate of 5.05% AER is consistently one of the highest available, and the four-product range gives businesses genuine flexibility. If maximising the return on your business cash is the priority, Shawbrook should be your first port of call.',
+      },
+    ],
+    plans: [
+      {
+        name: 'Easy Access',
+        price: '4.35% AER',
+        monthlyFeeNum: 0,
+        features: [
+          'Instant access to your funds',
+          'Interest paid monthly',
+          'Minimum deposit £1,000',
+          'FSCS protected up to £85,000',
+          'No monthly fee',
+        ],
+        highlight: 'Best for: Businesses needing flexible access',
+      },
+      {
+        name: '95-Day Notice',
+        price: '4.75% AER',
+        monthlyFeeNum: 0,
+        features: [
+          '95 days notice to withdraw',
+          'Interest paid monthly',
+          'Minimum deposit £1,000',
+          'FSCS protected up to £85,000',
+          'Higher rate than easy access',
+        ],
+        highlight: 'Best for: Businesses with planned cash needs',
+      },
+      {
+        name: '1-Year Fixed',
+        price: '5.05% AER',
+        monthlyFeeNum: 0,
+        features: [
+          'Fixed rate for 12 months',
+          'Interest paid on maturity',
+          'Minimum deposit £5,000',
+          'FSCS protected up to £85,000',
+          'Top rate in the Shawbrook range',
+        ],
+        highlight: 'Top rate — best for surplus cash',
+      },
+      {
+        name: '2-Year Fixed',
+        price: '4.85% AER',
+        monthlyFeeNum: 0,
+        features: [
+          'Fixed rate for 24 months',
+          'Interest paid on maturity',
+          'Minimum deposit £5,000',
+          'FSCS protected up to £85,000',
+          'Longer-term certainty on rate',
+        ],
+        highlight: 'Best for: Businesses with long-term surplus cash',
+      },
+    ],
+
+    affiliateUrl: 'https://www.shawbrook.co.uk/business-savings/',
+    trustpilot: 4.4,
+    appRating: 4.2,
+    openingFee: 'Free',
+    creditCheck: true,
+    suitableFor: ['sole-trader', 'limited-company', 'small-business', 'established-business', 'charity', 'partnership'],
+    hasAccounting: true,
+    hasBranchAccess: false,
+    hasCashDeposits: true,
+    hasFastOpening: false,
+    hasGlobalCurrencyAccounts: false,
+    hasNoCreditCheck: false,
+    accountTypes: ['savings'],
+    hasSavingsProduct: true,
+    savingsProducts: [
+      {
+        productName: 'Shawbrook Easy Access Business Savings',
+        type: 'easy-access',
+        aerLabel: '4.35% AER',
+        aer: 4.35,
+        term: 'Instant access',
+        minDepositLabel: '£1,000',
+        minDeposit: 1000,
+        maxDeposit: 2000000,
+        interestPaid: 'Monthly',
+        fscsProtected: true,
+      },
+      {
+        productName: 'Shawbrook 95-Day Notice Business Savings',
+        type: 'notice',
+        aerLabel: '4.75% AER',
+        aer: 4.75,
+        term: '95-day notice',
+        minDepositLabel: '£5,000',
+        minDeposit: 5000,
+        maxDeposit: 2000000,
+        interestPaid: 'Monthly',
+        fscsProtected: true,
+      },
+      {
+        productName: 'Shawbrook 1-Year Fixed Rate Business Bond',
+        type: 'fixed-rate',
+        aerLabel: '5.05% AER',
+        aer: 5.05,
+        term: '1 year',
+        minDepositLabel: '£5,000',
+        minDeposit: 5000,
+        maxDeposit: 2000000,
+        interestPaid: 'On maturity',
+        fscsProtected: true,
+        badge: 'Best Rate',
+      },
+      {
+        productName: 'Shawbrook 2-Year Fixed Rate Business Bond',
+        type: 'fixed-rate',
+        aerLabel: '4.85% AER',
+        aer: 4.85,
+        term: '2 years',
+        minDepositLabel: '£5,000',
+        minDeposit: 5000,
+        maxDeposit: 2000000,
+        interestPaid: 'On maturity',
+        fscsProtected: true,
+      },
+    ],
   }
 ];
 
 // Helper: get banks by accountType (also checks suitableFor for overlapping types)
+// Savings-only banks — excluded from all current-account comparison pages
+const SAVINGS_ONLY_IDS = ['aldermore', 'shawbrook'];
+
 export function getBanksByType(type: string): BankAccount[] {
   // Some types overlap with suitableFor tags
   const suitabilityOverlap: Record<string, string> = {
@@ -8134,14 +8564,16 @@ export function getBanksByType(type: string): BankAccount[] {
     'joint': 'partnership',
   };
   if (suitabilityOverlap[type]) {
-    return banks.filter(b => b.accountTypes.includes(type) || b.suitableFor.includes(suitabilityOverlap[type]));
+    return banks.filter(b =>
+      !SAVINGS_ONLY_IDS.includes(b.id) &&
+      (b.accountTypes.includes(type) || b.suitableFor.includes(suitabilityOverlap[type]))
+    );
   }
-  return banks.filter(b => b.accountTypes.includes(type));
+  return banks.filter(b => !SAVINGS_ONLY_IDS.includes(b.id) && b.accountTypes.includes(type));
 }
-
-// Helper: get banks by suitableFor
+// Helper: get banks by suitableFor — always excludes savings-only banks
 export function getBanksBySuitability(suitability: string): BankAccount[] {
-  return banks.filter(b => b.suitableFor.includes(suitability));
+  return banks.filter(b => !SAVINGS_ONLY_IDS.includes(b.id) && b.suitableFor.includes(suitability));
 }
 
 // Helper: get bank by slug
@@ -8178,6 +8610,7 @@ export const accountTypeCategories: AccountTypeCategory[] = [
   { type: 'corporate',      label: 'Corporate Business Bank Accounts',  icon: '🏢', description: 'For larger businesses and corporates' },
   { type: 'international',  label: 'International Business Accounts',   icon: '🌍', description: 'International payments and FX transfers' },
   { type: 'multi-currency', label: 'Multi Currency Business Accounts',  icon: '💱', description: 'Hold and transact in multiple currencies' },
+  { type: 'savings',        label: 'Business Savings Accounts',          icon: '💰', description: 'Earn interest on surplus business cash' },
 ];
 
 // Business type cards for homepage
@@ -8200,4 +8633,440 @@ export const guides = [
   { title: 'Limited Company Banking Guide', href: '/guides/limited-company-business-bank-account', icon: '🏢', time: '6 min read' },
   { title: 'How to Switch Your Business Account', href: '/guides/switching-business-bank-account', icon: '🔄', time: '4 min read' },
   { title: 'Business Bank Account Fees Guide', href: '/guides/business-bank-account-fees', icon: '💰', time: '5 min read' },
+];
+
+
+// ─── Business Savings Accounts ────────────────────────────────────────────────
+export interface BusinessSavingsAccount {
+  id: string;
+  provider: string;
+  productName: string;
+  slug: string;
+  logo: string;
+  logoColor: string;
+  type: 'easy-access' | 'notice' | 'fixed-rate';
+  aer: number;
+  aerLabel: string;
+  term: string;
+  termMonths: number;
+  minDeposit: number;
+  maxDeposit: number;
+  minDepositLabel: string;
+  maxDepositLabel: string;
+  fscsProtected: boolean;
+  monthlyFee: string;
+  monthlyFeeNum: number;
+  interestPaid: string;
+  openingMethod: string;
+  rating: number;
+  badge?: string;
+  pros: string[];
+  cons: string[];
+  summary: string;
+  affiliateUrl?: string;
+}
+
+export const savingsAccounts: BusinessSavingsAccount[] = [
+  {
+    id: 'shawbrook-easy-access',
+    provider: 'Shawbrook Bank',
+    productName: 'Shawbrook Business Easy Access Account',
+    slug: 'shawbrook-business',
+    logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663463044688/ARsFo8cnc8CpnHoXXZH5qW/shawbrook_logo.png',
+    logoColor: '#00A0D2',
+    type: 'easy-access',
+    aer: 4.35,
+    aerLabel: '4.35% AER',
+    term: 'Instant access',
+    termMonths: 0,
+    minDeposit: 1000,
+    maxDeposit: 250000,
+    minDepositLabel: '\u00a31,000',
+    maxDepositLabel: '\u00a3250,000',
+    fscsProtected: true,
+    monthlyFee: 'Free',
+    monthlyFeeNum: 0,
+    interestPaid: 'Monthly',
+    openingMethod: 'Online',
+    rating: 4.5,
+    badge: 'Best Easy Access Rate',
+    pros: [
+      'Market-leading easy access rate at 4.35% AER',
+      'FSCS protected up to \u00a385,000',
+      'Instant access \u2014 withdraw at any time',
+      'No monthly fee',
+      'Interest paid monthly',
+    ],
+    cons: [
+      'Minimum deposit \u00a31,000',
+      'Maximum deposit \u00a3250,000',
+      'No branch access',
+    ],
+    summary: "Shawbrook's Business Easy Access Account consistently offers the best easy-access rate available to UK businesses, with full FSCS protection and no lock-in period.",
+    affiliateUrl: 'https://www.shawbrook.co.uk/business-savings/',
+  },
+  {
+    id: 'shawbrook-95-day-notice',
+    provider: 'Shawbrook Bank',
+    productName: 'Shawbrook Business 95-Day Notice Account',
+    slug: 'shawbrook-business',
+    logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663463044688/ARsFo8cnc8CpnHoXXZH5qW/shawbrook_logo.png',
+    logoColor: '#00A0D2',
+    type: 'notice',
+    aer: 4.75,
+    aerLabel: '4.75% AER',
+    term: '95 days notice',
+    termMonths: 3,
+    minDeposit: 1000,
+    maxDeposit: 250000,
+    minDepositLabel: '\u00a31,000',
+    maxDepositLabel: '\u00a3250,000',
+    fscsProtected: true,
+    monthlyFee: 'Free',
+    monthlyFeeNum: 0,
+    interestPaid: 'Monthly',
+    openingMethod: 'Online',
+    rating: 4.4,
+    pros: [
+      '4.75% AER \u2014 excellent notice account rate',
+      'FSCS protected up to \u00a385,000',
+      'Interest paid monthly',
+      'No monthly fee',
+    ],
+    cons: [
+      '95 days notice required to withdraw',
+      'Minimum deposit \u00a31,000',
+      'Maximum deposit \u00a3250,000',
+    ],
+    summary: "Shawbrook's 95-Day Notice Account offers a significant rate uplift over easy access in exchange for a 95-day withdrawal notice period.",
+    affiliateUrl: 'https://www.shawbrook.co.uk/business-savings/',
+  },
+  {
+    id: 'shawbrook-1yr-fixed',
+    provider: 'Shawbrook Bank',
+    productName: 'Shawbrook Business 1-Year Fixed Rate Bond',
+    slug: 'shawbrook-business',
+    logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663463044688/ARsFo8cnc8CpnHoXXZH5qW/shawbrook_logo.png',
+    logoColor: '#00A0D2',
+    type: 'fixed-rate',
+    aer: 5.05,
+    aerLabel: '5.05% AER',
+    term: '12 months fixed',
+    termMonths: 12,
+    minDeposit: 1000,
+    maxDeposit: 250000,
+    minDepositLabel: '\u00a31,000',
+    maxDepositLabel: '\u00a3250,000',
+    fscsProtected: true,
+    monthlyFee: 'Free',
+    monthlyFeeNum: 0,
+    interestPaid: 'On maturity',
+    openingMethod: 'Online',
+    rating: 4.6,
+    badge: 'Best Fixed Rate',
+    pros: [
+      "5.05% AER \u2014 UK's best 1-year fixed business savings rate",
+      'FSCS protected up to \u00a385,000',
+      'Guaranteed rate for the full 12 months',
+      'No monthly fee',
+    ],
+    cons: [
+      'No access to funds for 12 months',
+      'Minimum deposit \u00a31,000',
+      'Maximum deposit \u00a3250,000',
+      'Interest paid on maturity only',
+    ],
+    summary: "Shawbrook's 1-Year Fixed Rate Bond is consistently the top-rated business savings product in the UK, offering 5.05% AER with full FSCS protection.",
+    affiliateUrl: 'https://www.shawbrook.co.uk/business-savings/',
+  },
+  {
+    id: 'shawbrook-2yr-fixed',
+    provider: 'Shawbrook Bank',
+    productName: 'Shawbrook Business 2-Year Fixed Rate Bond',
+    slug: 'shawbrook-business',
+    logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663463044688/ARsFo8cnc8CpnHoXXZH5qW/shawbrook_logo.png',
+    logoColor: '#00A0D2',
+    type: 'fixed-rate',
+    aer: 4.85,
+    aerLabel: '4.85% AER',
+    term: '24 months fixed',
+    termMonths: 24,
+    minDeposit: 1000,
+    maxDeposit: 250000,
+    minDepositLabel: '\u00a31,000',
+    maxDepositLabel: '\u00a3250,000',
+    fscsProtected: true,
+    monthlyFee: 'Free',
+    monthlyFeeNum: 0,
+    interestPaid: 'Annually',
+    openingMethod: 'Online',
+    rating: 4.3,
+    pros: [
+      '4.85% AER guaranteed for 2 years',
+      'FSCS protected up to \u00a385,000',
+      'Interest paid annually',
+      'No monthly fee',
+    ],
+    cons: [
+      'No access to funds for 24 months',
+      'Minimum deposit \u00a31,000',
+      'Maximum deposit \u00a3250,000',
+    ],
+    summary: "Shawbrook's 2-Year Fixed Rate Bond locks in a competitive 4.85% AER for 24 months.",
+    affiliateUrl: 'https://www.shawbrook.co.uk/business-savings/',
+  },
+  {
+    id: 'aldermore-easy-access',
+    provider: 'Aldermore Bank',
+    productName: 'Aldermore Business Easy Access Account',
+    slug: 'aldermore-business',
+    logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663463044688/ARsFo8cnc8CpnHoXXZH5qW/aldermore_logo.png',
+    logoColor: '#E84B1B',
+    type: 'easy-access',
+    aer: 4.15,
+    aerLabel: '4.15% AER',
+    term: 'Instant access',
+    termMonths: 0,
+    minDeposit: 1000,
+    maxDeposit: 1000000,
+    minDepositLabel: '\u00a31,000',
+    maxDepositLabel: '\u00a31,000,000',
+    fscsProtected: true,
+    monthlyFee: 'Free',
+    monthlyFeeNum: 0,
+    interestPaid: 'Monthly',
+    openingMethod: 'Online',
+    rating: 4.2,
+    pros: [
+      '4.15% AER \u2014 excellent easy access rate',
+      'FSCS protected up to \u00a385,000',
+      'High maximum deposit of \u00a31,000,000',
+      'Instant access \u2014 withdraw at any time',
+      'Interest paid monthly',
+    ],
+    cons: [
+      'Minimum deposit \u00a31,000',
+      'Rate slightly below Shawbrook easy access',
+    ],
+    summary: "Aldermore's Business Easy Access Account offers a competitive 4.15% AER with a generous \u00a31,000,000 maximum deposit.",
+    affiliateUrl: 'https://www.aldermore.co.uk/business-savings/',
+  },
+  {
+    id: 'aldermore-60-day-notice',
+    provider: 'Aldermore Bank',
+    productName: 'Aldermore Business 60-Day Notice Account',
+    slug: 'aldermore-business',
+    logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663463044688/ARsFo8cnc8CpnHoXXZH5qW/aldermore_logo.png',
+    logoColor: '#E84B1B',
+    type: 'notice',
+    aer: 4.55,
+    aerLabel: '4.55% AER',
+    term: '60 days notice',
+    termMonths: 2,
+    minDeposit: 1000,
+    maxDeposit: 1000000,
+    minDepositLabel: '\u00a31,000',
+    maxDepositLabel: '\u00a31,000,000',
+    fscsProtected: true,
+    monthlyFee: 'Free',
+    monthlyFeeNum: 0,
+    interestPaid: 'Monthly',
+    openingMethod: 'Online',
+    rating: 4.2,
+    pros: [
+      "4.55% AER with only 60 days notice (shorter than Shawbrook's 95 days)",
+      'FSCS protected up to \u00a385,000',
+      'High maximum deposit of \u00a31,000,000',
+      'Interest paid monthly',
+    ],
+    cons: [
+      'Minimum deposit \u00a31,000',
+      '60 days notice required to withdraw',
+    ],
+    summary: "Aldermore's 60-Day Notice Account offers a strong 4.55% AER with a shorter notice period than Shawbrook's 95-day equivalent.",
+    affiliateUrl: 'https://www.aldermore.co.uk/business-savings/',
+  },
+  {
+    id: 'aldermore-1yr-fixed',
+    provider: 'Aldermore Bank',
+    productName: 'Aldermore Business 1-Year Fixed Rate Bond',
+    slug: 'aldermore-business',
+    logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663463044688/ARsFo8cnc8CpnHoXXZH5qW/aldermore_logo.png',
+    logoColor: '#E84B1B',
+    type: 'fixed-rate',
+    aer: 4.95,
+    aerLabel: '4.95% AER',
+    term: '12 months fixed',
+    termMonths: 12,
+    minDeposit: 1000,
+    maxDeposit: 1000000,
+    minDepositLabel: '\u00a31,000',
+    maxDepositLabel: '\u00a31,000,000',
+    fscsProtected: true,
+    monthlyFee: 'Free',
+    monthlyFeeNum: 0,
+    interestPaid: 'On maturity',
+    openingMethod: 'Online',
+    rating: 4.3,
+    pros: [
+      "4.95% AER \u2014 among the UK's best 1-year fixed rates",
+      'FSCS protected up to \u00a385,000',
+      'Very high maximum deposit of \u00a31,000,000',
+      'Guaranteed rate for the full 12 months',
+    ],
+    cons: [
+      'No access to funds for 12 months',
+      'Minimum deposit \u00a31,000',
+      'Interest paid on maturity only',
+    ],
+    summary: "Aldermore's 1-Year Fixed Rate Bond offers 4.95% AER with a \u00a31,000,000 maximum deposit.",
+    affiliateUrl: 'https://www.aldermore.co.uk/business-savings/',
+  },
+  {
+    id: 'tide-savings-pot',
+    provider: 'Tide',
+    productName: 'Tide Business Savings Pot',
+    slug: 'tide-business',
+    logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663463044688/ARsFo8cnc8CpnHoXXZH5qW/tide_logo.png',
+    logoColor: '#00D4AA',
+    type: 'easy-access',
+    aer: 4.07,
+    aerLabel: '4.07% AER',
+    term: 'Instant access',
+    termMonths: 0,
+    minDeposit: 1,
+    maxDeposit: 500000,
+    minDepositLabel: '\u00a31',
+    maxDepositLabel: '\u00a3500,000',
+    fscsProtected: true,
+    monthlyFee: 'Free',
+    monthlyFeeNum: 0,
+    interestPaid: 'Monthly',
+    openingMethod: 'App',
+    rating: 4.2,
+    badge: 'Best App-Based Savings',
+    pros: [
+      '4.07% AER \u2014 excellent rate for an app-based account',
+      'FSCS protected (via ClearBank)',
+      'No minimum deposit \u2014 start with \u00a31',
+      'Instant access via the Tide app',
+      'Seamlessly integrated with your Tide current account',
+    ],
+    cons: [
+      'Only available to existing Tide current account holders',
+      'Maximum deposit \u00a3500,000',
+      'No fixed-rate or notice account options',
+    ],
+    summary: "Tide's Business Savings Pot offers a market-leading 4.07% AER with no minimum deposit and instant access.",
+    affiliateUrl: 'https://www.tide.co/business-savings/',
+  },
+  {
+    id: 'starling-savings-space',
+    provider: 'Starling Bank',
+    productName: 'Starling Business Savings Space',
+    slug: 'starling-business',
+    logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663463044688/ARsFo8cnc8CpnHoXXZH5qW/starling_logo.png',
+    logoColor: '#6935D3',
+    type: 'easy-access',
+    aer: 3.25,
+    aerLabel: '3.25% AER',
+    term: 'Instant access',
+    termMonths: 0,
+    minDeposit: 1,
+    maxDeposit: 1000000,
+    minDepositLabel: '\u00a31',
+    maxDepositLabel: '\u00a31,000,000',
+    fscsProtected: true,
+    monthlyFee: 'Free',
+    monthlyFeeNum: 0,
+    interestPaid: 'Monthly',
+    openingMethod: 'App',
+    rating: 4.0,
+    pros: [
+      'FSCS protected up to \u00a385,000',
+      'No minimum deposit',
+      'Instant access via the Starling app',
+      'Integrated with Starling current account',
+      'High maximum deposit of \u00a31,000,000',
+    ],
+    cons: [
+      '3.25% AER \u2014 lower than specialist savings banks',
+      'Only available to Starling current account holders',
+    ],
+    summary: "Starling's Business Savings Space is a convenient way to earn interest on idle cash within the Starling app.",
+    affiliateUrl: 'https://www.starlingbank.com/business-account/savings/',
+  },
+  {
+    id: 'monzo-savings-pot',
+    provider: 'Monzo',
+    productName: 'Monzo Business Savings Pot',
+    slug: 'monzo-business',
+    logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663463044688/ARsFo8cnc8CpnHoXXZH5qW/monzo_logo.png',
+    logoColor: '#FF3464',
+    type: 'easy-access',
+    aer: 3.00,
+    aerLabel: '3.00% AER',
+    term: 'Instant access',
+    termMonths: 0,
+    minDeposit: 1,
+    maxDeposit: 100000,
+    minDepositLabel: '\u00a31',
+    maxDepositLabel: '\u00a3100,000',
+    fscsProtected: true,
+    monthlyFee: 'Free',
+    monthlyFeeNum: 0,
+    interestPaid: 'Monthly',
+    openingMethod: 'App',
+    rating: 3.9,
+    pros: [
+      'FSCS protected up to \u00a385,000',
+      'No minimum deposit',
+      'Instant access via the Monzo app',
+      'Integrated with Monzo current account',
+    ],
+    cons: [
+      '3.00% AER \u2014 lower than specialist savings banks',
+      'Maximum deposit only \u00a3100,000',
+      'Only available to Monzo current account holders',
+    ],
+    summary: "Monzo's Business Savings Pot offers convenient in-app savings with FSCS protection.",
+    affiliateUrl: 'https://monzo.com/business/',
+  },
+  {
+    id: 'revolut-savings-vault',
+    provider: 'Revolut',
+    productName: 'Revolut Business Savings Vault',
+    slug: 'revolut-business',
+    logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663463044688/ARsFo8cnc8CpnHoXXZH5qW/revolut_logo.png',
+    logoColor: '#191C1F',
+    type: 'easy-access',
+    aer: 3.50,
+    aerLabel: '3.50% AER',
+    term: 'Instant access',
+    termMonths: 0,
+    minDeposit: 1,
+    maxDeposit: 500000,
+    minDepositLabel: '\u00a31',
+    maxDepositLabel: '\u00a3500,000',
+    fscsProtected: false,
+    monthlyFee: 'Free',
+    monthlyFeeNum: 0,
+    interestPaid: 'Daily',
+    openingMethod: 'App',
+    rating: 3.8,
+    pros: [
+      '3.50% AER \u2014 competitive for an e-money institution',
+      'Interest paid daily',
+      'No minimum deposit',
+      'Instant access',
+      'Integrated with Revolut Business account',
+    ],
+    cons: [
+      'Not FSCS protected \u2014 funds held in safeguarded accounts only',
+      'Revolut is an e-money institution, not a bank',
+      'Maximum deposit \u00a3500,000',
+    ],
+    summary: "Revolut's Business Savings Vault offers 3.50% AER with daily interest, but deposits are not FSCS protected.",
+    affiliateUrl: 'https://www.revolut.com/business/',
+  },
 ];

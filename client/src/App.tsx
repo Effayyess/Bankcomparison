@@ -19,7 +19,12 @@ import GuidesCategory from './pages/GuidesCategory';
 import LegalPage from './pages/LegalPage';
 import ContactPage from './pages/ContactPage';
 import FindMyAccount from './pages/FindMyAccount';
+import CalculatorsHub from './pages/calculators/CalculatorsHub';
+import BusinessCostCalculator from './pages/calculators/BusinessCostCalculator';
+import FeeComparisonCalculator from './pages/calculators/FeeComparisonCalculator';
+import SavingsInterestCalculator from './pages/calculators/SavingsInterestCalculator';
 import StickyPromoBar from './components/StickyPromoBar';
+import BusinessSavings from './pages/BusinessSavings';
 
 function Router() {
   return (
@@ -31,6 +36,11 @@ function Router() {
         <Route path="/compare" component={Compare} />
         <Route path="/find-my-account" component={FindMyAccount} />
         <Route path="/category/:slug" component={CategoryPage} />
+        <Route path="/calculators" component={CalculatorsHub} />
+        <Route path="/calculators/business-cost" component={BusinessCostCalculator} />
+        <Route path="/calculators/fee-comparison" component={FeeComparisonCalculator} />
+        <Route path="/calculators/savings-interest" component={SavingsInterestCalculator} />
+        <Route path="/business-savings" component={BusinessSavings} />
         <Route path="/guides" component={GuidesHub} />
         <Route path="/guides/category/:categoryId">
           {(params) => <GuidesCategory categoryId={params.categoryId} />}

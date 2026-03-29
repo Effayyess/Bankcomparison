@@ -139,7 +139,7 @@ const categoryConfigs: Record<string, CategoryConfig> = {
     h1: 'Best Free Business Bank Accounts',
     description: 'Compare the best free UK business bank accounts with no monthly fee. Find accounts that are genuinely free with no hidden charges.',
     intro: 'A growing number of excellent business bank accounts are available with no monthly fee. These free accounts are not stripped-down products — many offer features that rival or exceed paid alternatives, including accounting integrations, invoicing tools, and FSCS protection.',
-    getBanks: () => banks.filter((b) => b.monthlyFeeNum === 0),
+    getBanks: () => banks.filter((b) => b.monthlyFeeNum === 0 && !['aldermore', 'shawbrook'].includes(b.id)),
     faq: [
       { q: 'Are free business bank accounts any good?', a: 'Yes — free business bank accounts have improved dramatically in recent years. Starling Bank, for example, is completely free and consistently rated as one of the best business bank accounts in the UK. Free does not mean inferior.' },
       { q: 'What is the catch with free business bank accounts?', a: 'Some free accounts charge for specific transactions (e.g., Tide charges 20p per transfer on its free plan). Others are free for a limited period (e.g., Barclays is free for 12 months). Always check the full fee schedule before opening.' },
