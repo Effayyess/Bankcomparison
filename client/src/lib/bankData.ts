@@ -8995,6 +8995,11 @@ export const savingsAccounts: BusinessSavingsAccount[] = [
     summary: "Tide's Instant Saver offers up to 4.00% AER (variable) with no minimum deposit and instant access — FSCS protected via ClearBank.",
     affiliateUrl: 'https://www.tide.co/business-savings/',
   },
+  {
+    id: 'monzo-savings-pot',
+    provider: 'Monzo',
+    productName: 'Monzo Business Instant Access Savings Pot',
+    slug: 'monzo-business',
     logo: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663463044688/ARsFo8cnc8CpnHoXXZH5qW/monzo_logo.png',
     logoColor: '#FF3464',
     type: 'easy-access',
