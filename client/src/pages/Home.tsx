@@ -554,7 +554,7 @@ export default function Home() {
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
               {guideCategories.map((cat) => (
-                <Link key={cat.id} href={`/guides#${cat.id}`} className="no-underline group">
+                <Link key={cat.id} href={`/guides?category=${cat.id}`} className="no-underline group">
                   <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 hover:border-blue-300 hover:bg-white hover:shadow-sm transition-all flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 bg-blue-50">
                       <BookOpen className="w-4 h-4 text-blue-600" />
