@@ -1,6 +1,8 @@
 // BankReview — individual bank review page
 // Matches original buscompare design: teal accents, Sora font, structured review layout
 import { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { Link, useParams } from 'wouter';
 import { Star, Check, X, ExternalLink, ChevronRight, Shield, Zap, Globe } from 'lucide-react';
 import { banks, getBankBySlug } from '@/lib/bankData';
@@ -387,44 +389,34 @@ export default function BankReview() {
                   <h2 className="text-lg font-bold text-gray-900 mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>
                     {section.heading}
                   </h2>
-                  <div className="text-gray-700 text-sm leading-relaxed space-y-3">
-                    {section.body.split('\n').map((line, idx) => {
-                      const trimmed = line.trim();
-                      if (!trimmed) return null;
-                      // Bullet points: lines starting with - or •
-                      if (trimmed.startsWith('- ') || trimmed.startsWith('• ')) {
-                        const text = trimmed.replace(/^[-•]\s+/, '');
-                        return (
-                          <div key={idx} className="flex items-start gap-2">
-                            <span className="mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: '#2563eb', marginTop: '6px' }} />
-                            <span dangerouslySetInnerHTML={{ __html: text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') }} />
-                          </div>
-                        );
-                      }
-                      // Sub-headings: lines ending with ':' or starting with ##
-                      if (trimmed.endsWith(':') && trimmed.length < 80) {
-                        return (
-                          <p key={idx} className="font-semibold text-gray-900 mt-4 mb-1">
-                            {trimmed}
-                          </p>
-                        );
-                      }
-                      // Numbered list items
-                      if (/^\d+\.\s/.test(trimmed)) {
-                        const text = trimmed.replace(/^\d+\.\s+/, '');
-                        const num = trimmed.match(/^(\d+)\./)?.[1];
-                        return (
-                          <div key={idx} className="flex items-start gap-2">
-                            <span className="flex-shrink-0 w-5 h-5 rounded-full text-xs font-bold flex items-center justify-center text-white" style={{ background: '#2563eb', marginTop: '1px' }}>{num}</span>
-                            <span dangerouslySetInnerHTML={{ __html: text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') }} />
-                          </div>
-                        );
-                      }
-                      // Regular paragraph
-                      return (
-                        <p key={idx} dangerouslySetInnerHTML={{ __html: trimmed.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') }} />
-                      );
-                    })}
+                  <div className="review-body text-gray-700 text-sm leading-relaxed">
+                    <ReactMarkdown
+                      remarkPlugins={[remarkGfm]}
+                      components={{
+                        p: ({ children }) => <p className="mb-3 last:mb-0">{children}</p>,
+                        ul: ({ children }) => <ul className="space-y-1.5 mb-3 pl-1">{children}</ul>,
+                        ol: ({ children }) => <ol className="space-y-1.5 mb-3 pl-1">{children}</ol>,
+                        li: ({ children }) => (
+                          <li className="flex items-start gap-2">
+                            <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full mt-1.5" style={{ background: '#2563eb', minWidth: '6px' }} />
+                            <span>{children}</span>
+                          </li>
+                        ),
+                        strong: ({ children }) => <strong className="font-semibold text-gray-900">{children}</strong>,
+                        h3: ({ children }) => <h3 className="font-semibold text-gray-900 mt-4 mb-2 text-sm">{children}</h3>,
+                        h4: ({ children }) => <h4 className="font-semibold text-gray-800 mt-3 mb-1 text-sm">{children}</h4>,
+                        blockquote: ({ children }) => (
+                          <blockquote className="border-l-4 pl-4 py-1 my-3 text-gray-600 italic" style={{ borderColor: '#2563eb', background: '#eff6ff', borderRadius: '0 8px 8px 0' }}>{children}</blockquote>
+                        ),
+                        table: ({ children }) => <div className="overflow-x-auto mb-3"><table className="w-full text-xs border-collapse">{children}</table></div>,
+                        th: ({ children }) => <th className="text-left p-2 font-semibold text-gray-900 border-b-2" style={{ borderColor: '#2563eb', background: '#eff6ff' }}>{children}</th>,
+                        td: ({ children }) => <td className="p-2 border-b border-gray-100">{children}</td>,
+                        hr: () => <hr className="my-4 border-gray-200" />,
+                        a: ({ href, children }) => <a href={href} className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">{children}</a>,
+                      }}
+                    >
+                      {section.body}
+                    </ReactMarkdown>
                   </div>
                 </div>
               ))}
