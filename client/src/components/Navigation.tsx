@@ -1,8 +1,8 @@
-// Navigation — matches original buscompare design exactly
-// Dark navy top bar + white nav with teal accents + dropdown menus
+// Navigation — clean 4-section IA
+// 1. Compare Accounts  2. Best Accounts For...  3. Bank Reviews  4. Guides & Tools
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'wouter';
-import { Menu, X, ChevronDown, Building2 } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 
 interface NavChild {
   label: string;
@@ -18,42 +18,31 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   {
-    label: 'Compare Bank Accounts',
+    label: 'Compare Accounts',
     href: '/compare',
     children: [
       { label: 'All Business Accounts', href: '/compare' },
-      { label: 'Free Business Accounts', href: '/category/free-business-accounts' },
-      { label: 'Fast Opening Accounts', href: '/category/fast-opening' },
-      { label: 'Accounts with Overdraft', href: '/category/overdraft' },
-      { label: 'Multi-Currency Accounts', href: '/category/multi-currency' },
-      { label: 'Accounts with Branch Access', href: '/category/high-street' },
-      { label: 'Accounts with Accounting', href: '/category/accounting' },
-      { label: 'Cash Deposit Accounts', href: '/category/cash-deposit' },
+      { label: 'Find My Account (Quiz)', href: '/find-my-account' },
+      { label: '— By Feature —', href: '#', disabled: true },
+      { label: 'Free Business Accounts', href: '/free-business-bank-accounts' },
+      { label: 'Digital-Only Accounts', href: '/best-digital-business-bank-accounts' },
+      { label: 'No Credit Check Accounts', href: '/business-bank-accounts-no-credit-check' },
       { label: '— Savings —', href: '#', disabled: true },
       { label: 'Business Savings Accounts', href: '/business-savings' },
     ],
   },
   {
-    label: 'By Business Type',
+    label: 'Best Accounts For...',
     href: '#',
     children: [
-      { label: '\u2014 SEO Landing Pages \u2014', href: '#', disabled: true },
-      { label: 'Best for Startups', href: '/best-business-bank-accounts-for-startups' },
-      { label: 'Free Business Accounts', href: '/free-business-bank-accounts' },
-      { label: 'Best for Sole Traders', href: '/best-sole-trader-bank-accounts' },
-      { label: 'Best for Limited Companies', href: '/best-business-bank-accounts-for-limited-companies' },
-      { label: 'Best Digital Accounts', href: '/best-digital-business-bank-accounts' },
-      { label: 'No Credit Check Accounts', href: '/business-bank-accounts-no-credit-check' },
-      { label: '\u2014 Browse by Category \u2014', href: '#', disabled: true },
-      { label: 'Sole Trader', href: '/category/sole-trader' },
-      { label: 'Limited Company', href: '/category/limited-company' },
-      { label: 'Contractor', href: '/category/contractor' },
-      { label: 'Freelancer', href: '/category/freelancer' },
-      { label: 'Startup', href: '/category/startup' },
-      { label: 'Small Business', href: '/category/small-business' },
-      { label: 'Partnership', href: '/category/partnership' },
-      { label: 'Charity / Non-Profit', href: '/category/charity' },
-      { label: 'E-commerce Business', href: '/category/ecommerce' },
+      { label: 'Startups', href: '/best-business-bank-accounts-for-startups' },
+      { label: 'Sole Traders', href: '/best-sole-trader-bank-accounts' },
+      { label: 'Limited Companies', href: '/best-business-bank-accounts-for-limited-companies' },
+      { label: 'Freelancers & Contractors', href: '/best-business-bank-accounts-for-startups' },
+      { label: 'Ecommerce Businesses', href: '/guides/hub/business-banking-by-sector' },
+      { label: 'Charities & Non-Profits', href: '/guides/hub/business-banking-by-sector' },
+      { label: 'Partnerships', href: '/guides/hub/business-banking-by-sector' },
+      { label: 'International Businesses', href: '/guides/hub/business-banking-by-sector' },
     ],
   },
   {
@@ -61,47 +50,47 @@ const navItems: NavItem[] = [
     href: '#',
     children: [
       { label: '— Digital Banks —', href: '#', disabled: true },
-      { label: 'Tide Business Bank Review', href: '/tide-business' },
-      { label: 'Revolut Business Bank Review', href: '/revolut-business' },
-      { label: 'Monzo Business Bank Review', href: '/monzo-business' },
-      { label: 'Starling Business Bank Review', href: '/starling-bank' },
-      { label: 'Wise Business Bank Review', href: '/wise-business' },
-      { label: 'ANNA Money Bank Review', href: '/anna-money' },
-      { label: 'Mettle Business Bank Review', href: '/mettle' },
-      { label: 'Zempler Business Bank Review', href: '/zempler-bank' },
-      { label: 'Airwallex Business Bank Review', href: '/airwallex-business' },
-      { label: 'WorldFirst Business Bank Review', href: '/worldfirst-business' },
-      { label: 'CountingUp Business Bank Review', href: '/countingup' },
-      { label: '— Specialist Savings Banks —', href: '#', disabled: true },
-      { label: 'Aldermore Business Savings Review', href: '/aldermore-business' },
-      { label: 'Shawbrook Business Savings Review', href: '/shawbrook-business' },
+      { label: 'Starling Bank', href: '/starling-bank' },
+      { label: 'Monzo Business', href: '/monzo-business' },
+      { label: 'Tide Business', href: '/tide-business' },
+      { label: 'Revolut Business', href: '/revolut-business' },
+      { label: 'Wise Business', href: '/wise-business' },
+      { label: 'ANNA Money', href: '/anna-money' },
+      { label: 'Mettle', href: '/mettle' },
+      { label: 'Zempler Bank', href: '/zempler-bank' },
+      { label: 'Airwallex', href: '/airwallex-business' },
+      { label: 'WorldFirst', href: '/worldfirst-business' },
+      { label: 'CountingUp', href: '/countingup' },
+      { label: '— Savings Banks —', href: '#', disabled: true },
+      { label: 'Aldermore Business Savings', href: '/aldermore-business' },
+      { label: 'Shawbrook Business Savings', href: '/shawbrook-business' },
       { label: '— High Street Banks —', href: '#', disabled: true },
-      { label: 'HSBC Business Bank Review', href: '/hsbc-business' },
-      { label: 'Lloyds Business Bank Review', href: '/lloyds-business' },
-      { label: 'Barclays Business Bank Review', href: '/barclays-business' },
-      { label: 'NatWest Business Bank Review', href: '/natwest-business' },
-      { label: 'Virgin Money Business Bank Review', href: '/virgin-money-business' },
-      { label: 'RBS Business Bank Review', href: '/rbs-business' },
-      { label: 'Co-operative Business Bank Review', href: '/cooperative-bank' },
-      { label: 'Cynergy Business Bank Review', href: '/cynergy-bank' },
+      { label: 'HSBC Business', href: '/hsbc-business' },
+      { label: 'Lloyds Business', href: '/lloyds-business' },
+      { label: 'Barclays Business', href: '/barclays-business' },
+      { label: 'NatWest Business', href: '/natwest-business' },
+      { label: 'Virgin Money Business', href: '/virgin-money-business' },
+      { label: 'RBS Business', href: '/rbs-business' },
+      { label: 'Co-operative Bank', href: '/cooperative-bank' },
+      { label: 'Cynergy Bank', href: '/cynergy-bank' },
     ],
   },
   {
-    label: 'Learn',
+    label: 'Guides & Tools',
     href: '/guides',
     children: [
-      { label: 'All Guides', href: '/guides' },
-      { label: 'Business Banking Cost Calculator', href: '/calculators/business-cost' },
-      { label: 'Fee Comparison Calculator', href: '/calculators/fee-comparison' },
-      { label: 'Savings Interest Calculator', href: '/calculators/savings-interest' },
-      { label: '\u2014 Hub Guides \u2014', href: '#', disabled: true },
+      { label: '— Hub Guides —', href: '#', disabled: true },
       { label: 'How to Start a Business in the UK', href: '/guides/hub/starting-a-business-uk' },
       { label: 'Business Banking Fees Explained', href: '/guides/hub/business-banking-fees-explained' },
-      { label: 'How to Switch Your Business Account', href: '/guides/hub/switching-business-bank-account' },
-      { label: 'Business Banking by Sector', href: '/guides/hub/business-banking-by-sector' },
-      { label: '\u2014 About Our Reviews \u2014', href: '#', disabled: true },
+      { label: 'How to Switch Your Account', href: '/guides/hub/switching-business-bank-account' },
+      { label: 'Banking by Business Sector', href: '/guides/hub/business-banking-by-sector' },
+      { label: '— Calculators —', href: '#', disabled: true },
+      { label: 'Business Cost Calculator', href: '/calculators/business-cost' },
+      { label: 'Fee Comparison Calculator', href: '/calculators/fee-comparison' },
+      { label: 'Savings Interest Calculator', href: '/calculators/savings-interest' },
+      { label: '— All Guides —', href: '#', disabled: true },
+      { label: 'Browse All 135+ Guides', href: '/guides' },
       { label: 'How We Review Accounts', href: '/how-we-review' },
-      { label: 'Meet Our Editorial Team', href: '/how-we-review' },
     ],
   },
 ];
@@ -205,7 +194,7 @@ export default function Navigation() {
                 {item.children && activeDropdown === item.label && (
                   <div
                     className="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50"
-                    style={{ minWidth: '220px', maxHeight: '80vh', overflowY: 'auto' }}
+                    style={{ minWidth: '240px', maxHeight: '80vh', overflowY: 'auto' }}
                     onMouseEnter={() => handleMouseEnter(item.label)}
                     onMouseLeave={handleMouseLeave}
                   >
@@ -222,12 +211,10 @@ export default function Navigation() {
                         <Link
                           key={child.label}
                           href={child.href}
-                          className={`block px-4 py-2 text-sm transition-colors no-underline ${
-                            child.disabled ? 'pointer-events-none opacity-40 cursor-not-allowed' : 'hover:bg-gray-50'
-                          }`}
+                          className="block px-4 py-2 text-sm transition-colors no-underline hover:bg-gray-50"
                           style={{ color: 'oklch(26% .07 240)', fontFamily: 'Sora, sans-serif' }}
                         >
-                          {child.label}{child.disabled && child.href === '/calculators' ? ' (Coming Soon)' : ''}
+                          {child.label}
                         </Link>
                       )
                     )}
@@ -271,7 +258,10 @@ export default function Navigation() {
                       {item.label}
                       <ChevronDown
                         className="w-4 h-4 transition-transform"
-                        style={{ transform: activeDropdown === item.label ? 'rotate(180deg)' : 'none' }}
+                        style={{
+                          transform: activeDropdown === item.label ? 'rotate(180deg)' : 'none',
+                          color: '#60a5fa',
+                        }}
                       />
                     </button>
                     {activeDropdown === item.label && (
@@ -281,7 +271,7 @@ export default function Navigation() {
                             <div
                               key={child.label}
                               className="px-6 py-1.5 text-xs font-semibold uppercase tracking-wider"
-                              style={{ color: '#60a5fa' }}
+                              style={{ color: '#60a5fa', fontFamily: 'Sora, sans-serif' }}
                             >
                               {child.label}
                             </div>
@@ -289,8 +279,8 @@ export default function Navigation() {
                             <Link
                               key={child.label}
                               href={child.href}
-                              className="block px-6 py-2.5 text-sm hover:bg-gray-100 no-underline"
-                              style={{ color: 'oklch(26% .07 240)' }}
+                              className="block px-6 py-2.5 text-sm hover:bg-gray-100 transition-colors no-underline"
+                              style={{ color: 'oklch(26% .07 240)', fontFamily: 'Sora, sans-serif' }}
                             >
                               {child.label}
                             </Link>
@@ -302,21 +292,21 @@ export default function Navigation() {
                 ) : (
                   <Link
                     href={item.href}
-                    className="block px-4 py-3 text-sm font-semibold hover:bg-gray-50 no-underline border-t border-gray-50"
-                    style={{ color: 'oklch(26% .07 240)' }}
+                    className="block px-4 py-3 text-sm font-semibold hover:bg-gray-50 transition-colors no-underline border-t border-gray-100"
+                    style={{ color: 'oklch(26% .07 240)', fontFamily: 'Sora, sans-serif' }}
                   >
                     {item.label}
                   </Link>
                 )}
               </div>
             ))}
-            <div className="px-4 py-3 border-t border-gray-100">
+            <div className="p-4 border-t border-gray-100">
               <Link
                 href="/compare"
-                className="block w-full text-center px-4 py-2.5 rounded-lg text-sm font-semibold text-white no-underline"
-                style={{ background: '#2563eb' }}
-                >
-                Compare Now
+                className="block w-full text-center px-4 py-3 rounded-xl font-semibold text-sm text-white no-underline"
+                style={{ background: '#2563eb', fontFamily: 'Sora, sans-serif' }}
+              >
+                Compare All Accounts
               </Link>
             </div>
           </div>

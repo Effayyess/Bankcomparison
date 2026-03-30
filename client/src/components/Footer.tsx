@@ -1,7 +1,5 @@
-// Footer — matches original buscompare-7vygqn9p.manus.space exactly
-// Design: dark navy, trust bar (3 items), 4-col grid (brand + 3 link cols), no separate Guides column
-// Guides & Resources is a link inside Compare Accounts column
-
+// Footer — updated IA to match restructured navigation
+// 4 columns: Brand | Compare & Tools | Best Accounts For | Bank Reviews
 import { Link } from 'wouter';
 import { Shield, Award, Users } from 'lucide-react';
 
@@ -40,7 +38,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Main columns — 4 cols: brand (wider) + Compare Accounts + By Business Type + Bank Reviews */}
+      {/* Main columns */}
       <div className="container py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
 
@@ -66,18 +64,21 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Compare Accounts */}
+          {/* Compare & Tools */}
           <div>
             <h3 className="font-bold text-sm mb-4" style={{ color: '#60a5fa' }}>
-              Compare Accounts
+              Compare &amp; Tools
             </h3>
             <ul className="space-y-2.5">
               {[
                 { label: 'All Business Accounts', href: '/compare' },
-                { label: 'Free Business Accounts', href: '/category/free-business-accounts' },
-                { label: 'Digital Banks', href: '/category/app-only-banks' },
-                { label: 'High Street Banks', href: '/category/high-street-banks' },
-                { label: 'Guides & Resources', href: '/guides' },
+                { label: 'Free Business Accounts', href: '/free-business-bank-accounts' },
+                { label: 'Digital-Only Accounts', href: '/best-digital-business-bank-accounts' },
+                { label: 'Business Savings Accounts', href: '/business-savings' },
+                { label: 'Business Cost Calculator', href: '/calculators/business-cost' },
+                { label: 'Fee Comparison Calculator', href: '/calculators/fee-comparison' },
+                { label: 'All Guides', href: '/guides' },
+                { label: 'How We Review', href: '/how-we-review' },
               ].map(link => (
                 <li key={link.label}>
                   <Link href={link.href} className="text-sm hover:text-white transition-colors no-underline" style={{ color: 'rgba(255,255,255,0.55)' }}>
@@ -88,19 +89,19 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* By Business Type */}
+          {/* Best Accounts For */}
           <div>
             <h3 className="font-bold text-sm mb-4" style={{ color: '#60a5fa' }}>
-              By Business Type
+              Best Accounts For...
             </h3>
             <ul className="space-y-2.5">
               {[
-                { label: 'Sole Trader', href: '/category/sole-trader' },
-                { label: 'Limited Company', href: '/category/limited-company' },
-                { label: 'Contractor', href: '/category/contractor' },
-                { label: 'Freelancer', href: '/category/freelancer' },
-                { label: 'Startup', href: '/category/startup' },
-                { label: 'Small Business', href: '/category/small-business' },
+                { label: 'Startups', href: '/best-business-bank-accounts-for-startups' },
+                { label: 'Sole Traders', href: '/best-sole-trader-bank-accounts' },
+                { label: 'Limited Companies', href: '/best-business-bank-accounts-for-limited-companies' },
+                { label: 'No Credit Check', href: '/business-bank-accounts-no-credit-check' },
+                { label: 'Ecommerce & Retail', href: '/guides/hub/business-banking-by-sector' },
+                { label: 'Charities', href: '/guides/hub/business-banking-by-sector' },
               ].map(link => (
                 <li key={link.label}>
                   <Link href={link.href} className="text-sm hover:text-white transition-colors no-underline" style={{ color: 'rgba(255,255,255,0.55)' }}>
@@ -124,7 +125,7 @@ export default function Footer() {
                 { label: 'Revolut Business', href: '/revolut-business' },
                 { label: 'Wise Business', href: '/wise-business' },
                 { label: 'Barclays Business', href: '/barclays-business' },
-                { label: 'HSBC Kinetic', href: '/hsbc-business' },
+                { label: 'HSBC Business', href: '/hsbc-business' },
                 { label: 'NatWest Business', href: '/natwest-business' },
               ].map(link => (
                 <li key={link.label}>
@@ -139,7 +140,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom bar — important info + FSCS + copyright + legal links */}
+      {/* Bottom bar */}
       <div style={{ background: 'oklch(0.14 0.04 240)', borderTop: '1px solid oklch(0.25 0.06 240)' }}>
         <div className="container py-6">
           <p className="text-xs leading-relaxed mb-3" style={{ color: 'rgba(255,255,255,0.4)' }}>
