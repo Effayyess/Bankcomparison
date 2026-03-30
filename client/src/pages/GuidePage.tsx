@@ -1,9 +1,10 @@
-// Design: Authoritative Broadsheet | Guide articles
-// Long-form editorial guides with table of contents, related guides sidebar
+// GuidePage — Long-form editorial guides with table of contents, related guides sidebar
 // SEO: Named author byline, FAQPage schema, speakable schema, last-reviewed date
 
 import { useParams, Link } from 'wouter';
 import { ChevronRight, BookOpen } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import NotFound from './NotFound';
 import SEO from '../components/SEO';
 import Navigation from '../components/Navigation';
@@ -233,74 +234,64 @@ export default function GuidePage() {
                   <h2 className="text-xl font-bold mb-4 text-gray-900" style={{ fontFamily: 'Sora, sans-serif' }}>
                     {section.heading}
                   </h2>
-                  <div>
-                    {section.content.split('\n\n').map((para, i) => {
-                      if (para.startsWith('**') && para.includes('**\n')) {
-                        const lines = para.split('\n');
-                        return (
-                          <div key={i} className="mb-4">
-                            {lines.map((line, j) => {
-                              if (line.startsWith('**') && line.endsWith('**')) {
-                                return (
-                                  <h3 key={j} className="font-bold text-base mt-4 mb-2 text-gray-800" style={{ fontFamily: 'Sora, sans-serif' }}>
-                                    {line.replace(/\*\*/g, '')}
-                                  </h3>
-                                );
-                              }
-                              if (line.startsWith('- ')) {
-                                return (
-                                  <p key={j} className="text-sm ml-4 mb-1 text-gray-600">
-                                    • {line.slice(2).replace(/\*\*(.*?)\*\*/g, '$1')}
-                                  </p>
-                                );
-                              }
-                              return line ? (
-                                <p key={j} className="text-sm leading-relaxed mb-2 text-gray-600">
-                                  {line.replace(/\*\*(.*?)\*\*/g, '$1')}
-                                </p>
-                              ) : null;
-                            })}
+                  <div className="guide-content">
+                    <ReactMarkdown
+                      remarkPlugins={[remarkGfm]}
+                      components={{
+                        p: ({ children }) => (
+                          <p className="text-sm leading-relaxed mb-4 text-gray-600" style={{ fontFamily: 'Sora, sans-serif' }}>{children}</p>
+                        ),
+                        strong: ({ children }) => (
+                          <strong className="font-semibold text-gray-800">{children}</strong>
+                        ),
+                        em: ({ children }) => (
+                          <em className="italic text-gray-700">{children}</em>
+                        ),
+                        ul: ({ children }) => (
+                          <ul className="space-y-1.5 mb-4 ml-1">{children}</ul>
+                        ),
+                        ol: ({ children }) => (
+                          <ol className="space-y-1.5 mb-4 ml-1 list-decimal list-inside">{children}</ol>
+                        ),
+                        li: ({ children }) => (
+                          <li className="flex items-start gap-2 text-sm text-gray-600" style={{ fontFamily: 'Sora, sans-serif' }}>
+                            <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" />
+                            <span>{children}</span>
+                          </li>
+                        ),
+                        h3: ({ children }) => (
+                          <h3 className="font-bold text-base mt-5 mb-2 text-gray-800" style={{ fontFamily: 'Sora, sans-serif' }}>{children}</h3>
+                        ),
+                        h4: ({ children }) => (
+                          <h4 className="font-semibold text-sm mt-4 mb-1.5 text-gray-700" style={{ fontFamily: 'Sora, sans-serif' }}>{children}</h4>
+                        ),
+                        blockquote: ({ children }) => (
+                          <blockquote className="border-l-4 border-blue-400 bg-blue-50 rounded-r-lg px-4 py-3 my-4 text-sm text-blue-900 italic">{children}</blockquote>
+                        ),
+                        table: ({ children }) => (
+                          <div className="overflow-x-auto mb-4">
+                            <table className="w-full text-sm border-collapse">{children}</table>
                           </div>
-                        );
-                      }
-                      if (para.includes('|')) {
-                        const rows = para.split('\n').filter(r => r.includes('|') && !r.match(/^[\s|:-]+$/));
-                        return (
-                          <div key={i} className="overflow-x-auto mb-4">
-                            <table className="w-full text-sm border-collapse">
-                              {rows.map((row, j) => {
-                                const cells = row.split('|').filter(c => c.trim());
-                                return (
-                                  <tr key={j} className={j === 0 ? 'border-b-2 border-blue-600' : 'border-b border-gray-100'}>
-                                    {cells.map((cell, k) => (
-                                      j === 0 ? (
-                                        <th key={k} className="text-left py-2 px-3 font-semibold text-xs uppercase tracking-wide text-blue-700" style={{ fontFamily: 'Sora, sans-serif' }}>
-                                          {cell.trim()}
-                                        </th>
-                                      ) : (
-                                        <td key={k} className="py-2 px-3 text-gray-600 text-sm">
-                                          {cell.trim()}
-                                        </td>
-                                      )
-                                    ))}
-                                  </tr>
-                                );
-                              })}
-                            </table>
-                          </div>
-                        );
-                      }
-                      const formatted = para
-                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                        .replace(/\n- /g, '<br/>• ');
-                      return (
-                        <p
-                          key={i}
-                          className="text-sm leading-relaxed mb-4 text-gray-600"
-                          dangerouslySetInnerHTML={{ __html: formatted }}
-                        />
-                      );
-                    })}
+                        ),
+                        thead: ({ children }) => (
+                          <thead className="border-b-2 border-blue-600">{children}</thead>
+                        ),
+                        th: ({ children }) => (
+                          <th className="text-left py-2 px-3 font-semibold text-xs uppercase tracking-wide text-blue-700" style={{ fontFamily: 'Sora, sans-serif' }}>{children}</th>
+                        ),
+                        td: ({ children }) => (
+                          <td className="py-2 px-3 text-gray-600 text-sm border-b border-gray-100">{children}</td>
+                        ),
+                        code: ({ children }) => (
+                          <code className="bg-gray-100 rounded px-1.5 py-0.5 text-xs font-mono text-gray-700">{children}</code>
+                        ),
+                        hr: () => (
+                          <hr className="my-5 border-gray-200" />
+                        ),
+                      }}
+                    >
+                      {section.content}
+                    </ReactMarkdown>
                   </div>
                 </div>
               ))}
@@ -365,9 +356,9 @@ export default function GuidePage() {
                   <ul className="space-y-2">
                     {[
                       { label: 'All Business Accounts', href: '/compare' },
-                      { label: 'Free Accounts', href: '/category/free-business-accounts' },
-                      { label: 'Sole Trader Accounts', href: '/category/sole-trader' },
-                      { label: 'Limited Company', href: '/category/limited-company' },
+                      { label: 'Free Accounts', href: '/free-business-bank-accounts' },
+                      { label: 'Sole Trader Accounts', href: '/best-sole-trader-bank-accounts' },
+                      { label: 'Limited Company', href: '/best-business-bank-accounts-for-limited-companies' },
                     ].map((item) => (
                       <li key={item.href}>
                         <Link href={item.href} className="text-sm hover:text-blue-700 flex items-center gap-1 text-gray-600 transition-colors">
