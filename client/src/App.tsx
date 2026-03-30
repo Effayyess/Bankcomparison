@@ -27,6 +27,20 @@ import StickyPromoBar from './components/StickyPromoBar';
 import BusinessSavings from './pages/BusinessSavings';
 import HowWeReview from './pages/HowWeReview';
 
+// SEO Category Landing Pages
+import BestStartupBankAccounts from './pages/seo/BestStartupBankAccounts';
+import FreeBankAccounts from './pages/seo/FreeBankAccounts';
+import SoleTraderBankAccounts from './pages/seo/SoleTraderBankAccounts';
+import NoCreditCheckBankAccounts from './pages/seo/NoCreditCheckBankAccounts';
+import LimitedCompanyBankAccounts from './pages/seo/LimitedCompanyBankAccounts';
+import DigitalBankAccounts from './pages/seo/DigitalBankAccounts';
+
+// Hub Pillar Pages
+import StartingABusinessHub from './pages/hubs/StartingABusinessHub';
+import BusinessBankingFeesHub from './pages/hubs/BusinessBankingFeesHub';
+import SwitchingBankAccountHub from './pages/hubs/SwitchingBankAccountHub';
+import BusinessBankingBySectorHub from './pages/hubs/BusinessBankingBySectorHub';
+
 function Router() {
   return (
     <>
@@ -42,11 +56,30 @@ function Router() {
         <Route path="/calculators/fee-comparison" component={FeeComparisonCalculator} />
         <Route path="/calculators/savings-interest" component={SavingsInterestCalculator} />
         <Route path="/business-savings" component={BusinessSavings} />
+        <Route path="/how-we-review" component={HowWeReview} />
+
+        {/* SEO Category Landing Pages */}
+        <Route path="/best-business-bank-accounts-for-startups" component={BestStartupBankAccounts} />
+        <Route path="/free-business-bank-accounts" component={FreeBankAccounts} />
+        <Route path="/best-sole-trader-bank-accounts" component={SoleTraderBankAccounts} />
+        <Route path="/business-bank-accounts-no-credit-check" component={NoCreditCheckBankAccounts} />
+        <Route path="/best-business-bank-accounts-for-limited-companies" component={LimitedCompanyBankAccounts} />
+        <Route path="/best-digital-business-bank-accounts" component={DigitalBankAccounts} />
+
+        {/* Hub Pillar Pages */}
+        <Route path="/guides/hub/starting-a-business-uk" component={StartingABusinessHub} />
+        <Route path="/guides/hub/business-banking-fees-explained" component={BusinessBankingFeesHub} />
+        <Route path="/guides/hub/switching-business-bank-account" component={SwitchingBankAccountHub} />
+        <Route path="/guides/hub/business-banking-by-sector" component={BusinessBankingBySectorHub} />
+
+        {/* Guides */}
         <Route path="/guides" component={GuidesHub} />
         <Route path="/guides/category/:categoryId">
           {(params) => <GuidesCategory categoryId={params.categoryId} />}
         </Route>
         <Route path="/guides/:slug" component={GuidePage} />
+
+        {/* Legal */}
         <Route path="/privacy-policy">
           {() => <LegalPage slug="privacy-policy" />}
         </Route>
@@ -60,7 +93,7 @@ function Router() {
           {() => <LegalPage slug="editorial-policy" />}
         </Route>
         <Route path="/contact" component={ContactPage} />
-        <Route path="/how-we-review" component={HowWeReview} />
+
         {/* Bank review pages — /:slug (e.g. /starling-bank) — must be last specific route */}
         <Route path="/:slug" component={BankReview} />
         <Route path="/404" component={NotFound} />
