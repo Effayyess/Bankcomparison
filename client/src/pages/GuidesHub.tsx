@@ -74,10 +74,8 @@ export default function GuidesHub() {
       navigate(`/guides?category=${catId}`);
     }
     setActiveCategory(catId);
-    // Scroll to the guide listing section
-    setTimeout(() => {
-      document.getElementById('guide-listing')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 50);
+    // Scroll to the very top of the page so the heading is visible
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // Which categories to show: all, or just the selected one
